@@ -19,6 +19,10 @@ class GenajaUI:
         self.progress = ttk.Progressbar(main, orient='horizontal', length=100, mode='determinate')
         self.progress.pack(fill=tk.X, pady=10)
 
+        # Feature: Checkbox para limpar saída
+        self.clean_output_var = tk.BooleanVar(value=False)
+        tk.Checkbutton(main, text="Manter apenas colunas selecionadas no arquivo final", variable=self.clean_output_var).pack(pady=5)
+
         btns = tk.Frame(main); btns.pack(fill=tk.X, pady=5)
         self.btn_iniciar = tk.Button(btns, text="Iniciar", command=on_start, bg="#007bff", fg="white", font=("Helvetica", 12, "bold"), height=2)
         self.btn_iniciar.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5)
