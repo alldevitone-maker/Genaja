@@ -1,9 +1,10 @@
 # Changelog
 
-## [v0.3.5] - 19/03/2026 (Git Preparation)
+## [v0.3.5] - 19/03/2026 (Git & Feature Checkbox)
 ### Adicionado
 - Arquivo `.gitignore` para exclusão de arquivos temporários, logs e backups do controle de versão.
 - Preparação do ambiente para inicialização do repositório Git/GitHub.
+- **Feature:** Checkbox "Manter apenas colunas selecionadas". Permite filtrar o arquivo de saída mantendo apenas as colunas mapeadas e a chave.
 
 ## [v0.3.3] - 19/03/2026 (Versioning Automation)
 ### Regra de Versionamento

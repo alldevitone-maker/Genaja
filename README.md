@@ -1,7 +1,7 @@
 # Genaja: Java Generic Data Access (JGDA)
 
-> **Versão Atual:** `v0.3.5` (Git Ready)  
-> **Status do Roadmap:** [5/8] - Git Configured
+> **Versão Atual:** `v0.3.5` (Feature Added)  
+> **Status do Roadmap:** [6/8] - Feature Checkbox Implemented
 
 ## Visão Geral
 
@@ -27,7 +27,7 @@ Genaja/JGDA/
 - [x] **3/8** - Validar execução na nova estrutura (Testes de Fumaça).
 - [x] **4/8** - Limpeza final para GitHub.
 - [x] **5/8** - Publicação no GitHub (Preparação .gitignore concluída).
-- [ ] **6/8** - Feature: Checkbox "Manter apenas colunas selecionadas".
+- [x] **6/8** - Feature: Checkbox "Manter apenas colunas selecionadas".
 - [ ] **7/8** - Validação da Feature.
 - [ ] **8/8** - Planejamento de Modularização Avançada.
 
@@ -50,6 +50,7 @@ Genaja/JGDA/
 ## Notas de Versão (v0.3.5)
 - Inclusão de `.gitignore` para ignorar `backups/`, `logs/` e arquivos de config locais.
 - Projeto pronto para `git init`.
+- Implementação da lógica de limpeza de colunas no arquivo final (Checkbox na UI).
 - Correção de bugs críticos de seleção de colunas.
 - Refatoração de nomes para Inglês Técnico.
 - Separação física entre código (`src`) e artefatos.
