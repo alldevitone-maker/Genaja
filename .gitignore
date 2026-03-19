@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.spec
+
+# Virtual Env
+venv/
+env/
+.env
+
+# IDEs
+.vscode/
+.idea/
+
+# Project Specific (Arquivos locais e Backups)
+logs/
+backups/
+*.log
+genaja_config.json
+
+# Excel temporary files
+~$*.xlsx
