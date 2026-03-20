@@ -1,2 +1,2 @@
-__version__ = "v0.3.6"
-__title__ = "Automated Workflow"
+__version__ = "v0.4.0"
+__title__ = "Pro UI & Advanced ETL Features"

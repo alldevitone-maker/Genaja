@@ -1,7 +1,7 @@
 # Genaja: Java Generic Data Access (JGDA)
 
-> **Versão Atual:** `v0.3.6` (Automated Workflow)  
-> **Status do Roadmap:** [8/8] - Automation & Refinement
+> **Versão Atual:** `v0.3.7` (Aplicação compliance)  
+> **Status do Roadmap:** [9/9] - Aplicação de Compliance
 
 ## Visão Geral
 
