@@ -21,3 +21,6 @@ genaja_config.json
 
 # Excel temporary files
 ~$*.xlsx
+# Private docs (NUNCA subir)
+docs/private/
+docs/private/*
