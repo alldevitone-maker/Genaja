@@ -14,6 +14,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 # Importações da Arquitetura Modular
 from ui.genaja_ui import GenajaUI
 from utils.logger_setup import configure_logging
+from version import __version__
 from services.config_service import save_config_service, load_config_service
 from services.excel_loader import load_excel_data_with_adjustment, select_file_dialog
 from services.column_mapper import resolve_column_name_interactive
@@ -26,7 +27,7 @@ class GenajaApp:
     def __init__(self): 
         self.root = tk.Tk()
         # Inicializa a UI e passa os callbacks
-        self.ui = GenajaUI(self.root, self.PRODUCT_NAME, self.on_start_process_click, self.root.quit)
+        self.ui = GenajaUI(self.root, self.PRODUCT_NAME, __version__, self.on_start_process_click, self.root.quit)
         configure_logging()
 
     def log_message(self, mensagem, nivel="INFO"):
@@ -122,6 +123,14 @@ class GenajaApp:
             self.log_message("🚀 Sincronizando...", "INFO")
             df_final, count = process_data_synchronization(df_origem_final, df_sap, col_chave, col_chave_sap, de_para)
 
+            # Feature: Checkbox Limpeza (v0.3.5)
+            if self.ui.clean_output_var.get():
+                # Mantém apenas a chave do SAP e as colunas que receberam dados
+                cols_final = [col_chave_sap] + list(de_para.values())
+                cols_final = list(dict.fromkeys(cols_final)) # Remove duplicatas
+                df_final = df_final[cols_final]
+                self.log_message("ℹ️ Saída filtrada: mantendo apenas colunas mapeadas.", "INFO")
+
             # Salvar
             from tkinter import filedialog
             salvar = filedialog.asksaveasfilename(defaultextension=".xlsx", title="Salvar Resultado", parent=self.root)
@@ -145,9 +154,9 @@ import logging
 from tkinter import ttk, scrolledtext
 
 class GenajaUI:
-    def __init__(self, root, product_name, on_start, on_exit):
+    def __init__(self, root, product_name, version, on_start, on_exit):
         self.root = root
-        self.root.title(f"{product_name} v0.3.1-dev")
+        self.root.title(f"{product_name} {version}")
         self.root.geometry("800x600")
         style = ttk.Style(); style.theme_use('clam')
 
@@ -161,13 +170,22 @@ class GenajaUI:
         self.progress = ttk.Progressbar(main, orient='horizontal', length=100, mode='determinate')
         self.progress.pack(fill=tk.X, pady=10)
 
-        btns = tk.Frame(main); btns.pack(fill=tk.X, pady=5)
+        # Controls Area
+        controls = tk.Frame(main); controls.pack(fill=tk.X, pady=5)
+        
+        # Checkbox Feature v0.3.5
+        self.clean_output_var = tk.BooleanVar(value=False)
+        self.chk_clean = tk.Checkbutton(controls, text="Manter apenas colunas mapeadas no destino (Limpeza)", var=self.clean_output_var, font=("Helvetica", 10))
+        self.chk_clean.pack(side=tk.TOP, anchor='w', pady=(0, 5))
+
+        btns = tk.Frame(controls); btns.pack(fill=tk.X)
         self.btn_iniciar = tk.Button(btns, text="Iniciar", command=on_start, bg="#007bff", fg="white", font=("Helvetica", 12, "bold"), height=2)
         self.btn_iniciar.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5)
         tk.Button(btns, text="Sair", command=on_exit, font=("Helvetica", 12)).pack(side=tk.RIGHT, padx=5)
 
     def toggle_controls(self, enable=True):
         self.btn_iniciar.config(state='normal' if enable else 'disabled')
+        self.chk_clean.config(state='normal' if enable else 'disabled')
         if not enable:
             self.log_area.config(state='normal'); self.log_area.delete(1.0, tk.END); self.log_area.config(state='disabled')
 
@@ -304,6 +322,9 @@ def process_data_synchronization(df_src, df_tgt, key_src, key_tgt, mapping):
     return df_final, matches
 '''
 
+CODE_VERSION = r'''__version__ = "v0.3.5"
+'''
+
 # --- LOGICA DE CRIAÇÃO ---
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -351,6 +372,7 @@ def run_reset():
     
     structure = {
         os.path.join(SRC_DIR, 'main.py'): CODE_MAIN,
+        os.path.join(SRC_DIR, 'version.py'): CODE_VERSION,
         os.path.join(SRC_DIR, 'ui', 'genaja_ui.py'): CODE_UI,
         os.path.join(SRC_DIR, 'ui', '__init__.py'): "",
         os.path.join(SRC_DIR, 'utils', 'logger_setup.py'): CODE_LOGGER,

@@ -118,6 +118,14 @@ class GenajaApp:
             self.log_message("🚀 Sincronizando...", "INFO")
             df_final, count = process_data_synchronization(df_origem_final, df_sap, col_chave, col_chave_sap, de_para)
 
+            # Feature: Checkbox Limpeza (v0.3.5)
+            if self.ui.clean_output_var.get():
+                # Mantém apenas a chave do SAP e as colunas que receberam dados
+                cols_final = [col_chave_sap] + list(de_para.values())
+                cols_final = list(dict.fromkeys(cols_final)) # Remove duplicatas
+                df_final = df_final[cols_final]
+                self.log_message("ℹ️ Saída filtrada: mantendo apenas colunas mapeadas.", "INFO")
+
             # Salvar
             from tkinter import filedialog
             salvar = filedialog.asksaveasfilename(defaultextension=".xlsx", title="Salvar Resultado", parent=self.root)

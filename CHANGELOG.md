@@ -1,9 +1,21 @@
 # Changelog
 
-## [v0.3.5] - 19/03/2026 (Git Preparation)
+## [v0.3.6] - 19/03/2026 (Automated Workflow)
+### Adicionado
+- Script `release.py` para automação completa do ciclo de lançamento (versionamento, changelog, git tagging).
+- Backup automático agora inclui o **Nome da Release** no nome do arquivo gerado (ex: `..._AutoBackup_Automated_Workflow.zip`).
+- Variável `__title__` adicionada ao `src/version.py`.
+
+## [v0.3.5] - 19/03/2026 (Git & Feature Checkbox)
 ### Adicionado
 - Arquivo `.gitignore` para exclusão de arquivos temporários, logs e backups do controle de versão.
 - Preparação do ambiente para inicialização do repositório Git/GitHub.
+- **Feature:** Checkbox "Manter apenas colunas selecionadas". Permite filtrar o arquivo de saída mantendo apenas as colunas mapeadas e a chave.
+
+## [v0.3.4] - 19/03/2026 (Stability & Path Fixes)
+### Corrigido
+- Ajustes na detecção de caminhos relativos (`os.getcwd` vs `__file__`) no `smoke_test.py` para execução via terminal.
+- Melhoria na importação de módulos ao executar scripts fora da raiz.
 
 ## [v0.3.3] - 19/03/2026 (Versioning Automation)
 ### Regra de Versionamento
