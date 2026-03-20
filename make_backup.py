@@ -10,11 +10,13 @@ version_vars = {}
 with open(os.path.join(BASE_DIR, 'src', 'version.py')) as f:
     exec(f.read(), version_vars)
 VERSION = version_vars['__version__']
+TITLE = version_vars.get('__title__', '').replace(' ', '_')
 # ------------------------------------
 
 BACKUP_DIR = os.path.join(BASE_DIR, "backups", "genaja_jgda_backup")
-# Nome do arquivo: Genaja_JGDA_v0.3.3_AutoBackup.zip
-ZIP_NAME = f"Genaja_JGDA_{VERSION}_AutoBackup.zip"
+# Nome do arquivo: Genaja_JGDA_v0.3.6_AutoBackup_Automated_Workflow.zip
+suffix = f"_{TITLE}" if TITLE else ""
+ZIP_NAME = f"Genaja_JGDA_{VERSION}_AutoBackup{suffix}.zip"
 ZIP_PATH = os.path.join(BACKUP_DIR, ZIP_NAME)
 
 # Pastas/Arquivos a ignorar no backup

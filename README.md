@@ -1,12 +1,12 @@
 # Genaja: Java Generic Data Access (JGDA)
 
-> **Versão Atual:** `v0.3.5` (Feature Added)  
-> **Status do Roadmap:** [6/8] - Feature Checkbox Implemented
+> **Versão Atual:** `v0.3.6` (Automated Workflow)  
+> **Status do Roadmap:** [8/8] - Automation & Refinement
 
 ## Visão Geral
 
 **Genaja** é uma aplicação desktop para automação de ETL (Extração, Transformação e Carga) entre planilhas (ex: Simplesweb -> SAP). Utiliza a engine interna **JGDA**.
-Esta versão (`v0.3.1`) marca o congelamento da base de código Python reorganizada, servindo como ponto estável para futuras features e eventual migração para Java.
+Esta versão marca a conclusão do primeiro ciclo de desenvolvimento, com uma base de código estável, features funcionais e um fluxo de trabalho automatizado para futuras releases.
 
 ## Estrutura do Projeto
 
@@ -28,8 +28,8 @@ Genaja/JGDA/
 - [x] **4/8** - Limpeza final para GitHub.
 - [x] **5/8** - Publicação no GitHub (Preparação .gitignore concluída).
 - [x] **6/8** - Feature: Checkbox "Manter apenas colunas selecionadas".
-- [ ] **7/8** - Validação da Feature.
-- [ ] **8/8** - Planejamento de Modularização Avançada.
+- [x] **7/8** - Validação da Feature.
+- [x] **8/8** - Automação de Release e Melhoria de Backup.
 
 ## Como Executar
 
@@ -47,10 +47,7 @@ Genaja/JGDA/
    python smoke_test.py   # Executa teste e gera backup automático se sucesso
    ```
 
-## Notas de Versão (v0.3.5)
-- Inclusão de `.gitignore` para ignorar `backups/`, `logs/` e arquivos de config locais.
-- Projeto pronto para `git init`.
-- Implementação da lógica de limpeza de colunas no arquivo final (Checkbox na UI).
-- Correção de bugs críticos de seleção de colunas.
-- Refatoração de nomes para Inglês Técnico.
-- Separação física entre código (`src`) e artefatos.
+## Notas de Versão (v0.3.6)
+- **Automação de Release:** Criação do script `release.py` para automatizar o versionamento, atualização de `CHANGELOG.md` e `README.md`, e a criação de tags no Git.
+- **Melhoria no Backup:** O nome do arquivo de backup agora inclui o título da release (ex: `..._AutoBackup_Automated_Workflow.zip`), facilitando a identificação.
+- **Consolidação:** O projeto atingiu o final do roadmap inicial, com uma estrutura modular, features validadas e um processo de desenvolvimento robusto.
