@@ -67,3 +67,31 @@ def process_data_synchronization(df_src, df_tgt, key_src, key_tgt, mapping):
     
     matches = df_final[key_tgt].isin(df_src[key_src]).sum()
     return df_final, matches
+
+
+def process_data_comparison(df_src, df_tgt, key_src, key_tgt, comp_tipo, clean_output, mapping):
+    df_src_cmp = df_src.copy()
+    df_tgt_cmp = df_tgt.copy()
+    
+    df_src_cmp[key_src] = df_src_cmp[key_src].astype(str).str.replace(r'\\.0$', '', regex=True).str.strip()
+    df_tgt_cmp[key_tgt] = df_tgt_cmp[key_tgt].astype(str).str.replace(r'\\.0$', '', regex=True).str.strip()
+    
+    if comp_tipo == 'falta_destino':
+        missing_keys = set(df_src_cmp[key_src]) - set(df_tgt_cmp[key_tgt])
+        df_result = df_src_cmp[df_src_cmp[key_src].isin(missing_keys)].copy()
+        
+        if clean_output:
+            cols = [key_src] + list(mapping.keys())
+            cols = [c for c in dict.fromkeys(cols) if c in df_result.columns]
+            df_result = df_result[cols]
+            
+    else: # falta_origem
+        missing_keys = set(df_tgt_cmp[key_tgt]) - set(df_src_cmp[key_src])
+        df_result = df_tgt_cmp[df_tgt_cmp[key_tgt].isin(missing_keys)].copy()
+        
+        if clean_output:
+            cols = [key_tgt] + list(mapping.values())
+            cols = [c for c in dict.fromkeys(cols) if c in df_result.columns]
+            df_result = df_result[cols]
+
+    return df_result, len(df_result)

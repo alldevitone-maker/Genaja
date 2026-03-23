@@ -47,8 +47,8 @@ class GenajaUI:
         tk.Label(header_fr, text=f"{product_name}: Sincronizador de Dados", bg=self.bg_color, fg=self.title_color, font=self.font_header).pack(side=tk.LEFT)
         tk.Label(header_fr, text="Dashboard ETL", bg=self.bg_color, fg="#64748b", font=("Segoe UI", 10)).pack(side=tk.RIGHT, pady=5)
 
-        self.arq_simples_var = tk.StringVar()
-        self.arq_sap_var = tk.StringVar()
+        self.arq_origem_var = tk.StringVar()
+        self.arq_destino_var = tk.StringVar()
 
         def create_card(parent, title):
             card = tk.Frame(parent, bg=self.card_bg, highlightbackground="#cbd5e1", highlightthickness=1)
@@ -64,28 +64,28 @@ class GenajaUI:
 
         fr_simples = tk.Frame(f1, bg=self.card_bg)
         fr_simples.pack(fill=tk.X, pady=2)
-        tk.Label(fr_simples, text="Origem (Simples):", width=18, anchor='e', bg=self.card_bg, fg=self.text_color).pack(side=tk.LEFT)
-        e1 = tk.Entry(fr_simples, textvariable=self.arq_simples_var, bg="#f8fafc", fg=self.text_color, relief="solid", bd=1, font=self.font_main)
+        tk.Label(fr_simples, text="Arquivo Origem:", width=18, anchor='e', bg=self.card_bg, fg=self.text_color).pack(side=tk.LEFT)
+        e1 = tk.Entry(fr_simples, textvariable=self.arq_origem_var, bg="#f8fafc", fg=self.text_color, relief="solid", bd=1, font=self.font_main)
         e1.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=8, ipady=3)
-        ttk.Button(fr_simples, text="Procurar...", style="Sec.TButton", command=self.browse_simplesweb).pack(side=tk.RIGHT)
+        ttk.Button(fr_simples, text="Procurar...", style="Sec.TButton", command=self.browse_origem).pack(side=tk.RIGHT)
 
         fr_sap = tk.Frame(f1, bg=self.card_bg)
         fr_sap.pack(fill=tk.X, pady=2)
-        tk.Label(fr_sap, text="Destino (SAP):", width=18, anchor='e', bg=self.card_bg, fg=self.text_color).pack(side=tk.LEFT)
-        e2 = tk.Entry(fr_sap, textvariable=self.arq_sap_var, bg="#f8fafc", fg=self.text_color, relief="solid", bd=1, font=self.font_main)
+        tk.Label(fr_sap, text="Arquivo Destino:", width=18, anchor='e', bg=self.card_bg, fg=self.text_color).pack(side=tk.LEFT)
+        e2 = tk.Entry(fr_sap, textvariable=self.arq_destino_var, bg="#f8fafc", fg=self.text_color, relief="solid", bd=1, font=self.font_main)
         e2.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=8, ipady=3)
-        ttk.Button(fr_sap, text="Procurar...", style="Sec.TButton", command=self.browse_sap).pack(side=tk.RIGHT)
+        ttk.Button(fr_sap, text="Procurar...", style="Sec.TButton", command=self.browse_destino).pack(side=tk.RIGHT)
 
         fr_keys = tk.Frame(f1, bg=self.card_bg)
         fr_keys.pack(fill=tk.X, pady=(6,0))
         
         tk.Label(fr_keys, text="PK Origem:", bg=self.card_bg, fg=self.text_color).grid(row=0, column=0, sticky='e', padx=5, pady=2)
-        self.combo_chave_simples = ttk.Combobox(fr_keys, state="readonly", width=25, font=self.font_main)
-        self.combo_chave_simples.grid(row=0, column=1, sticky='w', padx=5, pady=2)
+        self.combo_chave_origem = ttk.Combobox(fr_keys, state="readonly", width=25, font=self.font_main)
+        self.combo_chave_origem.grid(row=0, column=1, sticky='w', padx=5, pady=2)
 
         tk.Label(fr_keys, text="PK Destino:", bg=self.card_bg, fg=self.text_color).grid(row=0, column=2, sticky='e', padx=15, pady=2)
-        self.combo_chave_sap = ttk.Combobox(fr_keys, state="readonly", width=25, font=self.font_main)
-        self.combo_chave_sap.grid(row=0, column=3, sticky='w', padx=5, pady=2)
+        self.combo_chave_destino = ttk.Combobox(fr_keys, state="readonly", width=25, font=self.font_main)
+        self.combo_chave_destino.grid(row=0, column=3, sticky='w', padx=5, pady=2)
 
         tk.Label(fr_keys, text="Coluna Extra Protegida do Destino (Ex: ID Interno do Alvo):", bg=self.card_bg, fg=self.title_color, font=("Segoe UI", 9, "bold")).grid(row=1, column=0, columnspan=2, sticky='e', padx=5, pady=(4,2))
         self.combo_col_extra = ttk.Combobox(fr_keys, state="readonly", width=25, font=self.font_main)
@@ -129,18 +129,36 @@ class GenajaUI:
         # =========================================================
         # BLOCO 3
         # =========================================================
-        f3_card, f3 = create_card(main, "3. Conferência Final e Regras de Limpeza")
+        f3_card, f3 = create_card(main, "3. Hub de Módulos (Ações)")
         
-        tk.Label(f3, text="Colunas Acumuladas Para Sincronização:", bg=self.card_bg, fg=self.title_color, font=("Segoe UI", 9, "bold")).pack(anchor='w', pady=(0,2))
-        self.summary_text = scrolledtext.ScrolledText(f3, height=2, font=("Segoe UI", 10, "bold"), bg="#f1f5f9", fg=self.accent_color, relief="solid", borderwidth=1, wrap=tk.WORD)
+        self.f3_container = tk.Frame(f3, bg=self.card_bg)
+        self.f3_container.pack(fill=tk.BOTH, expand=True)
+        
+        # --- MENU VIEW ---
+        self.view_menu = tk.Frame(self.f3_container, bg=self.card_bg)
+        tk.Label(self.view_menu, text="Escolha uma ação para realizar com os arquivos mapeados:", bg=self.card_bg, fg=self.text_color, font=self.font_title).pack(pady=(15, 10))
+        
+        btn_frame = tk.Frame(self.view_menu, bg=self.card_bg)
+        btn_frame.pack(pady=5)
+        ttk.Button(btn_frame, text="🧹 Módulo de Limpeza e Atualização", style="Main.TButton", command=self.show_view_limpeza).pack(side=tk.LEFT, padx=10, ipady=12, ipadx=10)
+        ttk.Button(btn_frame, text="🔍 Módulo Comparador de Arquivos", style="Main.TButton", command=self.show_view_comparador).pack(side=tk.LEFT, padx=10, ipady=12, ipadx=10)
+
+        # --- VIEW LIMPEZA ---
+        self.view_limpeza = tk.Frame(self.f3_container, bg=self.card_bg)
+        
+        header_limpeza = tk.Frame(self.view_limpeza, bg=self.card_bg)
+        header_limpeza.pack(fill=tk.X)
+        tk.Label(header_limpeza, text="Colunas Acumuladas Para Sincronização:", bg=self.card_bg, fg=self.title_color, font=("Segoe UI", 9, "bold")).pack(side=tk.LEFT, pady=(0,2))
+        ttk.Button(header_limpeza, text="⬅️ Voltar ao Menu", style="Sec.TButton", command=self.show_view_menu).pack(side=tk.RIGHT)
+        
+        self.summary_text = scrolledtext.ScrolledText(self.view_limpeza, height=2, font=("Segoe UI", 10, "bold"), bg="#f1f5f9", fg=self.accent_color, relief="solid", borderwidth=1, wrap=tk.WORD)
         self.summary_text.pack(fill=tk.X, pady=(0,6))
         self.summary_text.insert(tk.END, "Nenhuma coluna selecionada no processo acima.")
         self.summary_text.config(state='disabled')
         
-        rules_fr = tk.Frame(f3, bg=self.card_bg)
+        rules_fr = tk.Frame(self.view_limpeza, bg=self.card_bg)
         rules_fr.pack(fill=tk.BOTH, expand=True)
         
-        # O Lado Esquerdo contem multiplas linhas selecionaveis Listbox
         left_rule = tk.LabelFrame(rules_fr, text="Regras de Linha", bg=self.card_bg, fg=self.title_color, font=("Segoe UI", 9, "bold"), relief="solid", bd=1)
         left_rule.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(0, 5), pady=0)
         
@@ -150,16 +168,35 @@ class GenajaUI:
         self.list_qty = tk.Listbox(left_rule, selectmode=tk.MULTIPLE, height=3, bg="#e2e8f0", fg=self.text_color, selectbackground=self.accent_color, relief="solid", bd=1, font=self.font_main, state='disabled')
         self.list_qty.pack(fill=tk.BOTH, expand=True, padx=10, pady=(2,6))
 
-        # O Lado Direito contem os dados estruturais estaticos Checkbox
         right_rule = tk.LabelFrame(rules_fr, text="Regras de Estrutura Estruturais", bg=self.card_bg, fg=self.title_color, font=("Segoe UI", 9, "bold"), relief="solid", bd=1)
         right_rule.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(5, 0), pady=0)
         
         self.clean_output_var = tk.BooleanVar(value=False)
         self.trim_var = tk.BooleanVar(value=False)
         self.upper_var = tk.BooleanVar(value=False)
-        tk.Checkbutton(right_rule, text="Manter APENAS as colunas selecionadas (excluir campos soltos)", variable=self.clean_output_var).pack(anchor='w', padx=5, pady=(5,2))
-        tk.Checkbutton(right_rule, text="Trim (limpar espaços extras no início/fim das strings)", variable=self.trim_var).pack(anchor='w', padx=5, pady=2)
-        tk.Checkbutton(right_rule, text="Maiúsculas (converter conteúdos textuais para Capslock)", variable=self.upper_var).pack(anchor='w', padx=5, pady=2)
+        tk.Checkbutton(right_rule, text="Manter APENAS as colunas selecionadas", variable=self.clean_output_var).pack(anchor='w', padx=5, pady=(5,2))
+        tk.Checkbutton(right_rule, text="Trim (limpar espaços extras no início/fim)", variable=self.trim_var).pack(anchor='w', padx=5, pady=2)
+        tk.Checkbutton(right_rule, text="Maiúsculas (converter para Capslock)", variable=self.upper_var).pack(anchor='w', padx=5, pady=2)
+
+        # --- VIEW COMPARADOR ---
+        self.view_comparador = tk.Frame(self.f3_container, bg=self.card_bg)
+        header_comp = tk.Frame(self.view_comparador, bg=self.card_bg)
+        header_comp.pack(fill=tk.X)
+        tk.Label(header_comp, text="Opções de Comparação de Arquivos:", bg=self.card_bg, fg=self.title_color, font=("Segoe UI", 9, "bold")).pack(side=tk.LEFT, pady=(0,2))
+        ttk.Button(header_comp, text="⬅️ Voltar ao Menu", style="Sec.TButton", command=self.show_view_menu).pack(side=tk.RIGHT)
+        
+        comp_fr = tk.LabelFrame(self.view_comparador, text="Sentido da Busca e Exportação", bg=self.card_bg, fg=self.title_color, font=("Segoe UI", 9, "bold"), relief="solid", bd=1)
+        comp_fr.pack(fill=tk.BOTH, expand=True, pady=5)
+        
+        self.comp_tipo_var = tk.StringVar(value="falta_destino")
+        tk.Radiobutton(comp_fr, text="Falta no Destino (O que existe na Origem mas não no Destino)", variable=self.comp_tipo_var, value="falta_destino", bg=self.card_bg, fg=self.text_color, font=self.font_main).pack(anchor='w', padx=10, pady=5)
+        tk.Radiobutton(comp_fr, text="Falta na Origem (O que existe no Destino mas não  na Origem)", variable=self.comp_tipo_var, value="falta_origem", bg=self.card_bg, fg=self.text_color, font=self.font_main).pack(anchor='w', padx=10, pady=5)
+        
+        self.comp_clean_var = tk.BooleanVar(value=True)
+        tk.Checkbutton(comp_fr, text="Exportar relatório mantendo apenas as chaves e colunas mapeadas", variable=self.comp_clean_var, bg=self.card_bg, fg=self.text_color, font=self.font_main).pack(anchor='w', padx=10, pady=(10, 5))
+
+        self.active_module = None
+        self.root.after(50, self.show_view_menu) # Inicia no Menu na proxima UI tick
 
         # =========================================================
         # Rodapé com Botões de Ação Principais e Log
@@ -194,6 +231,31 @@ class GenajaUI:
         
         # O F2 será espremido no centro de modo natural!
         f2_card.pack(side=tk.TOP, fill=tk.BOTH, expand=True, pady=4)
+
+
+    def show_view_menu(self):
+        self.view_limpeza.pack_forget()
+        self.view_comparador.pack_forget()
+        self.view_menu.pack(fill=tk.BOTH, expand=True)
+        self.btn_iniciar.config(text="Selecione um Módulo")
+        self.btn_iniciar.state(['disabled'])
+        self.active_module = None
+
+    def show_view_limpeza(self):
+        self.view_menu.pack_forget()
+        self.view_comparador.pack_forget()
+        self.view_limpeza.pack(fill=tk.BOTH, expand=True)
+        self.btn_iniciar.config(text="Executar Sincronização")
+        self.btn_iniciar.state(['!disabled'])
+        self.active_module = 'LIMPEZA'
+
+    def show_view_comparador(self):
+        self.view_menu.pack_forget()
+        self.view_limpeza.pack_forget()
+        self.view_comparador.pack(fill=tk.BOTH, expand=True)
+        self.btn_iniciar.config(text="Gerar Relatório de Diferenças")
+        self.btn_iniciar.state(['!disabled'])
+        self.active_module = 'COMPARADOR'
 
     # --- Lógica do Motor Visual ---
     def toggle_qty_list(self):
@@ -230,16 +292,16 @@ class GenajaUI:
         if was_disabled:
             self.list_qty.config(state='disabled')
 
-    def browse_simplesweb(self):
+    def browse_origem(self):
         filepath = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx *.xls")])
         if filepath:
-            self.arq_simples_var.set(filepath)
+            self.arq_origem_var.set(filepath)
             self.load_columns_from_file(filepath, "origem")
 
-    def browse_sap(self):
+    def browse_destino(self):
         filepath = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx *.xls")])
         if filepath:
-            self.arq_sap_var.set(filepath)
+            self.arq_destino_var.set(filepath)
             self.load_columns_from_file(filepath, "destino")
 
     def load_columns_from_file(self, filepath, tipo):
@@ -250,7 +312,7 @@ class GenajaUI:
             cols = [str(c).strip() for c in df.columns if not str(c).lower().startswith('unnamed') and not str(c).lower().startswith('nan')]
             
             if tipo == "origem":
-                self.combo_chave_simples['values'] = cols
+                self.combo_chave_origem['values'] = cols
                 self.list_avail_data = cols
                 self.search_var.set('')
                 self.list_sel.delete(0, tk.END)
@@ -260,16 +322,16 @@ class GenajaUI:
                 
                 for c in cols:
                     if c.upper() == 'CODIGO':
-                        self.combo_chave_simples.set(c)
+                        self.combo_chave_origem.set(c)
                         break
             else:
-                self.combo_chave_sap['values'] = cols
+                self.combo_chave_destino['values'] = cols
                 self.combo_col_extra['values'] = [''] + cols
                 self.append_log(f"[Destino] {len(cols)} colunas detectadas.", "SUCCESS")
                 
                 for c in cols:
                     if c.upper() == 'MATERIAL' or c.upper() == 'ITEMCODE':
-                        self.combo_chave_sap.set(c)
+                        self.combo_chave_destino.set(c)
                         break
                         
         except Exception as e:
@@ -311,10 +373,10 @@ class GenajaUI:
         self.sync_step3_summary()
 
     def clear_form(self):
-        self.arq_simples_var.set("")
-        self.arq_sap_var.set("")
-        self.combo_chave_simples.set("")
-        self.combo_chave_sap.set("")
+        self.arq_origem_var.set("")
+        self.arq_destino_var.set("")
+        self.combo_chave_origem.set("")
+        self.combo_chave_destino.set("")
         self.combo_col_extra.set("")
         self.clean_output_var.set(False)
         self.filter_qty_var.set(False)
@@ -324,8 +386,8 @@ class GenajaUI:
         self.list_avail_data = []
         self.list_avail.delete(0, tk.END)
         self.list_sel.delete(0, tk.END)
-        self.combo_chave_simples['values'] = []
-        self.combo_chave_sap['values'] = []
+        self.combo_chave_origem['values'] = []
+        self.combo_chave_destino['values'] = []
         self.combo_col_extra['values'] = []
         self.sync_step3_summary()
         self.toggle_qty_list() # resets qty multi-dropdown visually
@@ -333,10 +395,13 @@ class GenajaUI:
 
     def get_inputs(self):
         return {
-            "arq_simples": self.arq_simples_var.get().strip(),
-            "arq_sap": self.arq_sap_var.get().strip(),
-            "chave_simples": self.combo_chave_simples.get().strip(),
-            "chave_sap": self.combo_chave_sap.get().strip(),
+            "active_module": getattr(self, 'active_module', None),
+            "comp_tipo": getattr(self, 'comp_tipo_var', tk.StringVar()).get() if hasattr(self, 'comp_tipo_var') else None,
+            "comp_clean": getattr(self, 'comp_clean_var', tk.BooleanVar()).get() if hasattr(self, 'comp_clean_var') else False,
+            "arq_origem": self.arq_origem_var.get().strip(),
+            "arq_destino": self.arq_destino_var.get().strip(),
+            "chave_origem": self.combo_chave_origem.get().strip(),
+            "chave_destino": self.combo_chave_destino.get().strip(),
             "col_extra": [self.combo_col_extra.get().strip()] if self.combo_col_extra.get().strip() else [],
             "colunas": list(self.list_sel.get(0, tk.END)),
             "clean_output": self.clean_output_var.get(),

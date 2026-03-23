@@ -5,12 +5,22 @@ def find_best_header(path):
     try:
         df_temp = pd.read_excel(path, nrows=20, header=None)
         best_row = 0
-        max_non_nulls = 0
+        best_score = -1
+        
         for i, row in df_temp.iterrows():
-            non_nulls = row.dropna().shape[0]
-            if non_nulls > max_non_nulls:
-                max_non_nulls = non_nulls
+            non_null_vals = row.dropna()
+            if non_null_vals.empty:
+                continue
+                
+            # Score heavily favors string contents as headers are usually texts
+            str_count = sum(isinstance(x, str) for x in non_null_vals)
+            
+            # Using >= allows overriding generalized top headers (like group names) 
+            # with technical headers right below them if they have similar string counts.
+            if str_count >= best_score:
+                best_score = str_count
                 best_row = i
+                
         return best_row
     except Exception:
         return 0
