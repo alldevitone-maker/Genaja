@@ -25,8 +25,14 @@ If you already have Python installed and wish to run directly from the repositor
 
 ## 📖 Update History (Real-Time Added Value)
 
-> **Current Version:** `v0.4.6` (Genaja AI Wizard & Export Pro)  
+> **Current Version:** `v0.4.7` (Genaja AI Wizard & Export Pro)  
 > **Roadmap Status:** Active - Constant Module Evolution
+
+**v0.4.7 (The Premium Update & Big Data O(1))**
+The corporate UI reached Premium status. The system now features a **Floating Tooltips** motor providing visual cues on complex business functions. The entire layout received a **Global Canvas Scroll** to properly display the Hub on smaller laptops. We introduced the red "Experimental" frames with raw Big Data processing capabilities (`JSON`, `CSV` and `SQL`). Furthermore, the core Pandas merging engine was refactored to completely shield identical column names against invisible data corruption (Empty Exports). As a bonus, an **App Restart** OS-button (`os.execl`) instantly flushes RAM memory logs when a key-mapping mistake occurs.
+
+**v0.4.6 (The Return of the Unified Flex Hub & Optionality)**
+Architectural refactoring reverting Genaja back to a complete super-screen (Single-Screen) Hub, bridging together all modular features built in past versions (Auditor & GAPS). The **Protected A1 Key** module is now optionally toggleable via a Checkbox, unlocking fast automatic flows for users who don't want to enforce a hardcoded positional index on their final reports.
 
 **v0.4.4 (Internationalization & i18n)**
 Global reach unlocked. Added English architectural docs, business manuals, and a dual-language tracking history to embrace global integrations.
