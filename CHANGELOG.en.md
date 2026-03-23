@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.4.5] - 23/03/2026 (Enterprise Folder Architecture)
+- Root folder purified. CI and Quality tracking scripts isolated (scripts/ and tests/).
+- Permanent deletion of disposable refactoring files used during early prototyping.
+
 [🇺🇸 English](CHANGELOG.en.md) | [🇧🇷 Português](CHANGELOG.md)
 
 ## [v0.4.4] - 23/03/2026 (Internationalization & i18n)

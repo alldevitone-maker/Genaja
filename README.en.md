@@ -25,7 +25,7 @@ If you already have Python installed and wish to run directly from the repositor
 
 ## 📖 Update History (Real-Time Added Value)
 
-> **Current Version:** `v0.4.4` (Internationalization & i18n)  
+> **Current Version:** `v0.4.5` (Enterprise Folder Architecture)  
 > **Roadmap Status:** Active - Constant Module Evolution
 
 **v0.4.4 (Internationalization & i18n)**

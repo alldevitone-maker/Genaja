@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.4.5] - 23/03/2026 (Arquitetura de Pastas Enterprise)
+- Pastas raiz purificadas. Scripts de automacao (CI) e Qualidade foram isolados (scripts/ e tests/).
+- Exclusao de arquivos mortos e scripts legados de prototipagem.
+
 [🇺🇸 English](CHANGELOG.en.md) | [🇧🇷 Português](CHANGELOG.md)
 
 ## [v0.4.4] - 23/03/2026 (Internationalization & i18n)
