@@ -95,3 +95,39 @@ def process_data_comparison(df_src, df_tgt, key_src, key_tgt, comp_tipo, clean_o
             df_result = df_result[cols]
 
     return df_result, len(df_result)
+
+
+def suggest_primary_keys(df_src, df_tgt):
+    best_src = None
+    best_tgt = None
+    max_score = 0
+    
+    # Samples para extrema velocidade
+    src_sample = df_src.head(10000)
+    tgt_sample = df_tgt.head(10000)
+    
+    tgt_sets = {}
+    for t_col in tgt_sample.columns:
+        s = tgt_sample[t_col].astype(str).str.replace(r'\\.0$', '', regex=True).str.strip()
+        s = s[s != 'nan']
+        s = s[s != '']
+        tgt_sets[t_col] = set(s)
+        
+    for s_col in src_sample.columns:
+        s = src_sample[s_col].astype(str).str.replace(r'\\.0$', '', regex=True).str.strip()
+        s = s[s != 'nan']
+        s = s[s != '']
+        s_set = set(s)
+        
+        if not s_set: continue
+            
+        for t_col, t_set in tgt_sets.items():
+            if not t_set: continue    
+            intersection = len(s_set & t_set)
+            
+            if intersection > max_score:
+                max_score = intersection
+                best_src = s_col
+                best_tgt = t_col
+                
+    return best_src, best_tgt, max_score
