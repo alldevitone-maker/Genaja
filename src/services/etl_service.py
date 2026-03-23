@@ -24,7 +24,14 @@ def clean_empty_quantities_multi(df, cols):
         not_null = series.notna()
         s_str = series.astype(str).str.strip().str.lower()
         valid_str = (s_str != '') & (s_str != 'nan') & (s_str != '<na>')
-        not_zero = (s_str != '0') & (s_str != '0.0') & (s_str != '0,0') & (s_str != '0.00')
+        
+        # Considera ZERO tanto literais exatos como numericos = 0
+        num_vals = pd.to_numeric(series.astype(str).str.replace(',', '.'), errors='coerce')
+        is_num_zero = (num_vals == 0)
+        is_str_zero = s_str.isin(['0', '0.0', '0,0', '0.00'])
+        
+        not_zero = ~(is_num_zero | is_str_zero)
+        
         col_has_value = not_null & valid_str & not_zero
         mask = mask | col_has_value
         
