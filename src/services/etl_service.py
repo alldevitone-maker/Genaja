@@ -1,87 +1,111 @@
 import pandas as pd
 import numpy as np
+import re
 
-def filter_dataframe_by_columns(df, cols):
-    unique = list(dict.fromkeys(cols)) # remove duplicatas preservando ordem
-    return df[unique].copy()
-
-def apply_numeric_filter(df, col):
-    df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
-    return df[df[col] > 0]
-
-def clean_empty_quantities_multi(df, cols):
-    """ Filtra as linhas mantendo-as se PELO MENOS UMA das colunas informadas
-    tiver um valor preenchido/maior que 0 (se numérico) ou texto não vazio.
-    Remove a linha APENAS se TODAS as colunas informadas forem zero/nulas/vazias. """
-    if not cols:
-        return df.copy()
+def filter_dataframe_by_columns(df, cols_to_keep, msg_prefix, log_callback):
+    if len(cols_to_keep) == 0:
+        return df
+    
+    missing_cols = [c for c in cols_to_keep if c not in df.columns]
+    if missing_cols:
+        log_callback(f"{msg_prefix} Coluna(s) ignorada(s) pois não existem no arquivo: {', '.join(missing_cols)}", "WARNING")
         
-    mask = pd.Series(False, index=df.index)
-    for col in cols:
-        if col not in df.columns:
+    valid_cols = [c for c in cols_to_keep if c in df.columns]
+    return df[valid_cols].copy()
+
+
+def clean_empty_quantities_multi(df, target_cols, num_cols):
+    df_clean = df.copy()
+    
+    # Fill NAs
+    df_clean[target_cols] = df_clean[target_cols].fillna('')
+    try:
+        df_clean[num_cols] = df_clean[num_cols].fillna(0).astype(float)
+    except ValueError:
+        pass
+        
+    # Check
+    for i, row in df_clean.iterrows():
+        try:
+            val_num = float(row[num_cols[0]])
+        except:
             continue
-        series = df[col]
-        not_null = series.notna()
-        s_str = series.astype(str).str.strip().str.lower()
-        valid_str = (s_str != '') & (s_str != 'nan') & (s_str != '<na>')
-        
-        # Considera ZERO tanto literais exatos como numericos = 0
-        num_vals = pd.to_numeric(series.astype(str).str.replace(',', '.'), errors='coerce')
-        is_num_zero = (num_vals == 0)
-        is_str_zero = s_str.isin(['0', '0.0', '0,0', '0.00'])
-        
-        not_zero = ~(is_num_zero | is_str_zero)
-        
-        col_has_value = not_null & valid_str & not_zero
-        mask = mask | col_has_value
-        
-    return df[mask].copy()
+            
+        is_empty_target = all(str(row[c]).strip() == '' for c in target_cols)
+        if val_num == 0.0 and is_empty_target:
+            df_clean = df_clean.drop(i)
+            
+    return df_clean
 
-def process_data_synchronization(df_src, df_tgt, key_src, key_tgt, mapping):
-    df_final = df_tgt.copy()
-    
-    # Tratamento de Tipos: Garante que chaves numéricas ou char conversem como string limpa
+
+def apply_numeric_filter(df, cols_to_filter):
+    df_clean = df.copy()
+    initial_count = len(df_clean)
+    for col in cols_to_filter:
+        s = df_clean[col]
+        # Converte para numerico se puder
+        s_num = pd.to_numeric(s, errors='coerce')
+        # Zeros literais ou NaNs nos numericos
+        mask_zero = (s_num == 0.0)
+        mask_empty_str = (s.astype(str).str.strip() == '')
+        mask_nan = s.isna()
+        mask_to_drop = mask_zero | mask_empty_str | mask_nan
+        df_clean = df_clean[~mask_to_drop]
+        
+    final_count = len(df_clean)
+    # log if needed
+    return df_clean
+
+
+def process_data_synchronization(df_src, df_tgt, key_src, key_tgt, key_tgt_final, mapping, clean_output=True):
     df_src[key_src] = df_src[key_src].astype(str).str.replace(r'\.0$', '', regex=True).str.strip()
-    df_final[key_tgt] = df_final[key_tgt].astype(str).str.replace(r'\.0$', '', regex=True).str.strip()
+    df_tgt[key_tgt] = df_tgt[key_tgt].astype(str).str.replace(r'\.0$', '', regex=True).str.strip()
     
-    # Prepara dados de atualização (Origem)
-    update_data = (
-        df_src.set_index(key_src)
-        .groupby(level=0).last() # remove duplicatas na chave
-        .rename(columns=mapping)
-    )
+    df_tgt_no_dup = df_tgt.drop_duplicates(subset=[key_tgt], keep='first')
+    df_result = pd.merge(df_src, df_tgt_no_dup, left_on=key_src, right_on=key_tgt, how='left', suffixes=('', '_DROP_ME'))
     
-    df_final.set_index(key_tgt, inplace=True)
+    # Remove colunas do destino que colidiram com nomes da origem
+    df_result = df_result[[c for c in df_result.columns if not c.endswith('_DROP_ME')]]
     
-    # 1. Atualiza as colunas que JÁ existem no SAP
-    df_final.update(update_data)
+    for col_src, col_tgt in mapping.items():
+        if col_src in df_result.columns and col_src != col_tgt:
+            df_result[col_tgt] = df_result[col_src]
+            
+    if clean_output:
+        # Remove as colunas temporarias e injeta a 3º Chave na posição Zero (0)
+        cols_to_keep = list(mapping.values())
+        if key_tgt_final in cols_to_keep:
+            cols_to_keep.remove(key_tgt_final)
+        cols_to_keep.insert(0, key_tgt_final)
+        cols_to_keep = [c for c in dict.fromkeys(cols_to_keep) if c in df_result.columns]
+        df_final = df_result[cols_to_keep].copy()
+    else:
+        # Mantem todas as colunas da origem nativas + as colunas sincronizadas do destino
+        # Injeta a chave principal no começo
+        cols_to_keep = list(df_result.columns)
+        if key_tgt_final in cols_to_keep:
+            cols_to_keep.remove(key_tgt_final)
+        cols_to_keep.insert(0, key_tgt_final)
+        df_final = df_result[cols_to_keep].copy()
     
-    # 2. Identifica colunas novas que NÃO existem no SAP
-    novas_cols = [col for col in update_data.columns if col not in df_final.columns]
-    
-    # 3. Adiciona colunas novas fazendo um LEFT JOIN no index
-    if novas_cols:
-        df_final = df_final.join(update_data[novas_cols], how='left')
-        
-    df_final.reset_index(inplace=True)
-    
-    matches = df_final[key_tgt].isin(df_src[key_src]).sum()
-    return df_final, matches
+    return df_final
 
 
-def process_data_comparison(df_src, df_tgt, key_src, key_tgt, comp_tipo, clean_output, mapping):
+def process_data_comparison(df_src, df_tgt, key_src, key_tgt, comp_tipo, clean_output, mapping, key_tgt_final):
     df_src_cmp = df_src.copy()
     df_tgt_cmp = df_tgt.copy()
     
-    df_src_cmp[key_src] = df_src_cmp[key_src].astype(str).str.replace(r'\\.0$', '', regex=True).str.strip()
-    df_tgt_cmp[key_tgt] = df_tgt_cmp[key_tgt].astype(str).str.replace(r'\\.0$', '', regex=True).str.strip()
+    df_src_cmp[key_src] = df_src_cmp[key_src].astype(str).str.replace(r'\.0$', '', regex=True).str.strip()
+    df_tgt_cmp[key_tgt] = df_tgt_cmp[key_tgt].astype(str).str.replace(r'\.0$', '', regex=True).str.strip()
     
     if comp_tipo == 'falta_destino':
         missing_keys = set(df_src_cmp[key_src]) - set(df_tgt_cmp[key_tgt])
         df_result = df_src_cmp[df_src_cmp[key_src].isin(missing_keys)].copy()
         
         if clean_output:
-            cols = [key_src] + list(mapping.keys())
+            cols = list(mapping.keys())
+            if key_tgt_final in cols: cols.remove(key_tgt_final)
+            cols.insert(0, key_tgt_final)
             cols = [c for c in dict.fromkeys(cols) if c in df_result.columns]
             df_result = df_result[cols]
             
@@ -90,7 +114,9 @@ def process_data_comparison(df_src, df_tgt, key_src, key_tgt, comp_tipo, clean_o
         df_result = df_tgt_cmp[df_tgt_cmp[key_tgt].isin(missing_keys)].copy()
         
         if clean_output:
-            cols = [key_tgt] + list(mapping.values())
+            cols = list(mapping.values())
+            if key_tgt_final in cols: cols.remove(key_tgt_final)
+            cols.insert(0, key_tgt_final)
             cols = [c for c in dict.fromkeys(cols) if c in df_result.columns]
             df_result = df_result[cols]
 
@@ -98,23 +124,20 @@ def process_data_comparison(df_src, df_tgt, key_src, key_tgt, comp_tipo, clean_o
 
 
 def suggest_primary_keys(df_src, df_tgt):
-    best_src = None
-    best_tgt = None
-    max_score = 0
+    matches = []
     
-    # Samples para extrema velocidade
     src_sample = df_src.head(10000)
     tgt_sample = df_tgt.head(10000)
     
     tgt_sets = {}
     for t_col in tgt_sample.columns:
-        s = tgt_sample[t_col].astype(str).str.replace(r'\\.0$', '', regex=True).str.strip()
+        s = tgt_sample[t_col].astype(str).str.replace(r'\.0$', '', regex=True).str.strip()
         s = s[s != 'nan']
         s = s[s != '']
         tgt_sets[t_col] = set(s)
         
     for s_col in src_sample.columns:
-        s = src_sample[s_col].astype(str).str.replace(r'\\.0$', '', regex=True).str.strip()
+        s = src_sample[s_col].astype(str).str.replace(r'\.0$', '', regex=True).str.strip()
         s = s[s != 'nan']
         s = s[s != '']
         s_set = set(s)
@@ -125,9 +148,8 @@ def suggest_primary_keys(df_src, df_tgt):
             if not t_set: continue    
             intersection = len(s_set & t_set)
             
-            if intersection > max_score:
-                max_score = intersection
-                best_src = s_col
-                best_tgt = t_col
+            if intersection > 0:
+                matches.append({'src': s_col, 'tgt': t_col, 'score': intersection})
                 
-    return best_src, best_tgt, max_score
+    matches.sort(key=lambda x: x['score'], reverse=True)
+    return matches[:3]
