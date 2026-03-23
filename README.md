@@ -1,7 +1,7 @@
 # Genaja: Java Generic Data Access (JGDA)
 
-> **Versão Atual:** `v0.3.7` (Aplicação compliance)  
-> **Status do Roadmap:** [9/9] - Aplicação de Compliance
+> **Versão Atual:** `v0.4.0` (Pro UI & Advanced ETL Features)  
+> **Status do Roadmap:** [Ativo] - Pro UI & Advanced ETL Features
 
 ## Visão Geral
 
@@ -47,7 +47,9 @@ Genaja/JGDA/
    python smoke_test.py   # Executa teste e gera backup automático se sucesso
    ```
 
-## Notas de Versão (v0.3.6)
-- **Automação de Release:** Criação do script `release.py` para automatizar o versionamento, atualização de `CHANGELOG.md` e `README.md`, e a criação de tags no Git.
-- **Melhoria no Backup:** O nome do arquivo de backup agora inclui o título da release (ex: `..._AutoBackup_Automated_Workflow.zip`), facilitando a identificação.
-- **Consolidação:** O projeto atingiu o final do roadmap inicial, com uma estrutura modular, features validadas e um processo de desenvolvimento robusto.
+## Notas de Versão (v0.4.0)
+- **Pro UI Mapeamento Dinâmico:** Seleção de colunas com Listboxes interativas (Disponíveis vs Selecionadas) em substituição à digitação manual.
+- **Proteção Absoluta de Chaves:** Caixas de chaves primárias agora são *Read-Only* e populadas automaticamente.
+- **Auto-Anchoring de Interface:** Geometria da tela recalculada e layouts empacotados com ancoragem absoluta.
+- **Divisão Lógica Passo 3:** Separação visual clara em "Regras de Linhas" e "Regras de Estrutura Estruturais".
+- **Exclusão Avançada por Lógica Booleana:** A engine ETL cruza o teste com uma matriz *OR*, deletando linhas inválidas.
