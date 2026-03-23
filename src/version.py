@@ -1,2 +1,2 @@
-__version__ = "v0.4.2"
-__title__ = "Comparador Pro & Hub de Módulos"
+__version__ = "v0.4.3"
+__title__ = "Experiência do Usuário & Docs"

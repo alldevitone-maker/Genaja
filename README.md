@@ -1,55 +1,41 @@
-# Genaja: Java Generic Data Access (JGDA)
+# Genaja - Sincronização Inteligente de Dados
 
-> **Versão Atual:** `v0.4.2` (Comparador Pro & Hub de Módulos)  
-> **Status do Roadmap:** [Ativo] - Pro UI & Advanced ETL Features
+Bem-vindo ao **Genaja**, a sua ferramenta definitiva para cruzar e limpar planilhas empresariais de forma 100% autônoma e à prova de falhas.
 
-## Visão Geral
+## 🚀 O que o Genaja faz?
+O Genaja substitui horas de trabalho manual no Excel (PROCVs complexos e tratamento de lixo em relatórios) por um processo de apenas 3 passos:
+1. **Mapeamento Ágil:** Conecta duas planilhas diferentes baseadas em um código comum (Chave Primária).
+2. **Transferência Inteligente:** Cria automaticamente as colunas que estão faltando em um relatório a partir do outro.
+3. **Faxina & Comparador:** O sistema atua como um canivete suíço para tabelas:
+    - Um poderoso limpador que remove furos (quantidades nulas e não utilizadas), corrige pontuações, remove espaços extras invisíveis e coloca textos alinhados.
+    - E um Módulo extra de Comparação que avaliza em 1 milissegundo de forma exata todos os produtos/linhas que ficaram de fora, existindo em uma base sem ter surgido na outra.
 
-**Genaja** é uma aplicação desktop para automação de ETL (Extração, Transformação e Carga) entre planilhas (ex: Simplesweb -> SAP). Utiliza a engine interna **JGDA**.
-Esta versão marca a conclusão do primeiro ciclo de desenvolvimento, com uma base de código estável, features funcionais e um fluxo de trabalho automatizado para futuras releases.
-
-## Estrutura do Projeto
-
-```
-Genaja/JGDA/
-├── src/                  # Código-fonte (main.py)
-├── logs/                 # Arquivos de log (genaja.log)
-├── backups/              # Versões legadas (ScriptsGe/Pre-Genaja)
-├── docs/                 # Documentação técnica e Roadmap
-├── CHANGELOG.md          # Histórico de versões
-└── README.md             # Este arquivo
-```
-
-## Roadmap e Progresso
-
-- [x] **1/8** - Congelar base legado (v0.3.0).
-- [x] **2/8** - Organizar estrutura de pastas e atualizar versão (v0.3.1).
-- [x] **3/8** - Validar execução na nova estrutura (Testes de Fumaça).
-- [x] **4/8** - Limpeza final para GitHub.
-- [x] **5/8** - Publicação no GitHub (Preparação .gitignore concluída).
-- [x] **6/8** - Feature: Checkbox "Manter apenas colunas selecionadas".
-- [x] **7/8** - Validação da Feature.
-- [x] **8/8** - Automação de Release e Melhoria de Backup.
-
-## Como Executar
-
-1. Certifique-se de ter Python 3.x e as libs instaladas:
+## 🛠️ Como Iniciar
+Se você já possui o Python instalado e deseja utilizar diretamente do repositório:
+1. Abra seu terminal na pasta do projeto e instale a dependência matricial:
    ```bash
    pip install pandas openpyxl
    ```
-2. Navegue até a pasta raiz `Genaja/JGDA`.
-3. Para rodar a aplicação:
+2. Execute a Interface Gráfica com um único clique (ou comando):
    ```bash
    python src/main.py
    ```
-4. Para rodar o teste de validação:
-   ```bash
-   python smoke_test.py   # Executa teste e gera backup automático se sucesso
-   ```
 
-## Notas de Versão (v0.4.0)
-- **Pro UI Mapeamento Dinâmico:** Seleção de colunas com Listboxes interativas (Disponíveis vs Selecionadas) em substituição à digitação manual.
-- **Proteção Absoluta de Chaves:** Caixas de chaves primárias agora são *Read-Only* e populadas automaticamente.
-- **Auto-Anchoring de Interface:** Geometria da tela recalculada e layouts empacotados com ancoragem absoluta.
-- **Divisão Lógica Passo 3:** Separação visual clara em "Regras de Linhas" e "Regras de Estrutura Estruturais".
-- **Exclusão Avançada por Lógica Booleana:** A engine ETL cruza o teste com uma matriz *OR*, deletando linhas inválidas.
+## 📖 Histórico de Atualizações (O Valor em Tempo Real do Genaja)
+
+> **Versão Atual:** `v0.4.3` (Experiência do Usuário & Docs)  
+> **Status do Projeto:** Ativo - Evolução Constante de Módulos
+
+**v0.4.3 (Experiência do Usuário & Docs)**
+A "vitrine" do aplicativo foi reformulada. A linguagem enraizada em jargões complexos deu lugar a uma explicação focada nas reais facilidades para a empresa. Um arquivo exclusivo avançado foi escondido apenas para eventuais analistas de TI. E toda a experiência passou a focar na facilidade.
+
+**v0.4.2 (O Comparador Pro)**
+Implementado o poderoso Hub de Abas na ferramenta. Entra no ar o "Mapeamento em Sentido Contrário", localizando itens presentes em relatórios de sistema externo que deixaram de baixar/existir misteriosamente para a sua base corporativa real, gerando extração super filtrada à ponta de um botão.
+
+**v0.4.1 (Corretivo de Blindagem em Bases Textuais de Alta Similaridade Numérica)**
+Evitado cenários drásticos onde colunas como códigos internos preenchidos por zeros fossem sumariamente varridos de relatórios de predição, engessando ainda mais as travas que te blindam de exportar lixos, mantendo dados inegociáveis.
+
+**v0.4.0 (A Era do Auto-Clique)**
+Retirada manual das caixas de anotação na ferramenta para seleções de transferência nativas e inteligentes na tela. Inserido o filtro cruzado que remove lixos apenas se estritamente inútil para todas as ramificações analíticas que você escolheu. 
+
+*(A documentação de arquitetura detalhada para analistas e TI localiza-se na pasta isolada `docs/`)*
