@@ -2,7 +2,7 @@ import os
 import zipfile
 import datetime
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # --- CONFIGURAÇÃO DA VERSÃO ATUAL ---
 # Lê a versão diretamente do código fonte para evitar descompasso

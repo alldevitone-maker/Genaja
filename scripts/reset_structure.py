@@ -327,7 +327,7 @@ CODE_VERSION = r'''__version__ = "v0.3.5"
 
 # --- LOGICA DE CRIAÇÃO ---
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC_DIR = os.path.join(BASE_DIR, 'src')
 FILES_TO_KILL = [
     # Arquivos que não deveriam estar na raiz do projeto JGDA

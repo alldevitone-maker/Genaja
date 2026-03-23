@@ -27,7 +27,7 @@ def run_command(command, capture=False):
         print(f"❌ ERRO: Comando '{command[0]}' não encontrado. O Git está instalado e no PATH do sistema?")
         return False
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VERSION_FILE = os.path.join(BASE_DIR, 'src', 'version.py')
 CHANGELOG_FILE = os.path.join(BASE_DIR, 'CHANGELOG.md')
 CHANGELOG_EN_FILE = os.path.join(BASE_DIR, 'CHANGELOG.en.md')
@@ -155,7 +155,7 @@ def main():
 
     # 6. Rodar smoke para validação
     print("\n6. Executando smoke_test.py para validação...")
-    if not run_command([sys.executable, 'smoke_test.py']):
+    if not run_command([sys.executable, os.path.join(BASE_DIR, 'tests', 'smoke_test.py')]):
         print("❌ Smoke test falhou! Revertendo alterações nos arquivos...")
         run_command(['git', 'checkout', VERSION_FILE, CHANGELOG_FILE, README_FILE])
         print("   Alterações revertidas. A release foi cancelada.")

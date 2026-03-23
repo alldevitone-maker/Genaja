@@ -1,7 +1,9 @@
-import os
 import sys
-import threading
-import time
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(BASE_DIR, 'src'))
+sys.path.append(os.path.join(BASE_DIR, 'scripts'))
 import make_backup  # Importa o script de backup para automação
 
 # Lógica robusta para encontrar a pasta src independente de onde o script é executado
