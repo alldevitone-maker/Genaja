@@ -1,10 +1,10 @@
 # Changelog
 
-## [v0.5.0] - 23/03/2026 (Comparador Pro & Hub de M?dulos)
-- Transforma??o do Passo 3 em um Hub de M?dulos expans?vel (Design Condicional).
-- Novo M?dulo Comparador para cruzar e encontrar registros faltantes (Anti-Join).
+## [v0.4.2] - 23/03/2026 (Comparador Pro & Hub de Módulos)
+- Transformação do Passo 3 em um Hub de Módulos expansível (Design Condicional).
+- Novo Módulo Comparador para cruzar e encontrar registros faltantes (Anti-Join).
 - Nomenclatura generalista (Origem/Destino) substituindo SAP/Simplesweb.
-- Novo algoritmo de Leitura de Cabe?alho do Excel que ignora c?lulas decorativas (Heur?stica de Strings).
+- Novo algoritmo de Leitura de Cabeçalho do Excel que ignora células decorativas (Heurística de Strings).
 
 ## [v0.4.1] - 23/03/2026 (Ajustes e Estabilidade)
 - Correção de regra de filtro ETL (Passo 3) que excluía colunas contendo zeros à esquerda.
