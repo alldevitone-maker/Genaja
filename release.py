@@ -30,7 +30,9 @@ def run_command(command, capture=False):
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VERSION_FILE = os.path.join(BASE_DIR, 'src', 'version.py')
 CHANGELOG_FILE = os.path.join(BASE_DIR, 'CHANGELOG.md')
+CHANGELOG_EN_FILE = os.path.join(BASE_DIR, 'CHANGELOG.en.md')
 README_FILE = os.path.join(BASE_DIR, 'README.md')
+README_EN_FILE = os.path.join(BASE_DIR, 'README.en.md')
 
 def get_current_version():
     """Lê a versão atual do arquivo src/version.py."""
@@ -69,7 +71,12 @@ def main():
         print("❌ Título da release não pode ser vazio.")
         sys.exit(1)
 
-    print("\n3. Digite as notas para o CHANGELOG (deixe em branco e pressione Enter para finalizar):")
+    release_title_en = input(f"   Digite o título da release em INGLÊS (ex: Release Automation): ").strip()
+    if not release_title_en:
+        print("❌ Título em inglês não pode ser vazio.")
+        sys.exit(1)
+
+    print("\n3. Digite as notas para o CHANGELOG PT-BR (deixe em branco e pressione Enter para finalizar):")
     changelog_notes = []
     while True:
         note = input("   - ")
@@ -81,16 +88,33 @@ def main():
         print("❌ Nenhuma nota de changelog fornecida. Abortando.")
         sys.exit(1)
 
+    print("\n4. Digite as notas para o CHANGELOG EN (Inglês) (deixe em branco e pressione Enter para finalizar):")
+    changelog_notes_en = []
+    while True:
+        note = input("   - ")
+        if not note:
+            break
+        changelog_notes_en.append(note)
+
+    if not changelog_notes_en:
+        print("❌ Nenhuma nota de changelog em inglês fornecida. Abortando.")
+        sys.exit(1)
+
     # 4. Confirmar antes de executar
     print("\n--- REVISÃO ---")
     print(f"Versão Atual:      {current_version}")
     print(f"Nova Versão:       {new_version}")
-    print(f"Título da Release: {release_title}")
-    print("Notas do Changelog:")
+    print(f"Título (PT):       {release_title}")
+    print(f"Título (EN):       {release_title_en}")
+    print("Notas PT-BR:")
     for note in changelog_notes:
+        print(f"  - {note}")
+    print("Notas EN:")
+    for note in changelog_notes_en:
         print(f"  - {note}")
     print("---------------")
     
+    # 5. Confirmar
     if input("Tudo certo? Posso iniciar o processo de release? (s/n): ").lower() != 's':
         print("Abortado pelo usuário."); sys.exit(0)
 
@@ -101,21 +125,35 @@ def main():
     print(f"🔄 Atualizando {os.path.relpath(VERSION_FILE)}...")
     update_file(VERSION_FILE, f'__version__ = "{new_version}"\n__title__ = "{release_title}"\n')
 
-    # Atualiza CHANGELOG.md
+    today = datetime.date.today().strftime("%d/%m/%Y")
+
+    # ---- ATUALIZAÇÃO PT-BR ----
     print(f"🔄 Atualizando {os.path.relpath(CHANGELOG_FILE)}...")
     with open(CHANGELOG_FILE, 'r', encoding='utf-8') as f: old_changelog = f.read()
-    today = datetime.date.today().strftime("%d/%m/%Y")
     new_entry = f"## [{new_version}] - {today} ({release_title})\n" + '\n'.join(f"- {note}" for note in changelog_notes)
-    update_file(CHANGELOG_FILE, f"# Changelog\n\n{new_entry}\n\n{old_changelog.replace('# Changelog', '').strip()}")
+    # Insert safely after the Badges
+    pattern_cl = re.compile(r"(# Changelog.*?\n\n)(.*)", re.DOTALL)
+    update_file(CHANGELOG_FILE, pattern_cl.sub(f"\\g<1>{new_entry}\n\n\\g<2>", old_changelog))
 
-    # Atualiza README.md
     print(f"🔄 Atualizando {os.path.relpath(README_FILE)}...")
     with open(README_FILE, 'r', encoding='utf-8') as f: readme_content = f.read()
     pattern = re.compile(r"(> \*\*Versão Atual:\*\* `)(" + re.escape(current_version) + r")(` \().*?(\))")
     new_readme_line = r"\g<1>" + new_version + r"\g<3>" + release_title + r"\g<4>"
     update_file(README_FILE, pattern.sub(new_readme_line, readme_content))
 
-    # 6. Rodar smoke test para validação
+    # ---- ATUALIZAÇÃO EN ----
+    print(f"🔄 Atualizando {os.path.relpath(CHANGELOG_EN_FILE)}...")
+    with open(CHANGELOG_EN_FILE, 'r', encoding='utf-8') as f: old_changelog_en = f.read()
+    new_entry_en = f"## [{new_version}] - {today} ({release_title_en})\n" + '\n'.join(f"- {note}" for note in changelog_notes_en)
+    update_file(CHANGELOG_EN_FILE, pattern_cl.sub(f"\\g<1>{new_entry_en}\n\n\\g<2>", old_changelog_en))
+
+    print(f"🔄 Atualizando {os.path.relpath(README_EN_FILE)}...")
+    with open(README_EN_FILE, 'r', encoding='utf-8') as f: readme_en_content = f.read()
+    pattern_en = re.compile(r"(> \*\*Current Version:\*\* `)(" + re.escape(current_version) + r")(` \().*?(\))")
+    new_readme_en_line = r"\g<1>" + new_version + r"\g<3>" + release_title_en + r"\g<4>"
+    update_file(README_EN_FILE, pattern_en.sub(new_readme_en_line, readme_en_content))
+
+    # 6. Rodar smoke para validação
     print("\n6. Executando smoke_test.py para validação...")
     if not run_command([sys.executable, 'smoke_test.py']):
         print("❌ Smoke test falhou! Revertendo alterações nos arquivos...")
@@ -124,7 +162,7 @@ def main():
         sys.exit(1)
     print("✅ Smoke test passou com sucesso.")
 
-    # 7. Executar comandos Git
+    # 7. Executar Git
     print("\n7. Executando comandos Git...")
     commit_message = f"Release {new_version}: {release_title}"
     if not run_command(['git', 'add', '.']): sys.exit(1)

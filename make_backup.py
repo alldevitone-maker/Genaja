@@ -11,6 +11,8 @@ with open(os.path.join(BASE_DIR, 'src', 'version.py')) as f:
     exec(f.read(), version_vars)
 VERSION = version_vars['__version__']
 TITLE = version_vars.get('__title__', '').replace(' ', '_')
+import re
+TITLE = re.sub(r'[\\/*?:"<>|]', '', TITLE)
 # ------------------------------------
 
 BACKUP_DIR = os.path.join(BASE_DIR, "backups", "genaja_jgda_backup")
