@@ -25,7 +25,7 @@ Se você já possui o Python instalado e deseja utilizar diretamente do reposit�
 
 ## 📖 Histórico de Atualizações (O Valor em Tempo Real do Genaja)
 
-> **Versão Atual:** `v0.4.5` (Arquitetura de Pastas Enterprise)  
+> **Versão Atual:** `v0.4.6` (Genaja Wizard & IA API)  
 > **Status do Projeto:** Ativo - Evolução Constante de Módulos
 
 **v0.4.4 (Internationalization & i18n)**

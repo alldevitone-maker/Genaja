@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.4.6] - 23/03/2026 (Genaja AI Wizard & Export Pro)
+- New Wizard Interface with protected workflow states.
+- Mathematical PK detector evaluating structural data similarities.
+- Exporters scaled, unlocking CSV formats and pure SQL string generation.
+
 ## [v0.4.5] - 23/03/2026 (Enterprise Folder Architecture)
 - Root folder purified. CI and Quality tracking scripts isolated (scripts/ and tests/).
 - Permanent deletion of disposable refactoring files used during early prototyping.

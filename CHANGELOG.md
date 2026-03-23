@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.4.6] - 23/03/2026 (Genaja Wizard & IA API)
+- Nova interface baseada em Wizard (1, 2, 3) com navegacao superprotegida.
+- Inteligencia Nativa que sugere Chaves lendo planilhas de forma semantica.
+- Motor de Exportacao liberado para gerar CSV ou codigos remotos SQL Insert.
+
 ## [v0.4.5] - 23/03/2026 (Arquitetura de Pastas Enterprise)
 - Pastas raiz purificadas. Scripts de automacao (CI) e Qualidade foram isolados (scripts/ e tests/).
 - Exclusao de arquivos mortos e scripts legados de prototipagem.

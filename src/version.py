@@ -1,2 +1,2 @@
-__version__ = "v0.4.5"
-__title__ = "Arquitetura de Pastas Enterprise"
+__version__ = "v0.4.6"
+__title__ = "Genaja Wizard & IA API"
