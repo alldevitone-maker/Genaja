@@ -1,5 +1,7 @@
 # Genaja - Sincronização Inteligente de Dados
 
+[🇺🇸 English](README.en.md) | [🇧🇷 Português](README.md)
+
 Bem-vindo ao **Genaja**, a sua ferramenta definitiva para cruzar e limpar planilhas empresariais de forma 100% autônoma e à prova de falhas.
 
 ## 🚀 O que o Genaja faz?
@@ -23,8 +25,11 @@ Se você já possui o Python instalado e deseja utilizar diretamente do reposit�
 
 ## 📖 Histórico de Atualizações (O Valor em Tempo Real do Genaja)
 
-> **Versão Atual:** `v0.4.3` (Experiência do Usuário & Docs)  
+> **Versão Atual:** `v0.4.4` (Internationalization & i18n)  
 > **Status do Projeto:** Ativo - Evolução Constante de Módulos
+
+**v0.4.4 (Internationalization & i18n)**
+Alcance global desbloqueado. Adicionadas as documentações de arquitetura, manuais de negócio e um histórico dinâmico de rastreio totalmente em inglês e português, utilizando links cruzados para abraçar contribuições externas.
 
 **v0.4.3 (Experiência do Usuário & Docs)**
 A "vitrine" do aplicativo foi reformulada. A linguagem enraizada em jargões complexos deu lugar a uma explicação focada nas reais facilidades para a empresa. Um arquivo exclusivo avançado foi escondido apenas para eventuais analistas de TI. E toda a experiência passou a focar na facilidade.

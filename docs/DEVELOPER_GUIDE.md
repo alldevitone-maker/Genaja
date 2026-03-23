@@ -1,5 +1,7 @@
 # Genaja Developer & Architecture Guide
 
+[🇺🇸 English](DEVELOPER_GUIDE.en.md) | [🇧🇷 Português](DEVELOPER_GUIDE.md)
+
 Este documento contém o registro avançado da infraestrutura sob o capô do Genaja (JGDA).
 
 ## 🏗️ Arquitetura do Software (O Motor JGDA)
@@ -20,6 +22,9 @@ Como o projeto não possui Github Actions nativas na nuvem (ainda), o versioname
 ---
 
 ## 🛠️ Log de Commits da Engenharia (Technical Version History)
+
+### v0.4.4 - Internationalization & i18n
+- **Localization:** Duplicação limpa de `README`, `CHANGELOG` e `DEVELOPER_GUIDE` criados sob extensão paramétrica `.en.md` possuindo Badges dinâmicas injetadas na UI do Github Render.
 
 ### v0.4.3 - Refatoração Arquitetônica de Documentação (UX/Docs)
 - **Docs:** Bifurcação das linguagens: criação explícita do `DEVELOPER_GUIDE.md` (Neste documento o qual você lê agora), extraído os jargões lógicos puros do `README.md` raiz. O objetivo foi limpar o Changelog para torná-lo um registro de release corporativa, isolando a documentação crua da stack em ambiente contido.

@@ -1,5 +1,10 @@
 # Changelog
 
+[🇺🇸 English](CHANGELOG.en.md) | [🇧🇷 Português](CHANGELOG.md)
+
+## [v0.4.4] - 23/03/2026 (Internationalization & i18n)
+- **Globalização:** Introduzido suporte multi-idiomas nas documentações (`.en.md`) e cross-links navegáveis para expansão e contribuição open-source mundial.
+
 ## [v0.4.2] - 23/03/2026 (Comparador Pro & Hub de Módulos)
 - **Transformação** do Passo 3 em um Hub de Módulos expansível, permitindo navegar entre telas em um clique.
 - **Novo Módulo Comparador** para cruzar e encontrar registros faltantes entre dois mundos diferentes sem precisar gastar horas em Excel.
