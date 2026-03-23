@@ -1,2 +1,2 @@
-__version__ = "v0.4.0"
-__title__ = "Pro UI & Advanced ETL Features"
+__version__ = "v0.4.1"
+__title__ = "Ajustes e Estabilidade"

@@ -1,6 +1,6 @@
 # Genaja: Java Generic Data Access (JGDA)
 
-> **Versão Atual:** `v0.4.0` (Pro UI & Advanced ETL Features)  
+> **Versão Atual:** `v0.4.1` (Ajustes e Estabilidade)  
 > **Status do Roadmap:** [Ativo] - Pro UI & Advanced ETL Features
 
 ## Visão Geral

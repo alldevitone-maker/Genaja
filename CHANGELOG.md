@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.4.1] - 23/03/2026 (Ajustes e Estabilidade)
+- Correção de regra de filtro ETL (Passo 3) que excluía colunas contendo zeros à esquerda.
+- Melhoria na detecção de valores matematicamente zerados em strings numéricas.
+
 ## [v0.4.0] - 20/03/2026 (Patch Pro UX & Advanced ETL)
 ### Adicionado / Modificado
 - **Pro UI Mapeamento Dinâmico (Dual Listbox):** Seleção de colunas com Listboxes interativas (Disponíveis vs Selecionadas) em substituição à digitação manual, zerando taxa de erros (Typos).
