@@ -25,8 +25,11 @@ If you already have Python installed and wish to run directly from the repositor
 
 ## 📖 Update History (Real-Time Added Value)
 
-> **Current Version:** `v0.4.9` (The Phoenix Visual Overhaul & i18n))  
-> **Roadmap Status:** Active - Constant Module Evolution
+> **Current Version:** `v0.4.9` (The Phoenix Absolute Edition)
+> **Project Status:** Active - Fully Customizable Workspace 🎨
+
+**v0.4.9 (The Phoenix Absolute Edition)**
+The biggest visual update in Genaja's history. We introduced the **Phoenix Customizer**, a real-time design studio that allows for **Absolute Editing** of 100% of the application's interface. The editor now operates in a **Floating Window** (Draggable), allowing you to change backgrounds, borders, buttons, and text while watching the app transform instantly. Additionally, settings have been institutionalized into a **Top Menu Bar (Settings)**, and all buttons have been rebuilt in a high-contrast **Flat Design** architecture, ensuring beauty and performance without distractions.
 
 **v0.4.7 (The Premium Update & Big Data O(1))**
 The corporate UI reached Premium status. The system now features a **Floating Tooltips** motor providing visual cues on complex business functions. The entire layout received a **Global Canvas Scroll** to properly display the Hub on smaller laptops. We introduced the red "Experimental" frames with raw Big Data processing capabilities (`JSON`, `CSV` and `SQL`). Furthermore, the core Pandas merging engine was refactored to completely shield identical column names against invisible data corruption (Empty Exports). As a bonus, an **App Restart** OS-button (`os.execl`) instantly flushes RAM memory logs when a key-mapping mistake occurs.
