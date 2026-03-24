@@ -1,2 +1,2 @@
-__version__ = "0.5.8"
-__title__ = "Professional Settings Suite"
+__version__ = "0.5.9"
+__title__ = "Governance & History Synchronization"

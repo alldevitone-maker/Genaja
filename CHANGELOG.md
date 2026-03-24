@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.9] - 24/03/2026 (Governance & History Synchronization)
+- **Histórico Consolidado**: Reconstrução completa da trilha de auditoria v0.5.x no README (PT/EN).
+- **Audit Build**: Sincronização de metadados e certificação de pre-commit hooks.
+- **Paridade Documental**: Alinhamento rigoroso entre CHANGELOG e README para conformidade empresarial.
+
 ## [0.5.8] - 2026-03-24 (Professional Settings Suite)
 - **Settings HUD 2026**: Nova interface de configurações globais com navegação lateral (Sidebar) e painéis categorizados.
 - **Config Engine v2.0**: Refatoração do `ConfigService` com suporte a Schema, valores padrão e persistência robusta.
