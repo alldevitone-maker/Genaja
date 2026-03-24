@@ -1,2 +1,2 @@
-__version__ = "0.5.0"
-__title__ = "The Next Frontier (v0.5.0 Gold)"
+__version__ = "0.5.3"
+__title__ = "Modern UI & Premium Design"
