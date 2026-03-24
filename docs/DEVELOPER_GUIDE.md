@@ -1,54 +1,48 @@
-# Genaja Developer & Architecture Guide
+# Genaja Developer & Architecture Guide (v0.5.9)
 
 [🇺🇸 English](DEVELOPER_GUIDE.en.md) | [🇧🇷 Português](DEVELOPER_GUIDE.md)
 
-Este documento contém o registro avançado da infraestrutura sob o capô do Genaja (JGDA).
+Este documento contém o registro avançado da infraestrutura sob o capô do Genaja (JGDA) em sua fase **Pure Qt (v0.5.x)**.
 
-## 🏗️ Arquitetura do Software (O Motor JGDA)
+## 🏗️ Arquitetura do Software (O Motor JGDA v2.0)
 
-A ferramenta foi projetada separando as lógicas pesadas de Banco de Dados da Visualização Gráfica do Usuário (inspirada em MVC).
+A aplicação segue um modelo de arquitetura desacoplada, garantindo que a lógica de negócio (ETL) seja agnóstica à interface gráfica.
 
-1. **`ui/genaja_ui.py` (Visão Tátil):** Toda a aplicação roda desenhada por blocos gerenciados pelo pacote embutido `tkinter` com o empacotador de estilização `ttk`. Um `Hub` controla dinamicamente quais Frames devem carregar (`pack(fill=tk.BOTH)` e `pack_forget()`) dependendo de qual "state" ou "modulo ativo" foi engatilhado pelas setas e callbacks.  
-2. **`services/etl_service.py` (Controlador ETL):** Trabalha fortemente fundado na vetorização atrelada ao `Pandas`. As exclusões são feitas mediante o instanciamento de matrizes Booleanas simultâneas de comparação paralela bit-wise (`not_zero & valid_str % not_null`) evitando o loop de linha catastrófico (iterating `iterrows()`). 
-3. **`services/excel_loader.py` (Leitor Heurístico):** Utiliza técnica de identificação avançada (`isinstance(str)`) correndo as 20 primeiras camadas para localizar "True Headers", contornando o erro nativo do Pandas em ler blocos mesclados (`Unnamed: N`). Extração se baseia na contagem estrita de volume de strings textuais por linha.
-4. **`Main.py`**: Desvio e instanciador de classes. Recebe as ordens empacotadas num dicionário da UI (`get_inputs()`) para evitar espaguete de argumentos e desvia o switch/if-else para ramificar a execução dos serviços correspondentes aos módulos instanciados do UI Container.
+1. **`src/ui_qt/` (Camada Visual):** Implementada exclusivamente em **PySide6**. 
+   - Utiliza um modelo **Frameless Architecture** com uma barra de título customizada (`TitleBar`).
+   - Gerenciamento de temas centralizado via `ThemeService` (QSS Injection).
+   - Wizard Stack de 4 passos com transições suaves (QPropertyAnimation).
 
-## CI/CD Workflow Local
-Como o projeto não possui Github Actions nativas na nuvem (ainda), o versionamento corre numa esteira manual protegida:
-- O Teste unitário cego: Desenvolvedores testam as injeções com o script `smoke_test.py`. Esse código avaliza Imports comutativos, sintaxe não detectável ao salvar em cache e Encoding do SO.
-- Ao acenar `sys.exit(0)`, o `make_backup.py` é evocado nos bastidores gerando snapshots físicos baseados no diretório limpo para `backups/v_titulo.zip`
-- Lançamento: A criação da release é automatizada rodando `python release.py` interativo no terminal. Esse script fará Regex na Landing Page, varreduras no File Tree injetando `git commit/tag/push` autonomamente impedindo assincronias e quebras na arvore Branch-Tag.
+2. **`src/core/services/` (Motores de Negócio):**
+   - **`etl_service.py`**: Motor de processamento vetorial baseado em Pandas. Utiliza operações bit-wise para processamento de alto volume com complexidade O(n).
+   - **`mapping_engine.py`**: Lógica heurística para sugestão de Primary Keys e mapeamento de colunas.
+   - **`config_service.py` (v2.0)**: Gerenciador de preferências globais com suporte a Schema e valores padrão persistentes.
+
+3. **`src/services/` (Serviços de Integração):**
+   - **`excel_loader.py`**: Leitor heurístico de cabeçalhos (`find_best_header`).
+   - **`theme_service.py`**: Motor de tokens visuais que gera o design 2026 Premium.
+
+4. **`src/main.py`**: Ponto de entrada que inicializa o `AppBootstrap` e injeta as dependências necessárias nos painéis da UI.
+
+## 🛠️ Trilha de Engenharia (Milestones Técnicos)
+
+### v0.5.4 - Pure Qt Transition (The Purge)
+- **Eliminação de Legado**: Remoção completa de 100% das dependências e arquivos do Tkinter.
+- **Unificação**: A entrada `--ui` foi extinta, consolidando o ciclo de vida do projeto em uma única stack de alta performance.
+
+### v0.5.6 - Phoenix Customizer 2.0 (Premium)
+- **QSS v2.2**: Estilização avançada com 16px radius, glassmorphism e micro-interações.
+- **Live Preview**: Integramos um "Mini-App" dentro do editor para feedback instantâneo de design.
+
+### v0.5.8 - Professional Settings Suite
+- **Global Config HUD**: Novo diálogo com navegação por Sidebar (QListWidget#sidebar).
+- **Schema Persistence**: Implementação de `DEFAULTS` no `ConfigService` para proteção de estado.
+
+## CI/CD & Governança Local
+O projeto utiliza um pipeline de validação rigoroso:
+- **`scripts/automate.py`**: Centro de comando para validações rápidas (`--quick`) e sincronismo de versão.
+- **Pre-commit Hooks**: Impedem o commit se houver discrepância entre `version.py`, `README` e `CHANGELOG`.
+- **`scripts/make_backup.py`**: Gerador de snapshots ZIP com nomenclatura SemVer automatizada.
 
 ---
-
-## 🛠️ Log de Commits da Engenharia (Technical Version History)
-
-### v0.4.4 - Internationalization & i18n
-- **Localization:** Duplicação limpa de `README`, `CHANGELOG` e `DEVELOPER_GUIDE` criados sob extensão paramétrica `.en.md` possuindo Badges dinâmicas injetadas na UI do Github Render.
-
-### v0.4.3 - Refatoração Arquitetônica de Documentação (UX/Docs)
-- **Docs:** Bifurcação das linguagens: criação explícita do `DEVELOPER_GUIDE.md` (Neste documento o qual você lê agora), extraído os jargões lógicos puros do `README.md` raiz. O objetivo foi limpar o Changelog para torná-lo um registro de release corporativa, isolando a documentação crua da stack em ambiente contido.
-
-### v0.4.2 - Comparador Pro & Auto-Hub 
-- **Refactoring:** Interface `genaja_ui.py` modificada com Views dinâmicas modulares em containers reusáveis `f3_container` possuindo transições de estados de botão com `hasattr`.
-- **Feature:** Implementado wrapper `process_data_comparison` dentro do motor Pandas em `etl_service`, resolvendo disparidades inter-dataframe utilizando logica puramente via sets iteráveis: `missing_keys = set(df_src_cmp[key_src]) - set(df_tgt_cmp[key_tgt])` (Anti-Join em C genérico nativo do set CPython para máxima eficiência algorítmica).
-- **Bugfix (Heuristic Header Loader):** Alteração radical no `find_best_header()`. Antigamente regrado via "max cols dropna()", gerando falso-positivo se uma linha de dados possuísse mais números informados do que a row mesclada do cabeçalho. Alterado para "sum of `isinstance(string)` cells" somado de verificação de estrutura bottom-header (>= score) para priorizar a linha final de cabeçalho duplo (ex: ignorar sub-titulos sobrejacentes como em relatórios SAP nativos).
-- **Refatoração UI API:** SAP/Simplesweb renomeados paramétricamente nos text vars e dicionários `.get()` de `main.py` para agnósticos Origem (`df_origem`) e Destino (`df_destino`).
-
-### v0.4.1 - Fix de Filtragem de ETL & Enconding 
-- **Bugfix (Engine):** A rotina responsável por obliterar os lixos iteráveis preenchidos com null (`clean_empty_quantities_multi`), não alocava validação numéricos nativos por ser checado numa array bit array em Strings hardcoded `(s != '0.0')`. Corrigido castando via proxy method `pd.to_numeric()`, avaliando 0 estritos nativos e estendendo proteção para não-intencionais falsos zeros lidos como texto no Excel, preservando `000100` e outras PKs na base.
-- **Bugfix (Console):** Resolvidos os encoding prints falhos `cp1252` e emojis travando pipes do Popen/Stdout do `release.py` no Windows, garantindo UTF-8 forçado no process host.
-
-### v0.4.0 - Mapeamento O(1) e Multibox
-- **UI Rewrite:** Subtraída a mecânica pesada e perigosa dos Entry Textos onde o User devia colar colunas e implementado o modelo `tk.Listbox` dinâmico atrealado ao payload auto-detectado no `read_excel`. Busca responsiva via binding `trace_add()`.
-- **Motor Lógico Expansível:** O filtro de linhas aceitava check rígido 1x1. Através de um loop dinâmico bit a bit ele passou a ser acumulável. O delete da tabela é cruzado por uma matriz Condicional OR.
-
-### v0.3.9 - Inception do Smart Headers
-- Criada a funcionalidade pre-wrapper de Auto Detecção. Introduzido o método iterável de 20 rows para calcular `non_nulls > max_non_nulls` expurgando Unnamed nan's corrompidos comuns em exportações web diretas. 
-- Inclusão do Theme "VSCode Dark", sobrescrevendo os frames TK.
-
-### v0.3.8 - Sincronização Expandida
-- Arquitetura principal (`process_data_synchronization`) reescrita, evoluindo do modelo in-place Update para o Left Join (`.join()`) capturando colunas dinâmicas desdobradas do dataframe 2 para o DF1.
-
-### v0.3.1 à v0.3.7 - Compliance e Transição Py
-- Versões em que a estabilidade principal foi isolada dos scripts originais para proteção contra os dados e a engine foi modularizada dos espaguetes legacy criados fora da IDE. Nascimento dos backups com base em títulos SemVer para CI. Conformidade aplicada no ignore e tree map isolado.
+*Assinado: Genaja Engineering Protocol v0.5.9*

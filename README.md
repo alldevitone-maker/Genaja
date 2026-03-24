@@ -3,10 +3,10 @@
 > **Versão Atual:** `v0.5.9` (Governance & History Synchronization)
 > **Status do Projeto:** Ativo - Auditoria e Sincronismo de Governança 🛡️
 
-## 📖 Histórico de Atualizações (O Valor em Tempo Real do Genaja)
+## 📖 Histórico de Atualizações (Audit Trail 2026)
 
 **v0.5.9 (Governance & History Synchronization)**
-Versão de auditoria focada na integridade do histórico do projeto. Sincronizamos todos os marcos da série v0.5.x nas documentações bilíngues e certificamos o funcionamento dos hooks de pre-commit para garantir paridade total entre código e governança.
+Versão de auditoria focada na integridade do histórico do projeto. Sincronizamos todos os marcos da série v0.5.x nas documentações bilíngues e certificamos o funcionamento dos hooks de pre-commit.
 
 **v0.5.8 (Professional Settings Suite)**
 Unificamos o controle do Genaja. O novo painel de **Global Preferences** permite gerenciar desde o comportamento do motor de dados (Trim/Case) até detalhes de exportação e segurança, tudo em uma interface Sidebar style com acabamento 2026 High-Fidelity.
@@ -23,11 +23,32 @@ A consolidação da arquitetura moderna. Removemos definitivamente o suporte ao 
 **v0.5.3 (Modern UI & Premium Design)**
 A revolução estética. Implementamos a **Custom Title Bar** (estilo VS Code), removendo as decorações nativas do Windows para uma experiência imersiva e frameless, além do novo motor de temas visual.
 
+**v0.5.2 (Engine Stability Patch)**
+Ajustes finos no motor de mapeamento heurístico e correção de pequenos glitches visuais na barra de título em modo maximizado.
+
 **v0.5.1 (Bugfix de Inicialização & Governança)**
 Post-Gold stage focado em estabilidade. Corrigimos o bug de inicialização dupla de janela e sincronizamos os primeiros protocolos de governança para o ciclo v0.5.x.
 
 **v0.5.0 (The Next Frontier - Gold Release)**
 A maior evolução tecnológica do Genaja. Implementamos uma arquitetura híbrida completa (PySide6/Tkinter) com motores enterprise desacoplados, interface Wizard de 4 passos, dashboard de monitoramento em tempo real e o estúdio de temas Phoenix Qt.
 
+**v0.4.9 (The Phoenix Absolute Edition)**
+Introdução do **Live Theme Customizer**. Controle absoluto de cores e estilos via interface gráfica em tempo real para Tkinter/PySide6.
+
 **v0.4.7 (The Premium Update & Big Data O(1))**
-A interface corporativa alcançou o nível Premium. O sistema agora conta com um motor de **Tooltips Flutuantes** (Dicas visuais) detalhando funções complexas de negócio para novos analistas. Toda a tela recebeu um **Global Canvas Scroll** para exibir o HUB corretamente em laptops de 14 polegadas. Introduzimos os quadros "Experimentais" vermelhos com suporte bruto a Big Data (`JSON`, `CSV`, `SQL`). Além disso, o motor de junção do Pandas foi reescrito para proteger (Safe-Merge) colunas com nomes idênticos contra corrupção invisível (Arquivos Vazios). E como bônus, implementado um Botão de **Reiniciar App** via Sistema Operacional para limpar a memória RAM imediatamente ao cometer erros de mapeamento da Chave.
+A interface corporativa alcançou o nível Premium. O sistema agora conta com um motor de **Tooltips Flutuantes** (Dicas visuais) detalhando funções complexas de negócio. Toda a tela recebeu um **Global Canvas Scroll**. Introduzimos os quadros "Experimentais" vermelhos com suporte a Big Data (`JSON`, `CSV`, `SQL`).
+
+**v0.4.6 (Unified Hub Flex)**
+Refatoração de arquitetura reunindo o Genaja em uma super-tela (Hub Único) sem perder funcionalidades clássicas. O botão de **Chave A1 Protegida** tornou-se ativável por Checkbox.
+
+**v0.4.3 (Experiência do Usuário & Docs)**
+A "vitrine" do aplicativo foi reformulada. Adicionada a estruturação em dupla camada (Manual do Analista e Documentação Técnica de TI) com paridade bilíngue.
+
+**v0.4.0 (A Era do Auto-Clique)**
+Retirada manual das caixas de anotação na ferramenta para seleções de transferência nativas e inteligentes na tela. Inserido o filtro cruzado inteligente.
+
+**v0.3.5 (Core Clean Architecture)**
+O marco zero da nova era. Refatoração completa para arquitetura desacoplada e foco em performance de processamento de dados.
+
+---
+*(A documentação de arquitetura detalhada para analistas e TI localiza-se na pasta isolada `docs/`)*
