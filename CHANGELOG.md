@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.4.7] - 24/03/2026 (The Premium Update & Big Data O(1))
+- **Interface Premium:** Implementado motor de Tooltips Flutuantes e Global Canvas Scroll para telas menores.
+- **Big Data Experimental:** Suporte a exportações brutas em JSON, CSV e SQL.
+- **Segurança de Dados:** Refatoração do motor de junção (Safe-Merge) contra corrupção de nomes duplicados.
+- **Gestão de Memória:** Botão de Reiniciar App nativo para limpeza imediata de RAM.
+
 ## [v0.4.6] - 23/03/2026 (Genaja Wizard & IA API)
 - Nova interface baseada em Wizard (1, 2, 3) com navegacao superprotegida.
 - Inteligencia Nativa que sugere Chaves lendo planilhas de forma semantica.

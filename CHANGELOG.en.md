@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.4.7] - 24/03/2026 (The Premium Update & Big Data O(1))
+- **Premium Interface:** Implemented Floating Tooltips and Global Canvas Scroll for smaller screens.
+- **Experimental Big Data:** Support for raw exports in JSON, CSV, and SQL.
+- **Data Security:** Refactored merging engine (Safe-Merge) against duplicate name corruption.
+- **Memory Management:** Native App Restart button for immediate RAM flushing.
+
 ## [v0.4.6] - 23/03/2026 (Genaja AI Wizard & Export Pro)
 - New Wizard Interface with protected workflow states.
 - Mathematical PK detector evaluating structural data similarities.

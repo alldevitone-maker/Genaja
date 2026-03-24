@@ -25,7 +25,7 @@ Se você já possui o Python instalado e deseja utilizar diretamente do reposit�
 
 ## 📖 Histórico de Atualizações (O Valor em Tempo Real do Genaja)
 
-> **Versão Atual:** `v0.4.7` (Genaja Wizard & IA API)  
+> **Versão Atual:** `v0.4.7` (The Premium Update & Big Data O(1))  
 > **Status do Projeto:** Ativo - Evolução Constante de Módulos
 
 **v0.4.7 (The Premium Update & Big Data O(1))**
