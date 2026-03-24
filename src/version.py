@@ -1,2 +1,2 @@
-__version__ = "0.4.8"
-__title__ = "The Architectural Refactoring & Governance Update"
+__version__ = "0.4.9"
+__title__ = "The Phoenix Visual Overhaul & i18n"

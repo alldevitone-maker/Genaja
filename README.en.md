@@ -25,7 +25,7 @@ If you already have Python installed and wish to run directly from the repositor
 
 ## 📖 Update History (Real-Time Added Value)
 
-> **Current Version:** `v0.4.8` (The Architectural Refactoring & Governance Update))  
+> **Current Version:** `v0.4.9` (The Phoenix Visual Overhaul & i18n))  
 > **Roadmap Status:** Active - Constant Module Evolution
 
 **v0.4.7 (The Premium Update & Big Data O(1))**

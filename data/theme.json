@@ -1,0 +1,18 @@
+{
+    "bg_col": "#ffffff",
+    "fg_col": "#000000",
+    "surface_col": "#ffffff",
+    "border_col": "#0d0d0d",
+    "action_bg": "#ffffff",
+    "action_fg": "white",
+    "success_bg": "#ffffff",
+    "success_fg": "white",
+    "warning_bg": "#ffffff",
+    "warning_fg": "white",
+    "danger_bg": "#DC3545",
+    "danger_fg": "white",
+    "neutral_bg": "#6C757D",
+    "neutral_fg": "white",
+    "pk_bg": "#ffffff",
+    "pk_fg": "#111827"
+}

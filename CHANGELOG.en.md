@@ -1,5 +1,14 @@
 # Changelog
 
+## [v0.4.9] - 2026-03-24 (The Phoenix Absolute Edition)
+- **Phoenix Customizer**: Introduced real-time theme editor via Floating Window (Toplevel).
+- **Absolute Theme Control**: Total reactivity (100%) for borders, backgrounds, canvases, and buttons.
+- **Zero-XP Architecture**: Native buttons rebuilt in pure Flat Design with a dynamic hover engine.
+- **Hexadecimal Precision**: Direct hexadecimal color entry support with instantaneous sync.
+- **Institutional Menu Bar**: Formal settings access via the top-level "Settings" menu bar.
+- **Vibrant Hybrid Aesthetic**: Balance between modern flat architecture and the v0.4.8 high-contrast palette.
+- **A.I. Transparency**: Improved visual feedback for the lexical scanner (status icons and alerts).
+
 ## [v0.4.8] - 24/03/2026 (The Architectural Refactoring & Governance Update)
 - **Architectural Refactoring**: Modularization of `etl_service.py` into specialized engines (`mapping_engine.py`, `validation_engine.py`).
 - **Active Governance**: Implementation of Git Hooks (pre-commit) for automatic version and test validation.

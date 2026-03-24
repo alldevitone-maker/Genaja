@@ -25,7 +25,7 @@ Se você já possui o Python instalado e deseja utilizar diretamente do reposit�
 
 ## 📖 Histórico de Atualizações (O Valor em Tempo Real do Genaja)
 
-> **Versão Atual:** `v0.4.8` (The Architectural Refactoring & Governance Update))  
+> **Versão Atual:** `v0.4.9` (The Phoenix Visual Overhaul & i18n))  
 > **Status do Projeto:** Ativo - Evolução Constante de Módulos
 
 **v0.4.7 (The Premium Update & Big Data O(1))**

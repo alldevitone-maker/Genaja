@@ -13,12 +13,10 @@ from utils.logger_setup import configure_logging
 from version import __version__
 import logging
 from services.excel_loader import load_excel_data_with_adjustment
-from services.etl_service import (
-    suggest_primary_keys, 
-    process_data_synchronization, 
-    apply_numeric_filter,
-    process_data_comparison
-)
+from services.validation_engine import apply_numeric_filter, apply_text_transformations
+from services.export_service import export_data
+from services.mapping_engine import suggest_primary_keys
+from services.etl_service import process_data_synchronization, process_data_comparison
 
 class GenajaApp:
     ENGINE_NAME = "JGDA AI Engine"
@@ -121,7 +119,7 @@ class GenajaApp:
         self.hide_loader()
         
         if intersection == 0:
-            messagebox.showwarning(":( Ops! Chave errada?", f"A coluna '{k_src}' não compartilha NENHUM dado em comum com '{k_tgt}'.\\n\\nCruzá-las iria destruir seu relatório. Por favor, escolha outra Chave Primária compatível que faz sentido!")
+            messagebox.showwarning(":( Ops! Chave errada?", f"A coluna '{k_src}' não compartilha NENHUM dado em comum com '{k_tgt}'.\n\nCruzá-las iria destruir seu relatório. Por favor, escolha outra Chave Primária compatível que faz sentido!")
             return False
             
         return True
@@ -134,14 +132,6 @@ class GenajaApp:
             df_t = self.df_tgt.copy()
             mapping = {col: col for col in inputs["cols_mapped"]}
             
-            if inputs["chk_zeros"]:
-                self.show_loader("I.A limpando falsos-positivos (Shielding zeros)...")
-                cols_to_filter = inputs.get("zero_cols", [])
-                if not cols_to_filter:
-                    num_cols_t = df_t.select_dtypes(include='number').columns.tolist()
-                    cols_to_filter = [c for c in inputs["cols_mapped"] if c in num_cols_t] if inputs["cols_mapped"] else num_cols_t
-                df_t = apply_numeric_filter(df_t, cols_to_filter)
-            
             module = inputs["module"]
             self.show_loader(f"Aplicando {module}. Realizando as junções complexas...")
             
@@ -151,17 +141,21 @@ class GenajaApp:
                 df_final = process_data_comparison(df_s, df_t, inputs["key_src"], inputs["key_tgt"], "falta_origem", inputs["clean_output"], mapping, inputs["key_tgt_final"])[0]
             elif module == "Falta no Destino":
                 df_final = process_data_comparison(df_s, df_t, inputs["key_src"], inputs["key_tgt"], "falta_destino", inputs["clean_output"], mapping, inputs["key_tgt_final"])[0]
+
+            # Post-processing filters (on df_final)
+            if inputs["chk_zeros"]:
+                self.show_loader("I.A filtrando linhas zero/nulas (Cross-check)...")
+                cols_to_filter = inputs.get("zero_cols", [])
+                df_final = apply_numeric_filter(df_final, cols_to_filter)
                 
-            if inputs["chk_trim"]:
-                self.show_loader("Removendo micro-espaços falsos em textos...")
-                df_final = df_final.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
-            if inputs["chk_upper"]:
-                self.show_loader("Forçando CAIXA ALTA (Upper Case)...")
-                df_final = df_final.apply(lambda x: x.str.upper() if x.dtype == "object" else x)
+            # Data Sanitization via Service
+            if inputs["chk_trim"] or inputs["chk_upper"]:
+                self.show_loader("Higienizando dados (Trim/Upper)...")
+                df_final = apply_text_transformations(df_final, trim=inputs["chk_trim"], upper=inputs["chk_upper"])
 
             self.hide_loader()
             self.root.config(cursor="")
-            export_fmt = inputs.get("export_fmt", ".csv")
+            export_fmt = inputs.get("export_fmt", ".xlsx")
             
             filetypes_map = {
                 ".csv": [("Arquivo CSV Rápido", "*.csv")],
@@ -183,42 +177,20 @@ class GenajaApp:
             self.root.config(cursor="wait")
             self.show_loader("Acelerando IO para Gravação no Disco...")
             
-            ext = os.path.splitext(filepath)[1].lower()
-            if ext == '.csv':
-                df_final.to_csv(filepath, index=False, sep=';', encoding='utf-8-sig')
-            elif ext == '.sql':
-                table_name = "genaja_exportacao_v046"
-                with open(filepath, 'w', encoding='utf-8') as f:
-                    f.write(f"-- Genaja Enterprise Universal SQL EXPORT\n")
-                    f.write(f"-- Auto-generated cross tables.\n\n")
-                    cols = df_final.columns.tolist()
-                    cols_str = ", ".join([f"`{c}`" for c in cols])
-                    
-                    for row in df_final.itertuples(index=False):
-                        vals = []
-                        for v in row:
-                            if pd.isna(v): vals.append("NULL")
-                            elif isinstance(v, str): 
-                                clean_v = v.replace("'", "''")
-                                vals.append(f"'{clean_v}'")
-                            else: vals.append(str(v))
-                        vals_str = ", ".join(vals)
-                        f.write(f"INSERT INTO {table_name} ({cols_str}) VALUES ({vals_str});\n")
-            elif ext == '.json':
-                self.show_loader("Achatando dicionários para Array JSON Nativo...")
-                df_final.to_json(filepath, orient='records', force_ascii=False, indent=4)
-            else:
-                self.show_loader("Renderizando Binários do Excel (Pode demorar vários minutos)...")
-                df_final.to_excel(filepath, index=False)
+            # Export via Service
+            export_success = export_data(df_final, filepath, export_fmt, self.log_msg)
                 
             self.hide_loader()
             
-            resp = messagebox.askyesno("Sucesso Expresso 🎉", f"Processamento Corporativo concluído e gravado!\n\nSalvo em:\n{filepath}\n\nDeseja disparar a abertura do arquivo gerado agora?")
-            if resp:
-                try:
-                    os.startfile(filepath)
-                except Exception as e:
-                    messagebox.showwarning("Aviso do Sistema", f"Não foi possível acionar o sistema operacional para abrir o arquivo automaticamente.\nRecorrendo à verificação manual.\nErro: {e}")
+            if export_success:
+                resp = messagebox.askyesno("Sucesso Expresso 🎉", f"Processamento Corporativo concluído e gravado!\n\nSalvo em:\n{filepath}\n\nDeseja disparar a abertura do arquivo gerado agora?")
+                if resp:
+                    try:
+                        os.startfile(filepath)
+                    except Exception as e:
+                        messagebox.showwarning("Aviso do Sistema", f"Não foi possível acionar o sistema operacional para abrir o arquivo automaticamente.\nRecorrendo à verificação manual.\nErro: {e}")
+            else:
+                messagebox.showerror("Erro de Exportação", "O motor de exportação não reconheceu o formato ou falhou ao gravar o arquivo.")
             
         except Exception as e:
             self.hide_loader()

@@ -1,5 +1,14 @@
 # Changelog
 
+## [v0.4.9] - 24/03/2026 (The Phoenix Absolute Edition)
+- **Phoenix Customizer**: Introdução de editor de temas em tempo real via Janela Flutuante (Toplevel).
+- **Controle de Tema Absoluto**: Reatividade total (100%) para bordas, fundos, telas e botões.
+- **Arquitetura Zero-XP**: Reconstrução dos botões nativos em Flat Design puro com motor de hover dinâmico.
+- **Precisão Hexadecimal**: Suporte a entrada direta de códigos de cor com sincronização instantânea.
+- **Menu Bar Institucional**: Acesso formal às configurações via barra de menu "Settings" no topo da janela.
+- **Estética Vibrant Hybrid**: Equilíbrio entre a arquitetura flat moderna e a paleta de alto contraste v0.4.8.
+- **Transparência I.A**: Melhoria no feedback visual do scanner léxico (ícones de status e alertas).
+
 ## [v0.4.8] - 24/03/2026 (The Architectural Refactoring & Governance Update)
 - **Refatoração Arquitetural**: Modularização do `etl_service.py` em motores especializados (`mapping_engine.py`, `validation_engine.py`).
 - **Governança Ativa**: Implementação de Git Hooks (pre-commit) para validação automática de versão e testes.
