@@ -16,8 +16,7 @@ class MappingEngine:
     def suggest_primary_keys(self, df_src, df_tgt):
         """Localizar melhores candidatos a Chave Primária based em nomes e unicidade"""
         # (Lógica simplificada mockada ou portada da v0.4.9)
-        common_candidates = ['ID', 'CODIGO', 'SKU', 'EAN', 'CPF', 'CNPJ', 'ITEM']
         best_src = df_src.columns[0]
-        best_tgt = df_destino.columns[0] # Note: Use df_tgt
+        best_tgt = df_tgt.columns[0]
         # ... logic flow ...
         return best_src, best_tgt, 0.9
