@@ -1,4 +1,4 @@
-# Genaja - Intelligent Data Synchronization
+s# Genaja - Intelligent Data Synchronization
 
 [🇺🇸 English](README.en.md) | [🇧🇷 Português](README.md)
 
@@ -25,11 +25,14 @@ If you already have Python installed and wish to run directly from the repositor
 
 ## 📖 Update History (Real-Time Added Value)
 
-> **Current Version:** `v0.4.9` (The Phoenix Absolute Edition)
+> **Current Version:** `v0.5.3` (Modern UI & Premium Design)
 > **Project Status:** Active - Fully Customizable Workspace 🎨
 
-**v0.4.9 (The Phoenix Absolute Edition)**
-The biggest visual update in Genaja's history. We introduced the **Phoenix Customizer**, a real-time design studio that allows for **Absolute Editing** of 100% of the application's interface. The editor now operates in a **Floating Window** (Draggable), allowing you to change backgrounds, borders, buttons, and text while watching the app transform instantly. Additionally, settings have been institutionalized into a **Top Menu Bar (Settings)**, and all buttons have been rebuilt in a high-contrast **Flat Design** architecture, ensuring beauty and performance without distractions.
+**v0.5.1 (The Next Frontier - v0.5.1 Bugfix)**
+Post-Gold stage focused on stability and compliance. Fixed the double-window initialization bug and synchronized all project governance for the v0.5.1 cycle.
+
+**v0.5.0 (The Next Frontier - Gold Release)**
+The biggest technological evolution in Genaja's history. We implemented a full hybrid architecture (PySide6/Tkinter) with decoupled enterprise engines, a 4-step Wizard interface, real-time monitoring dashboard, and the Phoenix Qt theme studio.
 
 **v0.4.7 (The Premium Update & Big Data O(1))**
 The corporate UI reached Premium status. The system now features a **Floating Tooltips** motor providing visual cues on complex business functions. The entire layout received a **Global Canvas Scroll** to properly display the Hub on smaller laptops. We introduced the red "Experimental" frames with raw Big Data processing capabilities (`JSON`, `CSV` and `SQL`). Furthermore, the core Pandas merging engine was refactored to completely shield identical column names against invisible data corruption (Empty Exports). As a bonus, an **App Restart** OS-button (`os.execl`) instantly flushes RAM memory logs when a key-mapping mistake occurs.

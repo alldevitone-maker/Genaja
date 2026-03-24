@@ -1,5 +1,27 @@
 # Changelog
 
+## [v0.5.3] - 24/03/2026 (Modern UI & Premium Design)
+- **Custom Title Bar**: Substituição da barra nativa do Windows por uma barra integrada ao tema (estilo VS Code/Slack).
+- **Frameless Architecture**: Janela limpa, integrada e 100% controlada pelo motor gráfico do Genaja.
+- **Theme Engine 2.0**: Introdução de **Presets Oficiais** (Zinc Studio, Phoenix Dark, Light Grey SaaS).
+- **Phoenix Customizer 2.0**: HUD redesenhado com agrupamento visual, seletores de cores amigáveis e live preview aprimorado.
+- **Desacoplamento Visual**: `MainWindow` agora é visualmente cega, consumindo 100% da identidade via tokens do `ThemeService`.
+- **Governança v0.5.3**: Pipeline de validação atualizada para certificar a nova arquitetura frameless.
+
+## [v0.5.1] - 24/03/2026 (The Next Frontier - v0.5.1 Bugfix)
+- **Correção de Janela Branca**: Ajuste técnico na inicialização do Tkinter para evitar instanciamento duplo do Root.
+- **Sincronização de Metadados**: Padronização global das etiquetas de versão em conformidade com o Protocolo de Governança.
+- **Estabilização de Bootstrap**: Refinamento na lógica de seleção de UI (Qt como default).
+
+## [v0.5.0] - 24/03/2026 (The Next Frontier - Gold Release)
+- **Arquitetura Híbrida Real**: Migração completa para um ambiente dual PySide6 e Tkinter com motores desacoplados.
+- **v0.5.0 Wizard (Qt)**: Implementação de fluxo de 4 passos funcional com injeção de serviços enterprise.
+- **Phoenix Qt (Design System)**: Motor de temas dinâmico QSS com editor flutuante e live preview no PySide6.
+- **Status Dashboard Area**: Novo módulo de monitoramento em tempo real com barra de progresso e log de auditoria.
+- **Micro-Animações**: Transições de opacidade cinematográficas no Wizard para uma experiência de usuário premium.
+- **Coração Service-Oriented (SOA)**: Lógica de negócio isolada em `core/services`, garantindo 100% de paridade entre frontends.
+- **Governance Safe-Check**: Integração de fumaça (smoke tests) para ambas as interfaces no pipeline de release.
+
 ## [v0.4.9] - 24/03/2026 (The Phoenix Absolute Edition)
 - **Phoenix Customizer**: Introdução de editor de temas em tempo real via Janela Flutuante (Toplevel).
 - **Controle de Tema Absoluto**: Reatividade total (100%) para bordas, fundos, telas e botões.

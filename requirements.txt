@@ -9,6 +9,7 @@ xlrd==2.0.2
 
 # User Interface
 tkinterdnd2==0.4.3
+PySide6
 
 # Utilities
 et_xmlfile==2.0.0

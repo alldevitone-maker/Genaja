@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, colorchooser
+from services.theme_service import ThemeService
 
 class SettingsWindow:
     def __init__(self, parent, theme_service, on_update_callback):

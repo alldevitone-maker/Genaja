@@ -1,7 +1,8 @@
 import logging
 import os
 
-def configure_logging():
+def setup_logger():
+    """Inicializa o sistema de logs do Genaja"""
     base_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     log_dir = os.path.join(base_dir, 'logs')
     os.makedirs(log_dir, exist_ok=True)
@@ -19,3 +20,11 @@ def configure_logging():
         ]
     )
     logging.info("Logging system initialized.")
+
+def get_logger():
+    """Retorna a instância do logger global"""
+    return logging.getLogger("Genaja")
+
+def configure_logging():
+    """Alias para compatibilidade legado"""
+    setup_logger()

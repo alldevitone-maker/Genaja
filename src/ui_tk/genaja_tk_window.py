@@ -2,7 +2,8 @@ import tkinter as tk
 from tkinter import ttk, filedialog
 from services.excel_loader import load_excel_data_with_adjustment
 from services.theme_service import ThemeService
-from ui.ui_settings import SettingsWindow
+from ui_tk.phoenix_tk_customizer import SettingsWindow
+from version import __version__
 import tkinter.messagebox as messagebox
 from tkinterdnd2 import DND_FILES
 
@@ -156,9 +157,11 @@ I18N = {
 }
 
 class GenajaUI:
-    def __init__(self, root, title, version, callbacks):
+    def __init__(self, root, theme_service, callbacks):
         self.root = root
-        self.root.title(f"{title} - {I18N['app_title']} (v{version})")
+        self.theme_service = theme_service
+        self.version = __version__
+        self.root.title(f"Genaja Pro - {I18N['app_title']} (v{self.version})")
         self.root.geometry("1100x950")
         
         self.theme_service = ThemeService()

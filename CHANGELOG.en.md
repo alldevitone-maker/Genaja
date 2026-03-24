@@ -1,5 +1,18 @@
 # Changelog
 
+## [v0.5.3] - 2026-03-24 (Modern UI & Premium Design)
+- **Custom Title Bar**: Replaced native Windows title bar with a theme-integrated bar (VS Code/Slack style).
+- **Frameless Architecture**: Clean, integrated window 100% controlled by Genaja's graphics engine.
+- **Theme Engine 2.0**: Introduction of **Official Presets** (Zinc Studio, Phoenix Dark, Light Grey SaaS).
+- **Phoenix Customizer 2.0**: Redesigned HUD with visual grouping, friendly color pickers, and enhanced live preview.
+- **Visual Decoupling**: `MainWindow` is now visually blind, consuming 100% of identity via `ThemeService` tokens.
+- **v0.5.3 Governance**: Validation pipeline updated to certify the new frameless architecture.
+
+## [v0.5.1] - 2026-03-24 (The Next Frontier - v0.5.1 Bugfix)
+- **White Window Fix**: Technical adjustment in Tkinter initialization to prevent double-root instantiation.
+- **Metadata Synchronization**: Global standardization of version tags in compliance with the Governance Protocol.
+- **Bootstrap Stabilization**: Refinement in UI selection logic (Qt as default).
+
 ## [v0.4.9] - 2026-03-24 (The Phoenix Absolute Edition)
 - **Phoenix Customizer**: Introduced real-time theme editor via Floating Window (Toplevel).
 - **Absolute Theme Control**: Total reactivity (100%) for borders, backgrounds, canvases, and buttons.
