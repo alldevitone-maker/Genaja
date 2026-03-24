@@ -1,2 +1,2 @@
-__version__ = "0.5.4"
-__title__ = "Pure Qt Transition & Design"
+__version__ = "0.5.5"
+__title__ = "Pure Qt Architecture Stabilization"

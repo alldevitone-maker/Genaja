@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.5.5] - 24/03/2026 (Pure Qt Architecture Stabilization)
+- **Refino v0.5.4**: Ajustes de estabilidade após o decommissioning do Tkinter.
+- **Homologação Silenciosa**: Testes de fumaça validados para a nova árvore de diretórios Pure Qt.
+- **Preparação 2026**: Limpeza de metadados para o novo Designer Suite.
+
+## [0.5.6] - 2026-03-24 (Premium Customizer 2026)
+- **Phoenix Customizer 2.0**: Redesign completo estilo SaaS Pro com abas de categoria (Estilos, Identidade, Elementos).
+- **Interactive Preview Card**: Inclusão de um mini-app preview dentro do editor que reflete cores em tempo real.
+- **User-Friendly Naming**: Substituição de nomes técnicos (bg_col) por amigáveis (Fundo Principal) na interface de ajustes.
+- **Premium QSS v2.2**: Melhoria nos contornos (16px), sombras simuladas e estilização de abas modernas.
+- **Estabilidade Visual**: Correção de artefatos visuais no modo Light Grey SaaS.
+
 ## [v0.5.4] - 24/03/2026 (Pure Qt Transition)
 - **Decomissionamento Tkinter**: Remoção total e definitiva do código legado v0.4.x (Pasta `ui_tk`).
 - **Pure Entrypoint**: Refatoração do `main.py` e `AppBootstrap` para zero-redundancy, operando exclusivamente em PySide6.

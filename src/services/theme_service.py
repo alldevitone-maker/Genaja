@@ -2,73 +2,71 @@ import json
 import os
 
 class ThemeService:
-    # 1. RESERVATÓRIO DE PRESETS OFICIAIS (v0.5.3)
+    # 🏁 METADADOS AMIGÁVEIS (v0.5.6 Professional 2026)
+    TOKEN_LABELS = {
+        "bg_col": "Fundo da Janela",
+        "fg_col": "Texto Principal",
+        "surface_col": "Superfície de Cards",
+        "border_col": "Contornos e Divisores",
+        "action_bg": "Ação Principal (Botões)",
+        "action_fg": "Texto em Botões",
+        "titlebar_bg": "Fundo da Barra de Título",
+        "titlebar_text": "Texto da Barra de Título",
+        "titlebar_close_hover": "Hover de Fechamento",
+        "success_bg": "Status: Sucesso",
+        "warning_bg": "Status: Alerta",
+        "danger_bg": "Status: Erro Crítico",
+        "pk_bg": "Destaque de Chave (PK)"
+    }
+
     PRESETS = {
         "zinc_studio": {
             "name": "Zinc Studio (Default)",
-            "bg_col": "#1E1E1E",        # VS Code Dark
-            "fg_col": "#CCCCCC",        # Neutral Light
-            "surface_col": "#252526",   # Slightly Lighter
-            "border_col": "#3F3F3F",    # Subtle Border
-            "action_bg": "#007ACC",     # VS Code Blue
-            "action_fg": "white",
-            "titlebar_bg": "#323233",   # Titlebar
-            "titlebar_text": "#919191",
-            "titlebar_close_hover": "#E81123",
-            "success_bg": "#198754",
-            "success_fg": "white",
-            "warning_bg": "#FFC107",
-            "warning_fg": "#111827",
-            "danger_bg": "#DC3545",
-            "danger_fg": "white",
-            "neutral_bg": "#6C757D",
-            "neutral_fg": "white",
-            "pk_bg": "#FFC107",
-            "pk_fg": "#111827"
+            "bg_col": "#09090B",        # Deep Zinc
+            "fg_col": "#FAFAFA",
+            "surface_col": "#18181B",
+            "border_col": "#27272A",
+            "action_bg": "#3B82F6",     # Modern Azure
+            "action_fg": "#FFFFFF",
+            "titlebar_bg": "#18181B",
+            "titlebar_text": "#A1A1AA",
+            "titlebar_close_hover": "#EF4444",
+            "success_bg": "#10B981",
+            "warning_bg": "#F59E0B",
+            "danger_bg": "#EF4444",
+            "pk_bg": "#F59E0B"
         },
         "phoenix_dark": {
             "name": "Phoenix Dark",
-            "bg_col": "#0D0F12",        # Profundo
+            "bg_col": "#0D0F12",
             "fg_col": "#E1E1E1",
             "surface_col": "#16191D",
             "border_col": "#2C313A",
-            "action_bg": "#6D28D9",     # Purple Tech
-            "action_fg": "white",
+            "action_bg": "#8B5CF6",     # Vibrant Violet
+            "action_fg": "#FFFFFF",
             "titlebar_bg": "#16191D",
             "titlebar_text": "#CCCCCC",
             "titlebar_close_hover": "#FF4B4B",
             "success_bg": "#10B981",
-            "success_fg": "white",
             "warning_bg": "#F59E0B",
-            "warning_fg": "white",
             "danger_bg": "#EF4444",
-            "danger_fg": "white",
-            "neutral_bg": "#4B5563",
-            "neutral_fg": "white",
-            "pk_bg": "#F59E0B",
-            "pk_fg": "white"
+            "pk_bg": "#F59E0B"
         },
         "light_grey_saas": {
             "name": "Light Grey SaaS",
-            "bg_col": "#F3F4F6",        # Grey Light Win11
-            "fg_col": "#1F2937",
+            "bg_col": "#F8FAFC",
+            "fg_col": "#0F172A",
             "surface_col": "#FFFFFF",
-            "border_col": "#E5E7EB",
-            "action_bg": "#2563EB",     # SaaS Blue
-            "action_fg": "white",
+            "border_col": "#E2E8F0",
+            "action_bg": "#2563EB",
+            "action_fg": "#FFFFFF",
             "titlebar_bg": "#FFFFFF",
-            "titlebar_text": "#4B5563",
-            "titlebar_close_hover": "#E81123",
+            "titlebar_text": "#64748B",
+            "titlebar_close_hover": "#EF4444",
             "success_bg": "#059669",
-            "success_fg": "white",
             "warning_bg": "#D97706",
-            "warning_fg": "white",
-            "danger_bg": "#B91C1C",
-            "danger_fg": "white",
-            "neutral_bg": "#9CA3AF",
-            "neutral_fg": "white",
-            "pk_bg": "#D97706",
-            "pk_fg": "white"
+            "danger_bg": "#DC2626",
+            "pk_bg": "#D97706"
         }
     }
 
@@ -78,9 +76,7 @@ class ThemeService:
         self.current_theme = self.load_theme()
 
     def load_theme(self):
-        # Default de segurança (Zinc Studio)
         default = self.PRESETS["zinc_studio"].copy()
-        
         if os.path.exists(self.theme_path):
             try:
                 with open(self.theme_path, "r", encoding="utf-8") as f:
@@ -95,10 +91,8 @@ class ThemeService:
     def save_theme(self, theme_dict=None):
         if theme_dict:
             self.current_theme = theme_dict
-        
         if not os.path.exists(self.config_dir):
             os.makedirs(self.config_dir)
-            
         with open(self.theme_path, "w", encoding="utf-8") as f:
             json.dump(self.current_theme, f, indent=4)
 
@@ -117,7 +111,6 @@ class ThemeService:
 
     def get_qss(self):
         t = self.current_theme
-        hover_bg = t.get('action_bg_hover', t['action_bg']) # Fallback dinâmico
         
         return f"""
             QMainWindow, QDialog {{ 
@@ -140,38 +133,38 @@ class ThemeService:
                 background-color: {t['titlebar_bg']};
                 color: {t['titlebar_text']};
                 border-bottom: 1px solid {t['border_col']};
-                padding: 2px;
+                padding: 4px;
             }}
             QMenuBar::item:selected {{
                 background-color: {t['action_bg']};
                 color: {t['action_fg']};
-                border-radius: 4px;
+                border-radius: 6px;
             }}
             
             QMenu {{
                 background-color: {t['surface_col']};
                 color: {t['fg_col']};
                 border: 1px solid {t['border_col']};
-                border-radius: 6px;
-                padding: 4px;
+                border-radius: 8px;
+                padding: 6px;
             }}
             QMenu::item:selected {{
                 background-color: {t['action_bg']};
                 color: {t['action_fg']};
+                border-radius: 4px;
             }}
             
             QPushButton {{
                 background-color: {t['action_bg']};
                 color: {t['action_fg']};
                 border: none;
-                border-radius: 6px;
-                padding: 8px 16px;
+                border-radius: 8px;
+                padding: 10px 20px;
                 font-weight: bold;
                 font-size: 13px;
             }}
             QPushButton:hover {{
                 opacity: 0.9;
-                background-color: {hover_bg};
             }}
             QPushButton#titleBarBtn {{
                 background-color: transparent;
@@ -184,34 +177,42 @@ class ThemeService:
             QFrame#card {{
                 background-color: {t['surface_col']};
                 border: 1px solid {t['border_col']};
-                border-radius: 12px;
+                border-radius: 16px;
             }}
             
             QStatusBar {{
                 background-color: {t['titlebar_bg']};
                 color: {t['titlebar_text']};
                 border-top: 1px solid {t['border_col']};
-                font-size: 11px;
             }}
             
-            QLineEdit, QComboBox, QScrollArea {{
+            QLineEdit, QComboBox, QScrollArea, QListWidget, QListView {{
                 background-color: {t['surface_col']};
                 color: {t['fg_col']};
                 border: 1px solid {t['border_col']};
-                border-radius: 6px;
-                padding: 5px;
+                border-radius: 8px;
+                padding: 8px;
             }}
             
-            QListView, QListWidget {{
-                background-color: {t['surface_col']};
+            QScrollArea {{ border: none; }}
+            
+            QTabWidget::pane {{
+                border: 1px solid {t['border_col']};
+                border-radius: 8px;
+                background: {t['surface_col']};
+            }}
+            QTabBar::tab {{
+                background: {t['bg_col']};
+                color: {t['titlebar_text']};
+                padding: 10px 20px;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+                margin-right: 2px;
+            }}
+            QTabBar::tab:selected {{
+                background: {t['surface_col']};
                 color: {t['fg_col']};
                 border: 1px solid {t['border_col']};
-                border-radius: 6px;
-                padding: 5px;
-            }}
-            QListView::item:selected {{
-                background-color: {t['action_bg']};
-                color: {t['action_fg']};
-                border-radius: 4px;
+                border-bottom-color: {t['surface_col']};
             }}
         """

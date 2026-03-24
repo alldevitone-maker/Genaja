@@ -25,11 +25,11 @@ Se você já possui o Python instalado e deseja utilizar diretamente do reposit�
 
 ## 📖 Histórico de Atualizações (O Valor em Tempo Real do Genaja)
 
-> **Versão Atual:** `v0.5.4` (Pure Qt Transition & Design)
-> **Status do Projeto:** Ativo - Single Stack PySide6 🚀
+> **Current Version:** `v0.5.5` (Pure Qt Architecture Stabilization)
+> **Project Status:** Active - Post-Purge Stabilization 🚀
 
-**v0.5.4 (Pure Qt Transition)**
-A consolidação total da arquitetura moderna. Removemos definitivamente o suporte ao Tkinter (Legado) e o argumento `--ui`, tornando o Genaja uma aplicação Pure PySide6. O código foi limpo, reduzindo a dívida técnica e unificando o foco na performance e design premium.
+**v0.5.5 (Pure Qt Architecture Stabilization)**
+Mandatory stabilization phase after the Pure Qt transition (v0.5.4). Validated system integrity, removed cross-references, and consolidated the build for the new 2026 Design System.
 
 **v0.5.0 (The Next Frontier - Gold Release)**
 A maior evolução tecnológica do Genaja. Implementamos uma arquitetura híbrida completa (PySide6/Tkinter) com motores enterprise desacoplados, interface Wizard de 4 passos, dashboard de monitoramento em tempo real e o estúdio de temas Phoenix Qt.
