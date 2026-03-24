@@ -1,2 +1,2 @@
-__version__ = "0.5.3"
-__title__ = "Modern UI & Premium Design"
+__version__ = "0.5.4"
+__title__ = "Pure Qt Transition & Design"

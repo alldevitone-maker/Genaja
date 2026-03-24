@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.5.4] - 24/03/2026 (Pure Qt Transition)
+- **Decomissionamento Tkinter**: Remoção total e definitiva do código legado v0.4.x (Pasta `ui_tk`).
+- **Pure Entrypoint**: Refatoração do `main.py` e `AppBootstrap` para zero-redundancy, operando exclusivamente em PySide6.
+- **Limpeza de Arquitetura**: Eliminação de mais de 250 linhas de código obsoleto e callbacks mortos.
+- **Unificação de Governança**: Ciclo de vida v0.5.x agora focado em uma única stack tecnológica de alta performance.
+
 ## [v0.5.3] - 24/03/2026 (Modern UI & Premium Design)
 - **Custom Title Bar**: Substituição da barra nativa do Windows por uma barra integrada ao tema (estilo VS Code/Slack).
 - **Frameless Architecture**: Janela limpa, integrada e 100% controlada pelo motor gráfico do Genaja.

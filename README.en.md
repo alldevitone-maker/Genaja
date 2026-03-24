@@ -25,7 +25,7 @@ If you already have Python installed and wish to run directly from the repositor
 
 ## 📖 Update History (Real-Time Added Value)
 
-> **Current Version:** `v0.5.3` (Modern UI & Premium Design)
+> **Current Version:** `v0.5.4` (Pure Qt Transition & Design)
 > **Project Status:** Active - Fully Customizable Workspace 🎨
 
 **v0.5.1 (The Next Frontier - v0.5.1 Bugfix)**

@@ -25,11 +25,11 @@ Se você já possui o Python instalado e deseja utilizar diretamente do reposit�
 
 ## 📖 Histórico de Atualizações (O Valor em Tempo Real do Genaja)
 
-> **Current Version:** `v0.5.3` (Modern UI & Premium Design)
-> **Status do Projeto:** Ativo - Design System Premium v2026 🎨
+> **Versão Atual:** `v0.5.4` (Pure Qt Transition & Design)
+> **Status do Projeto:** Ativo - Single Stack PySide6 🚀
 
-**v0.5.3 (Modern UI & Premium Design)**
-A maior revolução estética do Genaja Qt. Implementamos uma **Custom Title Bar** (estilo VS Code/Slack) removendo as decorações nativas do Windows para uma experiência imersiva. O **Theme Engine 2.0** introduz presets de alta fidelidade (**Zinc Studio**, **Phoenix Dark**, **Light Grey SaaS**) e o **Phoenix Customizer 2.0** oferece um HUD visual intuitivo para personalização absoluta sem tocar no código.
+**v0.5.4 (Pure Qt Transition)**
+A consolidação total da arquitetura moderna. Removemos definitivamente o suporte ao Tkinter (Legado) e o argumento `--ui`, tornando o Genaja uma aplicação Pure PySide6. O código foi limpo, reduzindo a dívida técnica e unificando o foco na performance e design premium.
 
 **v0.5.0 (The Next Frontier - Gold Release)**
 A maior evolução tecnológica do Genaja. Implementamos uma arquitetura híbrida completa (PySide6/Tkinter) com motores enterprise desacoplados, interface Wizard de 4 passos, dashboard de monitoramento em tempo real e o estúdio de temas Phoenix Qt.

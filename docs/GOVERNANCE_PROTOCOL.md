@@ -1,4 +1,4 @@
-# 🛡️ PROTOCOLO DE ENGENHARIA E GOVERNANÇA GENAJA (v0.5.3)
+# 🛡️ PROTOCOLO DE ENGENHARIA E GOVERNANÇA GENAJA (v0.5.4)
 
 Este documento resume como o desenvolvimento do Genaja é blindado contra falhas e como mantemos a paridade entre código, design e documentação.
 

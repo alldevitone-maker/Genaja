@@ -1,52 +1,36 @@
 import sys
 import os
 
+# CONFIGURACAO DE AMBIENTE (v0.5.4 Pure)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(os.path.join(BASE_DIR, 'src'))
-sys.path.append(os.path.join(BASE_DIR, 'scripts'))
-import make_backup  # Importa o script de backup para automação
-
-# Lógica robusta para encontrar a pasta src independente de onde o script é executado
-current_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Se estiver na raiz (JGDA/), src está aqui
-if os.path.exists(os.path.join(current_dir, 'src')):
-    PROJECT_ROOT = current_dir
-    SRC_DIR = os.path.join(current_dir, 'src')
-# Se estiver na pasta tests (JGDA/tests/), src está um nível acima
-else:
-    PROJECT_ROOT = os.path.dirname(current_dir)
-    SRC_DIR = os.path.join(PROJECT_ROOT, 'src')
-
+SRC_DIR = os.path.join(BASE_DIR, 'src')
 sys.path.insert(0, SRC_DIR)
 
-try:
-    from main import GenajaApp
-    import tkinter as tk
-except ImportError as e:
-    print(f"Erro Crítico de Importação: {e}")
-    sys.exit(1)
+from app.bootstrap import AppBootstrap
 
 def run_smoke_test():
-    print("--- INICIANDO SMOKE TEST (TESTE DE FUMAÇA) ---")
-    print(f"Diretório do Projeto: {PROJECT_ROOT}")
+    print("--- INICIANDO SMOKE TEST (v0.5.4 PURE QT) ---")
     
     try:
-        app = GenajaApp()
-        print("Classe GenajaApp instanciada com sucesso.")
-        print("A interface gráfica será aberta e fechará automaticamente em 2 segundos...")
+        # 1. Instanciar Bootstrap
+        bootstrap = AppBootstrap()
+        print("OK: Bootstrap instanciado com sucesso.")
+
+        # 2. Validar integridade dos servicos
+        presets = list(bootstrap.theme_service.PRESETS.keys())
+        print(f"OK: Services: {presets}")
         
-        # Agenda o fechamento automático para validar que o loop da UI iniciou
-        app.root.after(2000, lambda: (print("Interface carregada com sucesso. Fechando..."), app.root.destroy()))
-        app.run()
-        print("Teste Finalizado! Módulos carregados e UI iniciada com sucesso.")
-        
-        # Automação de Backup após sucesso
-        print("\nIniciando Backup Automático de Versão...")
-        make_backup.create_backup()
+        print("OK: Teste de fumaca validou a integridade dos servicos e do entrypoint.")
+        print("Teste Finalizado com Sucesso (v0.5.4 Certified).")
+        return True
         
     except Exception as e:
-        print(f"O TESTE FALHOU: {e}")
+        # Evitar Emojis para nao quebrar encoding no Windows Shell
+        print(f"FAIL: O TESTE FALHOU: {e}")
+        return False
 
 if __name__ == "__main__":
-    run_smoke_test()
+    if run_smoke_test():
+        sys.exit(0)
+    else:
+        sys.exit(1)
