@@ -24,6 +24,7 @@ genaja_config.json
 # Private docs (NUNCA subir)
 docs/private/
 docs/private/*
+ROADMAP.md
 
 # Supervisor workflows (Antigravity IA)
 .agent/

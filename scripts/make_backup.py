@@ -18,7 +18,7 @@ TITLE = re.sub(r'[\\/*?:"<>|]', '', TITLE)
 BACKUP_DIR = os.path.join(BASE_DIR, "backups", "genaja_jgda_backup")
 # Nome do arquivo: Genaja_JGDA_v0.3.6_AutoBackup_Automated_Workflow.zip
 suffix = f"_{TITLE}" if TITLE else ""
-ZIP_NAME = f"Genaja_JGDA_{VERSION}_AutoBackup{suffix}.zip"
+ZIP_NAME = f"Genaja_JGDA_v{VERSION}_AutoBackup{suffix}.zip"
 ZIP_PATH = os.path.join(BACKUP_DIR, ZIP_NAME)
 
 # Pastas/Arquivos a ignorar no backup
@@ -28,9 +28,9 @@ IGNORE_FILES = {ZIP_NAME, 'genaja.log'}
 def create_backup():
     if not os.path.exists(BACKUP_DIR):
         os.makedirs(BACKUP_DIR)
-        print(f"📁 Pasta de backup criada: {BACKUP_DIR}")
+        print(f"Pasta de backup criada: {BACKUP_DIR}")
 
-    print(f"📦 Iniciando backup: {ZIP_NAME}...")
+    print(f"Iniciando backup: {ZIP_NAME}...")
     
     try:
         with zipfile.ZipFile(ZIP_PATH, 'w', zipfile.ZIP_DEFLATED) as zipf:
@@ -50,12 +50,12 @@ def create_backup():
                     zipf.write(file_path, arcname)
         
         print("-" * 50)
-        print(f"✅ Backup concluído com sucesso!")
-        print(f"📂 Local: {ZIP_PATH}")
+        print(f"Backup concluído com sucesso!")
+        print(f"Local: {ZIP_PATH}")
         print("-" * 50)
 
     except Exception as e:
-        print(f"❌ Erro ao criar backup: {e}")
+        print(f"Erro ao criar backup: {e}")
 
 if __name__ == "__main__":
     create_backup()

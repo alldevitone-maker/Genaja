@@ -24,29 +24,29 @@ try:
     from main import GenajaApp
     import tkinter as tk
 except ImportError as e:
-    print(f"❌ Erro Crítico de Importação: {e}")
+    print(f"Erro Crítico de Importação: {e}")
     sys.exit(1)
 
 def run_smoke_test():
-    print("🔥 --- INICIANDO SMOKE TEST (TESTE DE FUMAÇA) ---")
-    print(f"📂 Diretório do Projeto: {PROJECT_ROOT}")
+    print("--- INICIANDO SMOKE TEST (TESTE DE FUMAÇA) ---")
+    print(f"Diretório do Projeto: {PROJECT_ROOT}")
     
     try:
         app = GenajaApp()
-        print("✅ Classe GenajaApp instanciada com sucesso.")
-        print("⏳ A interface gráfica será aberta e fechará automaticamente em 2 segundos...")
+        print("Classe GenajaApp instanciada com sucesso.")
+        print("A interface gráfica será aberta e fechará automaticamente em 2 segundos...")
         
         # Agenda o fechamento automático para validar que o loop da UI iniciou
-        app.root.after(2000, lambda: (print("✅ Interface carregada com sucesso. Fechando..."), app.root.destroy()))
+        app.root.after(2000, lambda: (print("Interface carregada com sucesso. Fechando..."), app.root.destroy()))
         app.run()
-        print("✅ Teste Finalizado! Módulos carregados e UI iniciada com sucesso.")
+        print("Teste Finalizado! Módulos carregados e UI iniciada com sucesso.")
         
         # Automação de Backup após sucesso
-        print("\n📦 Iniciando Backup Automático de Versão...")
+        print("\nIniciando Backup Automático de Versão...")
         make_backup.create_backup()
         
     except Exception as e:
-        print(f"❌ O TESTE FALHOU: {e}")
+        print(f"O TESTE FALHOU: {e}")
 
 if __name__ == "__main__":
     run_smoke_test()
