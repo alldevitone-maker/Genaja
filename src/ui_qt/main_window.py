@@ -12,6 +12,7 @@ from ui_qt.panels.keys_panel import KeysPanel
 from ui_qt.panels.mapping_panel import MappingPanel
 from ui_qt.panels.summary_panel import SummaryPanel
 from ui_qt.widgets.title_bar import TitleBar
+from ui_qt.dialogs.settings_dialog import SettingsDialog
 
 class MainWindow(QMainWindow):
     def __init__(self, services):
@@ -55,8 +56,12 @@ class MainWindow(QMainWindow):
         self.action_theme = self.settings_menu.addAction("🔥 Phoenix Customizer")
         self.action_theme.triggered.connect(self._open_theme_editor)
         
-        self.action_reset = self.settings_menu.addAction("♻️ Reset to Default")
+        self.action_reset = self.settings_menu.addAction("♻️ Reset Theme to Default")
         self.action_reset.triggered.connect(self._reset_theme)
+        
+        self.settings_menu.addSeparator()
+        self.action_prefs = self.settings_menu.addAction("⚙️ Global Preferences")
+        self.action_prefs.triggered.connect(self._open_settings)
 
         # Content Area
         self.content_area = QWidget()
@@ -146,6 +151,14 @@ class MainWindow(QMainWindow):
         self.theme_service.reset_to_defaults()
         self.apply_theme()
         QMessageBox.information(self, "Theme Reset", "Cores restauradas para o padrão Zinc Studio.")
+
+    def _open_settings(self):
+        dialog = SettingsDialog(self.services["config"], self.theme_service, self)
+        if dialog.exec_():
+            self.lbl_status.setText(f"Preferências atualizadas por {self.services['config'].get_config('general', 'operator_name')}")
+            # Aplicar mudanças de UI imediatas se houver
+            app_name = self.services["config"].get_config("general", "app_name")
+            self.title_bar.lbl_title.setText(f"{app_name} - v{__version__} Gold")
 
     def _on_files_ready(self, src, tgt):
         self.status.showMessage("📊 Analisando estruturas reais...")

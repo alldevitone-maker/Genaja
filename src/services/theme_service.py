@@ -154,6 +154,28 @@ class ThemeService:
                 border-radius: 4px;
             }}
             
+            QListView::item:selected {{
+                background-color: {t['action_bg']};
+                color: {t['action_fg']};
+                border-radius: 4px;
+            }}
+            
+            QListWidget#sidebar {{
+                background-color: {t['surface_col']};
+                border: none;
+                border-right: 1px solid {t['border_col']};
+                border-radius: 0;
+            }}
+            QListWidget#sidebar::item {{
+                padding: 15px;
+                border-bottom: 1px solid {t['border_col']};
+            }}
+            QListWidget#sidebar::item:selected {{
+                background-color: {t['action_bg']};
+                color: {t['action_fg']};
+                border-left: 4px solid {t['fg_col']};
+            }}
+        
             QPushButton {{
                 background-color: {t['action_bg']};
                 color: {t['action_fg']};

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.8] - 2026-03-24 (Professional Settings Suite)
+- **Settings HUD 2026**: Nova interface de configurações globais com navegação lateral (Sidebar) e painéis categorizados.
+- **Config Engine v2.0**: Refatoração do `ConfigService` com suporte a Schema, valores padrão e persistência robusta.
+- **Controle de Motor**: Adição de toggles para Auto-Trim, Auto-Upper e Case-Sensitivity no cruzamento de dados.
+- **Preferências de Exportação**: Interface visual para definir formatos, timestamps e auto-abertura de arquivos.
+- **Governança de UI**: Integração do título da aplicação dinâmico baseado nas configurações do usuário.
+
 ## [0.5.6] - 24/03/2026 (Premium Customizer 2026)
 - **Phoenix Customizer 2.0**: Redesign completo estilo SaaS Pro com abas de categoria (Estilos, Identidade, Elementos).
 - **Interactive Preview Card**: Inclusão de um mini-app preview dentro do editor que reflete cores em tempo real.

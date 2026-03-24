@@ -1,2 +1,2 @@
-__version__ = "0.5.6"
-__title__ = "Premium Customizer 2026"
+__version__ = "0.5.8"
+__title__ = "Professional Settings Suite"

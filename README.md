@@ -25,11 +25,11 @@ Se você já possui o Python instalado e deseja utilizar diretamente do reposit�
 
 ## 📖 Histórico de Atualizações (O Valor em Tempo Real do Genaja)
 
-> **Versão Atual:** `v0.5.6` (Premium Customizer 2026)
-> **Status do Projeto:** Ativo - Design Suite High-Fidelity 🎨
+> **Versão Atual:** `v0.5.8` (Professional Settings Suite)
+> **Status do Projeto:** Ativo - Configuração Centralizada Pro ⚙️
 
-**v0.5.6 (Premium Customizer 2026)**
-Atingimos o estado da arte em customização UI. O novo **Phoenix Customizer 2.0** traz uma interface categorizada com Preview em tempo real, permitindo ajustes finos com nomes amigáveis. A engine QSS oferece acabamento premium (16px radius) e presets calibrados para máxima ergonomia visual.
+**v0.5.8 (Professional Settings Suite)**
+Unificamos o controle do Genaja. O novo painel de **Global Preferences** permite gerenciar desde o comportamento do motor de dados (Trim/Case) até detalhes de exportação e segurança, tudo em uma interface Sidebar style com acabamento 2026 High-Fidelity.
 
 **v0.5.0 (The Next Frontier - Gold Release)**
 A maior evolução tecnológica do Genaja. Implementamos uma arquitetura híbrida completa (PySide6/Tkinter) com motores enterprise desacoplados, interface Wizard de 4 passos, dashboard de monitoramento em tempo real e o estúdio de temas Phoenix Qt.
