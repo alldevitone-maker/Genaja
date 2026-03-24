@@ -1,5 +1,14 @@
 # Changelog
 
+## [v0.4.8] - 24/03/2026 (The Architectural Refactoring & Governance Update)
+- **Refatoração Arquitetural**: Modularização do `etl_service.py` em motores especializados (`mapping_engine.py`, `validation_engine.py`).
+- **Governança Ativa**: Implementação de Git Hooks (pre-commit) para validação automática de versão e testes.
+- **Orquestrador Unificado**: Criação do `automate.py` integrando validação, backup, e release interativa.
+- **Limpeza de Legado**: Remoção de scripts obsoletos (`reset_structure.py`, `release.py`, `gerar_massa_teste.py`).
+- **Organização de Dados**: Movimentação de arquivos de teste para a pasta `data/`.
+- **Log Histórico**: Implementação de sistema de logs persistentes em `logs/genaja.log`.
+- **Dependências**: Criação do `requirements.txt` para padronização do ambiente.
+
 ## [v0.4.7] - 24/03/2026 (The Premium Update & Big Data O(1))
 - **Interface Premium:** Implementado motor de Tooltips Flutuantes e Global Canvas Scroll para telas menores.
 - **Big Data Experimental:** Suporte a exportações brutas em JSON, CSV e SQL.
