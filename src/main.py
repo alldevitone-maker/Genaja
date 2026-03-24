@@ -11,6 +11,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from ui.genaja_ui import GenajaUI
 from utils.logger_setup import configure_logging
 from version import __version__
+import logging
 from services.excel_loader import load_excel_data_with_adjustment
 from services.etl_service import (
     suggest_primary_keys, 
@@ -73,19 +74,19 @@ class GenajaApp:
         if self.loader_win and self.loader_win.winfo_exists():
             self.loader_win.destroy()
 
-    def dummy_log(self, msg, lvl="INFO"):
-        # Em modo produção o log pode ficar no background
-        print(msg)
+    def log_msg(self, msg, lvl="INFO"):
+        level = getattr(logging, lvl.upper(), logging.INFO)
+        logging.log(level, msg)
 
     def on_files_selected(self, file_src, file_tgt):
         self.root.config(cursor="wait")
         self.show_loader("Extraindo Headers do Arquivo de Origem...")
         
         try:
-            self.df_src = load_excel_data_with_adjustment(file_src, "ORIGEM", self.root, self.dummy_log)
+            self.df_src = load_excel_data_with_adjustment(file_src, "ORIGEM", self.root, self.log_msg)
             
             self.show_loader("Extraindo Headers da Base Histórica...")
-            self.df_tgt = load_excel_data_with_adjustment(file_tgt, "DESTINO", self.root, self.dummy_log)
+            self.df_tgt = load_excel_data_with_adjustment(file_tgt, "DESTINO", self.root, self.log_msg)
             
             if self.df_src is None or self.df_tgt is None:
                 self.hide_loader()
