@@ -25,11 +25,11 @@ Se você já possui o Python instalado e deseja utilizar diretamente do reposit�
 
 ## 📖 Histórico de Atualizações (O Valor em Tempo Real do Genaja)
 
-> **Current Version:** `v0.5.5` (Pure Qt Architecture Stabilization)
-> **Project Status:** Active - Post-Purge Stabilization 🚀
+> **Versão Atual:** `v0.5.6` (Premium Customizer 2026)
+> **Status do Projeto:** Ativo - Design Suite High-Fidelity 🎨
 
-**v0.5.5 (Pure Qt Architecture Stabilization)**
-Mandatory stabilization phase after the Pure Qt transition (v0.5.4). Validated system integrity, removed cross-references, and consolidated the build for the new 2026 Design System.
+**v0.5.6 (Premium Customizer 2026)**
+Atingimos o estado da arte em customização UI. O novo **Phoenix Customizer 2.0** traz uma interface categorizada com Preview em tempo real, permitindo ajustes finos com nomes amigáveis. A engine QSS oferece acabamento premium (16px radius) e presets calibrados para máxima ergonomia visual.
 
 **v0.5.0 (The Next Frontier - Gold Release)**
 A maior evolução tecnológica do Genaja. Implementamos uma arquitetura híbrida completa (PySide6/Tkinter) com motores enterprise desacoplados, interface Wizard de 4 passos, dashboard de monitoramento em tempo real e o estúdio de temas Phoenix Qt.
