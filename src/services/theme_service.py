@@ -237,4 +237,40 @@ class ThemeService:
                 border: 1px solid {t['border_col']};
                 border-bottom-color: {t['surface_col']};
             }}
+
+            /* --- PROFESSIONAL SETTINGS HUD 2026 --- */
+            QFrame#SettingCard {{
+                background-color: {t['surface_col']};
+                border: 1px solid {t['border_col']};
+                border-radius: 12px;
+                padding: 10px;
+            }}
+            QFrame#SettingCard:hover {{
+                border: 1px solid {t['action_bg']};
+            }}
+
+            QPushButton#SidebarButton {{
+                background-color: transparent;
+                color: {t['titlebar_text']};
+                text-align: left;
+                padding: 12px 20px;
+                font-size: 14px;
+                border: none;
+                border-radius: 0;
+            }}
+            QPushButton#SidebarButton:hover {{
+                background-color: rgba(255, 255, 255, 0.05);
+                color: {t['fg_col']};
+            }}
+            QPushButton#SidebarButton[active="true"] {{
+                background-color: rgba(59, 130, 246, 0.1);
+                color: {t['action_bg']};
+                border-left: 4px solid {t['action_bg']};
+                font-weight: bold;
+            }}
+
+            /* ModernSwitch Style */
+            QWidget#ModernSwitch {{
+                background-color: transparent;
+            }}
         """
