@@ -18,6 +18,9 @@ class Step1View(ft.Column):
         self.tgt_info = ft.Text("Nenhum arquivo de DESTINO selecionado", color=PlatinumTheme.TEXT_SECONDARY)
         
         # UI Elements
+        self.src_path_field = ft.TextField(label="Caminho Manual Selecionado (Origem)", expand=True, on_change=lambda e: self._on_manual_path("src", e.control.value), text_size=12)
+        self.tgt_path_field = ft.TextField(label="Caminho Manual Selecionado (Destino)", expand=True, on_change=lambda e: self._on_manual_path("tgt", e.control.value), text_size=12)
+
         self.btn_next = ft.ElevatedButton(
             "Prosseguir para Chaves ➡️", 
             on_click=lambda _: self.on_next(),
@@ -46,17 +49,24 @@ class Step1View(ft.Column):
                 ft.Divider(color=PlatinumTheme.BORDER_DARK),
                 ft.Icon(ft.Icons.UPLOAD_FILE_SHARP, size=40, color=PlatinumTheme.PRIMARY),
                 self.src_info if mode == "src" else self.tgt_info,
-                ft.OutlinedButton(
-                    "Selecionar Arquivo", 
-                    icon=ft.Icons.SEARCH,
-                    on_click=lambda _: self._trigger_picker(mode)
-                )
+                ft.Row([
+                    ft.OutlinedButton(
+                        "Abrir Seletor", 
+                        icon=ft.Icons.SEARCH,
+                        on_click=lambda _: self._trigger_picker(mode)
+                    ),
+                    self.src_path_field if mode == "src" else self.tgt_path_field
+                ])
             ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER)
         )
 
     def _trigger_picker(self, mode):
         # Chama o callback passado pela main.py (que será invocado via run_task se necessário)
         self.on_pick_file(mode)
+
+    def _on_manual_path(self, mode, value):
+        if os.path.exists(value):
+            self.update_file(mode, value)
 
     def update_file(self, mode, path):
         try:
@@ -66,11 +76,13 @@ class Step1View(ft.Column):
                 self.state.path_src = path
                 self.src_info.value = f"✅ {path.split('/')[-1]}\n{len(df)} linhas | Cabeçalho: {skip}"
                 self.src_info.color = PlatinumTheme.SUCCESS
+                self.src_path_field.value = path
             else:
                 self.state.df_tgt = df
                 self.state.path_tgt = path
                 self.tgt_info.value = f"✅ {path.split('/')[-1]}\n{len(df)} linhas | Cabeçalho: {skip}"
                 self.tgt_info.color = PlatinumTheme.SUCCESS
+                self.tgt_path_field.value = path
             
             if self.state.df_src is not None and self.state.df_tgt is not None:
                 self.btn_next.disabled = False
