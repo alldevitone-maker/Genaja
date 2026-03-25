@@ -79,7 +79,7 @@ async def main(page: ft.Page):
     header = ft.Container(
         content=ft.Row([
             ft.Icon(ft.Icons.DATA_EXPLORATION_ROUNDED, color=PlatinumTheme.PRIMARY, size=24),
-            ft.Text("GENAJA PRO", weight=ft.FontWeight.BOLD, letter_spacing=1.5, size=16),
+            ft.Text("GENAJA PRO", weight=ft.FontWeight.BOLD, size=16),
             ft.VerticalDivider(width=10, color=PlatinumTheme.BORDER_DARK),
             ft.Text(f"v0.6.0 Alpha | {config.get('general', 'operator_name')}", color=PlatinumTheme.TEXT_SECONDARY, size=13),
             ft.Row(expand=True),
