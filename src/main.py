@@ -15,8 +15,8 @@ def main():
     logger.info(f"--- {__title__} v{__version__} Initiated ---")
     
     try:
-        # 2. 🚀 DISPARO DO BOOTSTRAP PURE QT
-        # O Bootstrap v0.5.4 já não aceita argumentos de UI e vai direto para Qt.
+        # 2. 🚀 DISPARO DO BOOTSTRAP PLATINUM (v0.5.9+)
+        # O Bootstrap agora direciona para a arquitetura Flet Stateless.
         bootstrap = AppBootstrap()
         bootstrap.run()
         

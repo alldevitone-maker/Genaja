@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.0] - 25/03/2026 (Alpha Platinum - Flet Migration & v0.4.x Parity)
+- **Flet Migration**: Arquitetura 100% Flet (v0.82.2+) com Router Lifecycle-Safe.
+- **Paridade v0.4.6/0.4.7**: Restauração do Dual-List Transfer, Regras de Linha e Regras Estruturais.
+- **Motor v0.4.8**: Integração de `ValidationEngine` e Filtro Numérico robusto.
+- **Módulo Comparador**: Restauração do modo de comparação pura (origem vs destino).
+- **Export Multi-Formato**: Suporte a Excel, CSV, JSON e SQL integrado.
+- **UI UX**: Tooltips v0.4.7 e Estabilização visual Platinum.
+
 ## [0.5.9] - 2026-03-24 (Governance & History Synchronization)
 - **Histórico Consolidado**: Reconstrução completa da trilha de auditoria v0.5.x e v0.4.x no README (PT/EN).
 - **Audit Build**: Sincronização de metadados e certificação de pre-commit hooks.

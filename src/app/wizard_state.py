@@ -22,6 +22,17 @@ class WizardState:
         self.active_filters = []
         
         self.current_step_index = 0
+        
+        # --- FLAGS v0.4.8 LEGACY PARITY ---
+        self.protected_a1 = True
+        self.shielding = False
+        self.auto_trim = True
+        self.auto_upper = False
+        
+        # --- FLAGS v0.4.6 RULES ---
+        self.remove_nulls = False
+        self.null_filter_cols = []
+        self.keep_only_mapped = False
 
     @property
     def ready_for_sync(self):

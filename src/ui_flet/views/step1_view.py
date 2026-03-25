@@ -1,6 +1,11 @@
 import flet as ft
+import os
+import tkinter as tk
+from tkinter import filedialog
 from ui_flet.theme import PlatinumTheme
 from core.engines.loader_engine import LoaderEngine
+from core.engines.suggestion_engine import SuggestionEngine
+from services.logger_service import LoggerService
 
 class Step1View(ft.Column):
     """
@@ -13,6 +18,7 @@ class Step1View(ft.Column):
         self.on_next = on_next
         self.on_pick_file = on_pick_file
         self.loader = LoaderEngine()
+        self.suggester = SuggestionEngine()
         
         self.src_info = ft.Text("Nenhum arquivo de ORIGEM selecionado", color=PlatinumTheme.TEXT_SECONDARY)
         self.tgt_info = ft.Text("Nenhum arquivo de DESTINO selecionado", color=PlatinumTheme.TEXT_SECONDARY)
@@ -33,40 +39,84 @@ class Step1View(ft.Column):
         self.controls = [
             ft.Text("📂 Seleção de Arquivos", size=24, weight=ft.FontWeight.W_600),
             ft.Row([
-                self._create_drop_zone("Planilha de ORIGEM (SAP/Export)", "src"),
-                self._create_drop_zone("Planilha de DESTINO (Master)", "tgt"),
-            ], spacing=20),
-            ft.Row([ft.Container(expand=True), self.btn_next], alignment=ft.MainAxisAlignment.END)
+                self._create_drop_zone("Planilha de ORIGEM", "src"),
+                self._create_drop_zone("Planilha de DESTINO", "tgt"),
+            ], spacing=20, expand=True),
+            ft.Row([
+                ft.ElevatedButton(
+                    "🤖 Sugerir Arquivos Recentes (Smart-Pull)", 
+                    icon=ft.Icons.AUTO_AWESOME,
+                    on_click=self._on_suggest_click,
+                    bgcolor=PlatinumTheme.SURFACE_DARK,
+                    color=PlatinumTheme.PRIMARY
+                ),
+                ft.Container(expand=True), 
+                self.btn_next
+            ], alignment=ft.MainAxisAlignment.END)
         ]
 
     def _create_drop_zone(self, title, mode):
-        # Nota: Usaremos o FilePicker do Flet no main.py, aqui apenas o visual
         return ft.Container(
             **PlatinumTheme.card_style(),
             expand=True,
+            on_click=lambda _: self._trigger_picker(mode),
+            on_hover=self._on_card_hover,
             content=ft.Column([
                 ft.Text(title, weight=ft.FontWeight.BOLD, size=16),
                 ft.Divider(color=PlatinumTheme.BORDER_DARK),
-                ft.Icon(ft.Icons.UPLOAD_FILE_SHARP, size=40, color=PlatinumTheme.PRIMARY),
+                ft.Icon(ft.Icons.UPLOAD_FILE_SHARP, size=50, color=PlatinumTheme.PRIMARY),
                 self.src_info if mode == "src" else self.tgt_info,
+                ft.Text("Clique aqui ou arraste o arquivo", size=12, italic=True),
+                ft.Container(height=10),
                 ft.Row([
-                    ft.OutlinedButton(
-                        "Abrir Seletor", 
-                        icon=ft.Icons.SEARCH,
-                        on_click=lambda _: self._trigger_picker(mode)
-                    ),
-                    self.src_path_field if mode == "src" else self.tgt_path_field
+                    self.src_path_field if mode == "src" else self.tgt_path_field,
+                    ft.IconButton(
+                        ft.Icons.CHECK_CIRCLE,
+                        icon_color=PlatinumTheme.SUCCESS,
+                        on_click=lambda _: self._on_manual_path(mode, (self.src_path_field.value if mode == "src" else self.tgt_path_field.value)),
+                        tooltip="Validar Caminho Manual"
+                    )
                 ])
             ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER)
         )
 
     def _trigger_picker(self, mode):
-        # Chama o callback passado pela main.py (que será invocado via run_task se necessário)
-        self.on_pick_file(mode)
+        """Fallback Robusto v0.6.0: Usa Tkinter se o FilePicker do Flet falhar."""
+        try:
+            LoggerService().info(f"Abrindo seletor nativo (Tkinter) para: {mode}")
+            root = tk.Tk()
+            root.withdraw()
+            root.attributes('-topmost', True) # Garante que a janela fique na frente
+            file_path = filedialog.askopenfilename(
+                title=f"Selecionar Arquivo de {'ORIGEM' if mode == 'src' else 'DESTINO'}",
+                filetypes=[("Arquivos Excel", "*.xlsx *.xls"), ("Todos os arquivos", "*.*")]
+            )
+            root.destroy()
+            
+            if file_path:
+                self.update_file(mode, file_path)
+        except Exception as e:
+            LoggerService().error(f"Erro no seletor Tkinter: {e}")
+            # Se até o Tkinter falhar, o usuário ainda tem o campo manual
+            self.on_pick_file(mode) 
+
+    def _on_suggest_click(self, e):
+        src, tgt = self.suggester.suggest_files()
+        if src: self.update_file("src", src)
+        if tgt: self.update_file("tgt", tgt)
+        
+        if src or tgt:
+            sb = ft.SnackBar(ft.Text("🤖 Arquivos sugeridos com sucesso!"), bgcolor=PlatinumTheme.SUCCESS)
+            self.page.overlay.append(sb)
+            sb.open = True
+            self.page.update()
 
     def _on_manual_path(self, mode, value):
+        LoggerService().info(f"Tentando carga manual: {mode} -> {value}")
         if os.path.exists(value):
             self.update_file(mode, value)
+        else:
+            LoggerService().error(f"Arquivo não encontrado: {value}")
 
     def update_file(self, mode, path):
         try:
@@ -74,21 +124,25 @@ class Step1View(ft.Column):
             if mode == "src":
                 self.state.df_src = df
                 self.state.path_src = path
-                self.src_info.value = f"✅ {path.split('/')[-1]}\n{len(df)} linhas | Cabeçalho: {skip}"
+                self.src_info.value = f"✅ {os.path.basename(path)}\n{len(df)} linhas | Cabeçalho: {skip}"
                 self.src_info.color = PlatinumTheme.SUCCESS
                 self.src_path_field.value = path
             else:
                 self.state.df_tgt = df
                 self.state.path_tgt = path
-                self.tgt_info.value = f"✅ {path.split('/')[-1]}\n{len(df)} linhas | Cabeçalho: {skip}"
+                self.tgt_info.value = f"✅ {os.path.basename(path)}\n{len(df)} linhas | Cabeçalho: {skip}"
                 self.tgt_info.color = PlatinumTheme.SUCCESS
                 self.tgt_path_field.value = path
             
+            LoggerService().info(f"Arquivo {mode} carregado: {len(df)} linhas.")
+            
             if self.state.df_src is not None and self.state.df_tgt is not None:
+                LoggerService().info("Ambos os arquivos carregados. Habilitando botão 'Próximo'.")
                 self.btn_next.disabled = False
             
             self.update()
         except Exception as e:
-            self.page.snack_bar = ft.SnackBar(ft.Text(f"Erro ao carregar arquivo: {e}"))
-            self.page.snack_bar.open = True
+            sb = ft.SnackBar(ft.Text(f"Erro ao carregar arquivo: {e}"), bgcolor=PlatinumTheme.DANGER)
+            self.page.overlay.append(sb)
+            sb.open = True
             self.page.update()

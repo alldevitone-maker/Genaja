@@ -15,7 +15,7 @@ def set_freeze(reason=""):
     with open(FREEZE_FILE, 'w', encoding='utf-8') as f:
         f.write(f"FREEZE ATIVO\nMotivo: {reason}\nData: {datetime.date.today()}\n")
         f.write("\nPara retomar o desenvolvimento, execute: python scripts/automate.py --unfreeze\n")
-    print(f"\n❄️  PROJETO CONGELADO em v{get_version_info()[0]}")
+    print(f"\n[FREEZE] PROJETO CONGELADO em v{get_version_info()[0]}")
     print(f"   Motivo: {reason or 'Não informado'}")
     print(f"   Arquivo: {FREEZE_FILE}")
     print(f"   Release e Push estão BLOQUEADOS até o unfreeze.")
@@ -24,7 +24,7 @@ def set_freeze(reason=""):
 def remove_freeze():
     if os.path.exists(FREEZE_FILE):
         os.remove(FREEZE_FILE)
-        print(f"\n✅ Projeto DESCONGELADO! Pipeline de release reativado.")
+        print(f"\n[OK] Projeto DESCONGELADO! Pipeline de release reativado.")
         print(f"   Você pode rodar: python scripts/automate.py --release --push\n")
     else:
         print("\nNenhum FREEZE.lock encontrado. O projeto já está ativo.\n")
@@ -118,7 +118,7 @@ def _run_git_push(version, title):
             print(f"ERRO ao executar: {' '.join(cmd)}")
             return False
     
-    print(f"\n✅ Push concluído com sucesso! v{version} no ar.")
+    print(f"\n[OK] Push concluído com sucesso! v{version} no ar.")
     return True
 
 

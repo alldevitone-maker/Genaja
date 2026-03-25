@@ -1,6 +1,6 @@
 # Genaja Pro - Inteligência de Sincronização Unificada
 
-> **Versão Atual:** `v0.5.9` (Governance & History Synchronization)
+> **Versão Atual:** `v0.6.0` (Alpha Platinum (Flet Migration & v0.4.x Parity))
 > **Status do Projeto:** Ativo - Auditoria e Sincronismo de Governança 🛡️
 
 ---

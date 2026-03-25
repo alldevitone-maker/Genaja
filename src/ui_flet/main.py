@@ -18,6 +18,11 @@ from ui_flet.views.step3_view import Step3View
 from ui_flet.views.step4_view import Step4View
 
 async def main(page: ft.Page):
+    # 0. Controles Não-Visuais (FilePickers desativados temporariamente por incompatibilidade do client)
+    picker_src = ft.FilePicker()
+    picker_tgt = ft.FilePicker()
+    # page.overlay.extend([picker_src, picker_tgt]) # <-- REMOVIDO PARA EVITAR "Unknown Control: FilePicker"
+    
     # 1. Configuração Inicial
     config = ConfigService()
     LoggerService.setup()
@@ -27,43 +32,56 @@ async def main(page: ft.Page):
     page.title = "Genaja Pro v0.6.0 Alpha"
     page.window.width = 1100
     page.window.height = 800
-    page.window.center()
+    await page.window.center()
     page.padding = 0
     page.spacing = 0
     PlatinumTheme.apply_to_page(page)
-    
+
     # 3. Componentes de Navegação
     container = ft.Container(expand=True, padding=40)
-    
-    # 4. File Pickers (API v0.82.2 - Awaitable pick_files)
-    picker_src = ft.FilePicker()
-    picker_tgt = ft.FilePicker()
-    page.overlay.extend([picker_src, picker_tgt])
 
-    # 5. Router de Views
+    # 5. Router de Views (Lifecycle-Safe v0.6.0)
     def navigate_to(index):
         state.current_step_index = index
         if index == 0:
             container.content = v1
         elif index == 1:
-            v2.load_data()
             container.content = v2
         elif index == 2:
-            v3.load_data()
             container.content = v3
         elif index == 3:
-            v4.load_data()
             container.content = v4
+        # PRIMEIRO: renderizar o controle na página
         page.update()
+        # DEPOIS: popular dados (agora o controle já tem .page)
+        if index == 1:
+            v2.load_data()
+        elif index == 2:
+            v3.load_data()
+        elif index == 3:
+            v4.load_data()
 
     # Callback para File Selection (Invocado pela Step1View)
     async def pick_file_handler(mode):
-        if mode == "src":
-            result = await picker_src.pick_files()
-            if result: v1.update_file("src", result[0].path)
-        else:
-            result = await picker_tgt.pick_files()
-            if result: v1.update_file("tgt", result[0].path)
+        try:
+            picker = picker_src if mode == "src" else picker_tgt
+            # Verifica se o seletor está habilitado e presente
+            if picker not in page.overlay:
+                raise RuntimeError("Modo de Compatibilidade: Seletor Nativo Desativado.")
+                
+            result = await picker.pick_files()
+            if result:
+                v1.update_file(mode, result[0].path)
+        except Exception as e:
+            # Se o FilePicker falhar (ex: Unknown Control ou Timeout), avisamos o usuário
+            LoggerService().error(f"Erro no FilePicker: {e}")
+            sb = ft.SnackBar(
+                ft.Text("Utilizando Modo de Compatibilidade. Por favor, use o campo de 'Caminho Manual' abaixo."),
+                bgcolor=PlatinumTheme.WARNING
+            )
+            page.overlay.append(sb)
+            sb.open = True
+            page.update()
 
     # Função wrapper para o Flet rodar a corrotina
     def trigger_pick(mode):
@@ -76,6 +94,9 @@ async def main(page: ft.Page):
     v4 = Step4View(state, on_finish=lambda: navigate_to(0), on_back=lambda: navigate_to(2))
 
     # 6. Header
+    async def close_app(e):
+        await page.window.close()
+
     header = ft.Container(
         content=ft.Row([
             ft.Icon(ft.Icons.DATA_EXPLORATION_ROUNDED, color=PlatinumTheme.PRIMARY, size=24),
@@ -83,7 +104,7 @@ async def main(page: ft.Page):
             ft.VerticalDivider(width=10, color=PlatinumTheme.BORDER_DARK),
             ft.Text(f"v0.6.0 Alpha | {config.get('general', 'operator_name')}", color=PlatinumTheme.TEXT_SECONDARY, size=13),
             ft.Row(expand=True),
-            ft.IconButton(ft.Icons.CLOSE, on_click=lambda _: page.window_close(), icon_color=PlatinumTheme.DANGER),
+            ft.IconButton(ft.Icons.CLOSE, on_click=close_app, icon_color=PlatinumTheme.DANGER),
         ]),
         padding=ft.padding.only(left=20, right=10, top=10, bottom=10),
         bgcolor=PlatinumTheme.SURFACE_DARK,

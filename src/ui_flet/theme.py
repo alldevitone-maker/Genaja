@@ -44,7 +44,6 @@ class PlatinumTheme:
             ),
             visual_density=ft.VisualDensity.COMPACT
         )
-        page.update()
 
     @staticmethod
     def card_style():

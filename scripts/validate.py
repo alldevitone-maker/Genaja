@@ -9,7 +9,8 @@ FREEZE_FILE = os.path.join(BASE_DIR, "FREEZE.lock")
 def check_freeze_status():
     if os.path.exists(FREEZE_FILE):
         print("=" * 50)
-        print("❄️  ATENÇÃO: Projeto em modo FREEZE")
+        print("[FREEZE] ATENCAO: Projeto em modo FREEZE")
+        print("Bloqueando alteracoes estruturais nao autorizadas.")
         with open(FREEZE_FILE, 'r', encoding='utf-8') as f:
             print(f.read().strip())
         print("=" * 50 + "\n")
@@ -70,13 +71,13 @@ def check_junk_files():
     return errors
 
 def run_tests():
-    print("Running Smoke Test...")
-    smoke_path = os.path.join(BASE_DIR, 'tests', 'smoke_test.py')
+    print("Running Flet Smoke Test...")
+    smoke_path = os.path.join(BASE_DIR, 'tests', 'test_smoke_flet.py')
     try:
         subprocess.run([sys.executable, smoke_path], check=True, capture_output=True, text=True)
         return []
     except subprocess.CalledProcessError as e:
-        return [f"Smoke test failed: {e.stdout}\n{e.stderr}"]
+        return [f"Flet Smoke test failed: {e.stdout}\n{e.stderr}"]
 
 def main():
     check_freeze_status()
