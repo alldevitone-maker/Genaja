@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, 
                              QStatusBar, QFrame, QStackedWidget, QPushButton, QMessageBox,
-                             QMenuBar, QMenu, QGraphicsOpacityEffect)
+                             QMenuBar, QMenu, QGraphicsOpacityEffect, QScrollArea)
 from PySide6.QtGui import QAction
 from PySide6.QtCore import Qt, QPropertyAnimation, QEasingCurve
 
@@ -115,9 +115,16 @@ class MainWindow(QMainWindow):
         
         self.content_layout.addWidget(self.header)
         
-        # Wizard Stack
+        # Wizard Stack WRAPPED IN SCROLL AREA (v0.5.9 Phase 7)
+        self.scroll_area = QScrollArea()
+        self.scroll_area.setWidgetResizable(True)
+        self.scroll_area.setFrameShape(QFrame.NoFrame)
+        self.scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scroll_area.setStyleSheet("background: transparent;")
+        
         self.stack = QStackedWidget()
-        self.content_layout.addWidget(self.stack)
+        self.scroll_area.setWidget(self.stack)
+        self.content_layout.addWidget(self.scroll_area)
         
         # Painéis
         self.upload_panel = UploadPanel(self.services)
@@ -130,11 +137,12 @@ class MainWindow(QMainWindow):
         self.stack.addWidget(self.mapping_panel)
         self.stack.addWidget(self.summary_panel)
 
-        # Fade Effect
+        # Fade Effect state
+        self._fade_running = False
         self.opacity_effect = QGraphicsOpacityEffect()
         self.stack.setGraphicsEffect(self.opacity_effect)
         self.fade_anim = QPropertyAnimation(self.opacity_effect, b"opacity")
-        self.fade_anim.setDuration(400)
+        self.fade_anim.setDuration(300) # Slightly faster for better UX
         self.fade_anim.setEasingCurve(QEasingCurve.InOutQuad)
 
         # Navigation Connections
@@ -158,16 +166,18 @@ class MainWindow(QMainWindow):
             self.showMaximized()
 
     def _fade_to_index(self, index):
-        """Inicia transição de fade out antes de trocar o stack."""
+        """Inicia transição de fade out antes de trocar o stack com proteção contra double-click."""
+        if self._fade_running or self.stack.currentIndex() == index:
+            return
+            
+        self._fade_running = True
         self._target_index = index
         self.fade_anim.setStartValue(1.0)
         self.fade_anim.setEndValue(0.0)
         
-        # Desconectar conexões anteriores se existirem para evitar acúmulo
-        try:
-            self.fade_anim.finished.disconnect()
-        except Exception:
-            pass
+        # Desconectar conexões anteriores se existirem
+        try: self.fade_anim.finished.disconnect()
+        except: pass
             
         self.fade_anim.finished.connect(self._on_fade_out_finished)
         self.fade_anim.start()
@@ -179,7 +189,16 @@ class MainWindow(QMainWindow):
         
         self.fade_anim.setStartValue(0.0)
         self.fade_anim.setEndValue(1.0)
+        
+        # Definir trava para False quando o fade in acabar
+        try: self.fade_anim.finished.disconnect()
+        except: pass
+        self.fade_anim.finished.connect(self._on_fade_in_finished)
         self.fade_anim.start()
+
+    def _on_fade_in_finished(self):
+        self.fade_anim.finished.disconnect()
+        self._fade_running = False
 
     def _open_theme_editor(self):
         from ui_qt.widgets.theme_editor import ThemeEditor
