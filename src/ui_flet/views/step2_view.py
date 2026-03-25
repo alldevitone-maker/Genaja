@@ -23,7 +23,7 @@ class Step2View(ft.Column):
                 **PlatinumTheme.card_style(),
                 content=ft.Column([
                     ft.Text("Selecione os campos para cruzamento de dados:"),
-                    ft.Row([self.combo_src, ft.Icon(ft.icons.LINK), self.combo_tgt]),
+                    ft.Row([self.combo_src, ft.Icon(ft.Icons.LINK), self.combo_tgt]),
                     ft.Text("Dica: O Genaja já pré-selecionou as chaves com maior probabilidade de acerto.", size=12, italic=True, color=PlatinumTheme.TEXT_SECONDARY)
                 ])
             ),

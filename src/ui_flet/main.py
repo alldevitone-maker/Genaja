@@ -78,12 +78,12 @@ async def main(page: ft.Page):
     # 6. Header
     header = ft.Container(
         content=ft.Row([
-            ft.Icon(ft.icons.DATA_EXPLORATION_ROUNDED, color=PlatinumTheme.PRIMARY, size=24),
+            ft.Icon(ft.Icons.DATA_EXPLORATION_ROUNDED, color=PlatinumTheme.PRIMARY, size=24),
             ft.Text("GENAJA PRO", weight=ft.FontWeight.BOLD, letter_spacing=1.5, size=16),
             ft.VerticalDivider(width=10, color=PlatinumTheme.BORDER_DARK),
             ft.Text(f"v0.6.0 Alpha | {config.get('general', 'operator_name')}", color=PlatinumTheme.TEXT_SECONDARY, size=13),
             ft.Row(expand=True),
-            ft.IconButton(ft.icons.CLOSE, on_click=lambda _: page.window_close(), icon_color=PlatinumTheme.DANGER),
+            ft.IconButton(ft.Icons.CLOSE, on_click=lambda _: page.window_close(), icon_color=PlatinumTheme.DANGER),
         ]),
         padding=ft.padding.only(left=20, right=10, top=10, bottom=10),
         bgcolor=PlatinumTheme.SURFACE_DARK,

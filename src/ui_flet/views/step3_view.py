@@ -27,7 +27,7 @@ class Step3View(ft.Column):
                         self.list_src
                     ])
                 ),
-                ft.Icon(ft.icons.ARROW_FORWARD_ROUNDED, color=PlatinumTheme.TEXT_SECONDARY),
+                ft.Icon(ft.Icons.ARROW_FORWARD_ROUNDED, color=PlatinumTheme.TEXT_SECONDARY),
                 # Right: Target Columns (Mapped)
                 ft.Container(
                     **PlatinumTheme.card_style(),
@@ -77,7 +77,7 @@ class Step3View(ft.Column):
                     border_radius=8,
                     content=ft.Row([
                         ft.Text(c_tgt, expand=True, size=13, weight=ft.FontWeight.W_600),
-                        ft.Icon(ft.icons.ARROW_RIGHT_ALT, color=PlatinumTheme.PRIMARY),
+                        ft.Icon(ft.Icons.ARROW_RIGHT_ALT, color=PlatinumTheme.PRIMARY),
                         dropdown
                     ])
                 )

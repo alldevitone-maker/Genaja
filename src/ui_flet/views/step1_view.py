@@ -44,11 +44,11 @@ class Step1View(ft.Column):
             content=ft.Column([
                 ft.Text(title, weight=ft.FontWeight.BOLD, size=16),
                 ft.Divider(color=PlatinumTheme.BORDER_DARK),
-                ft.Icon(ft.icons.UPLOAD_FILE_SHARP, size=40, color=PlatinumTheme.PRIMARY),
+                ft.Icon(ft.Icons.UPLOAD_FILE_SHARP, size=40, color=PlatinumTheme.PRIMARY),
                 self.src_info if mode == "src" else self.tgt_info,
                 ft.OutlinedButton(
                     "Selecionar Arquivo", 
-                    icon=ft.icons.SEARCH,
+                    icon=ft.Icons.SEARCH,
                     on_click=lambda _: self._trigger_picker(mode)
                 )
             ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER)
