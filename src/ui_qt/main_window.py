@@ -106,11 +106,11 @@ class MainWindow(QMainWindow):
         header_layout = QVBoxLayout(self.header)
         
         self.lbl_welcome = QLabel("🚀 Genaja Pro - The Next Frontier")
-        self.lbl_welcome.setStyleSheet("font-size: 20px; font-weight: bold; border: none;")
+        self.lbl_welcome.setObjectName("TitleLabel")
         header_layout.addWidget(self.lbl_welcome)
         
         self.lbl_status = QLabel(f"Ambiente Híbrido PySide6 | Build v{__version__} Gold")
-        self.lbl_status.setStyleSheet("border: none; opacity: 0.7;")
+        self.lbl_status.setProperty("class", "secondary-text")
         header_layout.addWidget(self.lbl_status)
         
         self.content_layout.addWidget(self.header)
@@ -228,21 +228,24 @@ class MainWindow(QMainWindow):
         dash.finalize(True)
 
     def apply_theme(self):
-        """Global Visual Flush (v0.5.9 Phase 5)"""
+        """Global Visual Flush (v0.5.9 Phase 6 Harmony)"""
         from PySide6.QtWidgets import QApplication
+        
+        # 1. PURE FLUSH: Resetar folha de estilos antes de aplicar a nova
+        # Isso limpa resíduos de temas anteriores na memória do Qt
+        app = QApplication.instance()
+        app.setStyleSheet("")
+        
         qss = self.theme_service.get_qss()
         
-        # 1. Aplicar ao App (Garante diálogos flutuantes)
-        QApplication.instance().setStyleSheet(qss)
+        # 2. Aplicar novo QSS Global
+        app.setStyleSheet(qss)
         
-        # 2. Update local state
+        # 3. Update local state
         theme = self.theme_service.current_theme
         
-        # 3. Sincronizar TitleBar Reativa
+        # 4. Sincronizar Widgets Reativos (No-op no v0.5.9 Phase 6, mas mantido p/ estrutura)
         self.title_bar.update_style(theme)
-        
-        # 4. Branding & Status Refresh
-        self.lbl_welcome.setStyleSheet(f"font-size: 20px; font-weight: bold; border: none; color: {theme['action_bg']};")
         
         # 5. RECURSIVE STYLE REFRESH (Deep Purge v0.5.9 Phase 5)
         for widget in self.findChildren(QWidget):

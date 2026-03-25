@@ -77,11 +77,9 @@ class SettingCard(QFrame):
         text_layout.setSpacing(2)
         
         self.label_title = QLabel(title)
-        self.label_title.setStyleSheet("font-weight: bold; font-size: 14px; background: transparent;")
         
         self.label_desc = QLabel(subtitle)
         self.label_desc.setProperty("class", "secondary-text")
-        self.label_desc.setStyleSheet("font-size: 11px; background: transparent;")
         self.label_desc.setWordWrap(True)
         
         text_layout.addWidget(self.label_title)

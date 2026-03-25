@@ -12,17 +12,14 @@ class DropZone(QFrame):
         self.setMinimumHeight(150)
         self.setCursor(Qt.PointingHandCursor)
         
-        self.layout = QVBoxLayout(self)
         self.lbl_title = QLabel(title)
         self.lbl_title.setProperty("class", "action-text")
-        self.lbl_title.setStyleSheet("font-weight: bold; border: none; background: transparent;")
         self.layout.addWidget(self.lbl_title, alignment=Qt.AlignTop)
         
         self.lbl_msg = QLabel(initial_msg)
         self.lbl_msg.setWordWrap(True)
         self.lbl_msg.setAlignment(Qt.AlignCenter)
         self.lbl_msg.setProperty("class", "secondary-text")
-        self.lbl_msg.setStyleSheet("border: none; background: transparent;")
         self.layout.addWidget(self.lbl_msg, 1)
         
     def mousePressEvent(self, event):
@@ -54,7 +51,7 @@ class DropZone(QFrame):
                 self.fileDropped.emit(excel_files[0])
             else:
                 self.lbl_msg.setText("❌ Apenas arquivos Excel!")
-                self.lbl_msg.setStyleSheet("color: #DC3545; border: none;")
+                self.lbl_msg.setProperty("class", "danger-text")
 
 class UploadPanel(QWidget):
     filesSelected = Signal(str, str)

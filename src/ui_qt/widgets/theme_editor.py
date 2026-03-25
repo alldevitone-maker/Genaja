@@ -17,10 +17,10 @@ class PreviewWidget(QFrame):
         self.layout.setContentsMargins(20, 20, 20, 20)
         
         self.lbl_title = QLabel("Preview 2026 Pro")
-        self.lbl_title.setStyleSheet("font-size: 18px; font-weight: bold;")
+        self.lbl_title.setObjectName("TitleLabel")
         
         self.lbl_sub = QLabel("Explore como as cores interagem na interface.")
-        self.lbl_sub.setStyleSheet("opacity: 0.7; font-size: 12px;")
+        self.lbl_sub.setProperty("class", "secondary-text")
         
         self.layout.addWidget(self.lbl_title)
         self.layout.addWidget(self.lbl_sub)
@@ -28,9 +28,9 @@ class PreviewWidget(QFrame):
         
         btn_layout = QHBoxLayout()
         self.btn_act = QPushButton("Botão de Ação")
+        self.btn_act.setProperty("class", "primary-btn")
         self.btn_act.setMinimumHeight(40)
         self.btn_sec = QPushButton("Secundário")
-        self.btn_sec.setStyleSheet("background: transparent; border: 1px solid #3F3F46;")
         
         btn_layout.addWidget(self.btn_act)
         btn_layout.addWidget(self.btn_sec)
@@ -39,20 +39,8 @@ class PreviewWidget(QFrame):
         self.update_style()
 
     def update_style(self):
-        t = self.theme_service.current_theme
-        self.setStyleSheet(f"""
-            QFrame#PreviewCard {{
-                background-color: {t['bg_col']};
-                border: 2px solid {t['action_bg']};
-                border-radius: 16px;
-            }}
-            QLabel {{ color: {t['fg_col']}; }}
-            QPushButton {{
-                background-color: {t['action_bg']};
-                color: {t['action_fg']};
-                border-radius: 8px;
-            }}
-        """)
+        """No-op: Estilo controlado via QSS #PreviewCard."""
+        pass
 
 class ThemeEditor(QDialog):
     themeUpdated = Signal()
@@ -67,13 +55,8 @@ class ThemeEditor(QDialog):
         
         self.container = QFrame(self)
         self.container.setObjectName("EditorContainer")
-        self.container.setStyleSheet(f"""
-            QFrame#EditorContainer {{
-                background-color: {self.theme_service.get_color('bg_col')};
-                border: 1px solid {self.theme_service.get_color('border_col')};
-                border-radius: 16px;
-            }}
-        """)
+        self.container = QFrame(self)
+        self.container.setObjectName("EditorContainer")
         
         layout = QVBoxLayout(self)
         layout.setContentsMargins(10, 10, 10, 10)
@@ -88,15 +71,16 @@ class ThemeEditor(QDialog):
         
         # 1. SIDEBAR
         self.sidebar_frame = QFrame()
+        self.sidebar_frame.setObjectName("sidebar_main")
         self.sidebar_frame.setFixedWidth(200)
-        self.sidebar_frame.setStyleSheet(f"background-color: {self.theme_service.get_color('surface_col')}; border-right: 1px solid {self.theme_service.get_color('border_col')}; border-top-left-radius: 16px; border-bottom-left-radius: 16px;")
         
         sidebar_layout = QVBoxLayout(self.sidebar_frame)
         sidebar_layout.setContentsMargins(0, 20, 0, 20)
         sidebar_layout.setSpacing(5)
         
         brand_label = QLabel("PHOENIX")
-        brand_label.setStyleSheet(f"color: {self.theme_service.get_color('action_bg')}; font-weight: bold; font-size: 18px; margin-left: 20px; margin-bottom: 20px;")
+        brand_label.setObjectName("TitleLabel")
+        brand_label.setContentsMargins(20, 0, 0, 20)
         sidebar_layout.addWidget(brand_label)
         
         self.nav_buttons = []
@@ -130,7 +114,6 @@ class ThemeEditor(QDialog):
         # Footer
         footer_layout = QHBoxLayout()
         self.btn_cancel = QPushButton("Close")
-        self.btn_cancel.setStyleSheet("background: transparent; border: 1px solid #3F3F46;")
         self.btn_cancel.clicked.connect(self.reject)
         self.btn_apply = QPushButton("Save & Adopt Theme")
         self.btn_apply.clicked.connect(self.save_and_exit)

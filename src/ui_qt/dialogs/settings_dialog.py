@@ -18,13 +18,8 @@ class SettingsDialog(QDialog):
         # Main Container (para bordas e sombra simulada via QSS)
         self.container = QFrame(self)
         self.container.setObjectName("SettingsContainer")
-        self.container.setStyleSheet(f"""
-            QFrame#SettingsContainer {{
-                background-color: {self.theme_service.get_color('bg_col')};
-                border: 1px solid {self.theme_service.get_color('border_col')};
-                border-radius: 16px;
-            }}
-        """)
+        self.container = QFrame(self)
+        self.container.setObjectName("SettingsContainer")
         
         layout = QVBoxLayout(self)
         layout.setContentsMargins(10, 10, 10, 10)
@@ -40,8 +35,8 @@ class SettingsDialog(QDialog):
         
         # 1. SIDEBAR
         self.sidebar_frame = QFrame()
+        self.sidebar_frame.setObjectName("sidebar_main") # Reutilizando estilo de sidebar do QSS
         self.sidebar_frame.setFixedWidth(220)
-        self.sidebar_frame.setStyleSheet(f"background-color: {self.theme_service.get_color('surface_col')}; border-right: 1px solid {self.theme_service.get_color('border_col')}; border-top-left-radius: 16px; border-bottom-left-radius: 16px;")
         
         sidebar_layout = QVBoxLayout(self.sidebar_frame)
         sidebar_layout.setContentsMargins(0, 20, 0, 20)
@@ -49,7 +44,8 @@ class SettingsDialog(QDialog):
         
         # Brand/Header in Sidebar
         brand_label = QLabel("GENAJA PRO")
-        brand_label.setStyleSheet(f"color: {self.theme_service.get_color('action_bg')}; font-weight: bold; font-size: 18px; margin-left: 20px; margin-bottom: 20px;")
+        brand_label.setObjectName("TitleLabel")
+        brand_label.setContentsMargins(20, 0, 0, 20)
         sidebar_layout.addWidget(brand_label)
         
         self.nav_buttons = []
@@ -84,7 +80,6 @@ class SettingsDialog(QDialog):
         # 3. FOOTER ACTIONS
         footer_layout = QHBoxLayout()
         self.btn_close = QPushButton("Cancel")
-        self.btn_close.setStyleSheet("background: transparent; border: 1px solid #3F3F46;")
         self.btn_close.clicked.connect(self.reject)
         
         self.btn_save = QPushButton("Apply Transformations")

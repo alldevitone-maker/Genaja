@@ -24,7 +24,6 @@ class TitleBar(QWidget):
         # Title
         self.title_lbl = QLabel(title)
         self.title_lbl.setObjectName("titleLabel")
-        self.title_lbl.setStyleSheet("margin-left: 10px; font-weight: bold;")
         self.layout.addWidget(self.title_lbl)
         
         self.layout.addStretch()
@@ -60,5 +59,5 @@ class TitleBar(QWidget):
             self._parent.move(self._window_pos + delta)
 
     def update_style(self, theme):
-        # All styling is handled via QSS in ThemeService
-        self.setStyleSheet(f"background-color: {theme['titlebar_bg']}; color: {theme['titlebar_text']};")
+        """No-op: Todo o estilo é controlado via QSS Global no v0.5.9 Phase 6."""
+        pass
