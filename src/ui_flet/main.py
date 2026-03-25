@@ -1,6 +1,7 @@
 import flet as ft
 import sys
 import os
+import asyncio
 
 # Adicionar src ao path para importação modular
 sys.path.append(os.path.abspath("src"))
@@ -16,7 +17,7 @@ from ui_flet.views.step2_view import Step2View
 from ui_flet.views.step3_view import Step3View
 from ui_flet.views.step4_view import Step4View
 
-def main(page: ft.Page):
+async def main(page: ft.Page):
     # 1. Configuração Inicial
     config = ConfigService()
     LoggerService.setup()
@@ -34,14 +35,9 @@ def main(page: ft.Page):
     # 3. Componentes de Navegação
     container = ft.Container(expand=True, padding=40)
     
-    # 4. File Pickers
-    def on_file_result(e: ft.FilePickerResultEvent):
-        if e.files:
-            mode = e.control.data # 'src' ou 'tgt'
-            v1.update_file(mode, e.files[0].path)
-
-    picker_src = ft.FilePicker(on_result=on_file_result); picker_src.data = "src"
-    picker_tgt = ft.FilePicker(on_result=on_file_result); picker_tgt.data = "tgt"
+    # 4. File Pickers (API v0.82.2 - Awaitable pick_files)
+    picker_src = ft.FilePicker()
+    picker_tgt = ft.FilePicker()
     page.overlay.extend([picker_src, picker_tgt])
 
     # 5. Router de Views
@@ -60,19 +56,24 @@ def main(page: ft.Page):
             container.content = v4
         page.update()
 
+    # Callback para File Selection (Invocado pela Step1View)
+    async def pick_file_handler(mode):
+        if mode == "src":
+            result = await picker_src.pick_files()
+            if result: v1.update_file("src", result[0].path)
+        else:
+            result = await picker_tgt.pick_files()
+            if result: v1.update_file("tgt", result[0].path)
+
+    # Função wrapper para o Flet rodar a corrotina
+    def trigger_pick(mode):
+        page.run_task(pick_file_handler, mode)
+
     # Instanciar Views
-    v1 = Step1View(state, on_next=lambda: navigate_to(1))
+    v1 = Step1View(state, on_next=lambda: navigate_to(1), on_pick_file=trigger_pick)
     v2 = Step2View(state, on_next=lambda: navigate_to(2), on_back=lambda: navigate_to(0))
     v3 = Step3View(state, on_next=lambda: navigate_to(3), on_back=lambda: navigate_to(1))
     v4 = Step4View(state, on_finish=lambda: navigate_to(0), on_back=lambda: navigate_to(2))
-
-    # Hack para o Step1 disparar o picker
-    def on_page_event(e):
-        if e.name == "open_picker":
-            if e.data == "src": picker_src.pick_files()
-            else: picker_tgt.pick_files()
-            
-    page.on_event = on_page_event
 
     # 6. Header
     header = ft.Container(

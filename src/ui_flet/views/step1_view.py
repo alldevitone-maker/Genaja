@@ -7,10 +7,11 @@ class Step1View(ft.Column):
     PASSO 1: Seleção de Fontes (v0.6.0).
     Focada em clareza visual e heurística de cabeçalho.
     """
-    def __init__(self, state, on_next):
+    def __init__(self, state, on_next, on_pick_file):
         super().__init__(expand=True, spacing=20)
         self.state = state
         self.on_next = on_next
+        self.on_pick_file = on_pick_file
         self.loader = LoaderEngine()
         
         self.src_info = ft.Text("Nenhum arquivo de ORIGEM selecionado", color=PlatinumTheme.TEXT_SECONDARY)
@@ -54,8 +55,8 @@ class Step1View(ft.Column):
         )
 
     def _trigger_picker(self, mode):
-        # Evento que será capturado pelo main.py para abrir o diálogo real
-        self.page.publish(ft.PageEvent(target=f"picker_{mode}", name="open_picker", data=mode))
+        # Chama o callback passado pela main.py (que será invocado via run_task se necessário)
+        self.on_pick_file(mode)
 
     def update_file(self, mode, path):
         try:
