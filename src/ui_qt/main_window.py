@@ -220,24 +220,43 @@ class MainWindow(QMainWindow):
             self.title_bar.lbl_title.setText(f"{app_name} - v{__version__} Gold")
 
     def _on_files_ready(self, src, tgt):
-        self.status.showMessage("📊 Analisando estruturas reais...")
-        cols_src = self.upload_panel.cols_src
-        cols_tgt = self.upload_panel.cols_tgt
-        top_matches = self.validation_engine.suggest_primary_keys(cols_src, cols_tgt)
-        self.keys_panel.set_data(cols_src, cols_tgt, top_matches)
-        self._fade_to_index(1)
-        self.status.showMessage("Passo 2: Defina as chaves de cruzamento.")
+        try:
+            print(f"DEBUG: _on_files_ready triggered for {src}")
+            self.status.showMessage("📊 Analisando estruturas reais...")
+            cols_src = self.upload_panel.cols_src
+            cols_tgt = self.upload_panel.cols_tgt
+            
+            if not cols_src or not cols_tgt:
+                raise ValueError("Listas de colunas vazias ou corrompidas.")
+                
+            top_matches = self.validation_engine.suggest_primary_keys(cols_src, cols_tgt)
+            self.keys_panel.set_data(cols_src, cols_tgt, top_matches)
+            
+            self._fade_to_index(1)
+            self.status.showMessage("Passo 2: Defina as chaves de cruzamento.")
+        except Exception as e:
+            self.status.showMessage("❌ Erro ao analisar arquivos.")
+            QMessageBox.critical(self, "Erro de Navegação", f"Falha ao iniciar o analisador de colunas:\n{e}")
 
     def _on_keys_validated(self):
-        self.mapping_panel.set_data(self.upload_panel.cols_src, self.upload_panel.cols_tgt)
-        self._fade_to_index(2)
-        self.status.showMessage("Passo 3: Mapeie as colunas.")
+        try:
+            print("DEBUG: _on_keys_validated triggered")
+            self.mapping_panel.set_data(self.upload_panel.cols_src, self.upload_panel.cols_tgt)
+            self._fade_to_index(2)
+            self.status.showMessage("Passo 3: Mapeie as colunas.")
+        except Exception as e:
+            self.status.showMessage("❌ Erro ao preparar mapeamento.")
+            QMessageBox.critical(self, "Erro de Mapeamento", f"Falha ao carregar motor de mapeamento:\n{e}")
 
     def _on_mapping_done(self):
-        mapped_count = self.mapping_panel.list_tgt.count()
-        summary = f"🚀 PRONTO PARA DISPARO REAL!\n\nCoragem, v{__version__}!\nColunas: {mapped_count}"
-        self.summary_panel.set_summary(summary)
-        self._fade_to_index(3)
+        try:
+            print("DEBUG: _on_mapping_done triggered")
+            mapped_count = self.mapping_panel.list_tgt.count()
+            summary = f"🚀 PRONTO PARA DISPARO REAL!\n\nCoragem, v{__version__}!\nColunas: {mapped_count}"
+            self.summary_panel.set_summary(summary)
+            self._fade_to_index(3)
+        except Exception as e:
+            QMessageBox.critical(self, "Erro de Fluxo", f"Falha ao resumir o mapeamento:\n{e}")
 
     def _on_start_sync(self, config):
         from ui_qt.dialogs.progress_dashboard import ProgressDashboard

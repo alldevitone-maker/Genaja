@@ -18,17 +18,28 @@ class ValidationEngine:
             return df[pd.to_numeric(df[column], errors='coerce').notnull()]
         return df
 
-    def suggest_primary_keys(self, df_src, df_tgt):
-        """Portado da v0.4.9: Sugestão inteligente de chaves primárias"""
+    def suggest_primary_keys(self, src_data, tgt_data):
+        """Portado da v0.4.9: Sugestão inteligente de chaves primárias (Aceita DF ou List)"""
         common_names = ['ID', 'CODIGO', 'SKU', 'EAN', 'CPF', 'CNPJ', 'MATRICULA', 'CHAVE']
         
-        def find_best(df):
-            for name in common_names:
-                for col in df.columns:
-                    if name in col.upper():
-                        return col
-            return df.columns[0]
+        def find_best(data):
+            # Se for DataFrame, pega as colunas. Se for lista, usa direto.
+            cols = data.columns if hasattr(data, 'columns') else data
+            if len(cols) == 0: return ""
             
-        best_src = find_best(df_src)
-        best_tgt = find_best(df_tgt)
+            # Prioridade 1: Match exato (case insensitive)
+            for name in common_names:
+                for col in cols:
+                    if str(col).upper() == name:
+                        return col
+            
+            # Prioridade 2: Substring
+            for name in common_names:
+                for col in cols:
+                    if name in str(col).upper():
+                        return col
+            return cols[0] if len(cols) > 0 else ""
+            
+        best_src = find_best(src_data)
+        best_tgt = find_best(tgt_data)
         return best_src, best_tgt, 0.85

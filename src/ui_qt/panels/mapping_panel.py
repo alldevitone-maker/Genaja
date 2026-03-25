@@ -84,24 +84,29 @@ class MappingPanel(QWidget):
     def set_data(self, cols_src, cols_tgt):
         self.full_list_src = cols_src
         self.full_list_tgt = cols_tgt
+        self.list_tgt.clear() # Limpar estado anterior v0.5.9 Phase 8
         self._filter_lists()
 
     def _on_auto_map(self):
-        # Chamada ao MappingEngine Real
+        # Chamada ao MappingEngine Real com Error Shielding
         engine = self.services.get("mapping")
-        if engine:
+        if not engine:
+            return
+            
+        try:
             matches = engine.suggest_mapping(self.full_list_src, self.full_list_tgt)
-            # matches é um dict {col_src: col_tgt}
-            # Para o v0.5.0-alpha.3 simples, vamos apenas mover as colunas sugeridas para a direita
-            cols_to_sync = list(matches.keys())
+            if not matches:
+                return
+                
+            self._move_all_to_src() # Reset visual
             
-            self._move_all_to_src() # Reset
-            
-            for c in cols_to_sync:
+            for c in matches.keys():
                 if c in self.full_list_src:
                     self.list_tgt.addItem(c)
             
             self._filter_lists()
+        except Exception as e:
+            print(f"ERROR: Auto-Map failed: {e}")
 
     def _filter_lists(self):
         query = self.search_ent.text().lower()
