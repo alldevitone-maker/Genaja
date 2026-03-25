@@ -77,10 +77,18 @@ class KeysPanel(QWidget):
         
         # Uso do ValidationEngine via top_matches
         if top_matches:
-            # top_matches pode ser uma lista de caminhos ou dicts
-            best = top_matches[0]
-            src_key = best.get('src') if isinstance(best, dict) else best[0]
-            tgt_key = best.get('tgt') if isinstance(best, dict) else best[1]
+            # top_matches é uma tupla (best_src, best_tgt, score) ou o que o motor retornar
+            # Se for a tupla padrão:
+            if isinstance(top_matches, tuple) and len(top_matches) >= 2:
+                src_key = top_matches[0]
+                tgt_key = top_matches[1]
+            # Caso seja uma lista de matches (estilo v0.4.9 legado ou futura expansão)
+            elif isinstance(top_matches, list) and len(top_matches) > 0:
+                best = top_matches[0]
+                src_key = best.get('src') if isinstance(best, dict) else best[0]
+                tgt_key = best.get('tgt') if isinstance(best, dict) else best[1]
+            else:
+                return # Formato desconhecido
             
             idx_s = self.combo_src.findText(src_key)
             idx_t = self.combo_tgt.findText(tgt_key)

@@ -11,8 +11,15 @@ def setup_logger():
     log_file = os.path.join(log_dir, 'genaja.log')
     
     # Configure logging to both file and console
+    # On Windows, force utf-8 for stdout to handle emojis correctly
+    if sys.platform == "win32":
+        try:
+            sys.stdout.reconfigure(encoding='utf-8')
+        except AttributeError:
+            # Fallback para versões muito antigas ou ambientes restritos
+            pass
+            
     stream_handler = logging.StreamHandler(sys.stdout)
-    # On Windows, try to force utf-8 if possible, otherwise rely on default
     
     logging.basicConfig(
         level=logging.INFO,

@@ -12,19 +12,22 @@ class ETLService:
         df_tgt[key_tgt] = df_tgt[key_tgt].astype(str).str.replace(r'\.0$', '', regex=True).str.strip()
         
         df_tgt_no_dup = df_tgt.drop_duplicates(subset=[key_tgt], keep='first')
-        df_result = pd.merge(df_src, df_tgt_no_dup, left_on=key_src, right_on=key_tgt, how='left', suffixes=('', '_DROP_ME'))
         
-        df_result = df_result[[c for c in df_result.columns if not c.endswith('_DROP_ME')]]
+        # Suffix mais robusto para evitar colisões
+        tmp_suffix = "_GENAJA_TMP_"
+        df_result = pd.merge(df_src, df_tgt_no_dup, left_on=key_src, right_on=key_tgt, how='left', suffixes=('', tmp_suffix))
+        
+        # Remover colunas duplicadas que ganharam o sufixo temporário
+        df_result = df_result[[c for c in df_result.columns if not c.endswith(tmp_suffix)]]
         
         for col_src, col_tgt in mapping.items():
             if col_src in df_result.columns and col_src != col_tgt:
                 df_result[col_tgt] = df_result[col_src]
                 
         if clean_output:
-            cols_to_keep = list(mapping.values())
-            if key_tgt_final in cols_to_keep:
-                cols_to_keep.remove(key_tgt_final)
-            cols_to_keep.insert(0, key_tgt_final)
+            # Garante que a chave final esteja no início e as mapeadas venham depois
+            cols_to_keep = [key_tgt_final] + [c for c in mapping.values() if c != key_tgt_final]
+            # Filtra apenas o que realmente existe no resultado
             cols_to_keep = [c for c in dict.fromkeys(cols_to_keep) if c in df_result.columns]
             df_final = df_result[cols_to_keep].copy()
         else:

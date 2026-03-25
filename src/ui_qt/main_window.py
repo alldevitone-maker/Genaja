@@ -158,14 +158,25 @@ class MainWindow(QMainWindow):
             self.showMaximized()
 
     def _fade_to_index(self, index):
+        """Inicia transição de fade out antes de trocar o stack."""
+        self._target_index = index
         self.fade_anim.setStartValue(1.0)
         self.fade_anim.setEndValue(0.0)
-        self.fade_anim.finished.connect(lambda: self._complete_fade(index))
+        
+        # Desconectar conexões anteriores se existirem para evitar acúmulo
+        try:
+            self.fade_anim.finished.disconnect()
+        except Exception:
+            pass
+            
+        self.fade_anim.finished.connect(self._on_fade_out_finished)
         self.fade_anim.start()
 
-    def _complete_fade(self, index):
+    def _on_fade_out_finished(self):
+        """Troca o widget no stack e inicia fade in."""
         self.fade_anim.finished.disconnect()
-        self.stack.setCurrentIndex(index)
+        self.stack.setCurrentIndex(self._target_index)
+        
         self.fade_anim.setStartValue(0.0)
         self.fade_anim.setEndValue(1.0)
         self.fade_anim.start()
