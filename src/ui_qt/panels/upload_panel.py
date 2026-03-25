@@ -12,6 +12,7 @@ class DropZone(QFrame):
         self.setMinimumHeight(150)
         self.setCursor(Qt.PointingHandCursor)
         
+        self.layout = QVBoxLayout(self)
         self.lbl_title = QLabel(title)
         self.lbl_title.setProperty("class", "action-text")
         self.layout.addWidget(self.lbl_title, alignment=Qt.AlignTop)
