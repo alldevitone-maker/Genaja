@@ -24,7 +24,7 @@ class Step4View(ft.Column):
         self.btn_run = ft.ElevatedButton("🚀 DISPARAR SINCRONIZAÇÃO!", on_click=self._run_sync, bgcolor=PlatinumTheme.SUCCESS, color="white", height=60, width=300)
         
         self.controls = [
-            ft.Text("🚀 Finalização & Auditoria", size=24, weight=ft.FontWeight.W600),
+            ft.Text("🚀 Finalização & Auditoria", size=24, weight=ft.FontWeight.W_600),
             ft.Container(
                 **PlatinumTheme.card_style(),
                 content=ft.Column([

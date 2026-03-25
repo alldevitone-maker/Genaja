@@ -18,7 +18,7 @@ class Step2View(ft.Column):
         self.combo_tgt = ft.Dropdown(label="Chave no Destino", expand=True)
         
         self.controls = [
-            ft.Text("🔗 Configuração de Chaves", size=24, weight=ft.FontWeight.W600),
+            ft.Text("🔗 Configuração de Chaves", size=24, weight=ft.FontWeight.W_600),
             ft.Container(
                 **PlatinumTheme.card_style(),
                 content=ft.Column([

@@ -16,7 +16,7 @@ class Step3View(ft.Column):
         self.list_tgt = ft.ListView(expand=True, spacing=10, padding=10)
         
         self.controls = [
-            ft.Text("⚙️ Mapeamento de Colunas", size=24, weight=ft.FontWeight.W600),
+            ft.Text("⚙️ Mapeamento de Colunas", size=24, weight=ft.FontWeight.W_600),
             ft.Row([
                 # Left: Source Columns
                 ft.Container(
@@ -76,7 +76,7 @@ class Step3View(ft.Column):
                     padding=10,
                     border_radius=8,
                     content=ft.Row([
-                        ft.Text(c_tgt, expand=True, size=13, weight=ft.FontWeight.W600),
+                        ft.Text(c_tgt, expand=True, size=13, weight=ft.FontWeight.W_600),
                         ft.Icon(ft.icons.ARROW_RIGHT_ALT, color=PlatinumTheme.PRIMARY),
                         dropdown
                     ])

@@ -28,7 +28,7 @@ class Step1View(ft.Column):
         )
         
         self.controls = [
-            ft.Text("📂 Seleção de Arquivos", size=24, weight=ft.FontWeight.W600),
+            ft.Text("📂 Seleção de Arquivos", size=24, weight=ft.FontWeight.W_600),
             ft.Row([
                 self._create_drop_zone("Planilha de ORIGEM (SAP/Export)", "src"),
                 self._create_drop_zone("Planilha de DESTINO (Master)", "tgt"),
