@@ -22,11 +22,11 @@ def main(page: ft.Page):
     LoggerService.setup()
     state = WizardState()
     
-    # 2. Setup de Janela
+    # 2. Setup de Janela (API Flet v0.82+)
     page.title = "Genaja Pro v0.6.0 Alpha"
-    page.window_width = 1100
-    page.window_height = 800
-    page.window_center()
+    page.window.width = 1100
+    page.window.height = 800
+    page.window.center()
     page.padding = 0
     page.spacing = 0
     PlatinumTheme.apply_to_page(page)

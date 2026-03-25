@@ -29,8 +29,10 @@ class PlatinumTheme:
     def apply_to_page(page: ft.Page):
         page.theme_mode = ft.ThemeMode.DARK # Padrão v0.6.0
         page.bgcolor = PlatinumTheme.BG_DARK
-        page.window_title_bar_hidden = True
-        page.window_title_bar_buttons_hidden = True
+        
+        # Window API v0.82+
+        page.window.title_bar_hidden = True
+        page.window.title_bar_buttons_hidden = True
         
         # Custom Theme Configuration
         page.theme = ft.Theme(
