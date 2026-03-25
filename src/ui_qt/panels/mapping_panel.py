@@ -12,7 +12,7 @@ class MappingPanel(QWidget):
         self.layout.setSpacing(15)
         
         title_lbl = QLabel("⚙️ Passo 3: Mapeamento Comercial de Colunas")
-        title_lbl.setStyleSheet("font-size: 16px; font-weight: bold;")
+        title_lbl.setObjectName("TitleLabel")
         self.layout.addWidget(title_lbl)
         
         # HUD Area (Search & Auto-Map)
@@ -23,7 +23,7 @@ class MappingPanel(QWidget):
         hud_layout.addWidget(self.search_ent)
         
         self.btn_auto = QPushButton("🪄 Auto-Map I.A")
-        self.btn_auto.setStyleSheet("background-color: #0D6EFD; color: white;")
+        self.btn_auto.setProperty("class", "primary-btn")
         hud_layout.addWidget(self.btn_auto)
         self.layout.addLayout(hud_layout)
         
@@ -67,7 +67,7 @@ class MappingPanel(QWidget):
         footer = QHBoxLayout()
         self.btn_back = QPushButton("⬅️ Voltar")
         self.btn_next = QPushButton("🚀 Configurar Regras Finais ➡️")
-        self.btn_next.setStyleSheet("background-color: #198754; color: white;")
+        self.btn_next.setProperty("class", "success-btn")
         
         footer.addWidget(self.btn_back)
         footer.addStretch()

@@ -34,9 +34,9 @@ class AppBootstrap:
             start_qt_app(services)
             
         except ImportError as e:
-            print(f"❌ ERRO CRÍTICO (v0.5.4): Arquitetura Qt não encontrada: {e}")
-            print("Verifique se o PySide6 está instalado: pip install PySide6")
+            print(f"ERROR: Arquitetura Qt nao encontrada: {e}")
+            print("Verifique se o PySide6 esta instalado: pip install PySide6")
             sys.exit(1)
         except Exception as e:
-            print(f"❌ ERRO DE INICIALIZAÇÃO: {e}")
+            print(f"ERROR: ERRO DE INICIALIZACAO: {e}")
             sys.exit(1)

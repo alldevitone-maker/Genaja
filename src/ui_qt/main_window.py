@@ -48,29 +48,58 @@ class MainWindow(QMainWindow):
         self.title_bar.maxClicked.connect(self._toggle_maximize)
         self.main_layout.addWidget(self.title_bar)
 
-        # Barra de Menu Integrada (estilo VS Code / Office)
-        self.menu_bar = QMenuBar(self)
-        self.main_layout.addWidget(self.menu_bar)
+        # Barra de Menu Integrada -> REPLACED BY SIDEBAR
+        # Custom Title Bar já foi adicionada acima
         
-        self.settings_menu = self.menu_bar.addMenu("Settings")
-        self.action_theme = self.settings_menu.addAction("🔥 Phoenix Customizer")
-        self.action_theme.triggered.connect(self._open_theme_editor)
+        # 3. BODY LAYOUT (Sidebar + Content)
+        self.body_container = QWidget()
+        self.body_layout = QHBoxLayout(self.body_container)
+        self.body_layout.setContentsMargins(0, 0, 0, 0)
+        self.body_layout.setSpacing(0)
+        self.main_layout.addWidget(self.body_container)
         
-        self.action_reset = self.settings_menu.addAction("♻️ Reset Theme to Default")
-        self.action_reset.triggered.connect(self._reset_theme)
+        # 3.1 SIDEBAR (v0.5.9 SaaS Style)
+        from ui_qt.widgets.settings_widgets import SidebarButton
+        self.sidebar = QFrame()
+        self.sidebar.setObjectName("sidebar_main")
+        self.sidebar.setFixedWidth(70)
+        self.sidebar_layout = QVBoxLayout(self.sidebar)
+        self.sidebar_layout.setContentsMargins(5, 20, 5, 20)
+        self.sidebar_layout.setSpacing(15)
+        self.sidebar_layout.setAlignment(Qt.AlignTop | Qt.AlignCenter)
         
-        self.settings_menu.addSeparator()
-        self.action_prefs = self.settings_menu.addAction("⚙️ Global Preferences")
-        self.action_prefs.triggered.connect(self._open_settings)
-
-        # Content Area
+        # Sidebar Icons/Buttons
+        self.btn_nav_wizard = SidebarButton("🧙")
+        self.btn_nav_wizard.setToolTip("Data Wizard (Fluxo de Dados)")
+        self.btn_nav_wizard.setProperty("active", True)
+        self.btn_nav_wizard.setFixedSize(50, 50)
+        self.btn_nav_wizard.clicked.connect(lambda: self._fade_to_index(0))
+        
+        self.btn_nav_theme = SidebarButton("🔥")
+        self.btn_nav_theme.setToolTip("Phoenix Customizer (Temas)")
+        self.btn_nav_theme.setFixedSize(50, 50)
+        self.btn_nav_theme.clicked.connect(self._open_theme_editor)
+        
+        self.btn_nav_settings = SidebarButton("⚙️")
+        self.btn_nav_settings.setToolTip("Global Preferences")
+        self.btn_nav_settings.setFixedSize(50, 50)
+        self.btn_nav_settings.clicked.connect(self._open_settings)
+        
+        self.sidebar_layout.addWidget(self.btn_nav_wizard)
+        self.sidebar_layout.addWidget(self.btn_nav_theme)
+        self.sidebar_layout.addWidget(self.btn_nav_settings)
+        self.sidebar_layout.addStretch()
+        
+        self.body_layout.addWidget(self.sidebar)
+        
+        # 3.2 CONTENT AREA (Antiga area central)
         self.content_area = QWidget()
         self.content_area.setObjectName("centralWidget")
         self.content_layout = QVBoxLayout(self.content_area)
         self.content_layout.setContentsMargins(20, 20, 20, 20)
-        self.main_layout.addWidget(self.content_area)
+        self.body_layout.addWidget(self.content_area)
         
-        # Header (Visual Branding)
+        # Header (Visual Branding) inside Content
         self.header = QFrame()
         self.header.setObjectName("card")
         self.header.setFixedHeight(80)
@@ -188,7 +217,31 @@ class MainWindow(QMainWindow):
         dash.finalize(True)
 
     def apply_theme(self):
-        self.setStyleSheet(self.theme_service.get_qss())
-        # Update dynamic colors if needed
+        """Global Visual Flush (v0.5.9 Phase 5)"""
+        from PySide6.QtWidgets import QApplication
+        qss = self.theme_service.get_qss()
+        
+        # 1. Aplicar ao App (Garante diálogos flutuantes)
+        QApplication.instance().setStyleSheet(qss)
+        
+        # 2. Update local state
         theme = self.theme_service.current_theme
+        
+        # 3. Sincronizar TitleBar Reativa
+        self.title_bar.update_style(theme)
+        
+        # 4. Branding & Status Refresh
         self.lbl_welcome.setStyleSheet(f"font-size: 20px; font-weight: bold; border: none; color: {theme['action_bg']};")
+        
+        # 5. RECURSIVE STYLE REFRESH (Deep Purge v0.5.9 Phase 5)
+        for widget in self.findChildren(QWidget):
+            # Refresh Custom Widgets
+            if hasattr(widget, "refresh_style"):
+                widget.refresh_style()
+            
+            # Repolish QSS classes
+            widget.style().unpolish(widget)
+            widget.style().polish(widget)
+            
+        # 6. Forçar repintura total
+        self.update()

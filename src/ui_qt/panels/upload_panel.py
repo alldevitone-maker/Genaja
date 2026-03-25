@@ -7,20 +7,22 @@ class DropZone(QFrame):
 
     def __init__(self, title, initial_msg):
         super().__init__()
-        self.setObjectName("card")
+        self.setObjectName("DropZone")
         self.setAcceptDrops(True)
         self.setMinimumHeight(150)
         self.setCursor(Qt.PointingHandCursor)
         
         self.layout = QVBoxLayout(self)
         self.lbl_title = QLabel(title)
-        self.lbl_title.setStyleSheet("font-weight: bold; color: #0D6EFD; border: none;")
+        self.lbl_title.setProperty("class", "action-text")
+        self.lbl_title.setStyleSheet("font-weight: bold; border: none; background: transparent;")
         self.layout.addWidget(self.lbl_title, alignment=Qt.AlignTop)
         
         self.lbl_msg = QLabel(initial_msg)
         self.lbl_msg.setWordWrap(True)
         self.lbl_msg.setAlignment(Qt.AlignCenter)
-        self.lbl_msg.setStyleSheet("color: #6C757D; border: none;")
+        self.lbl_msg.setProperty("class", "secondary-text")
+        self.lbl_msg.setStyleSheet("border: none; background: transparent;")
         self.layout.addWidget(self.lbl_msg, 1)
         
     def mousePressEvent(self, event):
@@ -29,16 +31,22 @@ class DropZone(QFrame):
 
     def dragEnterEvent(self, event):
         if event.mimeData().hasUrls():
-            self.setStyleSheet("border: 2px dashed #0D6EFD; background-color: #E7F1FF;")
+            self.setProperty("active", True)
+            self.style().unpolish(self)
+            self.style().polish(self)
             event.accept()
         else:
             event.ignore()
 
     def dragLeaveEvent(self, event):
-        self.setStyleSheet("")
+        self.setProperty("active", False)
+        self.style().unpolish(self)
+        self.style().polish(self)
 
     def dropEvent(self, event):
-        self.setStyleSheet("")
+        self.setProperty("active", False)
+        self.style().unpolish(self)
+        self.style().polish(self)
         files = [u.toLocalFile() for u in event.mimeData().urls()]
         if files:
             excel_files = [f for f in files if f.endswith(('.xlsx', '.xls'))]
@@ -59,7 +67,7 @@ class UploadPanel(QWidget):
         self.layout.setSpacing(15)
         
         title_lbl = QLabel("📂 Passo 1: Seleção de Fontes de Dados")
-        title_lbl.setStyleSheet("font-size: 16px; font-weight: bold;")
+        title_lbl.setObjectName("TitleLabel")
         self.layout.addWidget(title_lbl)
         
         zones_layout = QHBoxLayout()
@@ -107,12 +115,16 @@ class UploadPanel(QWidget):
                     self.path_src = path
                     self.cols_src = list(df.columns)
                     self.drop_src.lbl_msg.setText(f"✅ ORIGEM CARREGADA:\n{short_name}\n({len(df)} linhas)")
-                    self.drop_src.lbl_msg.setStyleSheet("color: #198754; font-weight: bold; border: none;")
+                    self.drop_src.lbl_msg.setProperty("class", "success-text")
+                    self.drop_src.lbl_msg.style().unpolish(self.drop_src.lbl_msg)
+                    self.drop_src.lbl_msg.style().polish(self.drop_src.lbl_msg)
                 else:
                     self.path_tgt = path
                     self.cols_tgt = list(df.columns)
                     self.drop_tgt.lbl_msg.setText(f"✅ DESTINO CARREGADO:\n{short_name}\n({len(df)} linhas)")
-                    self.drop_tgt.lbl_msg.setStyleSheet("color: #198754; font-weight: bold; border: none;")
+                    self.drop_tgt.lbl_msg.setProperty("class", "success-text")
+                    self.drop_tgt.lbl_msg.style().unpolish(self.drop_tgt.lbl_msg)
+                    self.drop_tgt.lbl_msg.style().polish(self.drop_tgt.lbl_msg)
             else:
                 raise Exception("Falha na leitura do buffer Excel.")
                 

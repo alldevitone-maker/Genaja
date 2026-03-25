@@ -12,7 +12,7 @@ class KeysPanel(QWidget):
         self.layout.setSpacing(15)
         
         title_lbl = QLabel("🧠 Passo 2: Configuração de Chaves & Blindagem")
-        title_lbl.setStyleSheet("font-size: 16px; font-weight: bold;")
+        title_lbl.setObjectName("TitleLabel")
         self.layout.addWidget(title_lbl)
         
         self.container = QFrame()
@@ -59,8 +59,7 @@ class KeysPanel(QWidget):
         footer = QHBoxLayout()
         self.btn_back = QPushButton("⬅️ Voltar")
         self.btn_validate = QPushButton("🔒 Validar e Prosseguir")
-        self.btn_validate.setObjectName("SuccessButton") # Ver se o QSS suporta IDs
-        self.btn_validate.setStyleSheet("background-color: #198754; color: white;") # Hardcode fallback
+        self.btn_validate.setProperty("class", "success-btn")
         
         footer.addWidget(self.btn_back)
         footer.addStretch()

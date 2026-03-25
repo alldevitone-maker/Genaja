@@ -4,6 +4,16 @@ import re
 import subprocess
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FREEZE_FILE = os.path.join(BASE_DIR, "FREEZE.lock")
+
+def check_freeze_status():
+    if os.path.exists(FREEZE_FILE):
+        print("=" * 50)
+        print("❄️  ATENÇÃO: Projeto em modo FREEZE")
+        with open(FREEZE_FILE, 'r', encoding='utf-8') as f:
+            print(f.read().strip())
+        print("=" * 50 + "\n")
+
 
 def get_version_info():
     version_vars = {}
@@ -69,7 +79,9 @@ def run_tests():
         return [f"Smoke test failed: {e.stdout}\n{e.stderr}"]
 
 def main():
+    check_freeze_status()
     all_errors = []
+
     all_errors.extend(validate_version_sync())
     all_errors.extend(check_naming_conventions())
     all_errors.extend(check_junk_files())

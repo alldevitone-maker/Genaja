@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QFrame, QVBoxLayout, QHBoxLayout, QLabel, QAbstractButton
+from PySide6.QtWidgets import QWidget, QFrame, QVBoxLayout, QHBoxLayout, QLabel, QAbstractButton, QPushButton
 from PySide6.QtCore import Qt, QRect, QPropertyAnimation, Property, Signal, QEasingCurve
 from PySide6.QtGui import QPainter, QColor, QBrush, QPen
 
@@ -24,6 +24,10 @@ class ModernSwitch(QAbstractButton):
         self._track_color_off = QColor(self.theme_service.get_color("border_col"))
         self._track_color_on = QColor(self.theme_service.get_color("action_bg"))
         self._thumb_color = QColor(self.theme_service.get_color("fg_col"))
+        self.update()
+
+    def refresh_style(self):
+        self._update_colors()
 
     @Property(float)
     def offset(self):
@@ -73,10 +77,11 @@ class SettingCard(QFrame):
         text_layout.setSpacing(2)
         
         self.label_title = QLabel(title)
-        self.label_title.setStyleSheet("font-weight: bold; font-size: 14px;")
+        self.label_title.setStyleSheet("font-weight: bold; font-size: 14px; background: transparent;")
         
         self.label_desc = QLabel(subtitle)
-        self.label_desc.setStyleSheet("color: #A1A1AA; font-size: 11px;")
+        self.label_desc.setProperty("class", "secondary-text")
+        self.label_desc.setStyleSheet("font-size: 11px; background: transparent;")
         self.label_desc.setWordWrap(True)
         
         text_layout.addWidget(self.label_title)

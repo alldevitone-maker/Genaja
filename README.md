@@ -3,6 +3,44 @@
 > **Versão Atual:** `v0.5.9` (Governance & History Synchronization)
 > **Status do Projeto:** Ativo - Auditoria e Sincronismo de Governança 🛡️
 
+---
+
+## 🚀 O que é o Genaja Pro?
+
+**Genaja Pro** é uma plataforma desktop premium para analistas corporativos que precisam **reconciliar, mapear e sincronizar dados entre planilhas** — de forma inteligente, sem escrever código.
+
+Seu motor **JGDA Engine** entrega:
+- 🔑 **Detecção inteligente de chaves primárias** (ID, SKU, CPF, CNPJ, EAN, Matrícula…)
+- 🔗 **Mapeamento semântico de colunas** via heurística de similaridade (AI simples)
+- 🛡️ **Safe-Merge com Shielding** — evita duplicatas, fantasmas e cruzamentos errôneos
+- 📦 **Exportação multi-formato** — Excel, CSV, JSON, SQL (modo Big Data O(1))
+- 🎨 **UI frameless 2026 High-Fidelity** — Pure PySide6, Custom TitleBar, Live Theme Studio
+
+---
+
+## 🛡️ Governança & Pipeline de Release
+
+Todo commit e release passam por um pipeline automatizado de validação:
+
+```bash
+# Validação rápida (antes de qualquer commit)
+python scripts/automate.py --quick
+
+# Release completo (interativo: versão + changelog + backup + push)
+python scripts/automate.py --release --push
+```
+
+O pipeline executa automaticamente:
+1. ✅ **Sincronia de versão** — `version.py` ↔ `README` ↔ `CHANGELOG` em paridade PT/EN
+2. ✅ **Smoke Test** — valida inicialização dos widgets críticos
+3. ✅ **Auditoria de arquivos** — naming conventions + detecção de lixo
+4. ✅ **Backup automático** — snapshot ZIP versionado em `backups/`
+5. ✅ **Git commit & push** — executado apenas após validação 100% verde
+
+> ⚠️ **Pre-commit hook ativo**: commits são bloqueados automaticamente se a validação falhar.
+
+---
+
 ## 📖 Histórico de Atualizações (Audit Trail 2026)
 
 **v0.5.9 (Governance & History Synchronization)**

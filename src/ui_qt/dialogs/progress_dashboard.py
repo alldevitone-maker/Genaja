@@ -8,14 +8,29 @@ class ProgressDashboard(QDialog):
         self.services = services
         self.theme = services["theme"].current_theme
         
-        self.setWindowTitle("📊 Genaja v0.5.0 Monitor - [Sincronização em Curso]")
-        self.resize(600, 450)
-        self.setModal(True)
+        self.setWindowTitle("Sincronizacao em Curso - Genaja 2026")
+        self.resize(650, 480)
+        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        
+        self.container = QFrame(self)
+        self.container.setObjectName("DashboardContainer")
+        self.container.setStyleSheet(f"""
+            QFrame#DashboardContainer {{
+                background-color: {self.theme['bg_col']};
+                border: 2px solid {self.theme['action_bg']};
+                border-radius: 16px;
+            }}
+        """)
+        
+        main_layout = QVBoxLayout(self)
+        main_layout.setContentsMargins(10, 10, 10, 10)
+        main_layout.addWidget(self.container)
         
         self._setup_ui()
 
     def _setup_ui(self):
-        self.layout = QVBoxLayout(self)
+        self.layout = QVBoxLayout(self.container)
         self.layout.setContentsMargins(20, 20, 20, 20)
         self.layout.setSpacing(15)
         

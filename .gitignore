@@ -28,3 +28,6 @@ ROADMAP.md
 
 # Supervisor workflows (Antigravity IA)
 .agent/
+
+# Freeze protocol (local only - nunca subir ao GitHub)
+FREEZE.lock

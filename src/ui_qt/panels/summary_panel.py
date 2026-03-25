@@ -12,7 +12,7 @@ class SummaryPanel(QWidget):
         self.layout.setSpacing(15)
         
         title_lbl = QLabel("🔥 Passo 4: Resumo Final & Disparo do Motor")
-        title_lbl.setStyleSheet("font-size: 16px; font-weight: bold;")
+        title_lbl.setObjectName("TitleLabel")
         self.layout.addWidget(title_lbl)
         
         # Summary Area
@@ -47,7 +47,7 @@ class SummaryPanel(QWidget):
         self.btn_back = QPushButton("⬅️ Voltar ao Mapeamento")
         self.btn_run = QPushButton("⚡ INICIAR SINCRONIZAÇÃO CORPORATIVA ⚡")
         self.btn_run.setMinimumHeight(60)
-        self.btn_run.setStyleSheet("background-color: #198754; color: white; font-size: 14px; font-weight: bold;")
+        self.btn_run.setProperty("class", "success-btn")
         
         footer.addWidget(self.btn_back)
         footer.addStretch()

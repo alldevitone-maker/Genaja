@@ -6,6 +6,28 @@ import re
 import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FREEZE_FILE = os.path.join(BASE_DIR, "FREEZE.lock")
+
+def is_frozen():
+    return os.path.exists(FREEZE_FILE)
+
+def set_freeze(reason=""):
+    with open(FREEZE_FILE, 'w', encoding='utf-8') as f:
+        f.write(f"FREEZE ATIVO\nMotivo: {reason}\nData: {datetime.date.today()}\n")
+        f.write("\nPara retomar o desenvolvimento, execute: python scripts/automate.py --unfreeze\n")
+    print(f"\n❄️  PROJETO CONGELADO em v{get_version_info()[0]}")
+    print(f"   Motivo: {reason or 'Não informado'}")
+    print(f"   Arquivo: {FREEZE_FILE}")
+    print(f"   Release e Push estão BLOQUEADOS até o unfreeze.")
+    print(f"   'automate.py --quick' continua funcionando.\n")
+
+def remove_freeze():
+    if os.path.exists(FREEZE_FILE):
+        os.remove(FREEZE_FILE)
+        print(f"\n✅ Projeto DESCONGELADO! Pipeline de release reativado.")
+        print(f"   Você pode rodar: python scripts/automate.py --release --push\n")
+    else:
+        print("\nNenhum FREEZE.lock encontrado. O projeto já está ativo.\n")
 
 def run_script(script_path, args=None):
     cmd = [sys.executable, script_path]
@@ -77,13 +99,57 @@ def _interactive_release():
         with open(cl_path, 'w', encoding='utf-8') as f: f.write(content)
         print(f"  -> Atualizado: {os.path.basename(cl_path)}")
 
+def _run_git_push(version, title):
+    """Executa git add, commit e push após release validado."""
+    commit_msg = f"Release v{version} - {title}"
+    print(f"\n--- Git Push Automatizado ---")
+    print(f"Mensagem de commit: '{commit_msg}'")
+    
+    commands = [
+        ["git", "add", "."],
+        ["git", "commit", "-m", commit_msg],
+        ["git", "push"],
+    ]
+    
+    for cmd in commands:
+        print(f"  -> Executando: {' '.join(cmd)}")
+        result = subprocess.run(cmd, capture_output=False)
+        if result.returncode != 0:
+            print(f"ERRO ao executar: {' '.join(cmd)}")
+            return False
+    
+    print(f"\n✅ Push concluído com sucesso! v{version} no ar.")
+    return True
+
+
 def main():
     parser = argparse.ArgumentParser(description="Genaja Automation Orchestrator")
+    parser.add_argument("--freeze", action="store_true", help="Congela o projeto: bloqueia release e push")
+    parser.add_argument("--unfreeze", action="store_true", help="Descongela o projeto e reativa o pipeline")
     parser.add_argument("--release", action="store_true", help="Run full release flow (validate + backup + git)")
     parser.add_argument("--quick", action="store_true", help="Run quick validation only")
-    parser.add_argument("--fix", action="store_true", help="Attempt to fix common sync issues (Placeholder)")
+    parser.add_argument("--fix", action="store_true", help="Attempt to fix common sync issues")
+    parser.add_argument("--push", action="store_true", help="After release, auto git add + commit + push")
     
     args = parser.parse_args()
+
+    # --- FREEZE / UNFREEZE ---
+    if args.freeze:
+        reason = input("Motivo do congelamento (opcional, Enter para pular): ").strip()
+        set_freeze(reason)
+        sys.exit(0)
+    
+    if args.unfreeze:
+        remove_freeze()
+        sys.exit(0)
+
+    # --- BLOQUEIO SE FROZEN ---
+    if is_frozen() and (args.release or args.push):
+        print("\n❌ OPERAÇÃO BLOQUEADA: Projeto está CONGELADO.")
+        with open(FREEZE_FILE, 'r', encoding='utf-8') as f:
+            print(f.read())
+        sys.exit(1)
+
     
     validate_path = os.path.join(BASE_DIR, 'scripts', 'validate.py')
     backup_path = os.path.join(BASE_DIR, 'scripts', 'make_backup.py')
@@ -108,12 +174,19 @@ def main():
         if not run_script(backup_path):
             print("Backup failed. Aborting.")
             sys.exit(1)
-            
-        print("\n--- Git Operations ---")
-        # Logic for git push could be added here or kept manual as per user preference
-        # For now, we just pass the validation and backup phases.
-        print("Validation and Backup completed successfully.")
-        print("You can now safely run: git add . && git commit -m 'Release vX.Y.Z' && git push")
+        
+        if args.push:
+            version, title = get_version_info()
+            if not _run_git_push(version, title):
+                print("\nGit push falhou. Verifique o estado do repositório.")
+                sys.exit(1)
+        else:
+            print("\n--- Git Operations ---")
+            version, title = get_version_info()
+            print("Validation and Backup completed successfully.")
+            print(f"You can now safely run: git add . && git commit -m 'Release v{version} - {title}' && git push")
+            print("  (Ou use --push para automatizar esse passo na próxima vez)")
+        
         sys.exit(0)
 
 if __name__ == "__main__":

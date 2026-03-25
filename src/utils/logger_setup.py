@@ -1,5 +1,6 @@
 import logging
 import os
+import sys
 
 def setup_logger():
     """Inicializa o sistema de logs do Genaja"""
@@ -10,13 +11,16 @@ def setup_logger():
     log_file = os.path.join(log_dir, 'genaja.log')
     
     # Configure logging to both file and console
+    stream_handler = logging.StreamHandler(sys.stdout)
+    # On Windows, try to force utf-8 if possible, otherwise rely on default
+    
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s [%(levelname)s] %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S',
         handlers=[
             logging.FileHandler(log_file, encoding='utf-8'),
-            logging.StreamHandler()
+            stream_handler
         ]
     )
     logging.info("Logging system initialized.")
