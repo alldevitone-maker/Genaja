@@ -307,9 +307,13 @@ class ThemeService:
                 border: 2px solid {t['action_bg']};
             }}
             
-            QScrollArea {{ 
+            QScrollArea, QScrollArea > QWidget > QWidget {{ 
                 background-color: transparent;
                 border: none; 
+            }}
+            
+            QScrollArea QWidget#qt_scrollarea_viewport {{
+                background-color: transparent;
             }}
             
             /* CUSTOM SCROLLBAR HARMONY */

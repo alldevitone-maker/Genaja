@@ -98,6 +98,7 @@ class ThemeEditor(QDialog):
         
         # 2. CONTENT AREA
         self.content_area = QFrame()
+        self.content_area.setObjectName("EditorContent")
         content_layout = QVBoxLayout(self.content_area)
         content_layout.setContentsMargins(30, 30, 30, 20)
         
@@ -196,8 +197,7 @@ class ThemeEditor(QDialog):
         self.theme_service.apply_preset(key)
         self.preview.update_style()
         self.themeUpdated.emit()
-        self.close()
-        ThemeEditor(self.theme_service, self.parent()).show()
+        # Não precisa mais fechar e abrir, o Universal Flush cuida de tudo!
 
     def save_and_exit(self):
         self.theme_service.save_theme()

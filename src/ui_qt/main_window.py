@@ -247,8 +247,9 @@ class MainWindow(QMainWindow):
         # 4. Sincronizar Widgets Reativos (No-op no v0.5.9 Phase 6, mas mantido p/ estrutura)
         self.title_bar.update_style(theme)
         
-        # 5. RECURSIVE STYLE REFRESH (Deep Purge v0.5.9 Phase 5)
-        for widget in self.findChildren(QWidget):
+        # 5. UNIVERSAL STYLE REFRESH (Deep Purge v0.5.9 Phase 6)
+        # Agora buscando em TODOS os widgets da aplicação, não apenas filhos da MainWindow
+        for widget in QApplication.allWidgets():
             # Refresh Custom Widgets
             if hasattr(widget, "refresh_style"):
                 widget.refresh_style()
@@ -256,6 +257,7 @@ class MainWindow(QMainWindow):
             # Repolish QSS classes
             widget.style().unpolish(widget)
             widget.style().polish(widget)
+            widget.update()
             
         # 6. Forçar repintura total
         self.update()
