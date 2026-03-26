@@ -2,7 +2,7 @@
 
 [🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
 
-> **Versão Atual:** `v0.6.1` (Alfa v2)
+> **Versão Atual:** `v0.6.2` (Cleanup)
 > **Status do Projeto:** Ativo - Auditoria e Sincronismo de Governança 🛡️
 
 ---

@@ -5,7 +5,7 @@ Este documento serve como guia de orientação rápida para desenvolvedores e ag
 ## 🏁 Estado da Arte (v0.6.1)
 - **Framework**: Flet (Pure Python Flutter).
 - **Paradigma**: Arquitetura desacoplada (Core Services vs. UI).
-- **UI Style**: 2026 High-Fidelity (Frameless, Custom Titlebar, QSS Dynamic).
+- **UI Style**: 2026 High-Fidelity (Frameless, Custom Titlebar, Tokens Dinâmicos).
 
 ## 📂 Estrutura de Diretórios
 - `src/main.py`: Ponto de entrada (utiliza `AppBootstrap`).
@@ -13,11 +13,11 @@ Este documento serve como guia de orientação rápida para desenvolvedores e ag
 - `src/ui_flet/`: Camada visual Flet moderna e reativa.
 - `docs/`: Documentação técnica e manuais em paridade (PT / EN).
 - `scripts/`: Automação de ciclo de vida (`automate.py`, `make_backup.py`).
-- `tests/`: Infraestrutura de QA (`smoke_test.py`).
+- `tests/`: Infraestrutura de QA (`test_smoke_flet.py`).
 
 ## ⚙️ Motores Críticos
 1. **Config Service v2.0**: Usa `DEFAULTS` em `config_service.py` como schema para `data/genaja_config.json`.
-2. **Theme Service**: Centraliza a geração de QSS. Novos widgets DEVEM herdar cores dos tokens disponíveis nos Presets.
+2. **Theme Service**: Centraliza a geração de Tokens Dinâmicos. Novos widgets DEVEM herdar cores dos tokens disponíveis nos Presets.
 
 ## 🛡️ Governança (Must Know)
 - **Versionamento**: Sempre sincronizado entre `version.py`, `README` e `CHANGELOG`.

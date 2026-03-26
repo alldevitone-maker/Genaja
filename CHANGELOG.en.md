@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.2] - 2026-03-26 (Cleanup)
+- **Legacy Purge**: Permanent removal of the `src/legacy/ui_qt/` directory.
+- **Theme Optimization**: Purged `get_qss()` from `ThemeService`.
+- **Reorganization**: Created `/scripts/tools/` for development utilities.
+- **QA Archive**: Archiving obsolete parity tests in `/tests/archive/`.
+- **Documentation**: Engineering Baseline updated for Flet Stateless stack.
+
 ## [0.6.1] - 2026-03-26 (Alfa v2)
 - **Architectural Freeze**: Final stabilization of the dynamic theme bridge.
 - **Release Audit**: Cleanup of development residuals and private documents.

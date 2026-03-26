@@ -1,4 +1,9 @@
-# Changelog
+## [0.6.2] - 26/03/2026 (Cleanup)
+- **Purga de Legado**: Remoção definitiva do diretório `src/legacy/ui_qt/`.
+- **Theme Optimization**: Purgado `get_qss()` do `ThemeService`.
+- **Reorganização**: Criação de `/scripts/tools/` para utilitários de desenvolvimento.
+- **QA Archive**: Arquivamento de testes de paridade obsoletos em `/tests/archive/`.
+- **Documentação**: Baseline de Engenharia atualizada para stack Flet Stateless.
 
 ## [0.6.1] - 26/03/2026 (Alfa v2)
 - **Congelamento Arquitetural**: Estabilização final da ponte dinâmica de temas.

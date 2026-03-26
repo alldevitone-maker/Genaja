@@ -2,7 +2,7 @@
 
 [🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
 
-> **Current Version:** `v0.6.1` (Alfa v2)
+> **Current Version:** `v0.6.2` (Cleanup)
 > **Project Status:** Active - Governance Audit & History Sync 🛡️
 
 ---
