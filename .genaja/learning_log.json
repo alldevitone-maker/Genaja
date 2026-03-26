@@ -1,0 +1,29 @@
+{
+  "log_version": "1.0",
+  "executions": [
+    {
+      "source_columns": [
+        "ID",
+        "Produto",
+        "Preco"
+      ],
+      "target_columns": [
+        "CodID",
+        "Descricao",
+        "VlrUnit"
+      ],
+      "source_signature": "32ca0d1a0f8242530d98817d73656683",
+      "target_signature": "92e1a2c97ba7194144e0aba0c9d8f33f",
+      "selected_key_src": "ID",
+      "selected_key_tgt": "CodID",
+      "mapping_applied": {
+        "ID": "CodID",
+        "Produto": "Descricao",
+        "Preco": "VlrUnit"
+      },
+      "row_count": 100,
+      "usage_count": 10,
+      "timestamp": "2026-03-26T17:17:34.987651"
+    }
+  ]
+}

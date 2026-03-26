@@ -39,6 +39,7 @@ class WizardState:
         self.suggested_key_tgt = None
         self.suggested_mapping = {}
         self.validation_summary = {}
+        self.suggested_source = "none" # "history", "fuzzy", "exact"
 
     @property
     def ready_for_sync(self):

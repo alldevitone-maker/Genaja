@@ -1,2 +1,2 @@
-__version__ = "0.6.2"
-__title__ = "Cleanup"
+__version__ = "0.6.4"
+__title__ = "Evolution Memory"

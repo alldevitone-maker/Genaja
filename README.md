@@ -1,9 +1,9 @@
-# Genaja Pro - Inteligência de Sincronização Unificada
+# Genaja Suite — Inteligência Analítica e Sincronização de Dados
 
 [🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
 
-> **Versão Atual:** `v0.6.2` (Cleanup)
-> **Status do Projeto:** Ativo - Auditoria e Sincronismo de Governança 🛡️
+> **Versão Atual:** `v0.6.4` (Evolution Memory)
+> **Status do Projeto:** Estável - Memória Evolutiva & IA Local 🧠
 
 ---
 
@@ -12,11 +12,12 @@
 **Genaja Pro** é uma plataforma desktop premium para analistas corporativos que precisam **reconciliar, mapear e sincronizar dados entre planilhas** — de forma inteligente, sem escrever código.
 
 Seu motor **JGDA Engine** entrega:
-- 🔑 **Detecção inteligente de chaves primárias** (ID, SKU, CPF, CNPJ, EAN, Matrícula…)
-- 🔗 **Mapeamento semântico de colunas** via heurística de similaridade (AI simples)
-- 🛡️ **Safe-Merge com Shielding** — evita duplicatas, fantasmas e cruzamentos errôneos
-- 📦 **Exportação multi-formato** — Excel, CSV, JSON, SQL (modo Big Data O(1))
-- 🎨 **UI frameless 2026 High-Fidelity** — Flet (Pure Python Flutter), Custom TitleBar, Live Theme Studio
+- 🚀 **Memória Evolutiva Local** — Reconhecimento de contextos e mapeamentos históricos (Zero Cloud/Offline)
+- 🔑 **Detecção de Chaves Primárias** — Identificação automática via entropia (ID, SKU, CPF, CNPJ...)
+- 🔗 **Mapeamento via Fuzzy Logic** — Heurísticas de similaridade editorial Levenshtein (AI Estrutural)
+- 🛡️ **Safe-Merge com Shielding** — Evita duplicatas, fantasmas e cruzamentos errôneos
+- 📦 **Exportação Multi-Formato Native** — Excel, CSV, JSON, SQL (Motor High-Performance O(1))
+- 🎨 **UI Platinum 2026** — Interface Frameless, Custom TitleBar e Live Theme Studio
 
 ---
 
@@ -47,12 +48,21 @@ O pipeline executa automaticamente:
 
 <div id="latest-release">
 
+### **v0.6.4 (Evolution Memory Release)**
+**O sistema que aprende.** Introdução da Camada de Memória Evolutiva que automatiza o mapeamento baseado no histórico de uso real do analista.
+- 🧠 **Learning Store**: Registro seguro e atômico de metadados estruturais em `learning_log.json`.
+- 🏷️ **Signature Matching**: Identificação instantânea de colunas recorrentes via assinaturas de contexto (MD5).
+- 📈 **Usage Tracking**: Priorização inteligente de sugestões baseada na frequência de execuções anteriores.
+
+### **v0.6.3 (Data Intelligence Layer)**
+**A inteligência local.** Implementação dos motores de auditoria e mapeamento avançado.
+- 🔍 **Schema Mapping Fuzzy**: Motor de similaridade Levenshtein para sugerir colunas com nomes aproximados.
+- 🤖 **Data Assistance**: Novos diálogos de interceptação e compatibilidade assistida (`CompatibilityDialog`).
+- 🛡️ **Hardening v0.6.x**: Correções de estabilidade de UI e segurança de overlay no Flet.
+
+---
+
 ### **v0.6.2 (Cleanup)**
-**A Purga Final.** Esta versão foca na remoção total de resíduos técnicos da transição Qt-Flet, finalizando a otimização do `ThemeService` e reorganizando o ferramental de automação.
-- 🧹 **Remoção de Legado**: Exclusão física definitiva do diretório `src/legacy/ui_qt/` e purga de componentes Qt.
-- ⚡ **Otimização de Temas**: Remoção do método `get_qss()`, tornando o serviço 100% voltado para tokens dinâmicos Flet.
-- 📂 **Reorganização de Scripts**: Criação da pasta `scripts/tools/` para separar utilitários do pipeline de release.
-- 📦 **QA Archive**: Arquivamento de testes de paridade e fumaça Qt em `tests/archive/` para governança histórica.
 
 ---
 

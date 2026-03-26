@@ -1,6 +1,9 @@
 import flet as ft
 from ui_flet.theme import PlatinumTheme
 from services.logger_service import LoggerService
+from migration.schema_mapper import SchemaMapper
+from core.learning.suggestion_engine import HistoricalSuggestionEngine
+from ui_flet.dialogs.compatibility_dialog import CompatibilityDialog
 
 class Step3View(ft.Column):
     """
@@ -12,6 +15,8 @@ class Step3View(ft.Column):
         self.state = state
         self.on_next = on_next
         self.on_back = on_back
+        self.mapper = HistoricalSuggestionEngine(os.getcwd())
+        self.mapping_pairs = {} # {src_col: tgt_col}
         
         self.list_src = ft.ListView(expand=True, spacing=5, padding=10)
         self.list_tgt = ft.ListView(expand=True, spacing=5, padding=10)
@@ -129,6 +134,7 @@ class Step3View(ft.Column):
                     border_radius=8,
                     border=ft.border.all(1, PlatinumTheme.BORDER_DARK()),
                     on_click=lambda _, col=c: self._toggle_src_selection(col),
+                    on_long_press=lambda _, col=c: self._open_assist(col),
                     content=ft.Text(c, size=13, color=PlatinumTheme.TEXT_PRIMARY(), weight=ft.FontWeight.W_500)
                 )
             )
@@ -192,6 +198,7 @@ class Step3View(ft.Column):
                         padding=8, border_radius=8,
                         border=ft.border.all(1, PlatinumTheme.BORDER_DARK()),
                         on_click=lambda _, col=c: self._toggle_src_selection(col),
+                        on_long_press=lambda _, col=c: self._open_assist(col),
                         content=ft.Text(c, size=13, color=PlatinumTheme.TEXT_PRIMARY(), weight=ft.FontWeight.W_500)
                     )
                 )
@@ -203,11 +210,52 @@ class Step3View(ft.Column):
                     padding=8, border_radius=8,
                     border=ft.border.all(1, PlatinumTheme.BORDER_DARK()),
                     on_click=lambda _, col=c: self._toggle_tgt_selection(col),
-                    content=ft.Text(c, size=13, color=PlatinumTheme.TEXT_PRIMARY(), weight=ft.FontWeight.W_500)
+                    content=ft.Row([
+                        ft.Text(c, size=13, color=PlatinumTheme.TEXT_PRIMARY(), weight=ft.FontWeight.W_500, expand=True),
+                        ft.Text(f"→ {self.mapping_pairs.get(c, c)}", size=11, color=PlatinumTheme.PRIMARY(), italic=True)
+                    ])
                 )
             )
         
         self.update()
+
+    def _open_assist(self, col):
+        """Inicia assistência inteligente para a coluna selecionada."""
+        tgt_cols = self.cols_src # Na v3 trabalhamos com as colunas de destino disponíveis
+        if self.state.df_tgt is not None:
+            tgt_cols = list(self.state.df_tgt.columns)
+
+        smart = self.mapper.get_smart_suggestions([col], tgt_cols)
+        
+        if col in smart["mapping"]:
+            target = smart["mapping"][col]
+            def apply_suggested():
+                self.mapping_pairs[col] = target
+                if col not in self.cols_in_tgt:
+                    self.cols_in_tgt.append(col)
+                self._rebuild_lists()
+            
+            dialog = CompatibilityDialog(
+                col, 
+                target, 
+                smart["confidence"], 
+                f"Sugerido via {smart['source']}",
+                on_apply=apply_suggested
+            )
+            
+            # Gerenciamento de Overlay (Hardening Patch 2)
+            to_remove = [ctrl for ctrl in self.page.overlay if isinstance(ctrl, CompatibilityDialog)]
+            for ctrl in to_remove:
+                self.page.overlay.remove(ctrl)
+                
+            self.page.overlay.append(dialog)
+            dialog.open = True
+            self.page.update()
+        else:
+            sb = ft.SnackBar(ft.Text(f"Nenhuma sugestão óbvia para '{col}'"), bgcolor=PlatinumTheme.WARNING())
+            self.page.overlay.append(sb)
+            sb.open = True
+            self.page.update()
 
     def _finish_mapping(self, e):
         if not self.cols_in_tgt:
@@ -218,6 +266,13 @@ class Step3View(ft.Column):
             return
         
         # Build mapping: {col_src: col_src} (same name since we're transferring from origin)
-        self.state.mapping = {c: c for c in self.cols_in_tgt}
+        
+        # Build mapping: {col_src: mapped_tgt}
+        self.state.mapping = self.mapping_pairs.copy()
+        # Ensure columns without explicit mapping stay mapped to themselves (Identity)
+        for c in self.cols_in_tgt:
+            if c not in self.state.mapping:
+                self.state.mapping[c] = c
+                
         self.state.null_filter_cols = self.cols_in_tgt if self.state.remove_nulls else []
         self.on_next()

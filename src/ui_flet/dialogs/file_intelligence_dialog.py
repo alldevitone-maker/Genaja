@@ -16,11 +16,17 @@ class FileIntelligenceDialog(ft.AlertDialog):
         
         src_info = f"{len(self.state.df_src.columns)} colunas, {len(self.state.df_src)} linhas" if self.state.df_src is not None else "N/A"
         tgt_info = f"{len(self.state.df_tgt.columns)} colunas, {len(self.state.df_tgt)} linhas" if self.state.df_tgt is not None else "N/A"
+        
+        # Cores baseadas no tema
+        primary_color = "#2196F3"
+        success_color = "#4CAF50"
 
         # Sugestões (v0.6.3 Patch 1 Early Logic)
         common_cols = self.state.suggested_mapping.keys()
-        common_text = f"Encontradas {len(common_cols)} correspondências diretas." if common_cols else "Nenhum mapeamento automático óbvio."
+        common_text = f"Encontradas {len(common_cols)} correspondências." if common_cols else "Nenhum mapeamento automático óbvio."
         key_text = f"Chave Sugerida: {self.state.suggested_key_src} -> {self.state.suggested_key_tgt}" if self.state.suggested_key_src else "Nenhuma chave automática sugerida."
+        
+        is_history = self.state.suggested_source == "history"
 
         super().__init__(
             title=ft.Text("Inteligência de Dados Genaja", weight=ft.FontWeight.BOLD, size=20),
@@ -49,6 +55,8 @@ class FileIntelligenceDialog(ft.AlertDialog):
                         border_radius=8,
                         content=ft.Column([
                             ft.Row([ft.Icon(ft.Icons.LIGHTBULB_OUTLINED, size=18, color=ft.Colors.AMBER_400), ft.Text("Recomendações:", weight=ft.FontWeight.BOLD)]),
+                            ft.Text("🚀 Genaja encontrou sugestões baseadas em execuções anteriores." if is_history else "Sugestões de I.A. Local para este contexto:", 
+                                    size=12, color=ft.Colors.AMBER_300, italic=is_history),
                             ft.Text(common_text, size=13),
                             ft.Text(key_text, size=13),
                         ], spacing=5)

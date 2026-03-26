@@ -1,4 +1,4 @@
-# 🛠️ Genaja Engineering Baseline: v0.6.1 Alfa v2
+# 🛠️ Genaja Engineering Baseline: v0.6.4
 
 Este documento serve como guia de orientação rápida para desenvolvedores e agentes de I.A que atuarão no projeto.
 
@@ -10,6 +10,7 @@ Este documento serve como guia de orientação rápida para desenvolvedores e ag
 ## 📂 Estrutura de Diretórios
 - `src/main.py`: Ponto de entrada (utiliza `AppBootstrap`).
 - `src/core/services/`: Motores de inteligência (ETL, Mapping, Config).
+- `src/core/learning/`: Motores de aprendizado (Store, Logger, Suggestion).
 - `src/ui_flet/`: Camada visual Flet moderna e reativa.
 - `docs/`: Documentação técnica e manuais em paridade (PT / EN).
 - `scripts/`: Automação de ciclo de vida (`automate.py`, `make_backup.py`).
@@ -25,4 +26,4 @@ Este documento serve como guia de orientação rápida para desenvolvedores e ag
 - **Backup**: Snapshots ZIP automáticos no diretório `backups/`.
 
 ---
-*Assinado: Genaja Core Team (Audit Baseline v0.6.1)*
+*Assinado: Genaja Core Team (Audit Baseline v0.6.4)*

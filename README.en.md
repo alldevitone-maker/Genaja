@@ -1,9 +1,9 @@
-# Genaja Pro - Unified Synchronization Intelligence
+# Genaja Suite — Analytical Intelligence & Data Synchronization
 
 [🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
 
-> **Current Version:** `v0.6.2` (Cleanup)
-> **Project Status:** Active - Governance Audit & History Sync 🛡️
+> **Current Version:** `v0.6.4` (Evolution Memory)
+> **Project Status:** Stable - Evolution Memory & Local AI 🧠
 
 ---
 
@@ -12,11 +12,12 @@
 **Genaja Pro** is a premium desktop platform for corporate data analysts who need to **reconcile, map and synchronize data across spreadsheets** — intelligently, without writing code.
 
 Its **JGDA Engine** delivers:
-- 🔑 **Intelligent primary key detection** (ID, SKU, CPF, CNPJ, EAN, Employee ID…)
-- 🔗 **Semantic column mapping** via similarity heuristics (Simple AI)
-- 🛡️ **Safe-Merge with Shielding** — prevents duplicates, ghost records and erroneous cross-joins
-- 📦 **Multi-format export** — Excel, CSV, JSON, SQL (Big Data O(1) mode)
-- 🎨 **2026 High-Fidelity frameless UI** — Flet (Pure Python Flutter), Custom TitleBar, Live Theme Studio
+- 🚀 **Local Evolution Memory** — Context recognition and historical mappings (Zero Cloud/Offline)
+- 🔑 **Primary Key Detection** — Automatic identification via entropy (ID, SKU, TAX ID, EAN...)
+- 🔗 **Fuzzy Logic Mapping** — Editorial Levenshtein similarity heuristics (Structural AI)
+- 🛡️ **Safe-Merge with Shielding** — Prevents duplicates, ghost records and erroneous cross-joins
+- 📦 **Native Multi-Format Export** — Excel, CSV, JSON, SQL (High-Performance O(1) Engine)
+- 🎨 **UI Platinum 2026** — Frameless Interface, Custom TitleBar, and Live Theme Studio
 
 ---
 
@@ -47,12 +48,21 @@ The pipeline automatically runs:
 
 <div id="latest-release">
 
+### **v0.6.4 (Evolution Memory Release)**
+**The system that learns.** Introduction of the Evolution Memory Layer that automates mapping based on the analyst's real historical usage.
+- 🧠 **Learning Store**: Secure, atomic storage of structural metadata in `learning_log.json`.
+- 🏷️ **Signature Matching**: Instant identification of recurring columns via context signatures (MD5).
+- 📈 **Usage Tracking**: Intelligent suggestion prioritization based on previous execution frequency.
+
+### **v0.6.3 (Data Intelligence Layer)**
+**Local intelligence.** Implementation of advanced mapping and auditing engines.
+- 🔍 **Fuzzy Schema Mapping**: Levenshtein similarity engine for suggesting approximate column names.
+- 🤖 **Data Assistance**: New interception and assisted compatibility dialogs (`CompatibilityDialog`).
+- 🛡️ **Hardening v0.6.x**: UI stability fixes and Flet overlay secure management.
+
+---
+
 ### **v0.6.2 (Cleanup)**
-**The Final Purge.** This version focuses on the total removal of technical residuals from the Qt-Flet transition, finalizing the `ThemeService` optimization and reorganizing the automation tooling.
-- 🧹 **Legacy Removal**: Definitive physical exclusion of the `src/legacy/ui_qt/` directory and purge of Qt components.
-- ⚡ **Theme Optimization**: Removal of the `get_qss()` method, making the service 100% focused on Flet dynamic tokens.
-- 📂 **Scripts Reorganization**: Creation of the `scripts/tools/` folder to separate utilities from the release pipeline.
-- 📦 **QA Archive**: Archiving of parity and Qt smoke tests in `tests/archive/` for historical governance.
 
 ---
 

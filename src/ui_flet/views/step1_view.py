@@ -8,6 +8,7 @@ from core.engines.suggestion_engine import SuggestionEngine
 from services.logger_service import LoggerService
 from core.validation_engine import ValidationEngine
 from core.lookup_engine import LookupEngine
+from core.learning.suggestion_engine import HistoricalSuggestionEngine
 from ui_flet.dialogs.file_intelligence_dialog import FileIntelligenceDialog
 
 class Step1View(ft.Column):
@@ -25,11 +26,11 @@ class Step1View(ft.Column):
         self.state = state
         self.on_next = on_next
         self.on_pick_file = on_pick_file
-        self.on_pick_file = on_pick_file
         self.loader = LoaderEngine()
         self.suggester = SuggestionEngine()
         self.validator = ValidationEngine()
         self.lookup = LookupEngine()
+        self.history_engine = HistoricalSuggestionEngine(os.getcwd())
         
         self.src_info = ft.Text("Nenhum arquivo de ORIGEM selecionado", color=PlatinumTheme.TEXT_SECONDARY())
         self.tgt_info = ft.Text("Nenhum arquivo de DESTINO selecionado", color=PlatinumTheme.TEXT_SECONDARY())
@@ -44,7 +45,8 @@ class Step1View(ft.Column):
             border_color=PlatinumTheme.BORDER_DARK(),
             focused_border_color=PlatinumTheme.PRIMARY(),
             color=PlatinumTheme.TEXT_PRIMARY(),
-            on_change=lambda e: self._on_manual_path("src", e.control.value), 
+            on_submit=lambda e: self._on_manual_path("src", e.control.value), 
+            on_blur=lambda e: self._on_manual_path("src", e.control.value),
             text_size=12
         )
         self.tgt_path_field = ft.TextField(
@@ -56,7 +58,8 @@ class Step1View(ft.Column):
             border_color=PlatinumTheme.BORDER_DARK(),
             focused_border_color=PlatinumTheme.PRIMARY(),
             color=PlatinumTheme.TEXT_PRIMARY(),
-            on_change=lambda e: self._on_manual_path("tgt", e.control.value), 
+            on_submit=lambda e: self._on_manual_path("tgt", e.control.value), 
+            on_blur=lambda e: self._on_manual_path("tgt", e.control.value),
             text_size=12
         )
 
@@ -185,6 +188,15 @@ class Step1View(ft.Column):
 
     def _intercept_next(self, e):
         """Interceptador v0.6.3: Realiza pré-análise antes de avançar."""
+        # 0. Guarda Defensiva (Hardening Patch 2)
+        if self.state.df_src is None or self.state.df_tgt is None:
+            LoggerService().error("Tentativa de avanço sem arquivos carregados.")
+            sb = ft.SnackBar(ft.Text("Ambos os arquivos precisam ser carregados para análise!"), bgcolor=PlatinumTheme.DANGER())
+            self.page.overlay.append(sb)
+            sb.open = True
+            self.page.update()
+            return
+
         LoggerService().info("Iniciando pré-análise v0.6.3...")
         
         # 1. Executar Motores (Análise Leve)
@@ -192,15 +204,29 @@ class Step1View(ft.Column):
         v_tgt = self.validator.audit_dataframe(self.state.df_tgt)
         
         common_cols = self.lookup.find_common_columns(self.state.df_src, self.state.df_tgt)
+        
+        # 2. Orquestração de Sugestões (v0.6.3 Patch 4)
+        src_cols = list(self.state.df_src.columns)
+        tgt_cols = list(self.state.df_tgt.columns)
+        
+        smart = self.history_engine.get_smart_suggestions(src_cols, tgt_cols)
+        
         key_src, key_tgt = self.lookup.suggest_key_pair(self.state.df_src, self.state.df_tgt)
         
-        # 2. Popular Estado Sugerido (Conforme Diretiva Patch 1)
+        # Se for histórico, pode vir com as chaves também
+        if smart["source"] == "history":
+            h_keys = smart.get("keys", (None, None))
+            if h_keys[0] and h_keys[1]:
+                key_src, key_tgt = h_keys
+        
+        # 3. Popular Estado Sugerido
         self.state.validation_summary = {"src": v_src, "tgt": v_tgt}
-        self.state.suggested_mapping = {col: col for col in common_cols}
+        self.state.suggested_mapping = smart["mapping"] if smart["mapping"] else {col: col for col in common_cols}
+        self.state.suggested_source = smart["source"]
         self.state.suggested_key_src = key_src
         self.state.suggested_key_tgt = key_tgt
         
-        # 3. Abrir Dialog
+        # 4. Abrir Dialog
         def apply_and_next():
             # Consolida as sugestões no estado real ANTES de avançar
             self.state.mapping = self.state.suggested_mapping.copy()
@@ -220,6 +246,11 @@ class Step1View(ft.Column):
             on_apply=apply_and_next, 
             on_manual=manual_and_next
         )
+        
+        # Remove instâncias anteriores se houver
+        to_remove = [ctrl for ctrl in self.page.overlay if isinstance(ctrl, FileIntelligenceDialog)]
+        for ctrl in to_remove:
+            self.page.overlay.remove(ctrl)
         
         self.page.overlay.append(dialog)
         dialog.open = True

@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.4] - 2026-03-26 (Evolution Memory Release)
+- **Evolution Memory Layer**: Introduction of local learning persistence.
+- **Learning Store**: Secure metadata storage in `learning_log.json`.
+- **Signature Matching**: Context identification via column signatures.
+- **Usage Tracking**: Suggestion prioritization based on usage frequency.
+- **Local AI**: Intelligent suggestions based on previous executions.
+
+## [0.6.3] - 2026-03-26 (Data Intelligence Layer)
+- **Core Engines**: Implementation of `ValidationEngine`, `LookupEngine`, and `SchemaMapper`.
+- **UI Intelligence**: Creation of `FileIntelligenceDialog` and `CompatibilityDialog`.
+- **Fuzzy Mapping**: Support for editorial similarity (Levenshtein).
+
 ## [0.6.2] - 2026-03-26 (Cleanup)
 - **Legacy Purge**: Permanent removal of the `src/legacy/ui_qt/` directory.
 - **Theme Optimization**: Purged `get_qss()` from `ThemeService`.

@@ -9,20 +9,22 @@ class LookupEngine:
         pass
 
     def find_common_columns(self, df_src, df_tgt):
-        """Identifica colunas que existem em ambos os datasets (Match exato)."""
-        src_cols = set(df_src.columns)
+        """Identifica colunas comuns preservando a ordem da origem (Hardening Patch 2)."""
+        if df_src is None or df_tgt is None: return []
         tgt_cols = set(df_tgt.columns)
-        return list(src_cols & tgt_cols)
+        return [col for col in df_src.columns if col in tgt_cols]
 
     def suggest_key_pair(self, df_src, df_tgt):
-        """Sugerir par de chaves baseado em nome e unicidade simples."""
-        # TODO: Evoluir para Fuzzy no Patch 3. No Patch 1 é match exato.
+        """Sugerir par de chaves com guarda contra NaN e Zero Division (Hardening Patch 2)."""
         common = self.find_common_columns(df_src, df_tgt)
-        if common:
-            # Pega a primeira coluna comum que tenha alta taxa de unicidade
-            for col in common:
-                u_src = df_src[col].nunique() / len(df_src) if len(df_src) > 0 else 0
-                u_tgt = df_tgt[col].nunique() / len(df_tgt) if len(df_tgt) > 0 else 0
-                if u_src > 0.8 and u_tgt > 0.8:
-                    return col, col
+        if not common or len(df_src) == 0 or len(df_tgt) == 0:
+            return None, None
+            
+        for col in common:
+            # Ignorar NaN no cálculo de unicidade
+            u_src = len(df_src[col].dropna().unique()) / len(df_src)
+            u_tgt = len(df_tgt[col].dropna().unique()) / len(df_tgt)
+            
+            if u_src > 0.8 and u_tgt > 0.8:
+                return col, col
         return None, None

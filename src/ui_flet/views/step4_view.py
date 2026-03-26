@@ -7,6 +7,7 @@ from core.engines.validation_engine import ValidationEngine
 from services.export_service import ExportService
 from services.audit_service import AuditService
 from services.logger_service import LoggerService
+from core.learning.learning_logger import LearningLogger
 
 class Step4View(ft.Column):
     """
@@ -23,6 +24,7 @@ class Step4View(ft.Column):
         self.exporter = ExportService()
         self.audit = AuditService(operator="Flet_User")
         self.logger = LoggerService()
+        self.learning_logger = LearningLogger(os.getcwd())
         
         self.summary_text = ft.Text("Pronto para iniciar a sincronizacao.", size=14, color=PlatinumTheme.TEXT_PRIMARY())
         self.progress_bar = ft.ProgressBar(width=400, color=PlatinumTheme.PRIMARY(), visible=False)
@@ -227,7 +229,19 @@ class Step4View(ft.Column):
             self.audit.record_sync(self.state.path_src, self.state.path_tgt, len(df_result))
             self.logger.info(f"Concluido: {len(df_result)} linhas -> {out_path}")
             
-            # 6. Sucesso
+            # 6. Aprendizado Evolutivo (v0.6.3 Patch 4)
+            src_cols = list(self.state.df_src.columns) if self.state.df_src is not None else []
+            tgt_cols = list(self.state.df_tgt.columns) if self.state.df_tgt is not None else []
+            
+            self.learning_logger.log_execution(
+                source_columns=src_cols,
+                target_columns=tgt_cols,
+                mapping=self.state.mapping,
+                keys=(self.state.key_src, self.state.key_tgt),
+                row_count=len(df_result)
+            )
+            
+            # 7. Sucesso
             sb = ft.SnackBar(ft.Text(f"Sucesso! {len(df_result)} linhas salvas em: {out_path}"), bgcolor=PlatinumTheme.SUCCESS())
             self.page.overlay.append(sb)
             sb.open = True
