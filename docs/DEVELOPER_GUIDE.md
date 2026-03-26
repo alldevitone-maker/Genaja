@@ -2,7 +2,7 @@
 
 [🇺🇸 English](DEVELOPER_GUIDE.en.md) | [🇧🇷 Português](DEVELOPER_GUIDE.md)
 
-Este documento contém o registro avançado da infraestrutura sob o capô do Genaja (JGDA) em sua fase **Flet Integration (v0.6.x)**.
+Este documento contém o registro avançado da infraestrutura sob o capô do Genaja (JGDA) em sua fase **Flet (Pure Python Flutter Integration (v0.6.x)**.
 
 ## 🏗️ Arquitetura do Software (O Motor JGDA v2.0)
 
