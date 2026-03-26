@@ -6,6 +6,9 @@ from ui_flet.theme import PlatinumTheme
 from core.engines.loader_engine import LoaderEngine
 from core.engines.suggestion_engine import SuggestionEngine
 from services.logger_service import LoggerService
+from core.validation_engine import ValidationEngine
+from core.lookup_engine import LookupEngine
+from ui_flet.dialogs.file_intelligence_dialog import FileIntelligenceDialog
 
 class Step1View(ft.Column):
     """
@@ -22,8 +25,11 @@ class Step1View(ft.Column):
         self.state = state
         self.on_next = on_next
         self.on_pick_file = on_pick_file
+        self.on_pick_file = on_pick_file
         self.loader = LoaderEngine()
         self.suggester = SuggestionEngine()
+        self.validator = ValidationEngine()
+        self.lookup = LookupEngine()
         
         self.src_info = ft.Text("Nenhum arquivo de ORIGEM selecionado", color=PlatinumTheme.TEXT_SECONDARY())
         self.tgt_info = ft.Text("Nenhum arquivo de DESTINO selecionado", color=PlatinumTheme.TEXT_SECONDARY())
@@ -56,7 +62,7 @@ class Step1View(ft.Column):
 
         self.btn_next = ft.ElevatedButton(
             "Prosseguir para Chaves ➡️", 
-            on_click=lambda _: self.on_next(),
+            on_click=self._intercept_next,
             disabled=True,
             style=ft.ButtonStyle(
                 bgcolor={"": PlatinumTheme.PRIMARY()},
@@ -176,3 +182,45 @@ class Step1View(ft.Column):
             self.page.overlay.append(sb)
             sb.open = True
             self.page.update()
+
+    def _intercept_next(self, e):
+        """Interceptador v0.6.3: Realiza pré-análise antes de avançar."""
+        LoggerService().info("Iniciando pré-análise v0.6.3...")
+        
+        # 1. Executar Motores (Análise Leve)
+        v_src = self.validator.audit_dataframe(self.state.df_src)
+        v_tgt = self.validator.audit_dataframe(self.state.df_tgt)
+        
+        common_cols = self.lookup.find_common_columns(self.state.df_src, self.state.df_tgt)
+        key_src, key_tgt = self.lookup.suggest_key_pair(self.state.df_src, self.state.df_tgt)
+        
+        # 2. Popular Estado Sugerido (Conforme Diretiva Patch 1)
+        self.state.validation_summary = {"src": v_src, "tgt": v_tgt}
+        self.state.suggested_mapping = {col: col for col in common_cols}
+        self.state.suggested_key_src = key_src
+        self.state.suggested_key_tgt = key_tgt
+        
+        # 3. Abrir Dialog
+        def apply_and_next():
+            # Consolida as sugestões no estado real ANTES de avançar
+            self.state.mapping = self.state.suggested_mapping.copy()
+            self.state.key_src = self.state.suggested_key_src
+            self.state.key_tgt = self.state.suggested_key_tgt
+            dialog.open = False
+            self.page.update()
+            self.on_next()
+
+        def manual_and_next():
+            dialog.open = False
+            self.page.update()
+            self.on_next()
+
+        dialog = FileIntelligenceDialog(
+            self.state, 
+            on_apply=apply_and_next, 
+            on_manual=manual_and_next
+        )
+        
+        self.page.overlay.append(dialog)
+        dialog.open = True
+        self.page.update()

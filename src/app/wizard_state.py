@@ -33,6 +33,12 @@ class WizardState:
         self.remove_nulls = False
         self.null_filter_cols = []
         self.keep_only_mapped = False
+        
+        # --- v0.6.3 DATA INTELLIGENCE (PRE-ANALYSIS) ---
+        self.suggested_key_src = None
+        self.suggested_key_tgt = None
+        self.suggested_mapping = {}
+        self.validation_summary = {}
 
     @property
     def ready_for_sync(self):
