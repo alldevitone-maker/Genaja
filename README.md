@@ -16,7 +16,7 @@ Seu motor **JGDA Engine** entrega:
 - 🔗 **Mapeamento semântico de colunas** via heurística de similaridade (AI simples)
 - 🛡️ **Safe-Merge com Shielding** — evita duplicatas, fantasmas e cruzamentos errôneos
 - 📦 **Exportação multi-formato** — Excel, CSV, JSON, SQL (modo Big Data O(1))
-- 🎨 **UI frameless 2026 High-Fidelity** — Pure PySide6, Custom TitleBar, Live Theme Studio
+- 🎨 **UI frameless 2026 High-Fidelity** — Flet (Pure Python Flutter), Custom TitleBar, Live Theme Studio
 
 ---
 
