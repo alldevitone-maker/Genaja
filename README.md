@@ -47,11 +47,20 @@ O pipeline executa automaticamente:
 
 <div id="latest-release">
 
+### **v0.6.2 (Cleanup)**
+**A Purga Final.** Esta versão foca na remoção total de resíduos técnicos da transição Qt-Flet, finalizando a otimização do `ThemeService` e reorganizando o ferramental de automação.
+- 🧹 **Remoção de Legado**: Exclusão física definitiva do diretório `src/legacy/ui_qt/` e purga de componentes Qt.
+- ⚡ **Otimização de Temas**: Remoção do método `get_qss()`, tornando o serviço 100% voltado para tokens dinâmicos Flet.
+- 📂 **Reorganização de Scripts**: Criação da pasta `scripts/tools/` para separar utilitários do pipeline de release.
+- 📦 **QA Archive**: Arquivamento de testes de paridade e fumaça Qt em `tests/archive/` para governança histórica.
+
+---
+
 ### **v0.6.1 (Alfa v2)**
-**O Marco de Estabilização.** Esta versão consolida a transição para a nova arquitetura reativa, eliminando bugs de contraste e garantindo governança absoluta do repositório.
+**O Marco de Estabilização.** Esta versão consolidou a transição para a nova arquitetura reativa, eliminando bugs de contraste e garantindo governança absoluta do repositório.
 - 🎨 **Estabilização de Temas**: Migração para a ponte dinâmica `PlatinumTheme`, garantindo legibilidade perfeita no tema Light.
 - 🌓 **Reatividade Inteligente**: Cálculo automático de luminância para ajuste nativo do `ThemeMode` (SO Context).
-- 🧹 **Auditoria de Release**: Purga de resíduos técnicos e documentos privados para publicação pública segura.
+- 🧼 **Auditoria de Release**: Purga de resíduos técnicos e documentos privados para publicação pública segura.
 - ⚖️ **Governança 2026**: Sincronia rigorosa de metadados entre UI, Version e Docs.
 
 > [!TIP]

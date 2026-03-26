@@ -16,7 +16,7 @@ Its **JGDA Engine** delivers:
 - 🔗 **Semantic column mapping** via similarity heuristics (Simple AI)
 - 🛡️ **Safe-Merge with Shielding** — prevents duplicates, ghost records and erroneous cross-joins
 - 📦 **Multi-format export** — Excel, CSV, JSON, SQL (Big Data O(1) mode)
-- 🎨 **2026 High-Fidelity frameless UI** — Pure PySide6, Custom TitleBar, Live Theme Studio
+- 🎨 **2026 High-Fidelity frameless UI** — Flet (Pure Python Flutter), Custom TitleBar, Live Theme Studio
 
 ---
 
@@ -47,11 +47,20 @@ The pipeline automatically runs:
 
 <div id="latest-release">
 
+### **v0.6.2 (Cleanup)**
+**The Final Purge.** This version focuses on the total removal of technical residuals from the Qt-Flet transition, finalizing the `ThemeService` optimization and reorganizing the automation tooling.
+- 🧹 **Legacy Removal**: Definitive physical exclusion of the `src/legacy/ui_qt/` directory and purge of Qt components.
+- ⚡ **Theme Optimization**: Removal of the `get_qss()` method, making the service 100% focused on Flet dynamic tokens.
+- 📂 **Scripts Reorganization**: Creation of the `scripts/tools/` folder to separate utilities from the release pipeline.
+- 📦 **QA Archive**: Archiving of parity and Qt smoke tests in `tests/archive/` for historical governance.
+
+---
+
 ### **v0.6.1 (Alfa v2)**
-**The Stabilization Milestone.** This version consolidates the transition to the new reactive architecture, eliminating contrast bugs and ensuring absolute repository governance.
+**The Stabilization Milestone.** This version consolidated the transition to the new reactive architecture, eliminating contrast bugs and ensuring absolute repository governance.
 - 🎨 **Theme Stabilization**: Migration to the `PlatinumTheme` dynamic bridge, ensuring perfect legibility in Light mode.
 - 🌓 **Intelligent Reactivity**: Automatic luminance calculation for native `ThemeMode` adjustment (OS Context).
-- 🧹 **Release Audit**: Purge of technical residuals and private documents for secure public publication.
+- 🧼 **Release Audit**: Purge of technical residuals and private documents for secure public publication.
 - ⚖️ **2026 Governance**: Rigorous metadata synchronization across UI, Version, and Docs.
 
 > [!TIP]
