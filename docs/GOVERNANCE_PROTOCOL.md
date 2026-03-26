@@ -7,7 +7,7 @@ Este documento resume como o desenvolvimento do Genaja é blindado contra falhas
 > **Título:** `Alfa v2`
 
 ## 2. Padrões de Código
-- **GUI:** PySide6 (Pure Qt).
+- **GUI:** Flet (Pure Python Flutter.
 - **Core:** Motores desacoplados em `src/core/services/`.
 - **Temas:** Centralizados em `ThemeService`.
 
