@@ -24,8 +24,8 @@ def run_flet_smoke_test():
         print("[OK] Flet UI Modules: Imported successfully.")
 
         # 3. Validate Theme Tokens (Platinum Harmony)
-        if not hasattr(PlatinumTheme, 'PRIMARY') or PlatinumTheme.PRIMARY != "#3b82f6":
-            raise Exception("PlatinumTheme: Primary color token mismatch.")
+        if not hasattr(PlatinumTheme, 'PRIMARY') or not str(PlatinumTheme.PRIMARY()).startswith("#"):
+            raise Exception("PlatinumTheme: Primary color token invalid or missing.")
         print("[OK] PlatinumTheme: Visual tokens validated.")
 
         # 4. Validate Mapping Engine (O(1) Data Layer)

@@ -12,6 +12,11 @@ class Step1View(ft.Column):
     PASSO 1: Seleção de Fontes (v0.6.0).
     Focada em clareza visual e heurística de cabeçalho.
     """
+    def _on_card_hover(self, e):
+        """Efeito Visual Platinum: Altera a borda no hover (v0.6.0)."""
+        e.control.border = ft.border.all(1, PlatinumTheme.PRIMARY() if e.data == "true" else PlatinumTheme.BORDER_DARK())
+        e.control.update()
+
     def __init__(self, state, on_next, on_pick_file):
         super().__init__(expand=True, spacing=20)
         self.state = state
@@ -20,35 +25,60 @@ class Step1View(ft.Column):
         self.loader = LoaderEngine()
         self.suggester = SuggestionEngine()
         
-        self.src_info = ft.Text("Nenhum arquivo de ORIGEM selecionado", color=PlatinumTheme.TEXT_SECONDARY)
-        self.tgt_info = ft.Text("Nenhum arquivo de DESTINO selecionado", color=PlatinumTheme.TEXT_SECONDARY)
+        self.src_info = ft.Text("Nenhum arquivo de ORIGEM selecionado", color=PlatinumTheme.TEXT_SECONDARY())
+        self.tgt_info = ft.Text("Nenhum arquivo de DESTINO selecionado", color=PlatinumTheme.TEXT_SECONDARY())
         
         # UI Elements
-        self.src_path_field = ft.TextField(label="Caminho Manual Selecionado (Origem)", expand=True, on_change=lambda e: self._on_manual_path("src", e.control.value), text_size=12)
-        self.tgt_path_field = ft.TextField(label="Caminho Manual Selecionado (Destino)", expand=True, on_change=lambda e: self._on_manual_path("tgt", e.control.value), text_size=12)
+        self.src_path_field = ft.TextField(
+            label="Caminho Manual Selecionado (Origem)", 
+            hint_text="Caminho/arquivo.xlsx",
+            hint_style=ft.TextStyle(color=PlatinumTheme.TEXT_PLACEHOLDER()),
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_SECONDARY()),
+            expand=True, 
+            border_color=PlatinumTheme.BORDER_DARK(),
+            focused_border_color=PlatinumTheme.PRIMARY(),
+            color=PlatinumTheme.TEXT_PRIMARY(),
+            on_change=lambda e: self._on_manual_path("src", e.control.value), 
+            text_size=12
+        )
+        self.tgt_path_field = ft.TextField(
+            label="Caminho Manual Selecionado (Destino)", 
+            hint_text="Caminho/arquivo.xlsx",
+            hint_style=ft.TextStyle(color=PlatinumTheme.TEXT_PLACEHOLDER()),
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_SECONDARY()),
+            expand=True, 
+            border_color=PlatinumTheme.BORDER_DARK(),
+            focused_border_color=PlatinumTheme.PRIMARY(),
+            color=PlatinumTheme.TEXT_PRIMARY(),
+            on_change=lambda e: self._on_manual_path("tgt", e.control.value), 
+            text_size=12
+        )
 
         self.btn_next = ft.ElevatedButton(
             "Prosseguir para Chaves ➡️", 
             on_click=lambda _: self.on_next(),
             disabled=True,
-            bgcolor=PlatinumTheme.PRIMARY,
-            color="white",
+            style=ft.ButtonStyle(
+                bgcolor={"": PlatinumTheme.PRIMARY()},
+                color={"": "white"}, # Action FG fixo p/ este fundo
+                shape=ft.RoundedRectangleBorder(radius=8),
+            ),
             height=50
         )
         
         self.controls = [
-            ft.Text("📂 Seleção de Arquivos", size=24, weight=ft.FontWeight.W_600),
-            ft.Row([
+            ft.Text("Seleção de Arquivos", size=24, weight=ft.FontWeight.W_600, color=PlatinumTheme.PRIMARY()),
+            ft.ResponsiveRow([
                 self._create_drop_zone("Planilha de ORIGEM", "src"),
                 self._create_drop_zone("Planilha de DESTINO", "tgt"),
-            ], spacing=20, expand=True),
+            ], spacing=20),
             ft.Row([
                 ft.ElevatedButton(
                     "🤖 Sugerir Arquivos Recentes (Smart-Pull)", 
                     icon=ft.Icons.AUTO_AWESOME,
                     on_click=self._on_suggest_click,
-                    bgcolor=PlatinumTheme.SURFACE_DARK,
-                    color=PlatinumTheme.PRIMARY
+                    bgcolor=PlatinumTheme.SURFACE_DARK(),
+                    color=PlatinumTheme.PRIMARY()
                 ),
                 ft.Container(expand=True), 
                 self.btn_next
@@ -58,21 +88,21 @@ class Step1View(ft.Column):
     def _create_drop_zone(self, title, mode):
         return ft.Container(
             **PlatinumTheme.card_style(),
-            expand=True,
+            col={"sm": 12, "md": 6},
             on_click=lambda _: self._trigger_picker(mode),
             on_hover=self._on_card_hover,
             content=ft.Column([
-                ft.Text(title, weight=ft.FontWeight.BOLD, size=16),
-                ft.Divider(color=PlatinumTheme.BORDER_DARK),
-                ft.Icon(ft.Icons.UPLOAD_FILE_SHARP, size=50, color=PlatinumTheme.PRIMARY),
+                ft.Text(title, weight=ft.FontWeight.BOLD, size=16, color=PlatinumTheme.TEXT_PRIMARY()),
+                ft.Divider(color=PlatinumTheme.BORDER_DARK()),
+                ft.Icon(PlatinumTheme.Icons.FILE_SOURCE if mode == "src" else PlatinumTheme.Icons.FILE_TARGET, size=50, color=PlatinumTheme.PRIMARY()),
                 self.src_info if mode == "src" else self.tgt_info,
-                ft.Text("Clique aqui ou arraste o arquivo", size=12, italic=True),
+                ft.Text("Clique aqui ou arraste o arquivo", size=12, italic=True, color=PlatinumTheme.TEXT_MUTED()),
                 ft.Container(height=10),
                 ft.Row([
                     self.src_path_field if mode == "src" else self.tgt_path_field,
                     ft.IconButton(
-                        ft.Icons.CHECK_CIRCLE,
-                        icon_color=PlatinumTheme.SUCCESS,
+                        PlatinumTheme.Icons.CHECK,
+                        icon_color=PlatinumTheme.SUCCESS(),
                         on_click=lambda _: self._on_manual_path(mode, (self.src_path_field.value if mode == "src" else self.tgt_path_field.value)),
                         tooltip="Validar Caminho Manual"
                     )
@@ -106,7 +136,7 @@ class Step1View(ft.Column):
         if tgt: self.update_file("tgt", tgt)
         
         if src or tgt:
-            sb = ft.SnackBar(ft.Text("🤖 Arquivos sugeridos com sucesso!"), bgcolor=PlatinumTheme.SUCCESS)
+            sb = ft.SnackBar(ft.Text("🤖 Arquivos sugeridos com sucesso!"), bgcolor=PlatinumTheme.SUCCESS())
             self.page.overlay.append(sb)
             sb.open = True
             self.page.update()
@@ -125,13 +155,13 @@ class Step1View(ft.Column):
                 self.state.df_src = df
                 self.state.path_src = path
                 self.src_info.value = f"✅ {os.path.basename(path)}\n{len(df)} linhas | Cabeçalho: {skip}"
-                self.src_info.color = PlatinumTheme.SUCCESS
+                self.src_info.color = PlatinumTheme.SUCCESS()
                 self.src_path_field.value = path
             else:
                 self.state.df_tgt = df
                 self.state.path_tgt = path
                 self.tgt_info.value = f"✅ {os.path.basename(path)}\n{len(df)} linhas | Cabeçalho: {skip}"
-                self.tgt_info.color = PlatinumTheme.SUCCESS
+                self.tgt_info.color = PlatinumTheme.SUCCESS()
                 self.tgt_path_field.value = path
             
             LoggerService().info(f"Arquivo {mode} carregado: {len(df)} linhas.")
@@ -142,7 +172,7 @@ class Step1View(ft.Column):
             
             self.update()
         except Exception as e:
-            sb = ft.SnackBar(ft.Text(f"Erro ao carregar arquivo: {e}"), bgcolor=PlatinumTheme.DANGER)
+            sb = ft.SnackBar(ft.Text(f"Erro ao carregar arquivo: {e}"), bgcolor=PlatinumTheme.DANGER())
             self.page.overlay.append(sb)
             sb.open = True
             self.page.update()

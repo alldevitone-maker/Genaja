@@ -19,67 +19,83 @@ class Step3View(ft.Column):
         # Regras de Linha
         self.chk_remove_nulls = ft.Checkbox(
             label="Remover linhas com valor zero ou nulo", 
-            value=False
+            value=False,
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()),
+            fill_color=PlatinumTheme.PRIMARY()
         )
         self.chk_remove_nulls.on_change = lambda e: setattr(self.state, "remove_nulls", e.control.value)
         
         # Regras Estruturais
         self.chk_keep_only = ft.Checkbox(
             label="Manter APENAS as colunas selecionadas", 
-            value=False
+            value=False,
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()),
+            fill_color=PlatinumTheme.PRIMARY()
         )
         self.chk_keep_only.on_change = lambda e: setattr(self.state, "keep_only_mapped", e.control.value)
         
-        self.chk_trim = ft.Checkbox(label="Trim (limpar espacos extras)", value=True)
+        self.chk_trim = ft.Checkbox(
+            label="Trim (limpar espacos extras)", 
+            value=True,
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()),
+            fill_color=PlatinumTheme.PRIMARY()
+        )
         self.chk_trim.on_change = lambda e: setattr(self.state, "auto_trim", e.control.value)
         
-        self.chk_upper = ft.Checkbox(label="Maiusculas (converter para Capslock)", value=False)
+        self.chk_upper = ft.Checkbox(
+            label="Maiusculas (converter para Capslock)", 
+            value=False,
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()),
+            fill_color=PlatinumTheme.PRIMARY()
+        )
         self.chk_upper.on_change = lambda e: setattr(self.state, "auto_upper", e.control.value)
         
         self.controls = [
-            ft.Text("Mapeamento de Colunas", size=24, weight=ft.FontWeight.W_600),
-            ft.Row([
+            ft.Text("Mapeamento de Colunas", size=24, weight=ft.FontWeight.W_600, color=PlatinumTheme.PRIMARY()),
+            ft.ResponsiveRow([
                 # Left: Source Columns
                 ft.Container(
                     **PlatinumTheme.card_style(),
-                    expand=True,
+                    col={"sm": 12, "md": 5},
+                    height=400,
                     content=ft.Column([
-                        ft.Text("Colunas Origem", weight=ft.FontWeight.BOLD),
+                        ft.Text("Colunas Origem", weight=ft.FontWeight.BOLD, color=PlatinumTheme.TEXT_PRIMARY()),
                         self.list_src
                     ])
                 ),
                 # Center: Transfer buttons
                 ft.Column([
-                    ft.IconButton(ft.Icons.KEYBOARD_DOUBLE_ARROW_RIGHT, on_click=self._move_all_to_tgt, tooltip="Transpor Todas"),
-                    ft.IconButton(ft.Icons.ARROW_FORWARD, on_click=self._move_selected_to_tgt, tooltip="Adicionar"),
-                    ft.IconButton(ft.Icons.ARROW_BACK, on_click=self._move_selected_to_src, tooltip="Remover"),
-                    ft.IconButton(ft.Icons.KEYBOARD_DOUBLE_ARROW_LEFT, on_click=self._move_all_to_src, tooltip="Remover Todas"),
-                ], alignment=ft.MainAxisAlignment.CENTER),
+                    ft.IconButton(ft.Icons.KEYBOARD_DOUBLE_ARROW_RIGHT_OUTLINED, on_click=self._move_all_to_tgt, tooltip="Transpor Todas", icon_color=PlatinumTheme.PRIMARY()),
+                    ft.IconButton(ft.Icons.ARROW_FORWARD_OUTLINED, on_click=self._move_selected_to_tgt, tooltip="Adicionar", icon_color=PlatinumTheme.PRIMARY()),
+                    ft.IconButton(ft.Icons.ARROW_BACK_OUTLINED, on_click=self._move_selected_to_src, tooltip="Remover", icon_color=PlatinumTheme.PRIMARY()),
+                    ft.IconButton(ft.Icons.KEYBOARD_DOUBLE_ARROW_LEFT_OUTLINED, on_click=self._move_all_to_src, tooltip="Remover Todas", icon_color=PlatinumTheme.PRIMARY()),
+                ], col={"sm": 12, "md": 2}, alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER),
                 # Right: Target Columns
                 ft.Container(
                     **PlatinumTheme.card_style(),
-                    expand=True,
+                    col={"sm": 12, "md": 5},
+                    height=400,
                     content=ft.Column([
-                        ft.Text("A Sincronizar (Destino Final)", weight=ft.FontWeight.BOLD),
+                        ft.Text("A Sincronizar (Destino Final)", weight=ft.FontWeight.BOLD, color=PlatinumTheme.TEXT_PRIMARY()),
                         self.list_tgt
                     ])
                 )
-            ], expand=True),
+            ]),
             # Rules Section (v0.4.6)
-            ft.Row([
+            ft.ResponsiveRow([
                 ft.Container(
                     **PlatinumTheme.card_style(),
-                    expand=True,
+                    col={"sm": 12, "md": 6},
                     content=ft.Column([
-                        ft.Text("Regras de Linha", weight=ft.FontWeight.W_600),
+                        ft.Text("Regras de Linha", weight=ft.FontWeight.W_600, color=PlatinumTheme.TEXT_PRIMARY()),
                         self.chk_remove_nulls,
                     ], spacing=5)
                 ),
                 ft.Container(
                     **PlatinumTheme.card_style(),
-                    expand=True,
+                    col={"sm": 12, "md": 6},
                     content=ft.Column([
-                        ft.Text("Regras Estruturais", weight=ft.FontWeight.W_600),
+                        ft.Text("Regras Estruturais", weight=ft.FontWeight.W_600, color=PlatinumTheme.TEXT_PRIMARY()),
                         self.chk_keep_only,
                         self.chk_trim,
                         self.chk_upper,
@@ -87,9 +103,13 @@ class Step3View(ft.Column):
                 ),
             ], spacing=15),
             ft.Row([
-                ft.TextButton("Voltar", on_click=lambda _: self.on_back()),
+                ft.TextButton("Voltar", on_click=lambda _: self.on_back(), style=ft.ButtonStyle(color=PlatinumTheme.TEXT_SECONDARY())),
                 ft.Row(expand=True),
-                ft.ElevatedButton("Finalizar Mapeamento", on_click=self._finish_mapping)
+                ft.ElevatedButton(
+                    "Finalizar Mapeamento", 
+                    on_click=self._finish_mapping,
+                    style=ft.ButtonStyle(bgcolor=PlatinumTheme.PRIMARY(), color="white")
+                )
             ])
         ]
 
@@ -104,38 +124,39 @@ class Step3View(ft.Column):
         for c in self.cols_src:
             self.list_src.controls.append(
                 ft.Container(
-                    bgcolor=PlatinumTheme.BORDER_DARK,
+                    bgcolor=PlatinumTheme.BG_DARK(),
                     padding=8,
-                    border_radius=6,
+                    border_radius=8,
+                    border=ft.border.all(1, PlatinumTheme.BORDER_DARK()),
                     on_click=lambda _, col=c: self._toggle_src_selection(col),
-                    content=ft.Text(c, size=13)
+                    content=ft.Text(c, size=13, color=PlatinumTheme.TEXT_PRIMARY(), weight=ft.FontWeight.W_500)
                 )
             )
         
         self.update()
 
     def _toggle_src_selection(self, col):
-        """Simple visual selection toggle."""
+        """Simple visual selection toggle using Active Tokens."""
         for ctrl in self.list_src.controls:
             if ctrl.content.value == col:
-                is_selected = ctrl.bgcolor == PlatinumTheme.PRIMARY
-                ctrl.bgcolor = PlatinumTheme.BORDER_DARK if is_selected else PlatinumTheme.PRIMARY
-                ctrl.content.color = PlatinumTheme.TEXT_PRIMARY if is_selected else "white"
+                is_selected = ctrl.bgcolor == PlatinumTheme.PRIMARY()
+                ctrl.bgcolor = PlatinumTheme.PRIMARY() if not is_selected else PlatinumTheme.BG_DARK()
+                ctrl.content.color = "white" if not is_selected else PlatinumTheme.TEXT_PRIMARY()
         self.update()
 
     def _toggle_tgt_selection(self, col):
         for ctrl in self.list_tgt.controls:
             if ctrl.content.value == col:
-                is_selected = ctrl.bgcolor == PlatinumTheme.PRIMARY
-                ctrl.bgcolor = PlatinumTheme.BORDER_DARK if is_selected else PlatinumTheme.PRIMARY
-                ctrl.content.color = PlatinumTheme.TEXT_PRIMARY if is_selected else "white"
+                is_selected = ctrl.bgcolor == PlatinumTheme.PRIMARY()
+                ctrl.bgcolor = PlatinumTheme.PRIMARY() if not is_selected else PlatinumTheme.BG_DARK()
+                ctrl.content.color = "white" if not is_selected else PlatinumTheme.TEXT_PRIMARY()
         self.update()
 
     def _get_selected_src(self):
-        return [c.content.value for c in self.list_src.controls if c.bgcolor == PlatinumTheme.PRIMARY]
+        return [c.content.value for c in self.list_src.controls if c.bgcolor == PlatinumTheme.PRIMARY()]
 
     def _get_selected_tgt(self):
-        return [c.content.value for c in self.list_tgt.controls if c.bgcolor == PlatinumTheme.PRIMARY]
+        return [c.content.value for c in self.list_tgt.controls if c.bgcolor == PlatinumTheme.PRIMARY()]
 
     def _move_selected_to_tgt(self, e=None):
         selected = self._get_selected_src()
@@ -167,20 +188,22 @@ class Step3View(ft.Column):
             if c not in self.cols_in_tgt:
                 self.list_src.controls.append(
                     ft.Container(
-                        bgcolor=PlatinumTheme.BORDER_DARK,
-                        padding=8, border_radius=6,
+                        bgcolor=PlatinumTheme.BG_DARK(),
+                        padding=8, border_radius=8,
+                        border=ft.border.all(1, PlatinumTheme.BORDER_DARK()),
                         on_click=lambda _, col=c: self._toggle_src_selection(col),
-                        content=ft.Text(c, size=13)
+                        content=ft.Text(c, size=13, color=PlatinumTheme.TEXT_PRIMARY(), weight=ft.FontWeight.W_500)
                     )
                 )
         
         for c in self.cols_in_tgt:
             self.list_tgt.controls.append(
                 ft.Container(
-                    bgcolor=PlatinumTheme.BORDER_DARK,
-                    padding=8, border_radius=6,
+                    bgcolor=PlatinumTheme.BG_DARK(),
+                    padding=8, border_radius=8,
+                    border=ft.border.all(1, PlatinumTheme.BORDER_DARK()),
                     on_click=lambda _, col=c: self._toggle_tgt_selection(col),
-                    content=ft.Text(c, size=13)
+                    content=ft.Text(c, size=13, color=PlatinumTheme.TEXT_PRIMARY(), weight=ft.FontWeight.W_500)
                 )
             )
         
@@ -188,7 +211,7 @@ class Step3View(ft.Column):
 
     def _finish_mapping(self, e):
         if not self.cols_in_tgt:
-            sb = ft.SnackBar(ft.Text("Mapeie ao menos uma coluna."), bgcolor=PlatinumTheme.WARNING)
+            sb = ft.SnackBar(ft.Text("Mapeie ao menos uma coluna."), bgcolor=PlatinumTheme.WARNING())
             self.page.overlay.append(sb)
             sb.open = True
             self.page.update()

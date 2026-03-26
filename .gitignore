@@ -21,13 +21,18 @@ genaja_config.json
 
 # Excel temporary files
 ~$*.xlsx
-# Private docs (NUNCA subir)
+
+# Private docs (NUNCA subir ao GitHub)
 docs/private/
-docs/private/*
 ROADMAP.md
 
 # Supervisor workflows (Antigravity IA)
 .agent/
 
-# Freeze protocol (local only - nunca subir ao GitHub)
-FREEZE.lock
+# Freeze protocol
+FREEZE.lock
+
+# Residuals and local audits
+audit/
+results/
+tmp/

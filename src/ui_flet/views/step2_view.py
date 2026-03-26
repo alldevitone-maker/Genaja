@@ -15,55 +15,93 @@ class Step2View(ft.Column):
         self.on_back = on_back
         self.engine = MappingEngine()
         
-        self.combo_src = ft.Dropdown(label="Chave na Origem", expand=True)
+        self.combo_src = ft.Dropdown(
+            label="Chave na Origem", 
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_SECONDARY()),
+            color=PlatinumTheme.TEXT_PRIMARY(),
+            border_color=PlatinumTheme.BORDER_DARK(),
+            focused_border_color=PlatinumTheme.PRIMARY(),
+            expand=True
+        )
         self.combo_src.tooltip = "Coluna da planilha de ORIGEM usada para cruzamento"
-        self.combo_tgt = ft.Dropdown(label="Chave no Destino", expand=True)
+        self.combo_tgt = ft.Dropdown(
+            label="Chave no Destino", 
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_SECONDARY()),
+            color=PlatinumTheme.TEXT_PRIMARY(),
+            border_color=PlatinumTheme.BORDER_DARK(),
+            focused_border_color=PlatinumTheme.PRIMARY(),
+            expand=True
+        )
         self.combo_tgt.tooltip = "Coluna da planilha de DESTINO usada para cruzamento"
         
         # Top Matches display (v0.4.6)
-        self.matches_display = ft.Text("Analisando...", size=12, italic=True, color=PlatinumTheme.TEXT_SECONDARY)
+        self.matches_display = ft.Text("Analisando...", size=12, italic=True, color=PlatinumTheme.TEXT_SECONDARY())
         
         # Advanced settings
-        self.chk_a1 = ft.Checkbox(label="Ativar Blindagem na Posicao A1", value=True)
+        self.chk_a1 = ft.Checkbox(
+            label="Ativar Blindagem na Posicao A1", 
+            value=True,
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()),
+            fill_color=PlatinumTheme.PRIMARY()
+        )
         self.chk_a1.tooltip = "Fixa a coluna selecionada como ancora na primeira posicao da saida"
         self.chk_a1.on_change = self._on_a1_toggle
         
-        self.chk_shielding = ft.Checkbox(label="Data Shielding (Safe-Merge)", value=False)
+        self.chk_shielding = ft.Checkbox(
+            label="Data Shielding (Safe-Merge)", 
+            value=False,
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()),
+            fill_color=PlatinumTheme.PRIMARY()
+        )
         self.chk_shielding.tooltip = "Impede sobrescrita de celulas preenchidas no destino"
         self.chk_shielding.on_change = lambda e: setattr(self.state, "shielding", e.control.value)
         
         # Fixar Chave A1 (v0.4.6: "Fixar Chave Posicao A1")
-        self.combo_a1 = ft.Dropdown(label="Fixar Chave (Posicao A1)", expand=True)
+        self.combo_a1 = ft.Dropdown(
+            label="Fixar Chave (Posicao A1)", 
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_SECONDARY()),
+            color=PlatinumTheme.TEXT_PRIMARY(),
+            border_color=PlatinumTheme.BORDER_DARK(),
+            focused_border_color=PlatinumTheme.PRIMARY(),
+            expand=True
+        )
         self.combo_a1.tooltip = "Selecione qual coluna do destino sera fixada na posicao A1"
         
         self.controls = [
-            ft.Text("Configuracao de Chaves", size=24, weight=ft.FontWeight.W_600),
+            ft.Text("Configuração de Chaves", size=24, weight=ft.FontWeight.W_600, color=PlatinumTheme.PRIMARY()),
             # Top Matches Card (v0.4.6 "Interseccao Matematica")
             ft.Container(
                 **PlatinumTheme.card_style(),
                 content=ft.Column([
-                    ft.Text("Top Compatibilidades Matematicas:", weight=ft.FontWeight.W_600),
+                    ft.Text("Top Compatibilidades Matematicas:", weight=ft.FontWeight.W_600, color=PlatinumTheme.TEXT_PRIMARY()),
                     self.matches_display,
                 ], spacing=5)
             ),
-            # Key Selection
+            # Key Selection (Responsiva)
             ft.Container(
                 **PlatinumTheme.card_style(),
                 content=ft.Column([
-                    ft.Text("Selecione os campos para cruzamento de dados:"),
-                    ft.Row([self.combo_src, ft.Icon(ft.Icons.LINK), self.combo_tgt]),
-                    ft.Divider(color=PlatinumTheme.BORDER_DARK),
-                    ft.Row([
-                        self.combo_a1,
-                        self.chk_a1,
-                        self.chk_shielding,
+                    ft.Text("Selecione os campos para cruzamento de dados:", color=PlatinumTheme.TEXT_SECONDARY()),
+                    ft.ResponsiveRow([
+                        ft.Column([self.combo_src], col={"sm": 12, "md": 5}),
+                        ft.Column([ft.Icon(PlatinumTheme.Icons.LINK, color=PlatinumTheme.PRIMARY())], col={"sm": 12, "md": 2}, horizontal_alignment=ft.CrossAxisAlignment.CENTER),
+                        ft.Column([self.combo_tgt], col={"sm": 12, "md": 5}),
+                    ], vertical_alignment=ft.CrossAxisAlignment.CENTER),
+                    ft.Divider(color=PlatinumTheme.BORDER_DARK()),
+                    ft.ResponsiveRow([
+                        ft.Column([self.combo_a1], col={"sm": 12, "md": 6}),
+                        ft.Column([self.chk_a1, self.chk_shielding], col={"sm": 12, "md": 6}),
                     ]),
                 ], spacing=10)
             ),
             ft.Row([
-                ft.TextButton("Voltar", on_click=lambda _: self.on_back()),
+                ft.TextButton("Voltar", on_click=lambda _: self.on_back(), style=ft.ButtonStyle(color=PlatinumTheme.TEXT_SECONDARY())),
                 ft.Row(expand=True),
-                ft.ElevatedButton("Validar e Prosseguir", on_click=self._validate_and_next)
+                ft.ElevatedButton(
+                    "Validar e Prosseguir", 
+                    on_click=self._validate_and_next,
+                    style=ft.ButtonStyle(bgcolor=PlatinumTheme.PRIMARY(), color="white")
+                )
             ])
         ]
 
@@ -102,7 +140,7 @@ class Step2View(ft.Column):
 
     def _validate_and_next(self, e):
         if not self.combo_src.value or not self.combo_tgt.value:
-            sb = ft.SnackBar(ft.Text("Selecione ambas as chaves para prosseguir."), bgcolor=PlatinumTheme.WARNING)
+            sb = ft.SnackBar(ft.Text("Selecione ambas as chaves para prosseguir."), bgcolor=PlatinumTheme.WARNING())
             self.page.overlay.append(sb)
             sb.open = True
             self.page.update()

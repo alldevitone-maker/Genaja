@@ -1,14 +1,14 @@
-# Genaja Developer & Architecture Guide (v0.5.9)
+# Genaja Developer & Architecture Guide (v0.6.1 Alfa v2)
 
 [🇺🇸 English](DEVELOPER_GUIDE.en.md) | [🇧🇷 Português](DEVELOPER_GUIDE.md)
 
-Este documento contém o registro avançado da infraestrutura sob o capô do Genaja (JGDA) em sua fase **Pure Qt (v0.5.x)**.
+Este documento contém o registro avançado da infraestrutura sob o capô do Genaja (JGDA) em sua fase **Flet Integration (v0.6.x)**.
 
 ## 🏗️ Arquitetura do Software (O Motor JGDA v2.0)
 
 A aplicação segue um modelo de arquitetura desacoplada, garantindo que a lógica de negócio (ETL) seja agnóstica à interface gráfica.
 
-1. **`src/ui_qt/` (Camada Visual):** Implementada exclusivamente em **PySide6**. 
+1. **`src/ui_flet/` (Camada Visual):** Implementada exclusivamente em **Flet**. 
    - Utiliza um modelo **Frameless Architecture** com uma barra de título customizada (`TitleBar`).
    - Gerenciamento de temas centralizado via `ThemeService` (QSS Injection).
    - Wizard Stack de 4 passos com transições suaves (QPropertyAnimation).
@@ -22,7 +22,7 @@ A aplicação segue um modelo de arquitetura desacoplada, garantindo que a lógi
    - **`excel_loader.py`**: Leitor heurístico de cabeçalhos (`find_best_header`).
    - **`theme_service.py`**: Motor de tokens visuais que gera o design 2026 Premium.
 
-4. **`src/main.py`**: Ponto de entrada que inicializa o `AppBootstrap` e injeta as dependências necessárias nos painéis da UI.
+4. **`src/main.py`**: Ponto de entrada que inicializa o `AppBootstrap` e injeta as dependências necessárias nos painéis da UI Flet.
 
 ## 🛠️ Trilha de Engenharia (Milestones Técnicos)
 
@@ -45,4 +45,4 @@ O projeto utiliza um pipeline de validação rigoroso:
 - **`scripts/make_backup.py`**: Gerador de snapshots ZIP com nomenclatura SemVer automatizada.
 
 ---
-*Assinado: Genaja Engineering Protocol v0.5.9*
+*Assinado: Genaja Engineering Protocol v0.6.1 Alfa v2*

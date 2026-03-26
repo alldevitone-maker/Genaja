@@ -1,14 +1,14 @@
-# Genaja Developer & Architecture Guide (v0.5.9)
+# Genaja Developer & Architecture Guide (v0.6.1 Alfa v2)
 
 [🇺🇸 English](DEVELOPER_GUIDE.en.md) | [🇧🇷 Português](DEVELOPER_GUIDE.md)
 
-This document contains the advanced technical record of Genaja's (JGDA) infrastructure in its **Pure Qt (v0.5.x)** phase.
+This document contains the advanced technical record of Genaja's (JGDA) infrastructure in its **Flet Integration (v0.6.x)** phase.
 
 ## 🏗️ Software Architecture (The JGDA Engine v2.0)
 
 The application follows a decoupled architectural model, ensuring that Business Logic (ETL) remains agnostic to the Graphical User Interface.
 
-1. **`src/ui_qt/` (Visual Layer):** Implemented exclusively in **PySide6**. 
+1. **`src/ui_flet/` (Visual Layer):** Implemented exclusively in **Flet**. 
    - Uses a **Frameless Architecture** model with a custom title bar (`TitleBar`).
    - Centralized theme management via `ThemeService` (QSS Injection).
    - 4-step Wizard Stack with smooth transitions (`QPropertyAnimation`).
@@ -22,7 +22,7 @@ The application follows a decoupled architectural model, ensuring that Business 
    - **`excel_loader.py`**: Heuristic header reader (`find_best_header`).
    - **`theme_service.py`**: Visual token engine generating the 2026 Premium design.
 
-4. **`src/main.py`**: Entry point that initializes `AppBootstrap` and injects dependencies into UI panels.
+4. **`src/main.py`**: Entry point that initializes `AppBootstrap` and injects dependencies into UI panels (Flet).
 
 ## 🛠️ Engineering Trail (Technical Milestones)
 
@@ -45,4 +45,4 @@ The project follows a rigorous validation pipeline:
 - **`scripts/make_backup.py`**: ZIP snapshot generator with automated SemVer naming.
 
 ---
-*Signed: Genaja Engineering Protocol v0.5.9*
+*Signed: Genaja Engineering Protocol v0.6.1 Alfa v2*

@@ -24,47 +24,65 @@ class Step4View(ft.Column):
         self.audit = AuditService(operator="Flet_User")
         self.logger = LoggerService()
         
-        self.summary_text = ft.Text("Pronto para iniciar a sincronizacao.", size=16)
-        self.progress_bar = ft.ProgressBar(width=400, color=PlatinumTheme.PRIMARY, visible=False)
+        self.summary_text = ft.Text("Pronto para iniciar a sincronizacao.", size=14, color=PlatinumTheme.TEXT_PRIMARY())
+        self.progress_bar = ft.ProgressBar(width=400, color=PlatinumTheme.PRIMARY(), visible=False)
         
         # Format selector (v0.4.6 parity)
         self.format_group = ft.RadioGroup(
             content=ft.Row([
-                ft.Radio(value="xlsx", label="Excel"),
-                ft.Radio(value="csv", label="CSV"),
-                ft.Radio(value="json", label="JSON"),
-                ft.Radio(value="sql", label="SQL"),
+                ft.Radio(value="xlsx", label="Excel", label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()), fill_color=PlatinumTheme.PRIMARY()),
+                ft.Radio(value="csv", label="CSV", label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()), fill_color=PlatinumTheme.PRIMARY()),
+                ft.Radio(value="json", label="JSON", label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()), fill_color=PlatinumTheme.PRIMARY()),
+                ft.Radio(value="sql", label="SQL", label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()), fill_color=PlatinumTheme.PRIMARY()),
             ]),
             value="xlsx"
         )
         
         # Higienizacao & Blindagem (v0.4.7 from summary_panel)
-        self.chk_zeros = ft.Checkbox(label="I.A Sync: Auto-filtrar linhas com valor Zero/Nulo", value=False)
+        self.chk_zeros = ft.Checkbox(
+            label="I.A Sync: Auto-filtrar linhas com valor Zero/Nulo", 
+            value=False,
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()),
+            fill_color=PlatinumTheme.PRIMARY()
+        )
         self.chk_zeros.tooltip = "Remove automaticamente linhas onde a chave tem valor vazio ou zero"
         self.chk_zeros.on_change = lambda e: setattr(self.state, "remove_nulls", e.control.value)
         
-        self.chk_clean = ft.Checkbox(label="Limpar colunas orfas na saida", value=True)
+        self.chk_clean = ft.Checkbox(
+            label="Limpar colunas orfas na saida", 
+            value=True,
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()),
+            fill_color=PlatinumTheme.PRIMARY()
+        )
         self.chk_clean.tooltip = "Remove colunas que nao fazem parte do mapeamento no resultado final"
         
         self.btn_run = ft.ElevatedButton(
             "INICIAR SINCRONIZACAO CORPORATIVA", 
             on_click=self._run_sync, 
-            bgcolor=PlatinumTheme.SUCCESS, 
-            color="white", height=60, width=350
+            style=ft.ButtonStyle(
+                bgcolor={"": PlatinumTheme.SUCCESS()},
+                color={"": "white"},
+                shape=ft.RoundedRectangleBorder(radius=8),
+            ),
+            height=60, width=350
         )
         self.btn_run.tooltip = "Executa o motor ETL com todas as configuracoes definidas"
         
         # Module selector (v0.4.6: Sync vs Comparador tabs)
         self.module_selector = ft.RadioGroup(
             content=ft.Row([
-                ft.Radio(value="sync", label="Sincronizacao e Limpeza (ETL)"),
-                ft.Radio(value="compare", label="Comparador Puro (Auditoria)"),
+                ft.Radio(value="sync", label="Sincronizacao (ETL)", label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()), fill_color=PlatinumTheme.PRIMARY()),
+                ft.Radio(value="compare", label="Comparador (Audit)", label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()), fill_color=PlatinumTheme.PRIMARY()),
             ]),
             value="sync"
         )
         
         self.compare_mode = ft.Dropdown(
             label="Tipo de Comparacao",
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_SECONDARY()),
+            color=PlatinumTheme.TEXT_PRIMARY(),
+            border_color=PlatinumTheme.BORDER_DARK(),
+            focused_border_color=PlatinumTheme.PRIMARY(),
             options=[
                 ft.dropdown.Option("falta_destino", "Falta no Destino"),
                 ft.dropdown.Option("falta_origem", "Falta na Origem"),
@@ -76,47 +94,54 @@ class Step4View(ft.Column):
         self.module_selector.on_change = self._on_module_change
         
         self.controls = [
-            ft.Text("Finalizacao & Auditoria", size=24, weight=ft.FontWeight.W_600),
-            # Module selector
-            ft.Container(
-                **PlatinumTheme.card_style(),
-                content=ft.Column([
-                    ft.Text("Modulo de Execucao:", weight=ft.FontWeight.W_600),
-                    self.module_selector,
-                    self.compare_mode,
-                ], spacing=10)
-            ),
-            ft.Container(
-                **PlatinumTheme.card_style(),
-                content=ft.Column([
-                    self.summary_text,
-                    ft.Divider(color=PlatinumTheme.BORDER_DARK),
-                    ft.Text("O processo ira:"),
-                    ft.Text("- Cruzar dados via Chave Primaria", size=13),
-                    ft.Text("- Atualizar valores mapeados", size=13),
-                    ft.Text("- Gerar log de auditoria compliance", size=13),
-                ])
-            ),
-            # Higienizacao & Blindagem (v0.4.7)
-            ft.Container(
-                **PlatinumTheme.card_style(),
-                content=ft.Column([
-                    ft.Text("Higienizacao & Blindagem (Data Governance):", weight=ft.FontWeight.W_600),
-                    self.chk_zeros,
-                    self.chk_clean,
-                ], spacing=5)
-            ),
-            ft.Container(
-                **PlatinumTheme.card_style(),
-                content=ft.Column([
-                    ft.Text("Opcoes de Saida:", weight=ft.FontWeight.W_600),
-                    self.format_group,
-                ], spacing=10)
-            ),
+            ft.Text("Finalização & Auditoria", size=24, weight=ft.FontWeight.W_600, color=PlatinumTheme.PRIMARY()),
+            ft.ResponsiveRow([
+                # Module selector
+                ft.Container(
+                    **PlatinumTheme.card_style(),
+                    col={"sm": 12, "md": 6},
+                    content=ft.Column([
+                        ft.Text("Modulo de Execucao:", weight=ft.FontWeight.W_600, color=PlatinumTheme.TEXT_PRIMARY()),
+                        self.module_selector,
+                        self.compare_mode,
+                    ], spacing=10)
+                ),
+                ft.Container(
+                    **PlatinumTheme.card_style(),
+                    col={"sm": 12, "md": 6},
+                    content=ft.Column([
+                        self.summary_text,
+                        ft.Divider(color=PlatinumTheme.BORDER_DARK()),
+                        ft.Text("O processo ira:", color=PlatinumTheme.TEXT_SECONDARY()),
+                        ft.Text("- Cruzar dados via Chave Primaria", size=13, color=PlatinumTheme.TEXT_PRIMARY()),
+                        ft.Text("- Atualizar valores mapeados", size=13, color=PlatinumTheme.TEXT_PRIMARY()),
+                        ft.Text("- Gerar log de auditoria compliance", size=13, color=PlatinumTheme.TEXT_PRIMARY()),
+                    ])
+                ),
+                # Higienizacao & Blindagem (v0.4.7)
+                ft.Container(
+                    **PlatinumTheme.card_style(),
+                    col={"sm": 12, "md": 6},
+                    content=ft.Column([
+                        ft.Text("Higienizacao & Blindagem (Data Governance):", weight=ft.FontWeight.W_600, color=PlatinumTheme.TEXT_PRIMARY()),
+                        self.chk_zeros,
+                        self.chk_clean,
+                    ], spacing=5)
+                ),
+                ft.Container(
+                    **PlatinumTheme.card_style(),
+                    col={"sm": 12, "md": 6},
+                    content=ft.Column([
+                        ft.Text("Opcoes de Saida:", weight=ft.FontWeight.W_600, color=PlatinumTheme.TEXT_PRIMARY()),
+                        self.format_group,
+                    ], spacing=10)
+                ),
+            ], spacing=20),
+            ft.Container(height=20),
             ft.Column([self.progress_bar, self.btn_run], 
                        alignment=ft.MainAxisAlignment.CENTER, 
                        horizontal_alignment=ft.CrossAxisAlignment.CENTER),
-            ft.Row([ft.TextButton("Voltar", on_click=lambda _: self.on_back())])
+            ft.Row([ft.TextButton("Voltar", on_click=lambda _: self.on_back(), style=ft.ButtonStyle(color=PlatinumTheme.TEXT_SECONDARY()))])
         ]
 
     def _on_module_change(self, e):
@@ -203,13 +228,13 @@ class Step4View(ft.Column):
             self.logger.info(f"Concluido: {len(df_result)} linhas -> {out_path}")
             
             # 6. Sucesso
-            sb = ft.SnackBar(ft.Text(f"Sucesso! {len(df_result)} linhas salvas em: {out_path}"), bgcolor=PlatinumTheme.SUCCESS)
+            sb = ft.SnackBar(ft.Text(f"Sucesso! {len(df_result)} linhas salvas em: {out_path}"), bgcolor=PlatinumTheme.SUCCESS())
             self.page.overlay.append(sb)
             sb.open = True
             
         except Exception as ex:
             self.logger.error(f"Erro na sincronizacao: {ex}")
-            sb = ft.SnackBar(ft.Text(f"Erro: {ex}"), bgcolor=PlatinumTheme.DANGER)
+            sb = ft.SnackBar(ft.Text(f"Erro: {ex}"), bgcolor=PlatinumTheme.DANGER())
             self.page.overlay.append(sb)
             sb.open = True
             

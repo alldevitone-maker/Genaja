@@ -1,6 +1,8 @@
 # Genaja Pro - Inteligência de Sincronização Unificada
 
-> **Versão Atual:** `v0.6.0` (Alpha Platinum (Flet Migration & v0.4.x Parity))
+[🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
+
+> **Versão Atual:** `v0.6.1` (Alfa v2)
 > **Status do Projeto:** Ativo - Auditoria e Sincronismo de Governança 🛡️
 
 ---
@@ -42,6 +44,25 @@ O pipeline executa automaticamente:
 ---
 
 ## 📖 Histórico de Atualizações (Audit Trail 2026)
+
+<div id="latest-release">
+
+### **v0.6.1 (Alfa v2)**
+**O Marco de Estabilização.** Esta versão consolida a transição para a nova arquitetura reativa, eliminando bugs de contraste e garantindo governança absoluta do repositório.
+- 🎨 **Estabilização de Temas**: Migração para a ponte dinâmica `PlatinumTheme`, garantindo legibilidade perfeita no tema Light.
+- 🌓 **Reatividade Inteligente**: Cálculo automático de luminância para ajuste nativo do `ThemeMode` (SO Context).
+- 🧹 **Auditoria de Release**: Purga de resíduos técnicos e documentos privados para publicação pública segura.
+- ⚖️ **Governança 2026**: Sincronia rigorosa de metadados entre UI, Version e Docs.
+
+> [!TIP]
+> **Download do Client:** [Link indisponível nesta fase de Alpha] <!-- Futuro link aqui -->
+
+</div>
+
+---
+
+**v0.6.0 (Alpha Platinum - Flet Migration)**
+Transição tecnológica massiva trocando o motor gráfico PySide6 por **Flet (Pure Python Flutter)**, mantendo paridade funcional com a série v0.4.x. Restauração do Módulo Comparador e Dual-List Transfer.
 
 **v0.5.9 (Governance & History Synchronization)**
 Versão de auditoria focada na integridade do histórico do projeto. Sincronizamos todos os marcos da série v0.5.x nas documentações bilíngues e certificamos o funcionamento dos hooks de pre-commit.

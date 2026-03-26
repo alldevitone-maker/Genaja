@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.1] - 26/03/2026 (Alfa v2)
+- **Congelamento Arquitetural**: Estabilização final da ponte dinâmica de temas.
+- **Auditoria de Release**: Limpeza de resíduos de desenvolvimento e documentos privados.
+- **Governança**: Padronização de metadados e versionamento rigoroso.
+- **UX**: Refino de contraste e reatividade no Platinum Shell.
+
 ## [0.6.0] - 25/03/2026 (Alpha Platinum - Flet Migration & v0.4.x Parity)
 - **Flet Migration**: Arquitetura 100% Flet (v0.82.2+) com Router Lifecycle-Safe.
 - **Paridade v0.4.6/0.4.7**: Restauração do Dual-List Transfer, Regras de Linha e Regras Estruturais.

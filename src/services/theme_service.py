@@ -1,11 +1,15 @@
 import json
 import os
+import flet as ft
 
 class ThemeService:
     # 🏁 METADADOS AMIGÁVEIS (v0.5.6 Professional 2026)
     TOKEN_LABELS = {
         "bg_col": "Fundo da Janela",
         "fg_col": "Texto Principal",
+        "fg_secondary": "Texto Secundário",
+        "fg_muted": "Texto Subtil/Muted",
+        "fg_placeholder": "Texto de Placeholder",
         "surface_col": "Superfície de Cards",
         "border_col": "Contornos e Divisores",
         "action_bg": "Ação Principal (Botões)",
@@ -22,11 +26,14 @@ class ThemeService:
     PRESETS = {
         "zinc_studio": {
             "name": "Zinc Studio (Default)",
-            "bg_col": "#09090B",        # Deep Zinc
+            "bg_col": "#09090B",
             "fg_col": "#FAFAFA",
+            "fg_secondary": "#A1A1AA", # Zinc 400
+            "fg_muted": "#71717A",     # Zinc 500
+            "fg_placeholder": "#52525B",# Zinc 600
             "surface_col": "#18181B",
             "border_col": "#27272A",
-            "action_bg": "#3B82F6",     # Modern Azure
+            "action_bg": "#3B82F6",
             "action_fg": "#FFFFFF",
             "titlebar_bg": "#18181B",
             "titlebar_text": "#A1A1AA",
@@ -54,14 +61,17 @@ class ThemeService:
         },
         "light_grey_saas": {
             "name": "Light Grey SaaS",
-            "bg_col": "#E2E8F0",        # Slate 200 - Fundo Profundo
+            "bg_col": "#F1F5F9",        # Slate 100 - Mais claro p/ contraste real
             "fg_col": "#0F172A",        # Deep Navy
-            "surface_col": "#FFFFFF",   # Pure White - Cards "Papel"
-            "border_col": "#CBD5E1",    # Slate 300 - Bordas Definidas
-            "action_bg": "#1D4ED8",     # Saturated Blue
+            "fg_secondary": "#334155",  # Slate 700 - Muito mais nítido
+            "fg_muted": "#64748B",      # Slate 500
+            "fg_placeholder": "#94A3B8",# Slate 400
+            "surface_col": "#FFFFFF",
+            "border_col": "#CBD5E1",
+            "action_bg": "#1D4ED8",
             "action_fg": "#FFFFFF",
-            "titlebar_bg": "#F1F5F9",   # Slate 100
-            "titlebar_text": "#1E293B", # Dark Slate
+            "titlebar_bg": "#E2E8F0",
+            "titlebar_text": "#1E293B",
             "titlebar_close_hover": "#EF4444",
             "success_bg": "#059669",
             "warning_bg": "#D97706",
@@ -74,6 +84,7 @@ class ThemeService:
         self.config_dir = config_dir
         self.theme_path = os.path.join(config_dir, "theme_active.json")
         self.current_theme = self.load_theme()
+        self.auto_sync_contrast() # Forçar carga dos tokens dinâmicos no boot
 
     def load_theme(self):
         """Carrega o tema ativo garantindo isolamento total (v0.5.9 Phase 5)"""
@@ -153,12 +164,66 @@ class ThemeService:
         if len(hex_color) != 6: return (255, 0, 255)
         return int(hex_color[0:2], 16), int(hex_color[2:4], 16), int(hex_color[4:6], 16)
 
+    def _interpolate_color(self, color1_hex, color2_hex, factor):
+        """Interpola entre duas cores para criar variações de contraste."""
+        c1 = self.get_rgb(color1_hex)
+        c2 = self.get_rgb(color2_hex)
+        r = int(c1[0] + (c2[0] - c1[0]) * factor)
+        g = int(c1[1] + (c2[1] - c1[1]) * factor)
+        b = int(c1[2] + (c2[2] - c1[2]) * factor)
+        return f"#{r:02x}{g:02x}{b:02x}"
+
     def auto_sync_contrast(self):
-        """Sincroniza automaticamente os tokens de texto com seus respectivos fundos"""
-        self.current_theme["fg_col"] = self.get_contrast_color(self.current_theme["bg_col"])
+        """Sincroniza automaticamente os tokens de texto com seus respectivos fundos (v0.6.0 Hierárquico)."""
+        bg = self.current_theme["bg_col"]
+        # Texto Principal (Máximo Contraste)
+        primary = self.get_contrast_color(bg)
+        self.current_theme["fg_col"] = primary
+        
+        # Hierarquia Baseada no Fundo (Interpolação p/ evitar visual lavado)
+        # Se o fundo é claro, interpolamos em direção ao preto. Se escuro, em direção ao fundo.
+        # No Flet, para placeholders e secundários, precisamos de cores sólidas nítidas.
+        is_dark = self.get_contrast_color(bg) == "#FFFFFF"
+        
+        # Níveis de Contraste (Fatores de suavização)
+        self.current_theme["fg_secondary"] = self._interpolate_color(primary, bg, 0.2)
+        self.current_theme["fg_muted"] = self._interpolate_color(primary, bg, 0.45)
+        self.current_theme["fg_placeholder"] = self._interpolate_color(primary, bg, 0.6)
+        
         self.current_theme["action_fg"] = self.get_contrast_color(self.current_theme["action_bg"])
         self.current_theme["titlebar_text"] = self.get_contrast_color(self.current_theme["titlebar_bg"])
         
+    def get_flet_theme(self):
+        """Conversor Dinâmico Platinum (v0.6.0): Transforma tokens puros em ft.Theme robusto, reativo e compatível."""
+        t = self.current_theme
+        return ft.Theme(
+            color_scheme=ft.ColorScheme(
+                primary=t["action_bg"],
+                on_primary=t["action_fg"],
+                surface=t["surface_col"],
+                on_surface=t["fg_col"],
+                outline=t["border_col"],
+                error=t["danger_bg"],
+                on_error="#FFFFFF", # O erro quase sempre exige fundo branco p/ icones mas t["fg_col"] é mais seguro
+            ),
+            visual_density=ft.VisualDensity.COMPACT,
+        )
+
+    class Icons:
+        """Iconografia Linear Platinum 2026 (Chat-GPT Style)"""
+        WIZARD = ft.Icons.AUTO_AWESOME_OUTLINED
+        HISTORY = ft.Icons.HISTORY_OUTLINED
+        SETTINGS = ft.Icons.SETTINGS_OUTLINED
+        FILE_SOURCE = ft.Icons.UPLOAD_FILE_OUTLINED
+        FILE_TARGET = ft.Icons.DOWNLOAD_DONE_OUTLINED
+        LINK = ft.Icons.LINK_OUTLINED
+        CHECK = ft.Icons.CHECK_CIRCLE_OUTLINED
+        ERROR = ft.Icons.ERROR_OUTLINE_ROUNDED
+        INFO = ft.Icons.INFO_OUTLINE_ROUNDED
+        CLOSE = ft.Icons.CLOSE_OUTLINED
+        MAXIMIZE = ft.Icons.MAXIMIZE_OUTLINED
+        APP_LOGO = ft.Icons.DATA_EXPLORATION_OUTLINED
+
     def get_qss(self):
         t = self.current_theme
         

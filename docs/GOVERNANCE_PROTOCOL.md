@@ -1,10 +1,10 @@
-# 🛡️ PROTOCOLO DE ENGENHARIA E GOVERNANÇA GENAJA (v0.5.9)
+# 🛡️ PROTOCOLO DE ENGENHARIA E GOVERNANÇA GENAJA (v0.6.1 Alfa v2)
 
 Este documento resume como o desenvolvimento do Genaja é blindado contra falhas e como mantemos a paridade entre código, design e documentação.
 
 ## 1. Versão Atual e Título
-> **Versão:** `0.5.6`
-> **Título:** `Premium Customizer 2026`
+> **Versão:** `0.6.1`
+> **Título:** `Alfa v2`
 
 ## 2. Padrões de Código
 - **GUI:** PySide6 (Pure Qt).
@@ -27,4 +27,4 @@ Monitorar carregamento dos widgets críticos:
 - ThemeEditor
 
 ---
-*Assinado: Motor de Governança Genaja.*
+*Assinado: Motor de Governança Genaja (v0.6.1).*

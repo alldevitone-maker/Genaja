@@ -1,16 +1,16 @@
-# 🛠️ Genaja Engineering Baseline: v0.5.9 Platinum
+# 🛠️ Genaja Engineering Baseline: v0.6.1 Alfa v2
 
 Este documento serve como guia de orientação rápida para desenvolvedores e agentes de I.A que atuarão no projeto.
 
-## 🏁 Estado da Arte (v0.5.9)
-- **Framework**: PySide6 (Pure Qt).
+## 🏁 Estado da Arte (v0.6.1)
+- **Framework**: Flet (Pure Python Flutter).
 - **Paradigma**: Arquitetura desacoplada (Core Services vs. UI).
 - **UI Style**: 2026 High-Fidelity (Frameless, Custom Titlebar, QSS Dynamic).
 
 ## 📂 Estrutura de Diretórios
 - `src/main.py`: Ponto de entrada (utiliza `AppBootstrap`).
 - `src/core/services/`: Motores de inteligência (ETL, Mapping, Config).
-- `src/ui_qt/`: Camada visual PySide6.
+- `src/ui_flet/`: Camada visual Flet moderna e reativa.
 - `docs/`: Documentação técnica e manuais em paridade (PT / EN).
 - `scripts/`: Automação de ciclo de vida (`automate.py`, `make_backup.py`).
 - `tests/`: Infraestrutura de QA (`smoke_test.py`).
@@ -25,4 +25,4 @@ Este documento serve como guia de orientação rápida para desenvolvedores e ag
 - **Backup**: Snapshots ZIP automáticos no diretório `backups/`.
 
 ---
-*Assinado: Genaja Core Team (Audit Baseline)*
+*Assinado: Genaja Core Team (Audit Baseline v0.6.1)*

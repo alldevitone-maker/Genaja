@@ -1,6 +1,8 @@
 # Genaja Pro - Unified Synchronization Intelligence
 
-> **Current Version:** `v0.6.0` (Alpha Platinum (Flet Migration & v0.4.x Parity))
+[🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
+
+> **Current Version:** `v0.6.1` (Alfa v2)
 > **Project Status:** Active - Governance Audit & History Sync 🛡️
 
 ---
@@ -42,6 +44,25 @@ The pipeline automatically runs:
 ---
 
 ## 📖 Update History (Audit Trail 2026)
+
+<div id="latest-release">
+
+### **v0.6.1 (Alfa v2)**
+**The Stabilization Milestone.** This version consolidates the transition to the new reactive architecture, eliminating contrast bugs and ensuring absolute repository governance.
+- 🎨 **Theme Stabilization**: Migration to the `PlatinumTheme` dynamic bridge, ensuring perfect legibility in Light mode.
+- 🌓 **Intelligent Reactivity**: Automatic luminance calculation for native `ThemeMode` adjustment (OS Context).
+- 🧹 **Release Audit**: Purge of technical residuals and private documents for secure public publication.
+- ⚖️ **2026 Governance**: Rigorous metadata synchronization across UI, Version, and Docs.
+
+> [!TIP]
+> **Client Download:** [Link unavailable during Alpha phase] <!-- Future link here -->
+
+</div>
+
+---
+
+**v0.6.0 (Alpha Platinum - Flet Migration)**
+Massive technological transition replacing the PySide6 graphics engine with **Flet (Pure Python Flutter)**, maintaining functional parity with the v0.4.x series. Restoration of the Comparator Module and Dual-List Transfer.
 
 **v0.5.9 (Governance & History Synchronization)**
 Audit version focused on project history integrity. Synchronized all v0.5.x milestones across bilingual documentation and certified pre-commit hooks functionality.

@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.1] - 2026-03-26 (Alfa v2)
+- **Architectural Freeze**: Final stabilization of the dynamic theme bridge.
+- **Release Audit**: Cleanup of development residuals and private documents.
+- **Governance**: Standardization of metadata and rigorous versioning.
+- **UX**: Contrast refinement and reactivity in the Platinum Shell.
+
 ## [0.6.0] - 2026-03-25 (Alpha Platinum - Flet Migration & v0.4.x Parity)
 - **Flet Migration**: 100% Flet architecture (v0.82.2+) with Lifecycle-Safe Router.
 - **v0.4.6/0.4.7 Parity**: Restoration of Dual-List Transfer, Row Rules, and Structural Rules.

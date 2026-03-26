@@ -1,55 +1,79 @@
 import flet as ft
+from services.theme_service import ThemeService
 
 class PlatinumTheme:
     """
     Sistema de Temas v0.6.0 (Platinum Edition).
-    Cores harmonizadas baseadas em HSL para UX premium.
+    Ponte entre o ThemeService (Tokens) e a UI Flet.
     """
-    # Palette - Dark Mode
-    BG_DARK = "#09090b"
-    SURFACE_DARK = "#18181b"
-    BORDER_DARK = "#27272a"
-    TEXT_PRIMARY = "#fafafa"
-    TEXT_SECONDARY = "#a1a1aa"
+    _service = ThemeService()
     
-    # Palette - Light Mode
-    BG_LIGHT = "#f8fafc"
-    SURFACE_LIGHT = "#ffffff"
-    BORDER_LIGHT = "#e2e8f0"
-    TEXT_PRIMARY_LIGHT = "#0f172a"
-    TEXT_SECONDARY_LIGHT = "#64748b"
+    # 🎨 GETTERS DINÂMICOS (v0.6.0 Platinum - Estabilização Arquitetural)
+    # Garantem que ao trocar de tema, a UI acesse o valor atualizado e não o congelado no boot.
+
+    @classmethod
+    def token(cls, key: str): return cls._service.current_theme.get(key, "#FF00FF")
+
+    @classmethod
+    def PRIMARY(cls): return cls.token("action_bg")
     
-    # Brand Colors
-    PRIMARY = "#3b82f6"      # Blue
-    SUCCESS = "#10b981"      # Emerald
-    WARNING = "#f59e0b"      # Amber
-    DANGER = "#ef4444"       # Rose
+    @classmethod
+    def SUCCESS(cls): return cls.token("success_bg")
+    
+    @classmethod
+    def WARNING(cls): return cls.token("warning_bg")
+    
+    @classmethod
+    def DANGER(cls): return cls.token("danger_bg")
+    
+    @classmethod
+    def SURFACE_DARK(cls): return cls.token("surface_col")
+    
+    @classmethod
+    def BG_DARK(cls): return cls.token("bg_col")
+    
+    @classmethod
+    def BORDER_DARK(cls): return cls.token("border_col")
+    
+    @classmethod
+    def TEXT_PRIMARY(cls): return cls.token("fg_col")
+    
+    @classmethod
+    def TEXT_SECONDARY(cls): return cls.token("fg_secondary")
+    
+    @classmethod
+    def TEXT_MUTED(cls): return cls.token("fg_muted")
+    
+    @classmethod
+    def TEXT_PLACEHOLDER(cls): return cls.token("fg_placeholder")
+
+    # Iconografia Centralizada
+    Icons = ThemeService.Icons
 
     @staticmethod
     def apply_to_page(page: ft.Page):
-        page.theme_mode = ft.ThemeMode.DARK # Padrão v0.6.0
-        page.bgcolor = PlatinumTheme.BG_DARK
+        """Aplica o tema atual do ThemeService à página Flet (v0.6.0 Alpha)."""
+        t = PlatinumTheme._service.current_theme
+        
+        # 🔗 ThemeMode Dinâmico via Luminância (Elimina Conflitos no Light Mode)
+        bg_color = t["bg_col"]
+        is_dark = PlatinumTheme._service.get_contrast_color(bg_color) == "#FFFFFF"
+        page.theme_mode = ft.ThemeMode.DARK if is_dark else ft.ThemeMode.LIGHT
+        
+        page.theme = PlatinumTheme._service.get_flet_theme()
+        page.bgcolor = bg_color
         
         # Window API v0.82+
         page.window.title_bar_hidden = True
         page.window.title_bar_buttons_hidden = True
-        
-        # Custom Theme Configuration
-        page.theme = ft.Theme(
-            color_scheme=ft.ColorScheme(
-                primary=PlatinumTheme.PRIMARY,
-                surface=PlatinumTheme.SURFACE_DARK,
-                on_surface=PlatinumTheme.TEXT_PRIMARY,
-                outline=PlatinumTheme.BORDER_DARK
-            ),
-            visual_density=ft.VisualDensity.COMPACT
-        )
 
     @staticmethod
     def card_style():
+        """Retorna o estilo padrão para cards em conformidade com o tema ativo."""
+        t = PlatinumTheme._service.current_theme
         return {
-            "bgcolor": PlatinumTheme.SURFACE_DARK,
-            "border": ft.border.all(1, PlatinumTheme.BORDER_DARK),
+            "bgcolor": t["surface_col"],
+            "border": ft.border.all(1, t["border_col"]),
             "border_radius": 12,
             "padding": 20
         }

@@ -24,35 +24,12 @@ class AppBootstrap:
             import flet as ft
             from ui_flet.main import main as flet_main
             
-            # Injeção de Dependência Consolidada
-            # O flet_main precisará ser adaptado para aceitar esses serviços no futuro
-            # Por enquanto, ele já os instancia internamente, mas mantemos o padrão
-            
+            # Inicialização Platinum v0.6.0 (Pure Flet)
             ft.app(target=flet_main)
             
         except ImportError as e:
             print(f"ERROR: Arquitetura Flet nao encontrada: {e}")
-            print("Verifique se o Flet esta instalado: pip install flet")
             sys.exit(1)
         except Exception as e:
             print(f"ERROR: ERRO DE INICIALIZACAO FLET: {e}")
-            sys.exit(1)
-
-    def _run_qt(self):
-        # Legado mantido apenas para referência interna se necessário
-        try:
-            from ui_qt.genaja_qt_app import start_qt_app
-            
-            services = {
-                "theme": self.theme_service,
-                "config": self.config_service,
-                "etl": self.etl_service,
-                "mapping": self.mapping_engine,
-                "validation": self.validation_engine
-            }
-            
-            start_qt_app(services)
-            
-        except Exception as e:
-            print(f"ERROR: Falha ao carregar fallback Qt: {e}")
             sys.exit(1)
