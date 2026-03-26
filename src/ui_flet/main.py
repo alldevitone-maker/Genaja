@@ -10,6 +10,7 @@ from ui_flet.theme import PlatinumTheme
 from services.config_service import ConfigService
 from services.logger_service import LoggerService
 from app.wizard_state import WizardState
+from version import __version__, __title__
 
 # Views
 from ui_flet.views.step1_view import Step1View
@@ -31,7 +32,7 @@ async def main(page: ft.Page):
     state = WizardState()
     
     # 2. Setup de Janela (API Flet v0.82+)
-    page.title = "Genaja Pro v0.6.0 Alpha"
+    page.title = f"Genaja Suite v{__version__} ({__title__})"
     page.window.width = 1100
     page.window.height = 800
     page.window.min_width = 800
@@ -220,10 +221,10 @@ async def main(page: ft.Page):
             # Area de Arraste (Título e Logo)
             ft.WindowDragArea(
                 content=ft.Row([
-                    ft.Icon(ft.Icons.DATA_EXPLORATION_OUTLINED, color=PlatinumTheme.PRIMARY(), size=22),
-                    ft.Text("GENAJA PRO", weight=ft.FontWeight.BOLD, size=15, color=PlatinumTheme.PRIMARY()),
+                    ft.Icon(ft.Icons.AUTO_AWESOME, color=PlatinumTheme.PRIMARY(), size=22),
+                    ft.Text("GENAJA SUITE", weight=ft.FontWeight.BOLD, size=15, color=PlatinumTheme.PRIMARY()),
                     ft.VerticalDivider(width=10, color=PlatinumTheme.BORDER_DARK()),
-                    ft.Text(f"v0.6.1 Alfa v2 | {config.get('general', 'operator_name')}", color=PlatinumTheme.TEXT_SECONDARY(), size=12),
+                    ft.Text(f"v{__version__} {__title__} | {config.get('general', 'operator_name')}", color=PlatinumTheme.TEXT_SECONDARY(), size=12),
                 ], vertical_alignment=ft.CrossAxisAlignment.CENTER),
                 expand=True
             ),

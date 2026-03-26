@@ -7,9 +7,9 @@
 
 ---
 
-## 🚀 O que é o Genaja Pro?
+## 🚀 Genaja Suite — A Revolução da Inteligência de Dados
 
-**Genaja Pro** é uma plataforma desktop premium para analistas corporativos que precisam **reconciliar, mapear e sincronizar dados entre planilhas** — de forma inteligente, sem escrever código.
+**Genaja Suite** evoluiu de uma ferramenta ETL para uma plataforma de **Data Learning** projetada para analistas corporativos que buscam automação inteligente sem código. Através de sua nova **Evolution Memory Layer**, o sistema aprende com cada mapeamento, transformando execuções passadas em conhecimento vivo para o futuro.
 
 Seu motor **JGDA Engine** entrega:
 - 🚀 **Memória Evolutiva Local** — Reconhecimento de contextos e mapeamentos históricos (Zero Cloud/Offline)
