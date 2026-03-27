@@ -7,8 +7,8 @@ import asyncio
 sys.path.append(os.path.abspath("src"))
 
 from ui_flet.theme import PlatinumTheme
-from services.config_service import ConfigService
-from services.logger_service import LoggerService
+from core.services.config_service import ConfigService
+from core.services.logger_service import LoggerService
 from app.wizard_state import WizardState
 from version import __version__, __title__
 

@@ -1,0 +1,10 @@
+{
+  "migration_id": "v068_LEARNING_MIGRATION",
+  "timestamp": "2026-03-27T13:52:00",
+  "source_structure": "Legacy (.genaja/learning_log.json)",
+  "target_structure": "Master Protocol (learn/consolidated/)",
+  "files_migrated": 101,
+  "data_integrity": "OK",
+  "brain_version": "0.6.9-Master",
+  "notes": "Todos os logs legados foram consolidados e o novo fluxo de inbox/raw está operacional."
+}

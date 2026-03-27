@@ -6,7 +6,7 @@ import unittest
 # Setup paths
 sys.path.append(os.path.join(os.getcwd(), "src"))
 
-from core.lookup_engine import LookupEngine
+from core.services.lookup_engine import LookupEngine
 
 class TestV063Lookup(unittest.TestCase):
     def test_find_common_columns(self):

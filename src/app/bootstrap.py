@@ -1,5 +1,5 @@
 import sys
-from services.theme_service import ThemeService
+from core.services.theme_service import ThemeService
 from core.services.config_service import ConfigService
 from core.services.etl_service import ETLService
 from core.services.mapping_engine import MappingEngine

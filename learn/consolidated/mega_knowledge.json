@@ -4158,11 +4158,39 @@
       "itemname": {
         "score": 5,
         "state": "INFERRED"
+      },
+      "id_produto": {
+        "score": 400,
+        "state": "CONFIRMED"
+      }
+    },
+    "nome_item": {
+      "nome_item": {
+        "score": 400,
+        "state": "CONFIRMED"
+      }
+    },
+    "valor_unitaria": {
+      "valor_unitaria": {
+        "score": 400,
+        "state": "CONFIRMED"
+      }
+    },
+    "qtd_estoque": {
+      "qtd_estoque": {
+        "score": 400,
+        "state": "CONFIRMED"
+      }
+    },
+    "categoria_x": {
+      "categoria_x": {
+        "score": 400,
+        "state": "CONFIRMED"
       }
     }
   },
   "metadata": {
-    "total_cycles": 1689633,
-    "last_update": "2026-03-27 13:29:11.880712"
+    "total_cycles": 1690633,
+    "last_update": "2026-03-27 13:59:51.451685"
   }
 }

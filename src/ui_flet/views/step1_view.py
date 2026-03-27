@@ -5,9 +5,9 @@ from tkinter import filedialog
 from ui_flet.theme import PlatinumTheme
 from core.engines.loader_engine import LoaderEngine
 from core.engines.suggestion_engine import SuggestionEngine
-from services.logger_service import LoggerService
-from core.validation_engine import ValidationEngine
-from core.lookup_engine import LookupEngine
+from core.services.logger_service import LoggerService
+from core.services.validation_engine import ValidationEngine
+from core.services.lookup_engine import LookupEngine
 from core.learning.suggestion_engine import HistoricalSuggestionEngine
 from ui_flet.dialogs.file_intelligence_dialog import FileIntelligenceDialog
 

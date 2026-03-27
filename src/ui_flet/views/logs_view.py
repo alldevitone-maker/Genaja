@@ -1,6 +1,6 @@
 import flet as ft
 from ui_flet.theme import PlatinumTheme
-from services.logger_service import LoggerService
+from core.services.logger_service import LoggerService
 
 class LogsView(ft.Column):
     """

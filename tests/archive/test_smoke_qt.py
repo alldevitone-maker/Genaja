@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 's
 try:
     from PySide6.QtWidgets import QApplication
     from ui_qt.main_window import MainWindow
-    from services.theme_service import ThemeService
+    from core.services.theme_service import ThemeService
     print("PySide6 carregado com sucesso.")
 except ImportError as e:
     print(f"ERRO: PySide6 não instalado: {e}")

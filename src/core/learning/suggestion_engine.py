@@ -3,7 +3,7 @@ from core.learning.learning_store import LearningStore
 from core.learning.curated_store import CuratedStore
 from core.learning.mega_store import MegaKnowledgeStore
 from migration.schema_mapper import SchemaMapper
-from core.lookup_engine import LookupEngine
+from core.services.lookup_engine import LookupEngine
 
 class HistoricalSuggestionEngine:
     """

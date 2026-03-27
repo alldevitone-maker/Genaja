@@ -1,7 +1,7 @@
 import flet as ft
 import os
 from ui_flet.theme import PlatinumTheme
-from services.logger_service import LoggerService
+from core.services.logger_service import LoggerService
 from migration.schema_mapper import SchemaMapper
 from core.learning.suggestion_engine import HistoricalSuggestionEngine
 from ui_flet.dialogs.compatibility_dialog import CompatibilityDialog

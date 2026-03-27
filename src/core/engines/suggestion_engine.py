@@ -1,6 +1,6 @@
 import os
 import glob
-from services.logger_service import LoggerService
+from core.services.logger_service import LoggerService
 
 class SuggestionEngine:
     """

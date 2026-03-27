@@ -2,6 +2,53 @@
   "log_version": "1.0",
   "executions": [
     {
+      "sheet": "dirty_data_0.csv",
+      "source_columns": [
+        "ID_PRODUTO",
+        "NOME_ITEM",
+        "VALOR_UNITARIA",
+        "QTD_ESTOQUE",
+        "CATEGORIA_X"
+      ],
+      "source_signature": "9eca2ba5e68b8e9055aba9df3338f194",
+      "row_count": 10,
+      "column_profiles": {
+        "ID_PRODUTO": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 4.0,
+          "unique_ratio": 1.0
+        },
+        "NOME_ITEM": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 10.0,
+          "unique_ratio": 1.0
+        },
+        "VALOR_UNITARIA": {
+          "dtype": "float64",
+          "is_numeric": true,
+          "avg_len": 5.7,
+          "unique_ratio": 1.0
+        },
+        "QTD_ESTOQUE": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 2.0,
+          "unique_ratio": 1.0
+        },
+        "CATEGORIA_X": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 5.0,
+          "unique_ratio": 0.3
+        }
+      },
+      "is_passive_learning": true,
+      "usage_count": 200,
+      "timestamp": "2026-03-27T13:59:51.389575"
+    },
+    {
       "sheet": "OITM - Items - ITEM1 - TESTE",
       "source_columns": [
         "9",

@@ -10,7 +10,7 @@ sys.path.append(os.path.abspath("src"))
 from core.learning.learning_logger import LearningLogger
 from core.learning.suggestion_engine import HistoricalSuggestionEngine
 from core.engines.loader_engine import LoaderEngine
-from services.logger_service import LoggerService
+from core.services.logger_service import LoggerService
 
 def main():
     LoggerService.setup()

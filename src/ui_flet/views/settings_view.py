@@ -1,6 +1,6 @@
 import flet as ft
 from ui_flet.theme import PlatinumTheme
-from services.config_service import ConfigService
+from core.services.config_service import ConfigService
 
 class SettingsView(ft.Column):
     """

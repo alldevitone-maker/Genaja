@@ -4,9 +4,9 @@ import os
 from ui_flet.theme import PlatinumTheme
 from core.engines.etl_engine import ETLEngine
 from core.engines.validation_engine import ValidationEngine
-from services.export_service import ExportService
-from services.audit_service import AuditService
-from services.logger_service import LoggerService
+from core.services.export_service import ExportService
+from core.services.audit_service import AuditService
+from core.services.logger_service import LoggerService
 from core.learning.learning_logger import LearningLogger
 
 class Step4View(ft.Column):

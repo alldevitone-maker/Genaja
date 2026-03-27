@@ -1,14 +1,34 @@
 {
   "rules": {
     "id_produto": {
-      "target": "ItemCode",
-      "reason": "Manual Curation",
-      "promoted_at": "2026-03-27 13:29:11.904145"
+      "target": "ID_PRODUTO",
+      "reason": "Auto-promotion: High Confidence Score",
+      "promoted_at": "2026-03-27 13:59:51.451657"
+    },
+    "nome_item": {
+      "target": "NOME_ITEM",
+      "reason": "Auto-promotion: High Confidence Score",
+      "promoted_at": "2026-03-27 13:59:51.451666"
+    },
+    "valor_unitaria": {
+      "target": "VALOR_UNITARIA",
+      "reason": "Auto-promotion: High Confidence Score",
+      "promoted_at": "2026-03-27 13:59:51.451670"
+    },
+    "qtd_estoque": {
+      "target": "QTD_ESTOQUE",
+      "reason": "Auto-promotion: High Confidence Score",
+      "promoted_at": "2026-03-27 13:59:51.451681"
+    },
+    "categoria_x": {
+      "target": "CATEGORIA_X",
+      "reason": "Auto-promotion: High Confidence Score",
+      "promoted_at": "2026-03-27 13:59:51.451684"
     }
   },
   "metadata": {
     "version": "0.6.9",
     "creator": "Master Agent Protocol",
-    "last_sync": "2026-03-27 13:29:11.904156"
+    "last_sync": "2026-03-27 13:59:51.458154"
   }
 }

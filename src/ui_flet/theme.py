@@ -1,5 +1,5 @@
 import flet as ft
-from services.theme_service import ThemeService
+from core.services.theme_service import ThemeService
 
 class PlatinumTheme:
     """

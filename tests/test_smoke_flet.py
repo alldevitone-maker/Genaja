@@ -36,7 +36,7 @@ def run_flet_smoke_test():
         print("[OK] Mapping Engine: Intelligence layer verified.")
 
         # 5. Validate Audit Service
-        from services.audit_service import AuditService
+        from core.services.audit_service import AuditService
         audit = AuditService(operator="SMOKE_TEST")
         audit.log_event("SMOKE_TEST", {"status": "SUCCESS"})
         print("[OK] Audit Service: Event logging functional.")
