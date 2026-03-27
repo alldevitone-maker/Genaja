@@ -1,3 +1,9 @@
+## [0.6.5] - 27/03/2026 (Profiling Engine)
+- **Data Profiling Layer**: Implementação de motor de análise de conteúdo (`dtype`, `unique_ratio`, `avg_len`).
+- **Deep Suggestion**: Priorização de sugestões baseada no perfil do dado quando o nome da coluna diverge.
+- **Redução de Falsos Positivos**: Filtragem inteligente de colunas técnicas ruidosas via heurística estatística.
+- **Performance**: Algoritmo de profiling otimizado para execuções O(n) em datasets corporativos.
+
 ## [0.6.4] - 26/03/2026 (Evolution Memory Release)
 - **Evolution Memory Layer**: Introdução de persistência local de aprendizado.
 - **Learning Store**: Armazenamento seguro de metadados em `learning_log.json`.
