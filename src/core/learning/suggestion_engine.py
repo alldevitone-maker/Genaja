@@ -13,14 +13,9 @@ class HistoricalSuggestionEngine:
         self.fuzzy = SchemaMapper()
         self.exact = LookupEngine()
 
-    def get_smart_suggestions(self, src_cols: List[str], tgt_cols: List[str]) -> Dict[str, Any]:
+    def get_smart_suggestions(self, src_cols: List[str], tgt_cols: List[str], src_profiles: Optional[Dict] = None) -> Dict[str, Any]:
         """
-        Gera sugestões orquestradas por prioridade.
-        Retorno: {
-           "mapping": {col: target},
-           "confidence": float,
-           "source": "history" | "fuzzy" | "exact"
-        }
+        Gera sugestões orquestradas por prioridade (Histórico > Fuzzy > Perfil > Exato).
         """
         # 1. Tentar Histórico (Prioridade 1)
         history_suggestion = self._get_from_history(src_cols, tgt_cols)
@@ -41,9 +36,19 @@ class HistoricalSuggestionEngine:
                 "confidence": 0.7,
                 "source": "fuzzy"
             }
+
+        # 3. Tentar Profiling (v0.6.5 - Prioridade 3)
+        if src_profiles:
+            profile_suggestion = self._get_from_profiles(src_profiles, tgt_cols)
+            if profile_suggestion:
+                return {
+                    "mapping": profile_suggestion,
+                    "confidence": 0.6,
+                    "source": "profiling"
+                }
             
-        # 3. Tentar Exato (Prioridade 3)
-        common = self.exact.find_common_columns_mock(src_cols, tgt_cols) # Assumindo list match
+        # 4. Tentar Exato (Prioridade 4)
+        common = [c for c in src_cols if c in tgt_cols]
         if common:
             return {
                 "mapping": {c: c for c in common},
@@ -75,3 +80,26 @@ class HistoricalSuggestionEngine:
             "confidence": 0.9,
             "keys": (best["selected_key_src"], best["selected_key_tgt"])
         }
+
+    def _get_from_profiles(self, current_profiles: Dict[str, Any], tgt_cols: List[str]) -> Optional[Dict]:
+        """Compara perfis atuais com o histórico para encontrar matches de conteúdo."""
+        log = self.store.load_log()
+        matches = {}
+        
+        for src_col, current_p in current_profiles.items():
+            best_target = None
+            max_match_score = 0
+            
+            for ex in log["executions"]:
+                hist_profiles = ex.get("column_profiles", {})
+                hist_mapping = ex.get("mapping_applied", {})
+                
+                for h_src, h_p in hist_profiles.items():
+                    # Critério de similaridade de perfil (Tipo e Comprimento Médio)
+                    if h_p.get("dtype") == current_p.get("dtype") and abs(h_p.get("avg_len", 0) - current_p.get("avg_len", 0)) < 2:
+                        target = hist_mapping.get(h_src)
+                        if target in tgt_cols:
+                            matches[src_col] = target
+                            break
+        
+        return matches if matches else None

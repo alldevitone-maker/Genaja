@@ -1,3 +1,10 @@
+## [0.6.7-Ultimate] - 27/03/2026 (Marathon Analysis Release)
+- **Big Data Marathon Phase 2**: Consolidação massiva de **1.001.675 associações** aprendidas.
+- **Brain Migration**: Centralização do "Cérebro" do Genaja na pasta visível `learn/` do repositório.
+- **Statistical Mapping Inference**: Motor de inferência refinado com densidade de 315 colunas primárias.
+- **Performance de Elite**: Execução de 1 milhão de ciclos estocásticos em 74 segundos.
+- **Governança Unificada**: Sincronização completa de tags `v0.6.5`, `v0.6.6` e `v0.6.7` com auditoria final.
+
 ## [0.6.6] - 27/03/2026 (Multi-Sheet Processing)
 - **Multi-Sheet Loader**: Suporte nativo para leitura de todas as abas de Workbooks Excel (`sheet_name=None`).
 - **Sheet Intelligence**: Detecção automática de cabeçalhos e tipos por aba individual.

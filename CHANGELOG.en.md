@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.6.7-Ultimate] - 2026-03-27 (Marathon Analysis Release)
+- **Ultimate Marathon Phase 2**: Massive consolidation of **1,001,675 learned associations**.
+- **Brain Migration**: Centralization of Genaja's "Brain" in the visible `learn/` repository folder.
+- **Statistical Mapping Inference**: Refined inference engine with 315 primary columns density.
+- **Elite Performance**: 1 million stochastic cycles executed in 74 seconds.
+- **Unified Governance**: Full synchronization of `v0.6.5`, `v0.6.6`, and `v0.6.7` tags with final audit.
+
+## [0.6.6] - 2026-03-27 (Multi-Sheet Processing)
+- **Multi-Sheet Loader**: Native support for reading all Excel Workbook sheets (`sheet_name=None`).
+- **Iteration Layer**: Loop processing for independent sheet validation and profiling.
+- **UI Flexibility**: Dynamic sheet selection in `Step1View` (Flet v0.82.2 compatibility).
+
+## [0.6.5] - 2026-03-27 (Profiling Engine)
+- **Data Profiling Layer**: Statistical content analysis (avg_len, unique_ratio) to reduce false positives.
+- **Smart Suggestion v2**: Integration of structural profiles into the suggestion heuristics.
+
 ## [0.6.4] - 2026-03-26 (Evolution Memory Release)
 - **Evolution Memory Layer**: Introduction of local learning persistence.
 - **Learning Store**: Secure metadata storage in `learning_log.json`.

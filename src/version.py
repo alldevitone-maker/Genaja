@@ -1,2 +1,2 @@
-__version__ = "0.6.4"
-__title__ = "Evolution Memory"
+__version__ = "0.6.7-Ultimate"
+__title__ = "Marathon Analysis Release"

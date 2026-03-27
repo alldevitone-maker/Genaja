@@ -1,9 +1,7 @@
 # Genaja Suite — Inteligência Analítica e Sincronização de Dados
 
-[🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
-
-> **Versão Atual:** `v0.6.4` (Evolution Memory)
-> **Status do Projeto:** Estável - Memória Evolutiva & IA Local 🧠
+[🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Portugu> **Versão Atual:** `v0.6.7-Ultimate` (Marathon Analysis Release)
+> **Status do Projeto:** Estável - Inteligência Estatística de Alta Densidade 🧠
 
 ---
 
@@ -13,6 +11,10 @@
 
 Seu motor **JGDA Engine** entrega:
 - 🚀 **Memória Evolutiva Local** — Reconhecimento de contextos e mapeamentos históricos (Zero Cloud/Offline)
+- 📊 **Ultimate Marathon (v0.6.7)** — Base de conhecimento consolidada com **1.000.000+ ciclos** de aprendizado
+- 🏛️ **Knowledge Brain** — Repositório visível de aprendizado na pasta `learn/` do projeto
+- 📑 **Multi-Sheet Support (v0.6.6)** — Processamento completo de Workbooks Excel com seleção dinâmica de abas
+- 🔍 **Data Profiling (v0.6.5)** — Análise estatística de conteúdo para redução de falsos positivos
 - 🔑 **Detecção de Chaves Primárias** — Identificação automática via entropia (ID, SKU, CPF, CNPJ...)
 - 🔗 **Mapeamento via Fuzzy Logic** — Heurísticas de similaridade editorial Levenshtein (AI Estrutural)
 - 🛡️ **Safe-Merge com Shielding** — Evita duplicatas, fantasmas e cruzamentos errôneos
@@ -47,6 +49,22 @@ O pipeline executa automaticamente:
 ## 📖 Histórico de Atualizações (Audit Trail 2026)
 
 <div id="latest-release">
+
+### **v0.6.7 (Marathon Analysis Release - ULTIMATE)**
+**O cérebro definitivo.** Consolidação de 1 milhão de simulações e integração de dados legados do BigData.
+- 🏃 **Ultimate Marathon**: 1.001.675 associações aprendidas com pesos estatísticos.
+- 🏛️ **Brain Consolidation**: Migração do cérebro técnico para a pasta visível `learn/`.
+- 📈 **Statistical Inference**: Sugestões ultra-precisas com densidade de 315 colunas primárias.
+
+### **v0.6.6 (Multi-Sheet Release)**
+**O fim da limitação de aba única.** O Genaja agora entende arquivos Excel como entidades completas.
+- 📑 **Multi-Sheet Loader**: Leitura simultânea de todas as abas (`sheet_name=None`).
+- 🔘 **Tab Selector UI**: Dropdowns para seleção de origem/destino na interface Step 1.
+
+### **v0.6.5 (Profiling Release)**
+**O motor de análise profunda.** Redução drástica de falsos positivos no mapeamento.
+- 🔍 **Data Profiling**: Análise de `dtype`, unicidade e comprimento médio dos dados.
+- 🛡️ **Noise Reduction**: Filtragem de colunas técnicas ruidosas baseada em perfil estatístico.
 
 ### **v0.6.4 (Evolution Memory Release)**
 **O sistema que aprende.** Introdução da Camada de Memória Evolutiva que automatiza o mapeamento baseado no histórico de uso real do analista.

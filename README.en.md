@@ -2,8 +2,8 @@
 
 [🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
 
-> **Current Version:** `v0.6.4` (Evolution Memory)
-> **Project Status:** Stable - Evolution Memory & Local AI 🧠
+> **Current Version:** `v0.6.7-Ultimate` (Marathon Analysis Release)
+> **Project Status:** Stable - High-Density Statistical Intelligence 🧠
 
 ---
 
@@ -13,9 +13,10 @@
 
 Its **JGDA Engine** delivers:
 - 🚀 **Local Evolution Memory** — Context recognition and historical mappings (Zero Cloud/Offline)
-- 🔑 **Primary Key Detection** — Automatic identification via entropy (ID, SKU, TAX ID, EAN...)
-- 🔗 **Fuzzy Logic Mapping** — Editorial Levenshtein similarity heuristics (Structural AI)
-- 🛡️ **Safe-Merge with Shielding** — Prevents duplicates, ghost records and erroneous cross-joins
+- 📊 **Ultimate Marathon (v0.6.7)** — Knowledge base consolidated with **1,000,000+ learning cycles**
+- 🏛️ **Knowledge Brain** — Visible learning repository in the `learn/` project folder
+- 📑 **Multi-Sheet Support (v0.6.6)** — Native support for all Excel sheets with dynamic selection
+- 🔍 **Data Profiling (v0.6.5)** — Statistical content analysis to reduce false positives
 - 📦 **Native Multi-Format Export** — Excel, CSV, JSON, SQL (High-Performance O(1) Engine)
 - 🎨 **UI Platinum 2026** — Frameless Interface, Custom TitleBar, and Live Theme Studio
 
@@ -48,11 +49,22 @@ The pipeline automatically runs:
 
 <div id="latest-release">
 
+### **v0.6.7 (Marathon Analysis Release - ULTIMATE)**
+**The ultimate brain.** Consolidation of 1 million simulations and integration of legacy BigData.
+- 🏃 **Ultimate Marathon**: 1.001.675 associations learned with statistical weights.
+- 🏛️ **Brain Consolidation**: Migration of technical knowledge to the visible `learn/` folder.
+- 📈 **Statistical Inference**: Ultra-precise suggestions with 315 primary columns density.
+
+### **v0.6.6 (Multi-Sheet Release)**
+**Workbook intelligence.** Native support for reading all sheets in Excel workbooks.
+- 📑 **Sheet Selection**: Dynamic UI selection for mapping different tabs.
+- 🔗 **Workbook Context**: Cross-referencing metadata between all available sheets.
+
+### **v0.6.5 (Profiling Engine)**
+**Structural sanity.** Data profiling layer to eliminate mapping false positives.
+- 🔍 **Profiling Engine**: Automatic analysis of `avg_len` and `unique_ratio`.
+
 ### **v0.6.4 (Evolution Memory Release)**
-**The system that learns.** Introduction of the Evolution Memory Layer that automates mapping based on the analyst's real historical usage.
-- 🧠 **Learning Store**: Secure, atomic storage of structural metadata in `learning_log.json`.
-- 🏷️ **Signature Matching**: Instant identification of recurring columns via context signatures (MD5).
-- 📈 **Usage Tracking**: Intelligent suggestion prioritization based on previous execution frequency.
 
 ### **v0.6.3 (Data Intelligence Layer)**
 **Local intelligence.** Implementation of advanced mapping and auditing engines.

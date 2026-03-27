@@ -14,7 +14,7 @@ class LearningStore:
     
     def __init__(self, root_dir: str):
         self.root_dir = root_dir
-        self.genaja_dir = os.path.join(root_dir, ".genaja")
+        self.genaja_dir = os.path.join(root_dir, "learn")
         self.log_path = os.path.join(self.genaja_dir, "learning_log.json")
         
     def _ensure_dir(self):

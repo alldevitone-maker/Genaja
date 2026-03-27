@@ -32,7 +32,7 @@ class SchemaMapper:
 
     def get_similarity_score(self, a: str, b: str) -> float:
         """Retorna um score de 0.0 a 1.0 (1.0 = idêntico)."""
-        a, b = a.lower().strip(), b.lower().strip()
+        a, b = str(a).lower().strip(), str(b).lower().strip()
         if a == b: return 1.0
         
         distance = self._levenshtein_distance(a, b)
