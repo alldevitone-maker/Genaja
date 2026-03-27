@@ -1,0 +1,166 @@
+/GENAJA v0.6.8 – MASTER AGENT EXECUTION PROTOCOL
+Brain Sanitation + Probabilistic Learning Orchestration
+
+Role:
+You are the Genaja Repository Sanitation and Brain Orchestration Agent.
+
+Mission:
+Execute a deep, safe, non-destructive reorganization of the Genaja repository
+while preserving the probabilistic learning brain.
+
+The system ingests many dirty datasets from Desktop. Therefore the brain must
+remain probabilistic but structured.
+
+DO NOT break:
+- UI Flet
+- ETL pipeline
+- runtime execution
+- probabilistic inference engine
+
+---------------------------------------------------------------------
+
+SECTION 1 — OFFICIAL LEARNING PIPELINE
+
+All learning input must pass through the inbox.
+
+Directory structure:
+
+Genaja/
+  learn/
+    inbox/
+    raw/
+    curated/
+    consolidated/
+    quarantine/
+    reports/
+
+RULE:
+Users only place files inside:
+
+learn/inbox/
+
+Allowed file types:
+
+xlsx
+xls
+csv
+json
+
+---------------------------------------------------------------------
+
+SECTION 2 — PROBABILISTIC BRAIN MODEL
+
+Mappings must be classified into states:
+
+OBSERVED
+INFERRED
+SUGGESTED
+CONFIRMED
+REJECTED
+
+Definitions:
+
+OBSERVED
+Column seen in dataset.
+
+INFERRED
+Possible mapping hypothesis.
+
+SUGGESTED
+High confidence candidate mapping.
+
+CONFIRMED
+Mapping successfully used in runtime execution.
+
+REJECTED
+Noise / placeholder / test artifact.
+
+---------------------------------------------------------------------
+
+SECTION 3 — PROBABILISTIC WEIGHT MODEL
+
+WEIGHTS = {
+ "file_observed": 0,
+ "passive_learning": 0,
+ "mapping_candidate_detected": 1,
+ "repeated_pattern": 2,
+ "schema_similarity": 2,
+ "profile_compatibility": 2,
+ "user_selected_mapping": 3,
+ "runtime_successful_execution": 5,
+ "large_dataset_bonus": 2,
+ "generic_placeholder_penalty": -5,
+ "semantic_conflict_penalty": -4,
+ "test_pattern_penalty": -4,
+ "single_occurrence_penalty": -2
+}
+
+Score classification:
+
+score < 0 → REJECTED
+0–2 → OBSERVED
+3–5 → INFERRED
+6–8 → SUGGESTED
+≥9 → CONFIRMED
+
+---------------------------------------------------------------------
+
+SECTION 4 — POLLUTION FILTER
+
+Mappings must be quarantined if they target generic columns:
+
+coluna1
+coluna2
+colunaA
+colunaC
+valor
+
+---------------------------------------------------------------------
+
+SECTION 5 — BRAIN FEED SCRIPT
+
+Create file:
+
+scripts/brain_feed.py
+
+SECTION 7 — SANITATION HOOK
+
+Create file:
+
+scripts/sanitation_hook.py
+
+SECTION 8 — DUAL REPORT OUTPUT
+
+Every run must generate two copies:
+
+Desktop copy:
+
+Desktop/Genaja_Brain_Feed_Report.json
+
+Repository copy:
+
+learn/reports/brain_feed_report.json
+
+SECTION 9 — STANDARD USER WORKFLOW
+
+User workflow must be:
+
+Copy dirty datasets to:
+learn/inbox/
+
+Run:
+python scripts/brain_feed.py
+
+Review reports in:
+learn/reports/
+
+SECTION 10 — SUCCESS CONDITIONS
+
+The task is complete only if:
+UI still launches
+ETL still executes
+brain remains probabilistic
+polluted mappings are quarantined
+reports are generated
+repository is cleaner
+v0.6.9 can use curated mappings safely

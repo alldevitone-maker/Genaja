@@ -1,5 +1,7 @@
 from typing import List, Dict, Any, Optional
 from core.learning.learning_store import LearningStore
+from core.learning.curated_store import CuratedStore
+from core.learning.mega_store import MegaKnowledgeStore
 from migration.schema_mapper import SchemaMapper
 from core.lookup_engine import LookupEngine
 
@@ -9,7 +11,10 @@ class HistoricalSuggestionEngine:
     Prioridade (Patch 4): 1. Histórico, 2. Fuzzy, 3. Exato.
     """
     def __init__(self, root_dir: str):
+        self.root_dir = root_dir
         self.store = LearningStore(root_dir)
+        self.mega = MegaKnowledgeStore(root_dir)
+        self.curated = CuratedStore(root_dir)
         self.fuzzy = SchemaMapper()
         self.exact = LookupEngine()
 
@@ -17,7 +22,36 @@ class HistoricalSuggestionEngine:
         """
         Gera sugestões orquestradas por prioridade (Histórico > Fuzzy > Perfil > Exato).
         """
-        # 1. Tentar Histórico (Prioridade 1)
+        # 0. Tentar Curadoria 'Iron-Clad' (v0.6.9 - Prioridade Master)
+        curated_mapping = {}
+        for src in src_cols:
+            match = self.curated.get_curated_match(src, tgt_cols)
+            if match:
+                curated_mapping[src] = match
+        
+        if curated_mapping:
+            return {
+                "mapping": curated_mapping,
+                "confidence": 1.0,
+                "source": "curated"
+            }
+
+        # 1. Tentar Histórico Estatístico (v0.6.8+ - Prioridade 1)
+        # Primeiro tenta match global via MegaKnowledgeStore
+        mega_mapping = {}
+        for src in src_cols:
+            match = self.mega.get_best_match(src, tgt_cols)
+            if match:
+                mega_mapping[src] = match
+                
+        if mega_mapping:
+            return {
+                "mapping": mega_mapping,
+                "confidence": 0.95,
+                "source": "mega_brain"
+            }
+
+        # 1.1 Tentar Histórico Linear (Backwards Compatibility)
         history_suggestion = self._get_from_history(src_cols, tgt_cols)
         if history_suggestion:
             return {

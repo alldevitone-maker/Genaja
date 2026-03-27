@@ -2,8 +2,8 @@
 
 [🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
 
-> **Current Version:** `v0.6.7-Ultimate` (Marathon Analysis Release)
-> **Project Status:** Stable - High-Density Statistical Intelligence 🧠
+> **Current Version:** `v0.6.9-Master` (Master Curated Strategy)
+> **Project Status:** Stable - Deterministic Curated Layer ⭐
 
 ---
 
@@ -48,6 +48,16 @@ The pipeline automatically runs:
 ## 📖 Update History (Audit Trail 2026)
 
 <div id="latest-release">
+
+### **v0.6.9-Master (Master Curated Strategy)**
+**Absolute Decision.** Master Curated Layer (Priority 0).
+- ⭐ **Master Rules**: Deterministic rules in `learn/curated/master_rules.json`.
+- 📊 **Auto-Promotion**: Automatic mapping promotion with Score >= 20.
+
+### **v0.6.8-Master (Master Agent Protocol)**
+**Orchestration and Sanitation.** Brain structure and cleaning protocol.
+- 🧹 **Sanitation Hook**: Automatic repository cleaning script.
+- 🍱 **Brain Inbox**: Secure data ingestion flow via `learn/inbox/`.
 
 ### **v0.6.7 (Marathon Analysis Release - ULTIMATE)**
 **The ultimate brain.** Consolidation of 1 million simulations and integration of legacy BigData.

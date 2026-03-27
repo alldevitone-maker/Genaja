@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.6.9-Master] - 2026-03-27 (Master Curated Strategy)
+- **Master Curated Layer**: Introduction of `CuratedStore` for 'Iron-Clad' rule persistence (Priority 0).
+- **Priority Orchestration**: Overhaul of the suggestion engine (Curated > MegaBrain > History > Fuzzy).
+- **Auto-Promotion Logic**: `brain_feed.py` now automatically promotes mature mappings (Score >= 20).
+- **Master Rules Persistence**: New deterministic database in `learn/curated/master_rules.json`.
+
+## [0.6.8-Master] - 2026-03-27 (Master Agent Execution Protocol)
+- **Master Agent Protocol**: Deep sanitation and learning orchestration protocol implementation.
+- **Probabilistic Brain v2**: Dynamic weighting and state classification system (OBSERVED to CONFIRMED).
+- **Brain Inbox (Sanitation Pipeline)**: `learn/inbox` flow for secure ingestion of external dirty datasets.
+- **Pollution Filter**: Automatic quarantine mechanism for generic or suspicious mapping patterns.
+- **Automation Toolkit**: Launch of `brain_feed.py` (Orchestrator) and `sanitation_hook.py` (Cleaner).
+
 ## [0.6.7-Ultimate] - 2026-03-27 (Marathon Analysis Release)
 - **Ultimate Marathon Phase 2**: Massive consolidation of **1,001,675 learned associations**.
 - **Brain Migration**: Centralization of Genaja's "Brain" in the visible `learn/` repository folder.

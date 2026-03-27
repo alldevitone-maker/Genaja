@@ -1,2 +1,2 @@
-__version__ = "0.6.7-Ultimate"
-__title__ = "Marathon Analysis Release"
+__version__ = "0.6.9-Master"
+__title__ = "Master Curated Strategy"

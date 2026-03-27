@@ -1,0 +1,4168 @@
+{
+  "associations": {
+    "9": {
+      "9": {
+        "score": 17423,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 451,
+        "state": "CONFIRMED"
+      },
+      "colunaa": 18,
+      "purchaseunit": {
+        "score": 176,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 24,
+      "cadastro de produto": {
+        "score": 27,
+        "state": "CONFIRMED"
+      },
+      "conta de estoque": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 4": 64,
+      "frgnname": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "materialgroup": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "id": {
+      "salesunitwidth": 8566,
+      "purchasewidthunit": 8578,
+      "saleswidthunit": 8583,
+      "purchaseunitwidth": 8692,
+      "conta de contrapartida para estoque - conta de aumento": 8359,
+      "conta de contrapartida de reavaliação cpv": 8354,
+      "conta de contrapartida de compras": 8336,
+      "conta de demonstração de resultados da contrapartida do material em processo": 8398,
+      "entrada de grupo de unidades de medida padrão": 8394,
+      "conta de contrapartida para estoque - conta de redução": 8346,
+      "intervalo do pedido": 8380,
+      "unid. compra": 6232,
+      "embalagem quantidade": 6261,
+      "peso líquido": 6266,
+      "tp validade": 6239,
+      "unid. conv.": 6232,
+      "id": {
+        "score": 16883,
+        "state": "CONFIRMED"
+      },
+      "id.1": 6068,
+      "conta de custo de produtos vendidos": 8395,
+      "embalagem unidade": 6182,
+      "validade": 6155,
+      "conta de contrapartida de despesas": 8352,
+      "quantidade mín.pedido": 8384,
+      "conta de contrapartida para reavaliação do estoque": 8315,
+      "conta de demonstração de resultados da contrapartida para estoque": 8320,
+      "unidade de medida de estoque padrão": 8362,
+      "validar campos": 8322,
+      "unidade tributável": 7881,
+      "gerar rastreabilidade": 7850,
+      "combustível - alíq. cide": 6227,
+      "unid. venda": 6290,
+      "opcs - fonte do produto": {
+        "score": 136,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 16,
+      "colunaa": 8,
+      "productsource": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "estoq. mín.": {
+        "score": 84,
+        "state": "CONFIRMED"
+      },
+      "series": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "estoq. máx.": {
+        "score": 21,
+        "state": "CONFIRMED"
+      }
+    },
+    "purchaseunitvolume": {
+      "volume": 2730,
+      "purchaseunitvolume": {
+        "score": 3003,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 6741,
+        "state": "CONFIRMED"
+      }
+    },
+    "purchasevolumeunit": {
+      "volume": 2756,
+      "purchasevolumeunit": {
+        "score": 2953,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 162,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "ipi": {
+        "score": 67,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "cadastro de produto": {
+        "score": 54,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 91,
+        "state": "CONFIRMED"
+      },
+      "frgnname": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "salesvolumeunit": {
+      "volume": 2691,
+      "salesvolumeunit": {
+        "score": 2981,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 162,
+        "state": "CONFIRMED"
+      },
+      "salesunit": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "ipi": {
+        "score": 67,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "cadastro de produto": {
+        "score": 54,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 91,
+        "state": "CONFIRMED"
+      },
+      "frgnname": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "salesunitlength": {
+      "salesunitlength": {
+        "score": 2972,
+        "state": "CONFIRMED"
+      },
+      "salesunit": 3926,
+      "grupo de materiais ompg": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunitlength": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "itemcode": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "purchaselengthunit": {
+      "purchaselengthunit": {
+        "score": 2911,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 162,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "ipi": {
+        "score": 67,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "cadastro de produto": {
+        "score": 54,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 91,
+        "state": "CONFIRMED"
+      },
+      "frgnname": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "purchaseunit": {
+      "purchaseunitlength": 13597,
+      "purchaseunitvolume": 6817,
+      "purchaseunit": {
+        "score": 13871,
+        "state": "CONFIRMED"
+      },
+      "purchaseunitweight": 6804,
+      "purchaseunitheight": 6748,
+      "purchaseunitwidth": 6765,
+      "cadastro de produto": {
+        "score": 135,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "ipi %": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "ipi": {
+        "score": 67,
+        "state": "CONFIRMED"
+      },
+      "colunaa": 6,
+      "unnamed: 3": 16,
+      "foreignname": {
+        "score": 70,
+        "state": "CONFIRMED"
+      },
+      "frgnname": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "local estoque": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "purchaseheightunit": {
+      "purchaseheightunit": {
+        "score": 2900,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 162,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "descrição curta": {
+        "score": 67,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "cadastro de produto": {
+        "score": 54,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 91,
+        "state": "CONFIRMED"
+      }
+    },
+    "purchaseweightunit": {
+      "purchaseweightunit": {
+        "score": 2944,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 162,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "descrição curta": {
+        "score": 67,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "cadastro de produto": {
+        "score": 54,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 91,
+        "state": "CONFIRMED"
+      }
+    },
+    "purchasewidthunit": {
+      "purchasewidthunit": {
+        "score": 2859,
+        "state": "CONFIRMED"
+      },
+      "id": 8468,
+      "descrição": {
+        "score": 162,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "descrição curta": {
+        "score": 67,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "cadastro de produto": {
+        "score": 54,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 91,
+        "state": "CONFIRMED"
+      }
+    },
+    "purchaseunitheight": {
+      "purchaseunit": 6740,
+      "purchaseunitheight": {
+        "score": 2911,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais ompg": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunitlength": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "ipi classe": {
+        "score": 49,
+        "state": "CONFIRMED"
+      },
+      "itemcode": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "saleswidthunit": {
+      "saleswidthunit": {
+        "score": 2902,
+        "state": "CONFIRMED"
+      },
+      "id": 8533,
+      "descrição": {
+        "score": 162,
+        "state": "CONFIRMED"
+      },
+      "salesunit": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "descrição curta": {
+        "score": 67,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "cadastro de produto": {
+        "score": 54,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 91,
+        "state": "CONFIRMED"
+      }
+    },
+    "salesunitwidth": {
+      "salesunitwidth": {
+        "score": 2898,
+        "state": "CONFIRMED"
+      },
+      "id": 8481,
+      "salesunit": {
+        "score": 4016,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais ompg": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "itemcode": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "saleslengthunit": {
+      "saleslengthunit": {
+        "score": 2921,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 162,
+        "state": "CONFIRMED"
+      },
+      "salesunit": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "ipi": {
+        "score": 67,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "cadastro de produto": {
+        "score": 54,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 91,
+        "state": "CONFIRMED"
+      },
+      "frgnname": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "purchaseunitweight": {
+      "purchaseunit": 6710,
+      "purchaseunitweight": {
+        "score": 2948,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais ompg": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunitlength": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "ipi classe": {
+        "score": 49,
+        "state": "CONFIRMED"
+      },
+      "itemcode": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "salesheightunit": {
+      "salesheightunit": {
+        "score": 2953,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 162,
+        "state": "CONFIRMED"
+      },
+      "salesunit": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "descrição curta": {
+        "score": 67,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "cadastro de produto": {
+        "score": 54,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 91,
+        "state": "CONFIRMED"
+      }
+    },
+    "inventoryuom": {
+      "inventoryuom": {
+        "score": 13774,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 135,
+        "state": "CONFIRMED"
+      },
+      "invntryuom": {
+        "score": 59,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "ipi": {
+        "score": 67,
+        "state": "CONFIRMED"
+      },
+      "colunaa": 6,
+      "unnamed: 3": 16,
+      "foreignname": {
+        "score": 70,
+        "state": "CONFIRMED"
+      },
+      "frgnname": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "local estoque": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "purchaseunitwidth": {
+      "purchaseunit": 6744,
+      "purchaseunitwidth": {
+        "score": 2918,
+        "state": "CONFIRMED"
+      },
+      "id": 8330,
+      "grupo de materiais ompg": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunitlength": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "itemcode": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "salesunitweight": {
+      "salesunitweight": {
+        "score": 2890,
+        "state": "CONFIRMED"
+      },
+      "salesunit": {
+        "score": 3977,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais ompg": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "itemcode": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "entrada de grupo de unidades de medida padrão": {
+      "id": 8224,
+      "entrada de grupo de unidades de medida padrão": {
+        "score": 2784,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de demonstração de resultados da contrapartida para estoque": {
+      "id": 8221,
+      "conta de demonstração de resultados da contrapartida para estoque": {
+        "score": 2776,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de demonstração de resultados da contrapartida do material em processo": {
+      "id": 8372,
+      "conta de demonstração de resultados da contrapartida do material em processo": {
+        "score": 2856,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de contrapartida de despesas": {
+      "id": 8289,
+      "conta de contrapartida de despesas": {
+        "score": 2883,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de contrapartida de reavaliação cpv": {
+      "id": 8287,
+      "conta de contrapartida de reavaliação cpv": {
+        "score": 2793,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de contrapartida de compras": {
+      "id": 8295,
+      "conta de contrapartida de compras": {
+        "score": 2862,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de contrapartida para reavaliação do estoque": {
+      "id": 8174,
+      "conta de contrapartida para reavaliação do estoque": {
+        "score": 2825,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de custo de produtos vendidos": {
+      "id": 8353,
+      "produto": 3168,
+      "conta de custo de produtos vendidos": {
+        "score": 2780,
+        "state": "CONFIRMED"
+      }
+    },
+    "materialgroup": {
+      "materialgroup": {
+        "score": 3029,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 183,
+        "state": "CONFIRMED"
+      },
+      "colunaa": 6,
+      "unnamed: 4": 16,
+      "cadastro de produto": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "conta de estoque": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "itemname": {
+      "itemname": {
+        "score": 4941,
+        "state": "CONFIRMED"
+      },
+      "itemcode": {
+        "score": 84,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 1": 24
+    },
+    "purchaseitem": {
+      "purchaseitemsperunit": 2933,
+      "purchaseitem": {
+        "score": 2947,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "prchseitem": {
+        "score": 39,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "unnamed: 1": 16,
+      "bloqueado": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "salesqtyperpackunit": {
+      "salesqtyperpackunit": {
+        "score": 3012,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 68,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 5": 16,
+      "grupo de materiais ompg": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "ncmcode": {
+      "ncmcode": {
+        "score": 5006,
+        "state": "CONFIRMED"
+      },
+      "ncm": 3414,
+      "grupo de materiais ompg": {
+        "score": 60,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 74,
+        "state": "CONFIRMED"
+      },
+      "itemcode": {
+        "score": 84,
+        "state": "CONFIRMED"
+      },
+      "atualização de usuário - histórico": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "id": {
+        "score": 43,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 1": 16,
+      "opcs - fonte do produto": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "purchaseunitlength": {
+      "purchaseunit": 13651,
+      "purchaseunitlength": {
+        "score": 14013,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais ompg": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 109,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 68,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 5": 16,
+      "itemcode": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "local estoque": {
+      "local estoque": {
+        "score": 27941,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 276,
+        "state": "CONFIRMED"
+      },
+      "conta de estoque": {
+        "score": 252,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 144,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 36,
+      "colunaa": 18,
+      "cadastro de produto": {
+        "score": 99,
+        "state": "CONFIRMED"
+      },
+      "salesunitwidth": {
+        "score": 108,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 3": 88,
+      "frgnname": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "materialgroup": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de redução do razão": {
+      "conta de redução do razão": {
+        "score": 2793,
+        "state": "CONFIRMED"
+      }
+    },
+    "código ncm": {
+      "código ncm": {
+        "score": 36906,
+        "state": "CONFIRMED"
+      },
+      "ncm": 8997,
+      "código": {
+        "score": 9245,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "pdv - libera grupo para loja": {
+      "pdv - libera grupo para loja": {
+        "score": 2867,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 204,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "prchseitem": {
+        "score": 21,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de material em processo": {
+      "conta de material em processo": {
+        "score": 2828,
+        "state": "CONFIRMED"
+      }
+    },
+    "método de planejamento": {
+      "método de planejamento": {
+        "score": 2810,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 204,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "prchseitem": {
+        "score": 21,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de compras": {
+      "conta de compras gratuita": 2725,
+      "conta de compras": {
+        "score": 2825,
+        "state": "CONFIRMED"
+      },
+      "preço de compra": {
+        "score": 81,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de crédito de vendas - ue": {
+      "conta de crédito de vendas - ue": {
+        "score": 2817,
+        "state": "CONFIRMED"
+      },
+      "conta de crédito de vendas": 2735
+    },
+    "conta de mercadorias enviadas": {
+      "conta de mercadorias enviadas": {
+        "score": 2906,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de despesas": {
+      "conta de despesas - ue": 2744,
+      "conta de despesas": {
+        "score": 2805,
+        "state": "CONFIRMED"
+      },
+      "conta de despesas - estrangeira": 2733
+    },
+    "código serviço prestado": {
+      "código serviço prestado": {
+        "score": 2841,
+        "state": "CONFIRMED"
+      },
+      "código": 2722,
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta cenvat de entrada (dp)": {
+      "conta cenvat de entrada (dp)": {
+        "score": 2824,
+        "state": "CONFIRMED"
+      }
+    },
+    "nome do grupo": {
+      "nome do grupo": {
+        "score": 2848,
+        "state": "CONFIRMED"
+      }
+    },
+    "código do ciclo": {
+      "código do ciclo": {
+        "score": 2842,
+        "state": "CONFIRMED"
+      },
+      "código": 2737,
+      "código de grupo": {
+        "score": 102,
+        "state": "CONFIRMED"
+      }
+    },
+    "salesunitvolume": {
+      "salesunitvolume": {
+        "score": 2885,
+        "state": "CONFIRMED"
+      },
+      "salesunit": {
+        "score": 3977,
+        "state": "CONFIRMED"
+      },
+      "volume": 2709
+    },
+    "salesweightunit": {
+      "salesweightunit": {
+        "score": 2915,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 162,
+        "state": "CONFIRMED"
+      },
+      "salesunit": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "descrição curta": {
+        "score": 67,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "cadastro de produto": {
+        "score": 54,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 91,
+        "state": "CONFIRMED"
+      }
+    },
+    "código serviço contratado": {
+      "código": 2738,
+      "código serviço contratado": {
+        "score": 2839,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "descrição": {
+      "descrição detalhada": 5083,
+      "descrição completa": 5170,
+      "descrição": {
+        "score": 11836,
+        "state": "CONFIRMED"
+      },
+      "descrição curta": {
+        "score": 5308,
+        "state": "CONFIRMED"
+      },
+      "colunaa": 12,
+      "purchaseunit": {
+        "score": 80,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 8,
+      "9": {
+        "score": 280,
+        "state": "CONFIRMED"
+      },
+      "materialgroup": {
+        "score": 70,
+        "state": "CONFIRMED"
+      },
+      "frgnname": {
+        "score": 56,
+        "state": "CONFIRMED"
+      }
+    },
+    "salesunitheight": {
+      "salesunitheight": {
+        "score": 2913,
+        "state": "CONFIRMED"
+      },
+      "salesunit": {
+        "score": 3991,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais ompg": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "ipi classe": {
+        "score": 49,
+        "state": "CONFIRMED"
+      },
+      "itemcode": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "validade": {
+      "id": 6333,
+      "tp validade": 1372,
+      "validade": {
+        "score": 1469,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "produto": {
+      "cadastro de produto": 4454,
+      "produto": {
+        "score": 1740,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": 6125,
+      "fonte do produto": 3056,
+      "conta de custo de produtos vendidos": 3060,
+      "productsrc": {
+        "score": 27,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 136,
+        "state": "CONFIRMED"
+      },
+      "foreignname": {
+        "score": 70,
+        "state": "CONFIRMED"
+      },
+      "frgnname": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "código": {
+      "código ncm": {
+        "score": 9429,
+        "state": "CONFIRMED"
+      },
+      "código cest": 2951,
+      "código de barras": 1416,
+      "código": {
+        "score": 1560,
+        "state": "CONFIRMED"
+      },
+      "código do fornec.": 1459,
+      "código do ciclo": 2760,
+      "código serviço contratado": 2722,
+      "código da regra de verificação": 2744,
+      "código serviço prestado": 2761,
+      "código de grupo": 2919,
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "unid. compra": {
+      "id": 6275,
+      "unid. compra": {
+        "score": 1526,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "embalagem unidade": {
+      "id": 6296,
+      "embalagem unidade": {
+        "score": 1546,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "peso líquido": {
+      "id": 6346,
+      "peso líquido": {
+        "score": 1538,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "foreignname": {
+      "foreignname": {
+        "score": 20898,
+        "state": "CONFIRMED"
+      },
+      "ipi %": {
+        "score": 60,
+        "state": "CONFIRMED"
+      },
+      "frgnname": {
+        "score": 291,
+        "state": "CONFIRMED"
+      },
+      "colunaa": 16,
+      "descrição": {
+        "score": 305,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 142,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 20,
+      "cadastro de produto": {
+        "score": 48,
+        "state": "CONFIRMED"
+      },
+      "conta de estoque": {
+        "score": 62,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 1": 56,
+      "9": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "cest": {
+      "código cest": 2899,
+      "cest": {
+        "score": 1521,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "estoq. mín.": {
+      "estoq. mín.": {
+        "score": 34424,
+        "state": "CONFIRMED"
+      },
+      "código ncm": {
+        "score": 420,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 286,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 40,
+      "estoq. máx.": {
+        "score": 126,
+        "state": "CONFIRMED"
+      },
+      "colunaa": 24
+    },
+    "estoq. máx.": {
+      "estoq. máx.": {
+        "score": 45585,
+        "state": "CONFIRMED"
+      },
+      "código ncm": {
+        "score": 440,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 292,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 44,
+      "colunaa": 28
+    },
+    "opcs - fonte do produto": {
+      "opcs - fonte do produto": {
+        "score": 10722,
+        "state": "CONFIRMED"
+      },
+      "produto": 6074,
+      "fonte do produto": {
+        "score": 7160,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais ompg": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunitlength": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "purchaselengthunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "ipi classe": {
+        "score": 63,
+        "state": "CONFIRMED"
+      },
+      "series": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "itemcode": {
+        "score": 21,
+        "state": "CONFIRMED"
+      }
+    },
+    "id.1": {
+      "id": 6121,
+      "id.1": {
+        "score": 1721,
+        "state": "CONFIRMED"
+      }
+    },
+    "leadtime": {
+      "leadtime": {
+        "score": 5013,
+        "state": "CONFIRMED"
+      },
+      "ipi %": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "colunaa": 6,
+      "unnamed: 1": 16,
+      "cadastro de produto": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "data da atualização - histórico": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "grupo de materiais ompg": {
+      "grupo de materiais ompg": {
+        "score": 1787,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 3151,
+        "state": "CONFIRMED"
+      },
+      "purchaseunitlength": {
+        "score": 80,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 68,
+        "state": "CONFIRMED"
+      },
+      "ncmcode": {
+        "score": 56,
+        "state": "CONFIRMED"
+      },
+      "itemcode": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "ipi %": {
+      "ipi %": {
+        "score": 1766,
+        "state": "CONFIRMED"
+      },
+      "ipi": {
+        "score": 2275,
+        "state": "CONFIRMED"
+      },
+      "colunaa": 6,
+      "inventoryuom": {
+        "score": 80,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 8,
+      "9": {
+        "score": 112,
+        "state": "CONFIRMED"
+      },
+      "foreignname": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "frgnname": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "descrição completa": {
+      "descrição": 5294,
+      "descrição completa": {
+        "score": 1532,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 1": 24
+    },
+    "ncm": {
+      "código ncm": 9075,
+      "ncmcode": 3480,
+      "grupo ncm": 2929,
+      "ncm sap": 1440,
+      "ncm": {
+        "score": 1520,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "descrição curta": {
+      "descrição": {
+        "score": 5410,
+        "state": "CONFIRMED"
+      },
+      "descrição curta": {
+        "score": 1487,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "código de grupo": {
+      "código": 2842,
+      "código de grupo": {
+        "score": 3214,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 204,
+        "state": "CONFIRMED"
+      },
+      "código do ciclo": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "código de barras": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "prchseitem": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "local estoque": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "código cest": {
+      "código": 2829,
+      "código cest": {
+        "score": 3206,
+        "state": "CONFIRMED"
+      },
+      "cest": 2876,
+      "código ncm": {
+        "score": 210,
+        "state": "CONFIRMED"
+      }
+    },
+    "tipo de objeto - histórico": {
+      "tipo": 2758,
+      "tipo de objeto - histórico": {
+        "score": 2868,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "volume": {
+      "salesvolumeunit": 2890,
+      "volume - embalado": 1413,
+      "purchaseunitvolume": 2898,
+      "volume": {
+        "score": 1454,
+        "state": "CONFIRMED"
+      },
+      "salesunitvolume": 2830,
+      "purchasevolumeunit": 2794,
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "unid. conv.": {
+      "id": 6361,
+      "unid. conv.": {
+        "score": 1504,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "tp validade": {
+      "id": 6226,
+      "tp validade": {
+        "score": 1522,
+        "state": "CONFIRMED"
+      },
+      "validade": 1384,
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 3": 24
+    },
+    "unid. venda": {
+      "id": 6352,
+      "unid. venda": {
+        "score": 1490,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "embalagem quantidade": {
+      "id": 6276,
+      "embalagem quantidade": {
+        "score": 1534,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "unidade tributável": {
+      "id": 7830,
+      "unidade tributável": {
+        "score": 3271,
+        "state": "CONFIRMED"
+      }
+    },
+    "salesitemsperunit": {
+      "salesitem": 2879,
+      "salesitemsperunit": {
+        "score": 3003,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 68,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 5": 16,
+      "grupo de materiais ompg": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "series": {
+      "series": {
+        "score": 4965,
+        "state": "CONFIRMED"
+      },
+      "código ncm": {
+        "score": 77,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "unnamed: 5": 16,
+      "estoq. mín.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "estoq. máx.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "grupo de materiais ompg": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "sriandbatchmanagemethod": {
+      "sriandbatchmanagemethod": {
+        "score": 2945,
+        "state": "CONFIRMED"
+      },
+      "ipi %": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "colunaa": 6,
+      "unnamed: 1": 16,
+      "cadastro de produto": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "data da atualização - histórico": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "salesitem": {
+      "salesitem": {
+        "score": 2909,
+        "state": "CONFIRMED"
+      },
+      "salesitemsperunit": 2867,
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "sellitem": {
+        "score": 39,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "unnamed: 1": 16,
+      "bloqueado": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "manageserialnumbers": {
+      "manageserialnumbers": {
+        "score": 2990,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "unnamed: 1": 16,
+      "bloqueado": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "tipo de material": {
+      "tipo": 2709,
+      "tipo de material": {
+        "score": 2865,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "código da regra de verificação": {
+      "código": 2697,
+      "código da regra de verificação": {
+        "score": 2802,
+        "state": "CONFIRMED"
+      }
+    },
+    "itemclass": {
+      "itemclass": {
+        "score": 4965,
+        "state": "CONFIRMED"
+      },
+      "ipi classe": {
+        "score": 170,
+        "state": "CONFIRMED"
+      },
+      "código ncm": {
+        "score": 77,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "unnamed: 5": 16,
+      "estoq. mín.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "estoq. máx.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "grupo de materiais ompg": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "productsource": {
+      "productsource": {
+        "score": 2963,
+        "state": "CONFIRMED"
+      },
+      "productsrc": {
+        "score": 39,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 68,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 5": 16,
+      "grupo de materiais ompg": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "itemsgroupcode": {
+      "itemsgroupcode": {
+        "score": 2985,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais ompg": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "itmsgrpcod": {
+        "score": 39,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 68,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 5": 16
+    },
+    "purchaseitemsperunit": {
+      "purchaseitemsperunit": {
+        "score": 2962,
+        "state": "CONFIRMED"
+      },
+      "purchaseitem": 2879,
+      "purchaselengthunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 68,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 5": 16,
+      "grupo de materiais ompg": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "inventoryitem": {
+      "inventoryitem": {
+        "score": 2965,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "invntitem": {
+        "score": 39,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "unnamed: 1": 16,
+      "bloqueado": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "cadastro de produto": {
+      "cadastro de produto": {
+        "score": 5376,
+        "state": "CONFIRMED"
+      },
+      "produto": 4527,
+      "coluna1": 12,
+      "purchaseunit": {
+        "score": 136,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 68,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 68,
+        "state": "CONFIRMED"
+      },
+      "código de barras": {
+        "score": 54,
+        "state": "CONFIRMED"
+      },
+      "prchseitem": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "validar campos": {
+      "id": 8257,
+      "validar campos": {
+        "score": 2924,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 204,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "prchseitem": {
+        "score": 21,
+        "state": "CONFIRMED"
+      }
+    },
+    "quantidade mín.pedido": {
+      "id": 8209,
+      "quantidade mín.pedido": {
+        "score": 2905,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de contrapartida para estoque - conta de aumento": {
+      "id": 8330,
+      "conta de contrapartida para estoque - conta de aumento": {
+        "score": 2816,
+        "state": "CONFIRMED"
+      }
+    },
+    "unidade de medida de estoque padrão": {
+      "id": 8236,
+      "unidade de medida de estoque padrão": {
+        "score": 2827,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de contrapartida para estoque - conta de redução": {
+      "id": 8325,
+      "conta de contrapartida para estoque - conta de redução": {
+        "score": 2770,
+        "state": "CONFIRMED"
+      }
+    },
+    "intervalo do pedido": {
+      "id": 8254,
+      "intervalo do pedido": {
+        "score": 2849,
+        "state": "CONFIRMED"
+      }
+    },
+    "purchaseqtyperpackunit": {
+      "purchaseqtyperpackunit": {
+        "score": 2971,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 68,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 5": 16,
+      "grupo de materiais ompg": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 28,
+        "state": "CONFIRMED"
+      }
+    },
+    "purchasepackagingunit": {
+      "purchasepackagingunit": {
+        "score": 2947,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaselengthunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "unnamed: 3": 16,
+      "descrição": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "local estoque": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "itemcode": {
+      "itemcode": {
+        "score": 3167,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 54,
+        "state": "CONFIRMED"
+      },
+      "itemname": {
+        "score": 84,
+        "state": "CONFIRMED"
+      },
+      "conta de estoque": {
+        "score": 62,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 91,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "purchaseunit": 2,
+      "unnamed: 4": 24,
+      "9": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "frgnname": {
+      "frgnname": {
+        "score": 1863,
+        "state": "CONFIRMED"
+      },
+      "foreignname": {
+        "score": 197,
+        "state": "CONFIRMED"
+      },
+      "data da atualização - histórico": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "descrição": {
+        "score": 48,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 8,
+      "colunaa": 4,
+      "cadastro de produto": 12,
+      "ipi %": 6,
+      "inventoryuom": 8,
+      "unnamed: 1": 24,
+      "9": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "desc. para site": {
+      "desc. para site": {
+        "score": 1560,
+        "state": "CONFIRMED"
+      }
+    },
+    "obs adicional": {
+      "obs adicional": {
+        "score": 1519,
+        "state": "CONFIRMED"
+      }
+    },
+    "combustível - cód. anp": {
+      "combustível - cód. anp": {
+        "score": 1451,
+        "state": "CONFIRMED"
+      }
+    },
+    "custo última entrada": {
+      "custo última entrada": {
+        "score": 1477,
+        "state": "CONFIRMED"
+      }
+    },
+    "embalagem tipo": {
+      "tipo": 1426,
+      "embalagem tipo": {
+        "score": 1550,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 4": 24
+    },
+    "preço de custo": {
+      "preço de custo": {
+        "score": 1556,
+        "state": "CONFIRMED"
+      }
+    },
+    "preço de compra": {
+      "preço de compra": {
+        "score": 1515,
+        "state": "CONFIRMED"
+      },
+      "conta de compras": {
+        "score": 102,
+        "state": "CONFIRMED"
+      }
+    },
+    "código de barras": {
+      "código de barras": {
+        "score": 1495,
+        "state": "CONFIRMED"
+      },
+      "código": 1415,
+      "código de grupo": {
+        "score": 102,
+        "state": "CONFIRMED"
+      }
+    },
+    "fat. conv.": {
+      "fat. conv.": {
+        "score": 1550,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "unnamed: 1": 24
+    },
+    "conta de estoque": {
+      "conta de estoque": {
+        "score": 2803,
+        "state": "CONFIRMED"
+      },
+      "conta de estoque em trânsito": 2692,
+      "local estoque": {
+        "score": 270,
+        "state": "CONFIRMED"
+      }
+    },
+    "método de suprimento": {
+      "método de suprimento": {
+        "score": 2831,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 204,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "prchseitem": {
+        "score": 21,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de crédito de compra": {
+      "conta de crédito de compras - ue": 2726,
+      "conta de crédito de compra": {
+        "score": 2764,
+        "state": "CONFIRMED"
+      },
+      "conta de crédito de compras - estrangeira": 2728
+    },
+    "alerta": {
+      "alerta": {
+        "score": 2852,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 204,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "prchseitem": {
+        "score": 21,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de saldo de compras": {
+      "conta de saldo de compras": {
+        "score": 2793,
+        "state": "CONFIRMED"
+      }
+    },
+    "data da atualização - histórico": {
+      "data da atualização - histórico": {
+        "score": 2876,
+        "state": "CONFIRMED"
+      },
+      "data atualização saldo": {
+        "score": 81,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de desvio": {
+      "conta de desvio do estoque de material em processo": 2779,
+      "conta de desvio": {
+        "score": 2776,
+        "state": "CONFIRMED"
+      }
+    },
+    "iva em conta de receita": {
+      "iva em conta de receita": {
+        "score": 2799,
+        "state": "CONFIRMED"
+      },
+      "conta de receita": 2722
+    },
+    "tempo de processamento": {
+      "tempo de processamento": {
+        "score": 2854,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de devoluções de receita": {
+      "conta de devoluções": 2685,
+      "conta de devoluções de receita": {
+        "score": 2827,
+        "state": "CONFIRMED"
+      }
+    },
+    "data de criação - histórico": {
+      "data de criação - histórico": {
+        "score": 2869,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de crédito de compras - ue": {
+      "conta de crédito de compras - ue": {
+        "score": 2891,
+        "state": "CONFIRMED"
+      },
+      "conta de crédito de compra": 2784
+    },
+    "conta de desvio do estoque de material em processo": {
+      "conta de desvio do estoque de material em processo": {
+        "score": 2795,
+        "state": "CONFIRMED"
+      },
+      "conta de desvio": 2655
+    },
+    "conta de crédito de vendas": {
+      "conta de crédito de vendas": {
+        "score": 2794,
+        "state": "CONFIRMED"
+      },
+      "conta de crédito de vendas - estrangeira": 2744,
+      "conta de crédito de vendas - ue": 2708
+    },
+    "dias de tolerância": {
+      "dias de tolerância": {
+        "score": 2823,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de receita": {
+      "iva em conta de receita": 2796,
+      "conta de receita isenta de imposto": 2692,
+      "conta de receita - ue": 2796,
+      "conta de receita": {
+        "score": 2833,
+        "state": "CONFIRMED"
+      },
+      "conta de receita - estrangeira": 2741
+    },
+    "conta de aumento do razão": {
+      "conta de aumento do razão": {
+        "score": 2842,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de devoluções": {
+      "conta de devoluções": {
+        "score": 2776,
+        "state": "CONFIRMED"
+      },
+      "conta de devoluções de receita": 2671
+    },
+    "conta de diferenças da taxa de câmbio": {
+      "conta de diferenças da taxa de câmbio": {
+        "score": 2892,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de diferenças de preço": {
+      "conta de diferenças de preço": {
+        "score": 2850,
+        "state": "CONFIRMED"
+      }
+    },
+    "sistema do inventário": {
+      "sistema do inventário": {
+        "score": 2842,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 204,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "prchseitem": {
+        "score": 21,
+        "state": "CONFIRMED"
+      }
+    },
+    "tipo": {
+      "tipo de objeto - histórico": 2752,
+      "tipo de material": 2790,
+      "tipo": {
+        "score": 1483,
+        "state": "CONFIRMED"
+      },
+      "embalagem tipo": 1385,
+      "unnamed: 1": 24
+    },
+    "gerar rastreabilidade": {
+      "id": 7894,
+      "gerar rastreabilidade": {
+        "score": 3248,
+        "state": "CONFIRMED"
+      }
+    },
+    "atualização do usuário": {
+      "atualização do usuário": {
+        "score": 3176,
+        "state": "CONFIRMED"
+      },
+      "atualização de usuário - histórico": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "itemcode": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "número": {
+      "número": {
+        "score": 2741,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de estoque em trânsito": {
+      "conta de estoque em trânsito": {
+        "score": 2813,
+        "state": "CONFIRMED"
+      },
+      "conta de estoque": 2775
+    },
+    "fonte de dados": {
+      "fonte de dados": {
+        "score": 2777,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 204,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "prchseitem": {
+        "score": 21,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de compras gratuita": {
+      "conta de compras": 2783,
+      "conta de compras gratuita": {
+        "score": 2792,
+        "state": "CONFIRMED"
+      }
+    },
+    "fonte do produto": {
+      "fonte do produto": {
+        "score": 2805,
+        "state": "CONFIRMED"
+      },
+      "produto": 3173,
+      "opcs - fonte do produto": {
+        "score": 7300,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de reavaliação do estoque": {
+      "conta de reavaliação do estoque": {
+        "score": 2832,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de receita - ue": {
+      "conta de receita - ue": {
+        "score": 2811,
+        "state": "CONFIRMED"
+      },
+      "conta de receita": 2727
+    },
+    "classe tributo": {
+      "classe tributo": {
+        "score": 1548,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 1": 24
+    },
+    "combustível - codif": {
+      "combustível - codif": {
+        "score": 1533,
+        "state": "CONFIRMED"
+      }
+    },
+    "preço venda (2)": {
+      "preço venda (2)": {
+        "score": 1539,
+        "state": "CONFIRMED"
+      }
+    },
+    "código do fornec.": {
+      "código": 1405,
+      "código do fornec.": {
+        "score": 1536,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "ncm sap": {
+      "ncm": 1400,
+      "ncm sap": {
+        "score": 1546,
+        "state": "CONFIRMED"
+      }
+    },
+    "origem": {
+      "origem": {
+        "score": 1527,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 4": 24
+    },
+    "departamento": {
+      "departamento": {
+        "score": 1484,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 1": 24
+    },
+    "data atualização saldo": {
+      "data atualização saldo": {
+        "score": 1512,
+        "state": "CONFIRMED"
+      },
+      "data da atualização - histórico": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "ponto ped.": {
+      "ponto ped.": {
+        "score": 1498,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "altura - embalado": {
+      "altura - embalado": {
+        "score": 1532,
+        "state": "CONFIRMED"
+      },
+      "altura": 1412,
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "altura": {
+      "altura - embalado": 1375,
+      "altura": {
+        "score": 1502,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "ipi": {
+      "ipi sap": 1377,
+      "ipi-cod. enq. legal": 1388,
+      "ipi classe": 1393,
+      "ipi %": {
+        "score": 2377,
+        "state": "CONFIRMED"
+      },
+      "ipi": {
+        "score": 1508,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "grupo ncm": {
+      "ncm": 2935,
+      "grupo ncm": {
+        "score": 3268,
+        "state": "CONFIRMED"
+      }
+    },
+    "grupo de materiais": {
+      "grupo de materiais ompg": {
+        "score": 3228,
+        "state": "CONFIRMED"
+      },
+      "grupo de materiais": {
+        "score": 2834,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "instância do registro em log - histórico": {
+      "instância do registro em log - histórico": {
+        "score": 2747,
+        "state": "CONFIRMED"
+      }
+    },
+    "serviço ou material": {
+      "serviço ou material": {
+        "score": 2844,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de devolução de compras": {
+      "conta de devolução de compras": {
+        "score": 2818,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta crédito isenta de imposto": {
+      "conta crédito isenta de imposto": {
+        "score": 2739,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de compensação de mercadoria": {
+      "conta de compensação de mercadoria": {
+        "score": 2843,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de venda gratuita": {
+      "conta de venda gratuita": {
+        "score": 2851,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de despesas - estrangeira": {
+      "conta de despesas": 2774,
+      "conta de despesas - estrangeira": {
+        "score": 2831,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de despesas - ue": {
+      "conta de despesas - ue": {
+        "score": 2797,
+        "state": "CONFIRMED"
+      },
+      "conta de despesas": 2722
+    },
+    "depósito de componente": {
+      "depósito de componente": {
+        "score": 2881,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 204,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "prchseitem": {
+        "score": 21,
+        "state": "CONFIRMED"
+      }
+    },
+    "assinatura do usuário": {
+      "assinatura do usuário": {
+        "score": 2824,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "obrigar ped. de compra": {
+      "obrigar ped. de compra": {
+        "score": 2794,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de crédito de vendas - estrangeira": {
+      "conta de crédito de vendas - estrangeira": {
+        "score": 2874,
+        "state": "CONFIRMED"
+      },
+      "conta de crédito de vendas": 2730
+    },
+    "conta cenvat de saída (dp)": {
+      "conta cenvat de saída (dp)": {
+        "score": 2825,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de ajuste do inventário negativo": {
+      "conta de ajuste do inventário negativo": {
+        "score": 2754,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de compensação de despesas": {
+      "conta de compensação de despesas": {
+        "score": 2803,
+        "state": "CONFIRMED"
+      }
+    },
+    "atualização de usuário - histórico": {
+      "atualização de usuário - histórico": {
+        "score": 2799,
+        "state": "CONFIRMED"
+      },
+      "atualização do usuário": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "bloqueado": {
+      "bloqueado": {
+        "score": 2840,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 204,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "prchseitem": {
+        "score": 21,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de receita - estrangeira": {
+      "conta de receita": 2723,
+      "conta de receita - estrangeira": {
+        "score": 2787,
+        "state": "CONFIRMED"
+      }
+    },
+    "grupo de serviço": {
+      "grupo de serviço": {
+        "score": 2886,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "solicitar múltiplos de": {
+      "solicitar múltiplos de": {
+        "score": 2843,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de receita isenta de imposto": {
+      "conta de receita": 2737,
+      "conta de receita isenta de imposto": {
+        "score": 2732,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de alocação": {
+      "conta de alocação": {
+        "score": 2854,
+        "state": "CONFIRMED"
+      }
+    },
+    "instância do log": {
+      "instância do log": {
+        "score": 3275,
+        "state": "CONFIRMED"
+      }
+    },
+    "fator de tributação": {
+      "fator de tributação": {
+        "score": 3313,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "estoq. mín.": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "estoq. máx.": {
+        "score": 14,
+        "state": "CONFIRMED"
+      }
+    },
+    "data cadastro": {
+      "data cadastro": {
+        "score": 1517,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "fornecedor": {
+      "fornecedor": {
+        "score": 1534,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 1": 24
+    },
+    "i.a.t.": {
+      "i.a.t.": {
+        "score": 1448,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "alteração (preço de venda 1)": {
+      "alteração (preço de venda 1)": {
+        "score": 1537,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "ipi sap": {
+      "ipi sap": {
+        "score": 1486,
+        "state": "CONFIRMED"
+      },
+      "ipi": 1411,
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "purchaselengthunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      }
+    },
+    "estoq. atual": {
+      "estoq. atual": {
+        "score": 3220,
+        "state": "CONFIRMED"
+      },
+      "id": {
+        "score": 70,
+        "state": "CONFIRMED"
+      },
+      "atualização de usuário - histórico": {
+        "score": 34,
+        "state": "CONFIRMED"
+      }
+    },
+    "peso bruto": {
+      "peso bruto": {
+        "score": 1558,
+        "state": "CONFIRMED"
+      }
+    },
+    "situação": {
+      "situação": {
+        "score": 1548,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 3": 24
+    },
+    "volume - embalado": {
+      "volume": 1317,
+      "volume - embalado": {
+        "score": 1514,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "baixa estoque": {
+      "baixa estoque": {
+        "score": 1523,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "local estoque": {
+        "score": 301,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 1": 24
+    },
+    "conta contáb.": {
+      "conta contáb.": {
+        "score": 1510,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "est. terceiros": {
+      "est. terceiros": {
+        "score": 1506,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 3": 24
+    },
+    "i.p.p.t.": {
+      "i.p.p.t.": {
+        "score": 1531,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "ipi classe": {
+      "ipi classe": {
+        "score": 1551,
+        "state": "CONFIRMED"
+      },
+      "ipi": 1388,
+      "itemclass": {
+        "score": 165,
+        "state": "CONFIRMED"
+      }
+    },
+    "saldo barra": {
+      "saldo barra": {
+        "score": 1512,
+        "state": "CONFIRMED"
+      }
+    },
+    "controle lote": {
+      "controle lote": {
+        "score": 1481,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 1": 24
+    },
+    "dt. custo": {
+      "dt. custo": {
+        "score": 1544,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "complemento": {
+      "complemento": {
+        "score": 1510,
+        "state": "CONFIRMED"
+      }
+    },
+    "marca": {
+      "marca": {
+        "score": 1485,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "unnamed: 1": 24
+    },
+    "pesável": {
+      "pesável": {
+        "score": 1561,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 3": 24
+    },
+    "transgênico": {
+      "transgênico": {
+        "score": 1517,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 3": 24
+    },
+    "salesunit": {
+      "salesunit": {
+        "score": 2992,
+        "state": "CONFIRMED"
+      },
+      "salesunitheight": 3848,
+      "salesunitvolume": 3860,
+      "salesunitweight": 3938,
+      "salesunitwidth": {
+        "score": 3961,
+        "state": "CONFIRMED"
+      },
+      "salesunitlength": 3830,
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "unnamed: 3": 16,
+      "descrição": {
+        "score": 21,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "local estoque": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "procurementmethod": {
+      "procurementmethod": {
+        "score": 3033,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "unnamed: 1": 16,
+      "descrição": {
+        "score": 49,
+        "state": "CONFIRMED"
+      },
+      "conta de estoque": {
+        "score": 28,
+        "state": "CONFIRMED"
+      },
+      "9": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "combustível - alíq. cide": {
+      "id": 6230,
+      "combustível - alíq. cide": {
+        "score": 1509,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "descrição detalhada": {
+      "descrição": 5298,
+      "descrição detalhada": {
+        "score": 1581,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6,
+      "unnamed: 3": 24
+    },
+    "comprimento": {
+      "comprimento - embalado": 1440,
+      "comprimento": {
+        "score": 1559,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "cód. selo": {
+      "cód. selo": {
+        "score": 1528,
+        "state": "CONFIRMED"
+      }
+    },
+    "data alteração": {
+      "data alteração": {
+        "score": 1528,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 6,
+      "colunaa": 6,
+      "unnamed: 1": 24
+    },
+    "comprimento - embalado": {
+      "comprimento - embalado": {
+        "score": 1532,
+        "state": "CONFIRMED"
+      },
+      "comprimento": 1442,
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "ipi-cod. enq. legal": {
+      "ipi": 1388,
+      "ipi-cod. enq. legal": {
+        "score": 1528,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 1": 24
+    },
+    "coluna2": {
+      "coluna2": 712,
+      "cadastro de produto": 6,
+      "descrição": 12,
+      "purchaseunit": 12,
+      "conta de estoque": 6,
+      "ipi": 6,
+      "colunaa": 10,
+      "unnamed: 1": 12
+    },
+    "palavras chave": {
+      "palavras chave": {
+        "score": 1530,
+        "state": "CONFIRMED"
+      }
+    },
+    "largura - embalado": {
+      "largura": 1384,
+      "largura - embalado": {
+        "score": 1545,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "largura": {
+      "largura": {
+        "score": 1482,
+        "state": "CONFIRMED"
+      },
+      "largura - embalado": 1409,
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "preço venda (1)": {
+      "preço venda (1)": {
+        "score": 1465,
+        "state": "CONFIRMED"
+      }
+    },
+    "matéria-prima": {
+      "matéria-prima": {
+        "score": 2805,
+        "state": "CONFIRMED"
+      },
+      "cadastro de produto": {
+        "score": 81,
+        "state": "CONFIRMED"
+      },
+      "purchaseunit": {
+        "score": 204,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "prchseitem": {
+        "score": 21,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de crédito de compras - estrangeira": {
+      "conta de crédito de compras - estrangeira": {
+        "score": 2853,
+        "state": "CONFIRMED"
+      },
+      "conta de crédito de compra": 2730
+    },
+    "data de atualização": {
+      "data de atualização": {
+        "score": 3264,
+        "state": "CONFIRMED"
+      }
+    },
+    "conta de reavaliação cpv": {
+      "conta de reavaliação cpv": {
+        "score": 2845,
+        "state": "CONFIRMED"
+      }
+    },
+    "embalagem grupo": {
+      "embalagem grupo": {
+        "score": 1480,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 102,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 12,
+      "colunaa": 6
+    },
+    "coluna1": {
+      "coluna1": 679,
+      "código ncm": 20,
+      "opcs - fonte do produto": 6,
+      "código": 6,
+      "colunaa": 10
+    },
+    "prchseitem": {
+      "cadastro de produto": {
+        "score": 27,
+        "state": "CONFIRMED"
+      },
+      "purchaseitem": {
+        "score": 46,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "unnamed: 1": 8
+    },
+    "sellitem": {
+      "cadastro de produto": {
+        "score": 27,
+        "state": "CONFIRMED"
+      },
+      "salesitem": {
+        "score": 46,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "unnamed: 1": 8
+    },
+    "invntitem": {
+      "cadastro de produto": {
+        "score": 27,
+        "state": "CONFIRMED"
+      },
+      "inventoryitem": {
+        "score": 46,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "unnamed: 1": 8
+    },
+    "mansernum": {
+      "cadastro de produto": {
+        "score": 27,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "unnamed: 1": 8
+    },
+    "salunitmsr": {
+      "cadastro de produto": {
+        "score": 27,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "unnamed: 3": 8
+    },
+    "buyunitmsr": {
+      "cadastro de produto": {
+        "score": 27,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "unnamed: 3": 8
+    },
+    "purpackmsr": {
+      "cadastro de produto": {
+        "score": 27,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "unnamed: 3": 8
+    },
+    "prcrmntmtd": {
+      "cadastro de produto": {
+        "score": 27,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "unnamed: 1": 8
+    },
+    "invntryuom": {
+      "cadastro de produto": {
+        "score": 27,
+        "state": "CONFIRMED"
+      },
+      "inventoryuom": {
+        "score": 80,
+        "state": "CONFIRMED"
+      },
+      "bloqueado": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "código de grupo": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "unnamed: 3": 8
+    },
+    "productsrc": {
+      "produto": {
+        "score": 27,
+        "state": "CONFIRMED"
+      },
+      "productsource": {
+        "score": 46,
+        "state": "CONFIRMED"
+      },
+      "código ncm": {
+        "score": 77,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "estoq. mín.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "estoq. máx.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "itmsgrpcod": {
+      "itemsgroupcode": {
+        "score": 46,
+        "state": "CONFIRMED"
+      },
+      "código ncm": {
+        "score": 77,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "estoq. mín.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "estoq. máx.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "numinsale": {
+      "código ncm": {
+        "score": 77,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "estoq. mín.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "estoq. máx.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "salpackun": {
+      "código ncm": {
+        "score": 77,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "estoq. mín.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "estoq. máx.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "numinbuy": {
+      "código ncm": {
+        "score": 77,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "estoq. mín.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "estoq. máx.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "purpackun": {
+      "código ncm": {
+        "score": 77,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "estoq. mín.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "estoq. máx.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "blength1": {
+      "código ncm": {
+        "score": 77,
+        "state": "CONFIRMED"
+      },
+      "opcs - fonte do produto": {
+        "score": 34,
+        "state": "CONFIRMED"
+      },
+      "coluna1": 4,
+      "colunaa": 2,
+      "estoq. mín.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      },
+      "estoq. máx.": {
+        "score": 7,
+        "state": "SUGGESTED"
+      }
+    },
+    "coluna3": {
+      "cadastro de produto": 6,
+      "ipi %": 6,
+      "inventoryuom": 12,
+      "data da atualização - histórico": 6,
+      "descrição": 6,
+      "ipi": 6,
+      "invntryuom": 2,
+      "coluna1": 6,
+      "colunaa": 6,
+      "unnamed: 1": 6
+    },
+    "coluna4": {
+      "cadastro de produto": 6,
+      "ipi %": 6,
+      "inventoryuom": 12,
+      "data da atualização - histórico": 6,
+      "descrição": 6,
+      "ipi": 6,
+      "invntryuom": 2,
+      "coluna1": 6,
+      "colunaa": 6,
+      "unnamed: 1": 6
+    },
+    "coluna5": {
+      "código ncm": 20,
+      "opcs - fonte do produto": 6,
+      "código": 6,
+      "coluna1": 6,
+      "colunaa": 6
+    },
+    "unnamed: 1": {
+      "unnamed: 1": {
+        "score": 44,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 22": 14
+    },
+    "unnamed: 2": {
+      "unnamed: 2": {
+        "score": 22,
+        "state": "CONFIRMED"
+      },
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 3": {
+      "unnamed: 3": 32,
+      "unnamed: 22": 12,
+      "unnamed: 1": 4
+    },
+    "unnamed: 4": {
+      "unnamed: 4": 32,
+      "unnamed: 22": 12,
+      "unnamed: 1": 4
+    },
+    "unnamed: 5": {
+      "unnamed: 5": 32,
+      "unnamed: 22": 12,
+      "unnamed: 1": 4
+    },
+    "unnamed: 6": {
+      "unnamed: 6": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 7": {
+      "unnamed: 7": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 8": {
+      "unnamed: 8": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 9": {
+      "unnamed: 9": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 10": {
+      "unnamed: 10": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 11": {
+      "unnamed: 11": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 12": {
+      "unnamed: 12": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 13": {
+      "unnamed: 13": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 14": {
+      "unnamed: 14": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 15": {
+      "unnamed: 15": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 16": {
+      "unnamed: 16": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 17": {
+      "unnamed: 17": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 18": {
+      "unnamed: 18": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 19": {
+      "unnamed: 19": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 20": {
+      "unnamed: 20": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 21": {
+      "unnamed: 21": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 22": {
+      "unnamed: 22": 42,
+      "unnamed: 1": 14
+    },
+    "unnamed: 23": {
+      "unnamed: 23": 20,
+      "unnamed: 22": 10,
+      "unnamed: 3": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 24": {
+      "unnamed: 24": 20,
+      "unnamed: 22": 10,
+      "unnamed: 4": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 25": {
+      "unnamed: 25": 20,
+      "unnamed: 22": 10,
+      "unnamed: 5": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 26": {
+      "unnamed: 26": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 27": {
+      "unnamed: 27": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 28": {
+      "unnamed: 28": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 29": {
+      "unnamed: 29": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 30": {
+      "unnamed: 30": 20,
+      "unnamed: 22": 10,
+      "unnamed: 3": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 31": {
+      "unnamed: 31": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 32": {
+      "unnamed: 32": 20,
+      "unnamed: 22": 10,
+      "unnamed: 3": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 33": {
+      "unnamed: 33": 20,
+      "unnamed: 22": 10,
+      "unnamed: 3": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 34": {
+      "unnamed: 34": 20,
+      "unnamed: 22": 10,
+      "unnamed: 3": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 35": {
+      "unnamed: 35": 20,
+      "unnamed: 22": 10,
+      "unnamed: 3": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 36": {
+      "unnamed: 36": 20,
+      "unnamed: 22": 10,
+      "unnamed: 3": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 37": {
+      "unnamed: 37": 20,
+      "unnamed: 22": 10,
+      "unnamed: 3": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 38": {
+      "unnamed: 38": 20,
+      "unnamed: 22": 10,
+      "unnamed: 3": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 39": {
+      "unnamed: 39": 20,
+      "unnamed: 22": 10,
+      "unnamed: 3": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 40": {
+      "unnamed: 40": 20,
+      "unnamed: 22": 10,
+      "unnamed: 4": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 41": {
+      "unnamed: 41": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 42": {
+      "unnamed: 42": 20,
+      "unnamed: 22": 10,
+      "unnamed: 4": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 43": {
+      "unnamed: 43": 20,
+      "unnamed: 22": 10,
+      "unnamed: 3": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 44": {
+      "unnamed: 44": 20,
+      "unnamed: 22": 10,
+      "unnamed: 4": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 45": {
+      "unnamed: 45": 20,
+      "unnamed: 22": 10,
+      "unnamed: 4": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 46": {
+      "unnamed: 46": 20,
+      "unnamed: 22": 10,
+      "unnamed: 4": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 47": {
+      "unnamed: 47": 20,
+      "unnamed: 22": 10,
+      "unnamed: 4": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 48": {
+      "unnamed: 48": 20,
+      "unnamed: 22": 10,
+      "unnamed: 4": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 49": {
+      "unnamed: 49": 20,
+      "unnamed: 22": 10,
+      "unnamed: 4": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 50": {
+      "unnamed: 50": 20,
+      "unnamed: 22": 10,
+      "unnamed: 5": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 51": {
+      "unnamed: 51": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 52": {
+      "unnamed: 52": 20,
+      "unnamed: 22": 10,
+      "unnamed: 5": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 53": {
+      "unnamed: 53": 20,
+      "unnamed: 22": 10,
+      "unnamed: 3": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 54": {
+      "unnamed: 54": 20,
+      "unnamed: 22": 10,
+      "unnamed: 4": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 55": {
+      "unnamed: 55": 20,
+      "unnamed: 22": 10,
+      "unnamed: 5": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 56": {
+      "unnamed: 56": 20,
+      "unnamed: 22": 10,
+      "unnamed: 5": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 57": {
+      "unnamed: 57": 20,
+      "unnamed: 22": 10,
+      "unnamed: 5": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 58": {
+      "unnamed: 58": 20,
+      "unnamed: 22": 10,
+      "unnamed: 5": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 59": {
+      "unnamed: 59": 20,
+      "unnamed: 22": 10,
+      "unnamed: 5": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 60": {
+      "unnamed: 60": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 61": {
+      "unnamed: 61": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 62": {
+      "unnamed: 62": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 63": {
+      "unnamed: 63": 20,
+      "unnamed: 22": 10,
+      "unnamed: 3": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 64": {
+      "unnamed: 64": 20,
+      "unnamed: 22": 10,
+      "unnamed: 4": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 65": {
+      "unnamed: 65": 20,
+      "unnamed: 22": 10,
+      "unnamed: 5": 6,
+      "unnamed: 1": 4
+    },
+    "unnamed: 66": {
+      "unnamed: 66": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 67": {
+      "unnamed: 67": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 68": {
+      "unnamed: 68": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 69": {
+      "unnamed: 69": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 70": {
+      "unnamed: 70": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "unnamed: 71": {
+      "unnamed: 71": 20,
+      "unnamed: 22": 10,
+      "unnamed: 1": 10
+    },
+    "colunaa": {
+      "coluna1": 8
+    },
+    "colunac": {
+      "coluna1": 8
+    },
+    "valor": {
+      "unnamed: 3": 6
+    },
+    "ÿþi": {
+      "ÿþi": {
+        "score": 2,
+        "state": "OBSERVED"
+      }
+    },
+    "id_produto": {
+      "itemname": {
+        "score": 5,
+        "state": "INFERRED"
+      }
+    }
+  },
+  "metadata": {
+    "total_cycles": 1689633,
+    "last_update": "2026-03-27 13:29:11.880712"
+  }
+}

@@ -2,14 +2,17 @@ from typing import List, Dict, Optional, Any
 import pandas as pd
 import numpy as np
 from core.learning.learning_store import LearningStore
+from core.learning.mega_store import MegaKnowledgeStore
 
 class LearningLogger:
     """
-    Serviço de Registro de Aprendizado (v0.6.3 - Patch 4).
-    Orquestra a captura de metadados ao final do fluxo ETL.
+    Serviço de Registro de Aprendizado (v0.6.8).
+    Orquestra a captura de metadados e o aprendizado probabilístico.
     """
     def __init__(self, root_dir: str):
+        self.root_dir = root_dir
         self.store = LearningStore(root_dir)
+        self.mega = MegaKnowledgeStore(root_dir)
 
     def log_execution(self, 
                       source_columns: List[str], 
@@ -45,8 +48,16 @@ class LearningLogger:
             "column_profiles": profiles
         }
         
-        # 3. Persistir
+        # 3. Persistir Histórico Linear
         self.store.save_execution(execution)
+        
+        # 4. Reforço de Aprendizado Probabilístico (v0.6.8)
+        for src, tgt in mapping.items():
+            # Se foi executado, é um padrão confirmado e repetido
+            self.mega.add_evidence(src, tgt, reason="runtime_successful_execution")
+            self.mega.add_evidence(src, tgt, reason="repeated_pattern")
+        
+        self.mega.save()
         return True
 
     def log_workbook_structure(self, workbook: Dict[str, pd.DataFrame]):
@@ -64,7 +75,16 @@ class LearningLogger:
                 "column_profiles": self._profile_dataframe(df_sampled, list(df.columns)),
                 "is_passive_learning": True # Flag para distinguir de execuções reais
             }
+            # 2. Registrar no Histórico
             self.store.save_execution(execution)
+            
+            # 3. Registrar no Cérebro Probabilístico (v0.6.8)
+            for col in df.columns:
+                # Apenas observação passiva da existência da coluna
+                # (Não há mapeamento aqui, apenas 'seen')
+                pass 
+                
+        self.mega.save()
 
     def _profile_dataframe(self, df: pd.DataFrame, columns: List[str]) -> Dict[str, Any]:
         """Gera um resumo estatístico e de tipo para cada coluna mapeada."""

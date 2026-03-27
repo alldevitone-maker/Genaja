@@ -1,0 +1,714 @@
+{
+  "log_version": "1.0",
+  "executions": [
+    {
+      "sheet": "Planilha3",
+      "source_columns": [
+        "InventoryUOM",
+        "PurchaseUnit",
+        "PurchaseUnitLength",
+        "PurchaseLengthUnit",
+        "PurchaseUnitWidth",
+        "PurchaseWidthUnit",
+        "PurchaseUnitHeight",
+        "PurchaseHeightUnit",
+        "PurchaseUnitVolume",
+        "PurchaseVolumeUnit",
+        "PurchaseUnitWeight",
+        "PurchaseWeightUnit",
+        "SalesUnitLength",
+        "SalesLengthUnit",
+        "SalesUnitWidth",
+        "SalesWidthUnit",
+        "SalesUnitHeight",
+        "SalesHeightUnit",
+        "SalesUnitVolume",
+        "SalesVolumeUnit",
+        "SalesUnitWeight",
+        "SalesWeightUnit"
+      ],
+      "source_signature": "f395b9076969e46a13e7b9b311d5ba5c",
+      "row_count": 6,
+      "column_profiles": {
+        "InventoryUOM": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 9.666666666666666,
+          "unique_ratio": 0.5
+        },
+        "PurchaseUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 8.166666666666666,
+          "unique_ratio": 0.5
+        },
+        "PurchaseUnitLength": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 5.333333333333333,
+          "unique_ratio": 0.6666666666666666
+        },
+        "PurchaseLengthUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 6.333333333333333,
+          "unique_ratio": 0.3333333333333333
+        },
+        "PurchaseUnitWidth": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 4.666666666666667,
+          "unique_ratio": 0.8333333333333334
+        },
+        "PurchaseWidthUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 5.666666666666667,
+          "unique_ratio": 0.3333333333333333
+        },
+        "PurchaseUnitHeight": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 4.166666666666667,
+          "unique_ratio": 0.6666666666666666
+        },
+        "PurchaseHeightUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 5.5,
+          "unique_ratio": 0.3333333333333333
+        },
+        "PurchaseUnitVolume": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 15.0,
+          "unique_ratio": 1.0
+        },
+        "PurchaseVolumeUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 6.333333333333333,
+          "unique_ratio": 0.3333333333333333
+        },
+        "PurchaseUnitWeight": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 3.8333333333333335,
+          "unique_ratio": 0.8333333333333334
+        },
+        "PurchaseWeightUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 5.166666666666667,
+          "unique_ratio": 0.3333333333333333
+        },
+        "SalesUnitLength": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 5.5,
+          "unique_ratio": 0.6666666666666666
+        },
+        "SalesLengthUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 6.333333333333333,
+          "unique_ratio": 0.3333333333333333
+        },
+        "SalesUnitWidth": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 4.833333333333333,
+          "unique_ratio": 0.6666666666666666
+        },
+        "SalesWidthUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 5.666666666666667,
+          "unique_ratio": 0.3333333333333333
+        },
+        "SalesUnitHeight": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 4.166666666666667,
+          "unique_ratio": 0.6666666666666666
+        },
+        "SalesHeightUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 5.5,
+          "unique_ratio": 0.3333333333333333
+        },
+        "SalesUnitVolume": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 15.0,
+          "unique_ratio": 1.0
+        },
+        "SalesVolumeUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 6.333333333333333,
+          "unique_ratio": 0.3333333333333333
+        },
+        "SalesUnitWeight": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 5.833333333333333,
+          "unique_ratio": 0.6666666666666666
+        },
+        "SalesWeightUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 5.166666666666667,
+          "unique_ratio": 0.3333333333333333
+        }
+      },
+      "is_passive_learning": true,
+      "usage_count": 2,
+      "timestamp": "2026-03-27T13:19:20.080256"
+    },
+    {
+      "sheet": "Fonte do Material - ProductSrc",
+      "source_columns": [
+        "OPCS - FONTE DO PRODUTO"
+      ],
+      "source_signature": "2672e1c27402476a9ec5ec1da32a8b2c",
+      "row_count": 10,
+      "column_profiles": {
+        "OPCS - FONTE DO PRODUTO": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 2.5,
+          "unique_ratio": 1.0
+        }
+      },
+      "is_passive_learning": true,
+      "usage_count": 2,
+      "timestamp": "2026-03-27T13:19:20.055488"
+    },
+    {
+      "sheet": "NCM - NCMCode",
+      "source_columns": [
+        "ID",
+        "Código NCM",
+        "Descrição",
+        "Instância do log",
+        "Atualização do usuário",
+        "Data de atualização",
+        "Código de grupo",
+        "Grupo NCM",
+        "Código CEST",
+        "Unidade Tributável",
+        "Fator de Tributação",
+        "Gerar Rastreabilidade"
+      ],
+      "source_signature": "f6fbe953264017a368c282f8000c7186",
+      "row_count": 11327,
+      "column_profiles": {
+        "ID": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 2.83,
+          "unique_ratio": 1.0
+        },
+        "Código NCM": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 7.49,
+          "unique_ratio": 1.0
+        },
+        "Descrição": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 6.0,
+          "unique_ratio": 0.01564076690211907
+        },
+        "Atualização do usuário": {
+          "dtype": "float64",
+          "is_numeric": true,
+          "avg_len": 4.85,
+          "unique_ratio": 0.175
+        },
+        "Data de atualização": {
+          "dtype": "datetime64[us]",
+          "is_numeric": true,
+          "avg_len": 10.0,
+          "unique_ratio": 0.6428571428571429
+        },
+        "Código de grupo": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.0,
+          "unique_ratio": 0.0005
+        },
+        "Grupo NCM": {
+          "dtype": "float64",
+          "is_numeric": true,
+          "avg_len": 3.0,
+          "unique_ratio": 0.022727272727272728
+        },
+        "Código CEST": {
+          "dtype": "float64",
+          "is_numeric": true,
+          "avg_len": 9.0,
+          "unique_ratio": 1.0
+        },
+        "Fator de Tributação": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 1.0,
+          "unique_ratio": 0.0005
+        }
+      },
+      "is_passive_learning": true,
+      "usage_count": 2,
+      "timestamp": "2026-03-27T13:19:20.041756"
+    },
+    {
+      "sheet": "Grupo de Itens - ItmsGrpCod",
+      "source_columns": [
+        "Número",
+        "Nome do grupo",
+        "Bloqueado",
+        "Fonte de dados",
+        "Assinatura do usuário",
+        "Conta de estoque",
+        "Conta de custo de produtos vendidos",
+        "Conta de alocação",
+        "Conta de receita",
+        "Conta de desvio",
+        "Conta de contrapartida para estoque - Conta de redução",
+        "Conta de contrapartida para estoque - Conta de aumento",
+        "Conta de devoluções",
+        "Conta de despesas",
+        "Conta de receita - UE",
+        "Conta de despesas - UE",
+        "Conta de receita - estrangeira",
+        "Conta de despesas - estrangeira",
+        "Conta de receita isenta de imposto",
+        "Código do ciclo",
+        "Alerta",
+        "Conta de diferenças de preço",
+        "Conta de diferenças da taxa de câmbio",
+        "Conta de compensação de mercadoria",
+        "Conta de compras",
+        "Conta de devolução de compras",
+        "Conta de contrapartida de compras",
+        "Conta de mercadorias enviadas",
+        "IVA em conta de receita",
+        "Conta de redução do Razão",
+        "Conta de aumento do Razão",
+        "Sistema do inventário",
+        "Método de planejamento",
+        "Método de suprimento",
+        "Intervalo do pedido",
+        "Solicitar múltiplos de",
+        "Quantidade mín.pedido",
+        "Tempo de processamento",
+        "Conta de reavaliação do estoque",
+        "Conta de contrapartida para reavaliação do estoque",
+        "Conta de material em processo",
+        "Conta de desvio do estoque de material em processo",
+        "Conta de reavaliação CPV",
+        "Conta de contrapartida de reavaliação CPV",
+        "Conta de compensação de despesas",
+        "Conta de contrapartida de despesas",
+        "Tipo de objeto - Histórico",
+        "Instância do registro em log - Histórico",
+        "Data de criação - Histórico",
+        "Atualização de usuário - Histórico",
+        "Data da atualização - Histórico",
+        "Conta de crédito de vendas",
+        "Conta de crédito de vendas - Estrangeira",
+        "Conta de crédito de vendas - UE",
+        "Conta crédito isenta de imposto",
+        "Conta de crédito de compra",
+        "Conta de crédito de compras - Estrangeira",
+        "Conta de crédito de compras - UE",
+        "Conta de devoluções de receita",
+        "Serviço ou material",
+        "Código serviço prestado",
+        "Código serviço contratado",
+        "Grupo de serviço",
+        "Código NCM",
+        "Tipo de material",
+        "Grupo de materiais",
+        "Fonte do produto",
+        "Conta de ajuste do inventário negativo",
+        "Conta de estoque em trânsito",
+        "Conta de saldo de compras",
+        "Conta CENVAT de entrada (DP)",
+        "Conta CENVAT de saída (DP)",
+        "Conta de demonstração de resultados da contrapartida do material em processo",
+        "Conta de demonstração de resultados da contrapartida para estoque",
+        "Entrada de grupo de unidades de medida padrão",
+        "Unidade de medida de estoque padrão",
+        "Dias de tolerância",
+        "Código da regra de verificação",
+        "Depósito de componente",
+        "Conta de venda gratuita",
+        "Conta de compras gratuita",
+        "Matéria-prima",
+        "Validar Campos",
+        "Obrigar Ped. de Compra",
+        "PDV - Libera grupo para loja"
+      ],
+      "source_signature": "caaafc9cdd9b1116aff1a5e370b5ce3a",
+      "row_count": 25,
+      "column_profiles": {
+        "Número": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 3.0,
+          "unique_ratio": 1.0
+        },
+        "Nome do grupo": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 10.208333333333334,
+          "unique_ratio": 1.0
+        },
+        "Bloqueado": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        },
+        "Fonte de dados": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        },
+        "Assinatura do usuário": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 1.72,
+          "unique_ratio": 0.2
+        },
+        "Alerta": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        },
+        "Sistema do inventário": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        },
+        "Método de planejamento": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        },
+        "Método de suprimento": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        },
+        "Solicitar múltiplos de": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        },
+        "Quantidade mín.pedido": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        },
+        "Tipo de objeto - Histórico": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 2.0,
+          "unique_ratio": 0.04
+        },
+        "Data de criação - Histórico": {
+          "dtype": "datetime64[us]",
+          "is_numeric": true,
+          "avg_len": 10.0,
+          "unique_ratio": 0.28
+        },
+        "Atualização de usuário - Histórico": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 2.68,
+          "unique_ratio": 0.24
+        },
+        "Data da atualização - Histórico": {
+          "dtype": "datetime64[us]",
+          "is_numeric": true,
+          "avg_len": 10.0,
+          "unique_ratio": 0.2777777777777778
+        },
+        "Serviço ou material": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        },
+        "Código serviço prestado": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 2.0,
+          "unique_ratio": 0.04
+        },
+        "Código serviço contratado": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 2.0,
+          "unique_ratio": 0.04
+        },
+        "Grupo de serviço": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 2.0,
+          "unique_ratio": 0.04
+        },
+        "Código NCM": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 2.0,
+          "unique_ratio": 0.04
+        },
+        "Tipo de material": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        },
+        "Grupo de materiais": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 2.0,
+          "unique_ratio": 0.04
+        },
+        "Fonte do produto": {
+          "dtype": "int64",
+          "is_numeric": true,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        },
+        "Depósito de componente": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        },
+        "Matéria-prima": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        },
+        "Validar Campos": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.0,
+          "unique_ratio": 0.08
+        },
+        "PDV - Libera grupo para loja": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.0,
+          "unique_ratio": 0.04
+        }
+      },
+      "is_passive_learning": true,
+      "usage_count": 2,
+      "timestamp": "2026-03-27T13:19:20.023175"
+    },
+    {
+      "sheet": "OITM - Items - ITEM1 - TESTE",
+      "source_columns": [
+        "ItemCode",
+        "Series",
+        "ItemName",
+        "ForeignName",
+        "ItemsGroupCode",
+        "PurchaseItem",
+        "SalesItem",
+        "InventoryItem",
+        "ManageSerialNumbers",
+        "SRIAndBatchManageMethod",
+        "SalesUnit",
+        "SalesItemsPerUnit",
+        "SalesQtyPerPackUnit",
+        "PurchaseUnit",
+        "PurchaseItemsPerUnit",
+        "PurchasePackagingUnit",
+        "PurchaseQtyPerPackUnit",
+        "PurchaseUnitLength",
+        "ProcurementMethod",
+        "LeadTime",
+        "ItemClass",
+        "NCMCode",
+        "MaterialGroup",
+        "ProductSource",
+        "InventoryUOM"
+      ],
+      "source_signature": "8cee3c8fde65d06e133a538a6c229269",
+      "row_count": 9456,
+      "column_profiles": {
+        "ItemCode": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 6.02,
+          "unique_ratio": 1.0
+        },
+        "Series": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 2.04,
+          "unique_ratio": 0.001
+        },
+        "ItemName": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 26.82,
+          "unique_ratio": 0.9885
+        },
+        "ForeignName": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 7.88,
+          "unique_ratio": 1.0
+        },
+        "ItemsGroupCode": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 3.07,
+          "unique_ratio": 0.001
+        },
+        "PurchaseItem": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.09,
+          "unique_ratio": 0.001
+        },
+        "SalesItem": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.07,
+          "unique_ratio": 0.001
+        },
+        "InventoryItem": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.08,
+          "unique_ratio": 0.001
+        },
+        "ManageSerialNumbers": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 1.08,
+          "unique_ratio": 0.001
+        },
+        "SRIAndBatchManageMethod": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 9.0,
+          "unique_ratio": 1.0
+        },
+        "SalesUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 2.08,
+          "unique_ratio": 0.006
+        },
+        "SalesItemsPerUnit": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 1.08,
+          "unique_ratio": 0.001
+        },
+        "SalesQtyPerPackUnit": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 1.08,
+          "unique_ratio": 0.001
+        },
+        "PurchaseUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 2.08,
+          "unique_ratio": 0.001
+        },
+        "PurchaseItemsPerUnit": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 1.07,
+          "unique_ratio": 0.001
+        },
+        "PurchasePackagingUnit": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 2.08,
+          "unique_ratio": 0.001
+        },
+        "PurchaseQtyPerPackUnit": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 1.08,
+          "unique_ratio": 0.001
+        },
+        "PurchaseUnitLength": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 1.07,
+          "unique_ratio": 0.001
+        },
+        "ProcurementMethod": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 10.0,
+          "unique_ratio": 1.0
+        },
+        "LeadTime": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 8.0,
+          "unique_ratio": 1.0
+        },
+        "ItemClass": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 9.0,
+          "unique_ratio": 1.0
+        },
+        "NCMCode": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 4.05,
+          "unique_ratio": 0.11222949169602416
+        },
+        "MaterialGroup": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 6.0,
+          "unique_ratio": 1.0
+        },
+        "ProductSource": {
+          "dtype": "object",
+          "is_numeric": false,
+          "avg_len": 5.5,
+          "unique_ratio": 1.0
+        },
+        "InventoryUOM": {
+          "dtype": "str",
+          "is_numeric": false,
+          "avg_len": 2.08,
+          "unique_ratio": 0.006
+        }
+      },
+      "is_passive_learning": true,
+      "usage_count": 2,
+      "timestamp": "2026-03-27T13:19:19.993291"
+    }
+  ]
+}

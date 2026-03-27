@@ -1,3 +1,16 @@
+## [0.6.9-Master] - 27/03/2026 (Master Curated Strategy)
+- **Master Curated Layer**: Introdução do `CuratedStore` para persistência de 'Regras de Ouro' (Nível 0).
+- **Priority Orchestration**: Reformulação do motor de sugestão (Curated > MegaBrain > History > Fuzzy).
+- **Auto-Promotion Logic**: O `brain_feed.py` agora promove automaticamente mapeamentos maduros (Score >= 20).
+- **Master Rules Persistence**: Nova base determinística em `learn/curated/master_rules.json`.
+
+## [0.6.8-Master] - 27/03/2026 (Master Agent Execution Protocol)
+- **Master Agent Protocol**: Implementação do protocolo de saneamento profundo e orquestração de aprendizado.
+- **Probabilistic Brain v2**: Sistema de pesos dinâmicos e classificação de estados (OBSERVED a CONFIRMED).
+- **Brain Inbox (Sanitation Pipeline)**: Criação do fluxo `learn/inbox` para ingestão segura de datasets externos.
+- **Pollution Filter**: Mecanismo de quarentena automática para padrões de mapeamento genéricos ou suspeitos.
+- **Automation Toolkit**: Lançamento do `brain_feed.py` (Orquestrador) e `sanitation_hook.py` (Limpador).
+
 ## [0.6.7-Ultimate] - 27/03/2026 (Marathon Analysis Release)
 - **Big Data Marathon Phase 2**: Consolidação massiva de **1.001.675 associações** aprendidas.
 - **Brain Migration**: Centralização do "Cérebro" do Genaja na pasta visível `learn/` do repositório.

@@ -1,7 +1,9 @@
 # Genaja Suite — Inteligência Analítica e Sincronização de Dados
 
-[🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Portugu> **Versão Atual:** `v0.6.7-Ultimate` (Marathon Analysis Release)
-> **Status do Projeto:** Estável - Inteligência Estatística de Alta Densidade 🧠
+[🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
+
+> **Versão Atual:** `v0.6.9-Master` (Master Curated Strategy)
+> **Status do Projeto:** Estável - Camada de Curadoria Determinística ⭐
 
 ---
 
@@ -49,6 +51,16 @@ O pipeline executa automaticamente:
 ## 📖 Histórico de Atualizações (Audit Trail 2026)
 
 <div id="latest-release">
+
+### **v0.6.9-Master (Master Curated Strategy)**
+**Decisão Absoluta.** Camada de Curadoria Mestre (Prioridade 0).
+- ⭐ **Master Rules**: Regras determinísticas em `learn/curated/master_rules.json`.
+- 📊 **Auto-Promotion**: Promoção automática de mapeamentos com Score >= 20.
+
+### **v0.6.8-Master (Master Agent Protocol)**
+**Orquestração e Saneamento.** Protocolo de limpeza e estruturação do cérebro.
+- 🧹 **Sanitation Hook**: Script de limpeza automática do repositório.
+- 🍱 **Brain Inbox**: Fluxo de ingestão segura de dados via `learn/inbox/`.
 
 ### **v0.6.7 (Marathon Analysis Release - ULTIMATE)**
 **O cérebro definitivo.** Consolidação de 1 milhão de simulações e integração de dados legados do BigData.
