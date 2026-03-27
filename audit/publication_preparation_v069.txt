@@ -1,0 +1,42 @@
+STATUS: ✅ CONTEÚDO PREPARADO PARA COMMIT
+--------------------------------------------------------------------------------
+
+ENTRA NO COMMIT (Conjunto de Publicação v0.6.9-Master):
+- src/ (Todos os módulos core, ui_flet, app, utils, adapters)
+- tests/ (Smoke Test e unit tests ativos)
+- docs/ (README.md, README.en.md, CHANGELOG.md)
+- learn/consolidated/mega_knowledge.json (Inteligência Consolidada)
+- learn/curated/master_rules.json (Regras de Curadoria)
+- learn/reports/ (Certificações de saúde cerebral)
+- audit/ (Apenas relatórios consolidados de release v0.6.9 listados abaixo)
+  * FINAL_EXTERNAL_AUDIT_REPORT_v069.txt
+  * config_service_fix_v069.txt
+  * runtime_integrity_v069_part3.txt
+  * smoke_test_alignment_v069_stage5.txt
+  * publication_inventory_v069.txt
+  * residual_cleanup_v069_stage_next.txt
+- version.py / requirements.txt
+- scripts/ (Sanitation hooks e ferramentas de release)
+
+FICA LOCAL (Retenção em backups/retention_v069/):
+- audit/*.jsonl (Logs de eventos brutos)
+- audit/v068/ (Histórico da versão anterior)
+- learn/raw/*.csv (Massa bruta de inteligência: 108 arquivos)
+- learn/learning_log.json (Log pesado de processamento: 618KB)
+- tests/archive/ (Testes retroativos como bug_1414)
+- backups/ (Todos os zips e snapshots anteriores)
+- data/genaja_config.json (Configurações locais de ambiente)
+
+ITENS SENSÍVEIS EXCLUÍDOS:
+- Arquivos de configuração pessoal (genaja_config.json)
+- Dados brutos de clientes/processamento em learn/raw/
+- Workflows internos do agente Assistente (.agent/)
+
+RISCO: NULO. O enxugamento garante um commit leve, audível e livre de ruído 
+técnico ou dados sensíveis.
+
+PRÓXIMO STAGE EXECUTÁVEL: Stage de Consolidação Final (Git Add & Commit).
+
+--------------------------------------------------------------------------------
+REPOSITÓRIO SANEADO E PRONTO PARA RELEASE V0.6.9-MASTER. 🫡🏁⚙️💎🥇
+================================================================================

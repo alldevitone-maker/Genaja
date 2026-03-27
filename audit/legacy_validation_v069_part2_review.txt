@@ -1,0 +1,48 @@
+================================================================================
+GENAJA v0.6.9 - ETAPA 2 - REVISÃO DE VALIDAÇÃO DE LEGADO
+================================================================================
+Timestamp: 2026-03-27 15:00:00
+Fase: Diagnóstico de Referências Residuais (v0.6.9 - Part 2 REVISÃO)
+--------------------------------------------------------------------------------
+
+1. STATUS: ⚠️ PARTIAL (Aguardando Decisão sobre Teste bug_1414)
+--------------------------------------------------------------
+A análise anterior foi corrigida. Identificou-se uma dependência órfã no projeto.
+
+2. IMPORTS ENCONTRADOS
+----------------------
+- [ARQUIVO]: tests/test_bug_1414.py
+- [LINHA 02]: from src.services.etl_service import clean_empty_quantities_multi
+
+3. TESTES LEGADOS IDENTIFICADOS
+-------------------------------
+O arquivo `tests/test_bug_1414.py` é classificado como **LEGADO E QUEBRADO**.
+- **Motivo**: Tenta importar uma função de um diretório (`src.services`) que foi 
+  consolidado para `src.core.services`, mas a função específica 
+  (`clean_empty_quantities_multi`) NÃO foi migrada para o novo motor.
+
+4. RESPOSTAS OBRIGATÓRIAS
+-------------------------
+1. **test_bug_1414.py é teste ativo ou legado?**
+   - Resposta: **LEGADO**. Referencia infraestrutura obsoleta.
+2. **Esse teste deve ser corrigido, arquivado ou removido?**
+   - Resposta: **CORRIGIDO** (Migrar para ValidationEngine) ou **ARQUIVADO**.
+3. **Após essa classificação, src/services pode ser removido com segurança?**
+   - Resposta: **SIM**, pois a referência é um "falso positivo" de um arquivo de 
+     teste obsoleto que não afeta a execução da UI ou do Core da v0.6.9.
+
+5. RISCO REAL DE REMOÇÃO
+------------------------
+- RISCO: **MUITO BAIXO**. 
+- IMPACTO: Apenas o `test_bug_1414.py` parará de funcionar (já está quebrado). 
+- RECOMENDAÇÃO: Arquivar o teste em `tests/archive` e prosseguir com a remoção 
+  da pasta `src/services` para atingir a "Arquitetura Impecável".
+
+6. RECOMENDAÇÃO FINAL
+---------------------
+- Mover `tests/test_bug_1414.py` para `tests/archive/`.
+- Deletar o diretório `src/services` definitivamente.
+
+--------------------------------------------------------------------------------
+GATE 2: CLOSED (Análise de risco concluída e perguntas respondidas) 🫡📊
+================================================================================

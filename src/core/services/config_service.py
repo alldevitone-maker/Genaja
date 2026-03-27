@@ -31,45 +31,77 @@ class ConfigService:
         self.filename = filename
         self.data_dir = os.path.join(os.getcwd(), "data")
         self.config_path = os.path.join(self.data_dir, self.filename)
+        # 🛡️ Garantia de inicialização (Hardening v0.6.9)
+        self.config = self.DEFAULTS.copy()
         self.config = self.load_config()
 
     def get_config(self, section=None, key=None):
         """Retorna configuração com fallbacks automáticos dos defaults."""
-        if section and key:
-            return self.config.get(section, {}).get(key, self.DEFAULTS.get(section, {}).get(key))
-        if section:
-            return self.config.get(section, self.DEFAULTS.get(section))
-        return self.config
+        try:
+            if section and key:
+                # Tenta no config carregado, se falhar tenta no default
+                val = self.config.get(section, {}).get(key)
+                if val is None:
+                    val = self.DEFAULTS.get(section, {}).get(key)
+                return val
+            if section:
+                return self.config.get(section, self.DEFAULTS.get(section))
+            return self.config
+        except Exception:
+            return self.DEFAULTS.get(section) if section else self.DEFAULTS
+
+    def get(self, key, default=None):
+        """Método de compatibilidade robusto. Prioriza config > default > input default."""
+        if not isinstance(self.config, dict):
+            return self.DEFAULTS.get(key, default)
+            
+        val = self.config.get(key)
+        if val is None:
+            # Fallback para o esquema de defaults interno se a seção existir
+            val = self.DEFAULTS.get(key, default)
+        return val
 
     def set_config(self, section, key, value):
+        if not isinstance(self.config, dict):
+            self.config = self.DEFAULTS.copy()
         if section not in self.config:
             self.config[section] = {}
         self.config[section][key] = value
 
     def load_config(self, logger=None):
+        """Carregamento resiliente com fusão profunda de defaults."""
         if not os.path.exists(self.config_path):
             return self.DEFAULTS.copy()
             
         try:
             with open(self.config_path, 'r', encoding='utf-8') as f:
-                saved = json.load(f)
-                # Merger recursivo simples (1 nível)
+                content = f.read().strip()
+                if not content:
+                    return self.DEFAULTS.copy()
+                saved = json.loads(content)
+                
+                if not isinstance(saved, dict):
+                    return self.DEFAULTS.copy()
+
+                # Fusão inteligente: preserva defaults se chaves estiverem ausentes no arquivo
                 full_config = self.DEFAULTS.copy()
                 for section, values in saved.items():
-                    if section in full_config:
+                    if isinstance(values, dict) and section in full_config:
                         full_config[section].update(values)
                     else:
                         full_config[section] = values
                 return full_config
-        except Exception as e:
-            if logger: logger.error(f"Erro ao carregar config: {e}")
+        except (json.JSONDecodeError, Exception) as e:
+            if logger: logger.error(f"Erro ao carregar config (Fallback para Defaults): {e}")
             return self.DEFAULTS.copy()
 
     def save_config(self, logger=None):
         try:
             os.makedirs(self.data_dir, exist_ok=True)
             with open(self.config_path, 'w', encoding='utf-8') as f:
-                json.dump(self.config, f, indent=4)
+                # Garante que estamos salvando um dicionário válido
+                data_to_save = self.config if isinstance(self.config, dict) else self.DEFAULTS
+                json.dump(data_to_save, f, indent=4)
             if logger: logger.info("Configurações persistidas com sucesso.")
             return True
         except Exception as e:

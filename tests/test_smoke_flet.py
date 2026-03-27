@@ -1,14 +1,15 @@
 import sys
 import os
 
-# --- ENVIRONMENT CONFIGURATION (v0.5.9) ---
+# --- ENVIRONMENT CONFIGURATION ---
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC_DIR = os.path.join(BASE_DIR, 'src')
 sys.path.insert(0, SRC_DIR)
 
 def run_flet_smoke_test():
+    from version import __version__
     print("-" * 50)
-    print("GENAJA FLET PLATINUM AUDIT: SMOKE TEST (v0.5.9)")
+    print(f"GENAJA FLET PLATINUM AUDIT: SMOKE TEST ({__version__})")
     print("-" * 50)
     
     try:
@@ -42,7 +43,7 @@ def run_flet_smoke_test():
         print("[OK] Audit Service: Event logging functional.")
 
         print("-" * 50)
-        print("RESULT: SMOKE TEST PASSED (v0.5.9 Platinum Certified)")
+        print(f"RESULT: SMOKE TEST PASSED ({__version__} Platinum Certified)")
         print("-" * 50)
         return True
         

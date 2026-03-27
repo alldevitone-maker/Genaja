@@ -1,0 +1,44 @@
+STATUS: ✅ CLASSIFICAÇÃO DE RELEVÂNCIA CONCLUÍDA
+--------------------------------------------------------------------------------
+
+1. AUDIT: SOBE PARA O GIT (Essencial para Governança Pública)
+- FINAL_EXTERNAL_AUDIT_REPORT_v069.txt (Certificação Master)
+- config_service_fix_v069.txt / config_service_hardening_v069_part4.txt
+- legacy_consolidation_v069_part2.txt
+- runtime_integrity_v069_part3.txt / runtime_post_hardening_v069.txt
+- smoke_test_alignment_v069_stage5.txt
+- publication_inventory_v069.txt / publication_slimming_v069.txt
+
+2. AUDIT: FICA LOCAL (Evidência/Backup Intermediário)
+- Todos os arquivos audit_*.jsonl (Logs de eventos brutos)
+- Snapshots e Inventários da v0.6.8 (pre_cleanup_snapshot, repo_inventory_v068)
+- Relatórios de micro-steps e testes intermediários (test_matrix_v068)
+
+3. LEARN: SOBE PARA O GIT (Inteligência Funcional)
+- learn/consolidated/mega_knowledge.json (O Cérebro Master v0.6.9)
+- learn/reports/brain_feed_report.json
+- learn/reports/brain_health_report.json
+- learn/reports/learning_migration_report.json
+
+4. LEARN: FICA LOCAL (Massa Bruta / Logs de Processamento)
+- learn/raw/*.csv (100+ arquivos de dados sujos/treino)
+- learn/consolidated/learning_log.json (Log volátil de ingestão)
+
+ITENS AMBÍGUOS — EXIGE DECISÃO MANUAL:
+- Genaja_v0.6.9-Master_FullRestore.zip: É o backup mestre. Deve subir como 
+  'Release Attachment' no GitHub ou ficar no Git? Decisão: Apenas LOCAL.
+- scripts/archive/: Contém ferramentas legadas. Decisão: Fica LOCAL.
+
+RISCO DE REPO PESADO:
+- ALTO se subir a pasta learn/raw/ (Muitas pequenas alterações de dados).
+- BAIXO seguindo este protocolo de enxugamento (Slimming Protocol).
+
+RECOMENDAÇÃO FINAL:
+Implementar um .gitignore refinado ou realizar a limpeza física seletiva 
+conforme este inventário antes do commit final.
+
+PRÓXIMO STAGE: Stage de Execução de Enxugamento (Saneamento de Relatórios).
+
+--------------------------------------------------------------------------------
+ESTRATÉGIA DE SLIMMING DEFINIDA. AGUARDANDO INSTRUÇÕES. 🫡📊📉
+================================================================================

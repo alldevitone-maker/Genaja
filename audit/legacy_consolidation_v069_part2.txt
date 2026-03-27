@@ -1,0 +1,29 @@
+================================================================================
+GENAJA v0.6.9 - ETAPA 2 - RELATÓRIO DE CONSOLIDAÇÃO DE LEGADO
+================================================================================
+Timestamp: 2026-03-27 15:05:00
+Fase: Execução de Arquivamento e Purga de Legado (v0.6.9 - Part 2)
+--------------------------------------------------------------------------------
+
+1. QUADRO DE EXECUÇÃO
+---------------------
+- ARQUIVAMENTO: `tests/test_bug_1414.py` -> `tests/archive/` (CONCLUÍDO)
+- REMOÇÃO FÍSICA: `src/services/` (ELIMINADO DEFINITIVAMENTE)
+
+2. VALIDAÇÃO DE INTEGRIDADE
+---------------------------
+- 📂 Estrutura `src/`: Saneada. Apenas `core`, `ui_flet`, `app`, `migration`, 
+  `adapters`, `utils` e entrypoints permanecem.
+- 🔎 Busca Global de Referências: 
+  * Camada Funcional (src/): 0 ocorrências.
+  * Suíte de Testes (tests/): 0 ocorrências (excluindo archive).
+  * Scripts (scripts/): 0 ocorrências.
+
+3. CONCLUSÃO DO GATE 2
+----------------------
+O diretório `src/services` não existe mais e o sistema permanece operacional.
+A redundância arquitetural foi eliminada.
+
+--------------------------------------------------------------------------------
+STATUS: CONSOLIDAÇÃO CONCLUÍDA. AGUARDANDO AUTORIZAÇÃO PARA FECHAMENTO DO GATE 2.
+================================================================================

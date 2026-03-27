@@ -1,0 +1,46 @@
+STATUS: ✅ CLASSIFIAÇÃO CONCLUÍDA (SOMENTE LEITURA)
+--------------------------------------------------------------------------------
+
+1. DEVE IR PARA O REPOSITÓRIO GIT ATIVO (Release & Code)
+- src/ (Todo o motor Core e UI Flet)
+- tests/ (Suíte de testes funcionais e smoke tests)
+- docs/ (Documentação pública e diagramas de arquitetura)
+- learn/ (Ativos de inteligência e base de conhecimento consolidada)
+- scripts/ (Ferramentas de automação e hooks de governança)
+- README.md / CHANGELOG.md (Metadados de projeto)
+- version.py / requirements.txt (Especificações técnicas)
+
+2. DEVE FICAR SOMENTE COMO BACKUP LOCAL (Retention)
+- backups/ (Snapshots históricos v0.6.1 a v0.6.8)
+- data/ (Contém genaja_config.json e dados de usuário)
+- Arquivos .bak ou .zip remanescentes na raiz
+
+3. DEVE FICAR COMO EVIDÊNCIA DE AUDITORIA/GOVERNANÇA (Compliance)
+- audit/ (Relatórios detalhados de gates e micro-steps)
+- tests/archive/ (Testes retroativos como o bug_1414)
+- Documentos de validação de runtime (Etapas 1-5 da v0.6.9)
+
+4. NÃO DEVE ENTRAR EM RELEASE/PUBLICAÇÃO (Noise/Private)
+- logs/ (Trilha operacional volátil)
+- results/ (Saídas de maratonas de processamento)
+- tmp/ (Scripts de rascunho e verificações rápidas)
+- .agent/ (Workflows internos da IA assistente)
+- __pycache__ / .pyc (Resíduos de compilação)
+
+ITENS AMBÍGUOS:
+- pasta audit/: Atualmente no .gitignore, o que impede a prova de governança 
+  no GitHub. Recomendação: Manter no Git apenas o "Manifesto de Auditoria" final.
+- learn/raw/: O volume de 100+ arquivos pode poluir o repositório. 
+  Recomendação: Subir apenas o cérebro consolidado ou uma amostra representativa.
+
+RISCOS DE PUBLICAÇÃO:
+- A disparidade v0.6.5 (GitHub) vs v0.6.9 (Local) pode causar confusão se não 
+  houver um "Hard Reset" ou commit de consolidação limpo no remoto.
+- Arquivos sensíveis em 'data/' ou 'docs/private' que não estão no gitignore.
+
+ÚLTIMO GATE CONFIÁVEL: Gate 5 (Smoke Test Alinhado v0.6.9-Master).
+PRÓXIMO STAGE RECOMENDADO: Stage de Consolidação de Release (Git Add & Commit).
+
+--------------------------------------------------------------------------------
+CLASSIFICAÇÃO SINTETIZADA. AGUARDANDO INSTRUÇÕES PARA CONSOLIDAÇÃO. 🫡📊🏁
+================================================================================
