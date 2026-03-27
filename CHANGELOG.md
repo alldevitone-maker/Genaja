@@ -1,3 +1,9 @@
+## [0.6.6] - 27/03/2026 (Multi-Sheet Processing)
+- **Multi-Sheet Loader**: Suporte nativo para leitura de todas as abas de Workbooks Excel (`sheet_name=None`).
+- **Sheet Intelligence**: Detecção automática de cabeçalhos e tipos por aba individual.
+- **UI Sheet Selection**: Integração de dropdowns dinâmicos na Step 1 para alternância de abas ativas.
+- **Aprendizado por Aba**: Metadados estruturais agora incluem o contexto da planilha de origem.
+
 ## [0.6.5] - 27/03/2026 (Profiling Engine)
 - **Data Profiling Layer**: Implementação de motor de análise de conteúdo (`dtype`, `unique_ratio`, `avg_len`).
 - **Deep Suggestion**: Priorização de sugestões baseada no perfil do dado quando o nome da coluna diverge.

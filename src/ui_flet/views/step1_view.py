@@ -62,6 +62,25 @@ class Step1View(ft.Column):
             on_blur=lambda e: self._on_manual_path("tgt", e.control.value),
             text_size=12
         )
+        
+        # v0.6.6 Multi-Sheet Selectors
+        self.src_sheet_dropdown = ft.Dropdown(
+            label="Selecionar Aba (Origem)",
+            visible=False,
+            height=40,
+            text_size=12,
+            border_radius=8
+        )
+        self.src_sheet_dropdown.on_change = lambda e: self._on_sheet_change("src", e.data)
+        
+        self.tgt_sheet_dropdown = ft.Dropdown(
+            label="Selecionar Aba (Destino)",
+            visible=False,
+            height=40,
+            text_size=12,
+            border_radius=8
+        )
+        self.tgt_sheet_dropdown.on_change = lambda e: self._on_sheet_change("tgt", e.data)
 
         self.btn_next = ft.ElevatedButton(
             "Prosseguir para Chaves ➡️", 
@@ -115,7 +134,8 @@ class Step1View(ft.Column):
                         on_click=lambda _: self._on_manual_path(mode, (self.src_path_field.value if mode == "src" else self.tgt_path_field.value)),
                         tooltip="Validar Caminho Manual"
                     )
-                ])
+                ]),
+                self.src_sheet_dropdown if mode == "src" else self.tgt_sheet_dropdown
             ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER)
         )
 
@@ -159,21 +179,39 @@ class Step1View(ft.Column):
 
     def update_file(self, mode, path):
         try:
-            df, skip = self.loader.load_excel(path)
+            workbook, headers = self.loader.load_workbook(path)
+            
+            # Treinamento Passivo (v0.6.6)
+            from core.learning.learning_logger import LearningLogger
+            ll = LearningLogger(os.getcwd())
+            ll.log_workbook_structure(workbook)
+
             if mode == "src":
-                self.state.df_src = df
+                self.state.workbook_src = workbook
                 self.state.path_src = path
-                self.src_info.value = f"✅ {os.path.basename(path)}\n{len(df)} linhas | Cabeçalho: {skip}"
+                self.state.selected_sheet_src = list(workbook.keys())[0]
+                self.state.df_src = workbook[self.state.selected_sheet_src]
+                
+                # Configurar Dropdown
+                self._update_sheet_dropdown(self.src_sheet_dropdown, list(workbook.keys()), self.state.selected_sheet_src)
+                
+                self.src_info.value = f"✅ {os.path.basename(path)}\n{len(self.state.df_src)} linhas | Aba: {self.state.selected_sheet_src}"
                 self.src_info.color = PlatinumTheme.SUCCESS()
                 self.src_path_field.value = path
             else:
-                self.state.df_tgt = df
+                self.state.workbook_tgt = workbook
                 self.state.path_tgt = path
-                self.tgt_info.value = f"✅ {os.path.basename(path)}\n{len(df)} linhas | Cabeçalho: {skip}"
+                self.state.selected_sheet_tgt = list(workbook.keys())[0]
+                self.state.df_tgt = workbook[self.state.selected_sheet_tgt]
+                
+                # Configurar Dropdown
+                self._update_sheet_dropdown(self.tgt_sheet_dropdown, list(workbook.keys()), self.state.selected_sheet_tgt)
+                
+                self.tgt_info.value = f"✅ {os.path.basename(path)}\n{len(self.state.df_tgt)} linhas | Aba: {self.state.selected_sheet_tgt}"
                 self.tgt_info.color = PlatinumTheme.SUCCESS()
                 self.tgt_path_field.value = path
             
-            LoggerService().info(f"Arquivo {mode} carregado: {len(df)} linhas.")
+            LoggerService().info(f"Workbook {mode} carregado ({len(workbook)} abas).")
             
             if self.state.df_src is not None and self.state.df_tgt is not None:
                 LoggerService().info("Ambos os arquivos carregados. Habilitando botão 'Próximo'.")
@@ -181,10 +219,29 @@ class Step1View(ft.Column):
             
             self.update()
         except Exception as e:
+            LoggerService().error(f"Erro ao carregar {path}: {e}")
             sb = ft.SnackBar(ft.Text(f"Erro ao carregar arquivo: {e}"), bgcolor=PlatinumTheme.DANGER())
             self.page.overlay.append(sb)
             sb.open = True
             self.page.update()
+
+    def _update_sheet_dropdown(self, dd, sheets, selected):
+        dd.options = [ft.dropdown.Option(s) for s in sheets]
+        dd.value = selected
+        dd.visible = len(sheets) > 1
+        dd.update()
+
+    def _on_sheet_change(self, mode, sheet_name):
+        LoggerService().info(f"Alterada aba ativa: {mode} -> {sheet_name}")
+        if mode == "src":
+            self.state.selected_sheet_src = sheet_name
+            self.state.df_src = self.state.workbook_src[sheet_name]
+            self.src_info.value = f"✅ {os.path.basename(self.state.path_src)}\n{len(self.state.df_src)} linhas | Aba: {sheet_name}"
+        else:
+            self.state.selected_sheet_tgt = sheet_name
+            self.state.df_tgt = self.state.workbook_tgt[sheet_name]
+            self.tgt_info.value = f"✅ {os.path.basename(self.state.path_tgt)}\n{len(self.state.df_tgt)} linhas | Aba: {sheet_name}"
+        self.update()
 
     def _intercept_next(self, e):
         """Interceptador v0.6.3: Realiza pré-análise antes de avançar."""

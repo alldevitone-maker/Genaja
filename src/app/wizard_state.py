@@ -14,6 +14,11 @@ class WizardState:
         self.df_src = None
         self.df_tgt = None
         
+        self.workbook_src = {} # {sheet_name: df} (v0.6.6)
+        self.workbook_tgt = {}
+        self.selected_sheet_src = None
+        self.selected_sheet_tgt = None
+        
         self.key_src = None
         self.key_tgt = None
         self.key_tgt_final = None

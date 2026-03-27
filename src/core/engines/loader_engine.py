@@ -33,20 +33,52 @@ class LoaderEngine:
         except Exception:
             return 0
 
+    def find_best_header_from_df(self, df_temp):
+        """Versão que aceita DataFrame já carregado (OTIMIZAÇÃO v0.6.6)."""
+        try:
+            best_row = 0
+            best_score = -1
+            
+            for i, row in df_temp.iterrows():
+                non_null_vals = row.dropna()
+                if non_null_vals.empty: continue
+                # Se houver empate, preferimos a primeira linha (v0.6.6 balanceamento)
+                if str_count > best_score:
+                    best_score = str_count
+                    best_row = i
+            return best_row
+        except Exception:
+            return 0
+
+    def load_workbook(self, path):
+        """Carrega todas as abas de um arquivo Excel (v0.6.6)."""
+        # 1. Ler cabeçalhos crus para detectar header em cada aba
+        # sheet_name=None retorna Dict[str, DataFrame]
+        workbook_raw = pd.read_excel(path, sheet_name=None, header=None, nrows=20)
+        
+        final_workbook = {}
+        sheet_headers = {}
+        
+        for sheet_name, df_raw in workbook_raw.items():
+            skip = self.find_best_header_from_df(df_raw)
+            # 2. Recarregar a aba com o header correto
+            df = pd.read_excel(path, sheet_name=sheet_name, skiprows=skip)
+            
+            # Sanitização (Refatorada v0.6.6)
+            df.columns = [str(c).strip() for c in df.columns]
+            df = df.loc[:, ~df.columns.str.contains('^Unnamed|^nan', case=False)]
+            
+            if not df.empty:
+                final_workbook[sheet_name] = df
+                sheet_headers[sheet_name] = skip
+        
+        if not final_workbook:
+            raise ValueError("O arquivo Excel não contém abas válidas ou dados.")
+            
+        return final_workbook, sheet_headers
+
     def load_excel(self, path, skip_rows=None):
-        """Carga robusta com sanitização de nomes de colunas."""
-        if skip_rows is None:
-            skip_rows = self.find_best_header(path)
-            
-        df = pd.read_excel(path, skiprows=skip_rows)
-        
-        # Limpar nomes de colunas (V0.4.8 Standard)
-        df.columns = [str(c).strip() for c in df.columns]
-        
-        # Remover colunas fantasmas (Unnamed/NaN)
-        df = df.loc[:, ~df.columns.str.contains('^Unnamed|^nan', case=False)]
-        
-        if df.empty:
-            raise ValueError("O arquivo Excel carregado está vazio.")
-            
-        return df, skip_rows
+        """Wrapper de compatibilidade (v0.6.0) - Retorna a primeira aba válida."""
+        wb, headers = self.load_workbook(path)
+        first_sheet = list(wb.keys())[0]
+        return wb[first_sheet], headers[first_sheet]
