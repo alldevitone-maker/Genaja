@@ -160,8 +160,13 @@ class Step4View(ft.Column):
             f"- {tgt_rows} linhas no Destino\n"
             f"- {m_count} colunas mapeadas\n"
             f"- Shielding: {'ON' if self.state.shielding else 'OFF'}\n"
-            f"- A1 Protegida: {'ON' if self.state.protected_a1 else 'OFF'}"
+            f"- A1 Protegida: {'ON' if self.state.protected_a1 else 'OFF'}\n"
+            f"- Preservar Zeros: {'ON' if self.state.preserve_leading_zeros else 'OFF'}"
         )
+        
+        # Sincronizar UI com estado real
+        self.chk_zeros.value = self.state.remove_nulls
+        
         if self.page:
             self.update()
 
@@ -197,7 +202,9 @@ class Step4View(ft.Column):
                     protected_a1=self.state.protected_a1,
                     shielding=self.state.shielding,
                     auto_trim=self.state.auto_trim,
-                    auto_upper=self.state.auto_upper
+                    auto_upper=self.state.auto_upper,
+                    preserve_zeros=self.state.preserve_leading_zeros,
+                    a1_col_name=self.state.key_tgt_final
                 )
             
             # 2. Aplicar Filtro Numerico v0.4.8 (ValidationEngine)
@@ -208,9 +215,9 @@ class Step4View(ft.Column):
             # 3. Aplicar "Manter apenas colunas selecionadas"
             if hasattr(self.state, 'keep_only_mapped') and self.state.keep_only_mapped:
                 keep_cols = list(self.state.mapping.values())
-                if self.state.protected_a1 and self.state.df_tgt is not None:
-                    a1 = self.state.df_tgt.columns[0]
-                    if a1 not in keep_cols:
+                if self.state.protected_a1:
+                    a1 = self.state.key_tgt_final or (self.state.df_tgt.columns[0] if self.state.df_tgt is not None else None)
+                    if a1 and a1 not in keep_cols:
                         keep_cols.insert(0, a1)
                 keep_cols = [c for c in keep_cols if c in df_result.columns]
                 if keep_cols:

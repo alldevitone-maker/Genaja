@@ -28,6 +28,7 @@ class WizardState:
         self.shielding = False
         self.auto_trim = True
         self.auto_upper = False
+        self.preserve_leading_zeros = True
         
         # --- FLAGS v0.4.6 RULES ---
         self.remove_nulls = False

@@ -56,6 +56,15 @@ class Step2View(ft.Column):
         self.chk_shielding.tooltip = "Impede sobrescrita de celulas preenchidas no destino"
         self.chk_shielding.on_change = lambda e: setattr(self.state, "shielding", e.control.value)
         
+        self.chk_preserve_zeros = ft.Checkbox(
+            label="Preservar Zeros à Esquerda", 
+            value=True,
+            label_style=ft.TextStyle(color=PlatinumTheme.TEXT_PRIMARY()),
+            fill_color=PlatinumTheme.PRIMARY()
+        )
+        self.chk_preserve_zeros.tooltip = "Mantém 001 ao invés de converter para 1 (essencial para IDs e CEPs)"
+        self.chk_preserve_zeros.on_change = lambda e: setattr(self.state, "preserve_leading_zeros", e.control.value)
+        
         # Fixar Chave A1 (v0.4.6: "Fixar Chave Posicao A1")
         self.combo_a1 = ft.Dropdown(
             label="Fixar Chave (Posicao A1)", 
@@ -90,7 +99,7 @@ class Step2View(ft.Column):
                     ft.Divider(color=PlatinumTheme.BORDER_DARK()),
                     ft.ResponsiveRow([
                         ft.Column([self.combo_a1], col={"sm": 12, "md": 6}),
-                        ft.Column([self.chk_a1, self.chk_shielding], col={"sm": 12, "md": 6}),
+                        ft.Column([self.chk_a1, self.chk_shielding, self.chk_preserve_zeros], col={"sm": 12, "md": 6}),
                     ]),
                 ], spacing=10)
             ),
@@ -134,7 +143,13 @@ class Step2View(ft.Column):
         
         # Default A1 to first column of target
         if cols_tgt:
-            self.combo_a1.value = cols_tgt[0]
+            self.combo_a1.value = self.state.key_tgt_final or cols_tgt[0]
+            
+        # Sincronizar checkboxes com estado
+        self.chk_a1.value = self.state.protected_a1
+        self.chk_shielding.value = self.state.shielding
+        self.chk_preserve_zeros.value = self.state.preserve_leading_zeros
+        self.combo_a1.disabled = not self.chk_a1.value
             
         self.update()
 

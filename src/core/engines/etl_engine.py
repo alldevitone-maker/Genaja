@@ -8,16 +8,23 @@ class ETLEngine:
     Implementa Escudo de Dados (Shielding) e Chave A1 Protegida.
     """
     
-    def sanitize_series(self, series, trim=True, upper=False):
+    def sanitize_series(self, series, trim=True, upper=False, preserve_zeros=True):
         """Padronização de chaves e dados based on v0.4.8 settings."""
-        s = series.astype(str).str.replace(r'\.0$', '', regex=True)
+        if preserve_zeros:
+            # Converte para string e limpa apenas o .0 se existir no final
+            s = series.astype(str).str.replace(r'\.0$', '', regex=True)
+        else:
+            # Comportamento agressivo: tenta converter para numerico e volta (remove zeros a esquerda)
+            s = pd.to_numeric(series, errors='coerce').fillna(series).astype(str).str.replace(r'\.0$', '', regex=True)
+            
         if trim: s = s.str.strip()
         if upper: s = s.str.upper()
         return s.replace('nan', '')
 
     def synchronize(self, df_src, df_tgt, key_src, key_tgt, mapping, 
                     protected_a1=True, shielding=False, 
-                    auto_trim=True, auto_upper=False):
+                    auto_trim=True, auto_upper=False, preserve_zeros=True,
+                    a1_col_name=None):
         """
         Sincroniza dados com proteção de integridade v0.4.8.
         """
@@ -26,11 +33,13 @@ class ETLEngine:
         df_tgt_work = df_tgt.copy()
         
         # Identificar a Coluna A1 (Primeira coluna do destino) para proteção
-        a1_col_name = df_tgt.columns[0]
+        # Identificar a Coluna A1 (v0.6.4: Prioriza escolha do usuario ou primeira do destino)
+        if a1_col_name is None:
+            a1_col_name = df_tgt.columns[0]
         
         # 2. Higienização das chaves de cruzamento
-        key_src_clean = self.sanitize_series(df_src_work[key_src], trim=auto_trim, upper=auto_upper)
-        key_tgt_clean = self.sanitize_series(df_tgt_work[key_tgt], trim=auto_trim, upper=auto_upper)
+        key_src_clean = self.sanitize_series(df_src_work[key_src], trim=auto_trim, upper=auto_upper, preserve_zeros=preserve_zeros)
+        key_tgt_clean = self.sanitize_series(df_tgt_work[key_tgt], trim=auto_trim, upper=auto_upper, preserve_zeros=preserve_zeros)
         
         df_src_work['_JOIN_KEY'] = key_src_clean
         df_tgt_work['_JOIN_KEY'] = key_tgt_clean
