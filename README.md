@@ -2,8 +2,8 @@
 
 [🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
 
-> **Versão Atual:** `v0.6.9-Master` (Master Curated Strategy)
-> **Status do Projeto:** Estável - Camada de Curadoria Determinística ⭐
+> **Versão Atual:** `v0.7.0` (Universal Connector Strategy)
+> **Status do Projeto:** Estável - Motor de Conectores v0.7.0 🚀
 
 ---
 
@@ -51,6 +51,13 @@ O pipeline executa automaticamente:
 ## 📖 Histórico de Atualizações (Audit Trail 2026)
 
 <div id="latest-release">
+
+### **v0.7.0 (Universal Connector Strategy)**
+**Expansão Universal.** Suporte nativo para fontes de dados estruturadas e relacionais.
+- 🔗 **Universal SQL Connector**: Integração robusta com Postgre, MySQL, SQLite, etc via SQLAlchemy.
+- 🌊 **Memory-Safe Streaming**: Processamento de grandes volumes de dados via chunking (Zero OOM).
+- 🔘 **SQL Wizard UI**: Novo fluxo de descoberta de schema, tabelas e previews seguros.
+- 🏛️ **Architecture AI Map**: Consolidação dos mapas de inteligência técnica no diretório `.agent/`.
 
 ### **v0.6.9-Master (Master Curated Strategy)**
 **Decisão Absoluta.** Camada de Curadoria Mestre (Prioridade 0).

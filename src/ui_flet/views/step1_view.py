@@ -6,10 +6,11 @@ from ui_flet.theme import PlatinumTheme
 from core.engines.loader_engine import LoaderEngine
 from core.engines.suggestion_engine import SuggestionEngine
 from core.services.logger_service import LoggerService
-from core.services.validation_engine import ValidationEngine
-from core.services.lookup_engine import LookupEngine
+from core.engines.validation_engine import ValidationEngine
+from core.engines.lookup_engine import LookupEngine
 from core.learning.suggestion_engine import HistoricalSuggestionEngine
 from ui_flet.dialogs.file_intelligence_dialog import FileIntelligenceDialog
+from core.services.connector_factory import ConnectorFactory
 
 class Step1View(ft.Column):
     """
@@ -95,49 +96,133 @@ class Step1View(ft.Column):
         )
         
         self.controls = [
-            ft.Text("Seleção de Arquivos", size=24, weight=ft.FontWeight.W_600, color=PlatinumTheme.PRIMARY()),
-            ft.ResponsiveRow([
-                self._create_drop_zone("Planilha de ORIGEM", "src"),
-                self._create_drop_zone("Planilha de DESTINO", "tgt"),
-            ], spacing=20),
+            ft.Text("Configuração da Origem", size=24, weight=ft.FontWeight.W_600, color=PlatinumTheme.PRIMARY()),
+            self._build_source_selector(),
+            ft.Divider(color=PlatinumTheme.BORDER_DARK()),
+            self._build_file_section() if self.state.source_type == "local_file" else self._build_sql_section(),
+            ft.Divider(color=PlatinumTheme.BORDER_DARK()),
+            # DESTINO (Sempre Local nesta sprint)
+            self._create_drop_zone("Planilha de DESTINO", "tgt"),
             ft.Row([
                 ft.ElevatedButton(
                     "🤖 Sugerir Arquivos Recentes (Smart-Pull)", 
                     icon=ft.Icons.AUTO_AWESOME,
                     on_click=self._on_suggest_click,
                     bgcolor=PlatinumTheme.SURFACE_DARK(),
-                    color=PlatinumTheme.PRIMARY()
+                    color=PlatinumTheme.PRIMARY(),
+                    visible=(self.state.source_type == "local_file")
                 ),
                 ft.Container(expand=True), 
                 self.btn_next
             ], alignment=ft.MainAxisAlignment.END)
         ]
 
-    def _create_drop_zone(self, title, mode):
-        return ft.Container(
-            **PlatinumTheme.card_style(),
-            col={"sm": 12, "md": 6},
-            on_click=lambda _: self._trigger_picker(mode),
-            on_hover=self._on_card_hover,
-            content=ft.Column([
-                ft.Text(title, weight=ft.FontWeight.BOLD, size=16, color=PlatinumTheme.TEXT_PRIMARY()),
-                ft.Divider(color=PlatinumTheme.BORDER_DARK()),
-                ft.Icon(PlatinumTheme.Icons.FILE_SOURCE if mode == "src" else PlatinumTheme.Icons.FILE_TARGET, size=50, color=PlatinumTheme.PRIMARY()),
-                self.src_info if mode == "src" else self.tgt_info,
-                ft.Text("Clique aqui ou arraste o arquivo", size=12, italic=True, color=PlatinumTheme.TEXT_MUTED()),
-                ft.Container(height=10),
-                ft.Row([
-                    self.src_path_field if mode == "src" else self.tgt_path_field,
-                    ft.IconButton(
-                        PlatinumTheme.Icons.CHECK,
-                        icon_color=PlatinumTheme.SUCCESS(),
-                        on_click=lambda _: self._on_manual_path(mode, (self.src_path_field.value if mode == "src" else self.tgt_path_field.value)),
-                        tooltip="Validar Caminho Manual"
-                    )
-                ]),
-                self.src_sheet_dropdown if mode == "src" else self.tgt_sheet_dropdown
-            ], alignment=ft.MainAxisAlignment.CENTER, horizontal_alignment=ft.CrossAxisAlignment.CENTER)
+    def _build_source_selector(self):
+        return ft.SegmentedButton(
+            selected={self.state.source_type},
+            allow_multiple_selection=False,
+            on_change=self._on_source_type_change,
+            segments=[
+                ft.Segment(
+                    value="local_file",
+                    label=ft.Text("📊 Arquivo Local"),
+                    icon=ft.Icon(ft.Icons.DESCRIPTION)
+                ),
+                ft.Segment(
+                    value="sql_db",
+                    label=ft.Text("🗄️ SQL Database"),
+                    icon=ft.Icon(ft.Icons.STORAGE)
+                ),
+            ],
+            style=ft.ButtonStyle(
+                shape=ft.RoundedRectangleBorder(radius=8),
+            )
         )
+
+    def _build_file_section(self):
+        return ft.ResponsiveRow([
+            self._create_drop_zone("Planilha de ORIGEM", "src"),
+        ], spacing=20)
+
+    def _build_sql_section(self):
+        return ft.Container(
+            content=ft.Column([
+                ft.Text("Configuração de Conexão SQL", weight=ft.FontWeight.BOLD, size=16),
+                ft.ResponsiveRow([
+                    ft.TextField(label="Host/IP", col=8, on_change=lambda e: self._on_sql_field_change("host", e.data)),
+                    ft.TextField(label="Porta", col=4, value="5432", on_change=lambda e: self._on_sql_field_change("port", e.data)),
+                    ft.TextField(label="Usuário", col=6, on_change=lambda e: self._on_sql_field_change("user", e.data)),
+                    ft.TextField(label="Senha", col=6, password=True, can_reveal_password=True, on_change=lambda e: self._on_sql_field_change("password", e.data)),
+                    ft.TextField(label="Database", col=12, on_change=lambda e: self._on_sql_field_change("database", e.data)),
+                ], spacing=10),
+                ft.Row([
+                    ft.ElevatedButton(
+                        "Testar Conexão 🔍", 
+                        on_click=self._on_sql_test_click,
+                        bgcolor=PlatinumTheme.SURFACE_DARK(),
+                        color=PlatinumTheme.PRIMARY()
+                    ),
+                    self._build_connection_status()
+                ]),
+                self.src_sheet_dropdown # Reutilizado para tabelas SQL
+            ], spacing=15),
+            **PlatinumTheme.card_style()
+        )
+
+    def _build_connection_status(self):
+        if not self.state.is_connected:
+            return ft.Row([ft.Icon(ft.Icons.CANCEL, color=PlatinumTheme.DANGER()), ft.Text("Desconectado", size=12, color=PlatinumTheme.TEXT_MUTED())])
+        return ft.Row([ft.Icon(ft.Icons.CHECK_CIRCLE, color=PlatinumTheme.SUCCESS()), ft.Text("Conectado", size=12, color=PlatinumTheme.SUCCESS())])
+
+    def _on_source_type_change(self, e):
+        new_type = list(e.data)[0] if isinstance(e.data, (set, list)) else e.data
+        LoggerService().info(f"Fonte alterada: {new_type}")
+        self.state.set_source_type(new_type)
+        
+        # Reset UI
+        self.controls[3] = self._build_file_section() if new_type == "local_file" else self._build_sql_section()
+        self.controls[5].controls[0].visible = (new_type == "local_file")
+        self.update()
+
+    def _on_sql_field_change(self, field, value):
+        if field == "password":
+            self.state.source_config_runtime["password"] = value
+        else:
+            self.state.source_config_safe[field] = value
+
+    def _on_sql_test_click(self, e):
+        try:
+            # Fundir configs (Runtime + Safe) SEM logs sensíveis
+            config = {**self.state.source_config_safe, **self.state.source_config_runtime}
+            LoggerService().info(f"Testando conexão SQL (Host: {config.get('host')})")
+            
+            connector = ConnectorFactory.get_connector("sql_db", config)
+            if connector.validate_connection():
+                self.state.connector = connector
+                self.state.is_connected = True
+                
+                # Discovery: Buscar tabelas
+                tables = connector.fetch_metadata()
+                self._update_sheet_dropdown(self.src_sheet_dropdown, tables, None)
+                self.src_sheet_dropdown.label = "Selecionar Tabela"
+                self.src_sheet_dropdown.visible = True
+                
+                sb = ft.SnackBar(ft.Text("✅ Conexão SQL estabelecida com sucesso!"), bgcolor=PlatinumTheme.SUCCESS())
+            else:
+                self.state.is_connected = False
+                sb = ft.SnackBar(ft.Text("❌ Falha na conexão SQL. Verifique as credenciais."), bgcolor=PlatinumTheme.DANGER())
+            
+            self.page.overlay.append(sb)
+            sb.open = True
+            self.update()
+        except Exception as ex:
+            # Sanitização: Remover detalhes de credenciais do erro
+            error_msg = str(ex).replace(self.state.source_config_runtime.get("password", "###"), "***")
+            LoggerService().error(f"Erro no teste SQL: {error_msg}")
+            sb = ft.SnackBar(ft.Text(f"Erro: {error_msg[:100]}..."), bgcolor=PlatinumTheme.DANGER())
+            self.page.overlay.append(sb)
+            sb.open = True
+            self.update()
 
     def _trigger_picker(self, mode):
         """Fallback Robusto v0.6.0: Usa Tkinter se o FilePicker do Flet falhar."""
@@ -228,31 +313,60 @@ class Step1View(ft.Column):
     def _update_sheet_dropdown(self, dd, sheets, selected):
         dd.options = [ft.dropdown.Option(s) for s in sheets]
         dd.value = selected
-        dd.visible = len(sheets) > 1
+        # No SQL, o dropdown deve estar visível mesmo com apenas 1 tabela
+        dd.visible = len(sheets) > 1 or self.state.source_type == "sql_db"
         dd.update()
 
     def _on_sheet_change(self, mode, sheet_name):
         LoggerService().info(f"Alterada aba ativa: {mode} -> {sheet_name}")
         if mode == "src":
             self.state.selected_sheet_src = sheet_name
-            self.state.df_src = self.state.workbook_src[sheet_name]
-            self.src_info.value = f"✅ {os.path.basename(self.state.path_src)}\n{len(self.state.df_src)} linhas | Aba: {sheet_name}"
+            
+            if self.state.source_type == "sql_db":
+                # CARGA DE PREVIEW (Contrato Fase 3: Max 100 linhas)
+                try:
+                    self.state.sql_selection["table"] = sheet_name
+                    df_preview = self.state.connector.preview(table=sheet_name, limit=100)
+                    self.state.df_src = df_preview
+                    self.src_info.value = f"✅ SQL: {sheet_name}\nPreview: {len(df_preview)} linhas carregadas"
+                    self.src_info.color = PlatinumTheme.SUCCESS()
+                    self.state.is_source_valid = True
+                except Exception as e:
+                    LoggerService().error(f"Erro ao carregar preview SQL: {str(e)[:50]}")
+                    sb = ft.SnackBar(ft.Text(f"Erro no preview: {str(e)[:100]}"), bgcolor=PlatinumTheme.DANGER())
+                    self.page.overlay.append(sb)
+                    sb.open = True
+            else:
+                self.state.df_src = self.state.workbook_src[sheet_name]
+                self.src_info.value = f"✅ {os.path.basename(self.state.path_src)}\n{len(self.state.df_src)} linhas | Aba: {sheet_name}"
         else:
             self.state.selected_sheet_tgt = sheet_name
             self.state.df_tgt = self.state.workbook_tgt[sheet_name]
             self.tgt_info.value = f"✅ {os.path.basename(self.state.path_tgt)}\n{len(self.state.df_tgt)} linhas | Aba: {sheet_name}"
+        
+        # Habilitar Proximo se destino estiver OK
+        if (self.state.df_src is not None or self.state.is_source_valid) and self.state.df_tgt is not None:
+            self.btn_next.disabled = False
+            
         self.update()
 
     def _intercept_next(self, e):
-        """Interceptador v0.6.3: Realiza pré-análise antes de avançar."""
-        # 0. Guarda Defensiva (Hardening Patch 2)
-        if self.state.df_src is None or self.state.df_tgt is None:
-            LoggerService().error("Tentativa de avanço sem arquivos carregados.")
-            sb = ft.SnackBar(ft.Text("Ambos os arquivos precisam ser carregados para análise!"), bgcolor=PlatinumTheme.DANGER())
-            self.page.overlay.append(sb)
-            sb.open = True
-            self.page.update()
-            return
+        """Interceptador v0.7.0 Patch: Validação dinâmica por Source Type."""
+        # 0. Validação de Segurança
+        if self.state.source_type == "sql_db":
+            if not self.state.is_connected or self.state.df_src is None or self.state.df_tgt is None:
+                sb = ft.SnackBar(ft.Text("SQL: Conexão, Tabela e DESTINO são obrigatórios!"), bgcolor=PlatinumTheme.DANGER())
+                self.page.overlay.append(sb)
+                sb.open = True
+                self.page.update()
+                return
+        else:
+            if self.state.df_src is None or self.state.df_tgt is None:
+                sb = ft.SnackBar(ft.Text("Arquivos de origem e destino são obrigatórios!"), bgcolor=PlatinumTheme.DANGER())
+                self.page.overlay.append(sb)
+                sb.open = True
+                self.page.update()
+                return
 
         LoggerService().info("Iniciando pré-análise v0.6.3...")
         
@@ -277,9 +391,17 @@ class Step1View(ft.Column):
                 key_src, key_tgt = h_keys
         
         # 3. Popular Estado Sugerido
+        # DEBUG LOG (Hardening v0.6.9)
+        ls = LoggerService()
+        ls.info(f"DEBUG TRANSITION STEP 1 -> 2")
+        ls.info(f" - smart type: {type(smart)}")
+        ls.info(f" - smart content: {smart}")
+        ls.info(f" - key_src: {key_src} (type: {type(key_src)})")
+        ls.info(f" - key_tgt: {key_tgt} (type: {type(key_tgt)})")
+
         self.state.validation_summary = {"src": v_src, "tgt": v_tgt}
-        self.state.suggested_mapping = smart["mapping"] if smart["mapping"] else {col: col for col in common_cols}
-        self.state.suggested_source = smart["source"]
+        self.state.suggested_mapping = smart.get("mapping", {}) if isinstance(smart, dict) else {}
+        self.state.suggested_source = smart.get("source", "none") if isinstance(smart, dict) else "none"
         self.state.suggested_key_src = key_src
         self.state.suggested_key_tgt = key_tgt
         

@@ -2,8 +2,8 @@
 
 [🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
 
-> **Current Version:** `v0.6.9-Master` (Master Curated Strategy)
-> **Project Status:** Stable - Deterministic Curated Layer ⭐
+> **Current Version:** `v0.7.0` (Universal Connector Strategy)
+> **Project Status:** Stable - Connector Engine v0.7.0 🚀
 
 ---
 
@@ -48,6 +48,13 @@ The pipeline automatically runs:
 ## 📖 Update History (Audit Trail 2026)
 
 <div id="latest-release">
+
+### **v0.7.0 (Universal Connector Strategy)**
+**Universal Expansion.** Native support for relational and structured data sources.
+- 🔗 **Universal SQL Connector**: Robust SQLAlchemy integration (Postgre, MySQL, SQLite, etc).
+- 🌊 **Memory-Safe Streaming**: High-volume data processing via chunking (Zero OOM).
+- 🔘 **SQL Wizard UI**: New discovery flow for schemas, tables, and secure previews.
+- 🏛️ **Architecture AI Map**: Consolidation of technical intelligence maps in the `.agent/` folder.
 
 ### **v0.6.9-Master (Master Curated Strategy)**
 **Absolute Decision.** Master Curated Layer (Priority 0).

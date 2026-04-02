@@ -1,2 +1,2 @@
-__version__ = "0.6.9-Master"
-__title__ = "Master Curated Strategy"
+__version__ = "0.7.0"
+__title__ = "Universal Connector Strategy"
