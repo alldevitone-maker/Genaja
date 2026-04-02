@@ -1,11 +1,11 @@
 # Changelog
 
 ## [0.7.0] - 2026-04-02 (Universal Connector Strategy)
-- **Universal Connector Foundation**: BaseConnector implementation and ETL engine decoupling.
-- **SQL Database Connector**: Native SQLAlchemy 2.0 support with data streaming (Memory-Safe).
-- **Registry Pattern Factory**: ConnectorFactory refactoring for dynamic adapter registration.
-- **Wizard UI SQL Sprint**: New Step 1 with source selector, schema/table discovery, and safe preview.
-- **Architecture v0.7 Patch**: Consolidation of architecture intelligence in the `.agent/` directory.
+- **DatabaseConnector**: PostgreSQL, MySQL, SQLite support via SQLAlchemy 2.0.
+- **ConnectorFactory**: dynamic adapter registration via Registry Pattern.
+- **Wizard Step 1**: source selector (local file vs SQL database) with schema and table discovery.
+- **Safe preview**: data load limited to 100 rows during selection step.
+- **Credential security**: separation between `source_config_safe` and `source_config_runtime`.
 
 ## [0.6.9-Master] - 2026-03-27 (Master Curated Strategy)
 - **Master Curated Layer**: Introduction of `CuratedStore` for 'Iron-Clad' rule persistence (Priority 0).

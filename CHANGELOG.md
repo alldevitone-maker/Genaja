@@ -1,9 +1,9 @@
 ## [0.7.0] - 02/04/2026 (Universal Connector Strategy)
-- **Universal Connector Foundation**: Implementação do `BaseConnector` e desacoplamento do motor ETL.
-- **SQL Database Connector**: Suporte nativo a SQLAlchemy 2.0 com streaming de dados (Memory-Safe).
-- **Registry Pattern Factory**: Refatoração da `ConnectorFactory` para registro dinâmico de novos adaptadores.
-- **Wizard UI SQL Sprint**: Novo Passo 1 com seletor de origem, descoberta de schema/tabela e preview seguro.
-- **Arquitetura v0.7 Patch**: Consolidação da inteligência de arquitetura no diretório `.agent/`.
+- **DatabaseConnector**: suporte a PostgreSQL, MySQL, SQLite via SQLAlchemy 2.0.
+- **ConnectorFactory**: registro dinâmico de adaptadores via Registry Pattern.
+- **Wizard Step 1**: seletor de fonte (arquivo local vs SQL) com descoberta de schema e tabelas.
+- **Preview seguro**: carga limitada a 100 linhas na etapa de seleção.
+- **Segurança de credenciais**: separação entre `source_config_safe` e `source_config_runtime`.
 
 ## [0.6.9-Master] - 27/03/2026 (Master Curated Strategy)
 - **Master Curated Layer**: Introdução do `CuratedStore` para persistência de 'Regras de Ouro' (Nível 0).

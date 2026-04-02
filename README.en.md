@@ -1,158 +1,150 @@
-# Genaja Suite — Analytical Intelligence & Data Synchronization
+# Genaja — ETL and Data Synchronization
 
 [🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
 
 > **Current Version:** `v0.7.0` (Universal Connector Strategy)
-> **Project Status:** Stable - Connector Engine v0.7.0 🚀
+> **Status:** Stable — Python / Flet / SQLAlchemy
 
 ---
 
-## 🚀 Genaja Suite — The Data Intelligence Revolution
+## About
 
-**Genaja Suite** has evolved from an ETL tool into a **Data Learning** platform designed for corporate analysts seeking intelligent no-code automation. With its new **Evolution Memory Layer**, the system learns from every mapping, turning past executions into living knowledge for the future.
+Genaja is a data integration and synchronization tool built in Python with a Flet interface.
+Designed for corporate analysts, it supports column mapping, data transformation, and multi-format export across Excel spreadsheets and relational databases — without writing code.
 
-Its **JGDA Engine** delivers:
-- 🚀 **Local Evolution Memory** — Context recognition and historical mappings (Zero Cloud/Offline)
-- 📊 **Ultimate Marathon (v0.6.7)** — Knowledge base consolidated with **1,000,000+ learning cycles**
-- 🏛️ **Knowledge Brain** — Visible learning repository in the `learn/` project folder
-- 📑 **Multi-Sheet Support (v0.6.6)** — Native support for all Excel sheets with dynamic selection
-- 🔍 **Data Profiling (v0.6.5)** — Statistical content analysis to reduce false positives
-- 📦 **Native Multi-Format Export** — Excel, CSV, JSON, SQL (High-Performance O(1) Engine)
-- 🎨 **UI Platinum 2026** — Frameless Interface, Custom TitleBar, and Live Theme Studio
+The ETL engine is fully decoupled from the interface. The UI operates via `WizardState` → `ConnectorFactory` → adapters, ensuring the ETLEngine receives only DataFrames regardless of the original data source.
 
 ---
 
-## 🛡️ Governance & Release Pipeline
+## Features
 
-Every commit and release goes through an automated validation pipeline:
+- Column mapping with Levenshtein similarity (fuzzy matching)
+- Automatic primary key detection via entropy (ID, SKU, CPF, CNPJ)
+- Mapping suggestions based on local execution history (offline, no cloud)
+- Excel workbook support with multi-sheet selection
+- Statistical data profiling to reduce false positives in mapping
+- Relational database connectivity via SQLAlchemy 2.0 (PostgreSQL, MySQL, SQLite)
+- Export to Excel, CSV, JSON, and SQL
+- 4-step Wizard interface with real-time preview
+
+---
+
+## Governance and Release Pipeline
 
 ```bash
-# Quick validation (before any commit)
+# Quick validation before any commit
 python scripts/automate.py --quick
 
-# Full release (interactive: version + changelog + backup + push)
+# Full release: version + changelog + backup + push
 python scripts/automate.py --release --push
 ```
 
-The pipeline automatically runs:
-1. ✅ **Version sync** — `version.py` ↔ `README` ↔ `CHANGELOG` in PT/EN parity
-2. ✅ **Smoke Test** — validates critical widget initialization
-3. ✅ **File audit** — naming conventions + junk file detection
-4. ✅ **Auto backup** — versioned ZIP snapshot in `backups/`
-5. ✅ **Git commit & push** — executed only after 100% green validation
+The pipeline runs:
+1. Version sync — `version.py` ↔ `README` ↔ `CHANGELOG` (PT/EN parity)
+2. Smoke Test — module import and critical service initialization
+3. File audit — naming conventions and temporary file detection
+4. Auto backup — versioned ZIP snapshot in `backups/`
+5. Git commit and push — executed only after full green validation
 
-> ⚠️ **Pre-commit hook active**: commits are automatically blocked if validation fails.
-
----
-
-## 📖 Update History (Audit Trail 2026)
-
-<div id="latest-release">
-
-### **v0.7.0 (Universal Connector Strategy)**
-**Universal Expansion.** Native support for relational and structured data sources.
-- 🔗 **Universal SQL Connector**: Robust SQLAlchemy integration (Postgre, MySQL, SQLite, etc).
-- 🌊 **Memory-Safe Streaming**: High-volume data processing via chunking (Zero OOM).
-- 🔘 **SQL Wizard UI**: New discovery flow for schemas, tables, and secure previews.
-- 🏛️ **Architecture AI Map**: Consolidation of technical intelligence maps in the `.agent/` folder.
-
-### **v0.6.9-Master (Master Curated Strategy)**
-**Absolute Decision.** Master Curated Layer (Priority 0).
-- ⭐ **Master Rules**: Deterministic rules in `learn/curated/master_rules.json`.
-- 📊 **Auto-Promotion**: Automatic mapping promotion with Score >= 20.
-
-### **v0.6.8-Master (Master Agent Protocol)**
-**Orchestration and Sanitation.** Brain structure and cleaning protocol.
-- 🧹 **Sanitation Hook**: Automatic repository cleaning script.
-- 🍱 **Brain Inbox**: Secure data ingestion flow via `learn/inbox/`.
-
-### **v0.6.7 (Marathon Analysis Release - ULTIMATE)**
-**The ultimate brain.** Consolidation of 1 million simulations and integration of legacy BigData.
-- 🏃 **Ultimate Marathon**: 1.001.675 associations learned with statistical weights.
-- 🏛️ **Brain Consolidation**: Migration of technical knowledge to the visible `learn/` folder.
-- 📈 **Statistical Inference**: Ultra-precise suggestions with 315 primary columns density.
-
-### **v0.6.6 (Multi-Sheet Release)**
-**Workbook intelligence.** Native support for reading all sheets in Excel workbooks.
-- 📑 **Sheet Selection**: Dynamic UI selection for mapping different tabs.
-- 🔗 **Workbook Context**: Cross-referencing metadata between all available sheets.
-
-### **v0.6.5 (Profiling Engine)**
-**Structural sanity.** Data profiling layer to eliminate mapping false positives.
-- 🔍 **Profiling Engine**: Automatic analysis of `avg_len` and `unique_ratio`.
-
-### **v0.6.4 (Evolution Memory Release)**
-
-### **v0.6.3 (Data Intelligence Layer)**
-**Local intelligence.** Implementation of advanced mapping and auditing engines.
-- 🔍 **Fuzzy Schema Mapping**: Levenshtein similarity engine for suggesting approximate column names.
-- 🤖 **Data Assistance**: New interception and assisted compatibility dialogs (`CompatibilityDialog`).
-- 🛡️ **Hardening v0.6.x**: UI stability fixes and Flet overlay secure management.
+> **Pre-commit hook active:** commits are blocked if validation fails.
 
 ---
 
-### **v0.6.2 (Cleanup)**
+## Version History
+
+### v0.7.0 — Universal Connectors (2026-04-02)
+
+Introduction of the extensible connector layer via Registry Pattern.
+
+- `DatabaseConnector`: PostgreSQL, MySQL, SQLite support via SQLAlchemy 2.0
+- `ConnectorFactory`: dynamic adapter registration with no UI coupling
+- Wizard Step 1: source selector (local file vs SQL database) with schema discovery
+- Preview capped at 100 rows during selection step (memory protection)
+- Ephemeral credentials: passwords never persisted in serialized state or logs
+
+### v0.6.9-Master — Deterministic Curation (2026-03-27)
+
+- `CuratedStore`: rule layer with absolute priority over probabilistic suggestions
+- Auto-promotion of mappings scoring >= 20 to permanent rules
+
+### v0.6.8-Master — Agent Protocol (2026-03-27)
+
+- Secure data ingestion pipeline via `learn/inbox/`
+- Automated repository sanitation script (`sanitation_hook.py`)
+
+### v0.6.7 — Marathon Analysis (2026-03-27)
+
+- Consolidation of 1,001,675 learned associations with statistical weights
+- Learning history migrated to `learn/` (visible in the repository)
+
+### v0.6.6 — Multi-Sheet Support (2026-03-27)
+
+- Full Excel workbook reading (`sheet_name=None`)
+- Dynamic sheet selection in Step 1 interface
+
+### v0.6.5 — Profiling Engine (2026-03-27)
+
+- Statistical analysis of `dtype`, `unique_ratio`, and `avg_len` per column
+- Noisy column filtering before mapping suggestion
+
+### v0.6.4 — Evolution Memory (2026-03-26)
+
+- Local mapping history persistence in `learning_log.json`
+- Context identification via column signatures (MD5)
+
+### v0.6.3 — Data Intelligence Layer (2026-03-26)
+
+- `ValidationEngine`, `LookupEngine`, and `SchemaMapper` implemented
+- `FileIntelligenceDialog` and `CompatibilityDialog` added to UI
+- Fuzzy matching via Levenshtein distance
+
+### v0.6.2 — Cleanup (2026-03-26)
+
+- Removal of legacy layer `src/legacy/ui_qt/`
+- Script reorganization and archiving of obsolete tests
+
+### v0.6.1 — Alpha v2 Stabilization (2026-03-26)
+
+- Migration to `PlatinumTheme`: dynamic color and contrast tokens
+- Automatic luminance calculation for `ThemeMode` adjustment
+- Release audit: removal of private documents before publication
 
 ---
 
-### **v0.6.1 (Alfa v2)**
-**The Stabilization Milestone.** This version consolidated the transition to the new reactive architecture, eliminating contrast bugs and ensuring absolute repository governance.
-- 🎨 **Theme Stabilization**: Migration to the `PlatinumTheme` dynamic bridge, ensuring perfect legibility in Light mode.
-- 🌓 **Intelligent Reactivity**: Automatic luminance calculation for native `ThemeMode` adjustment (OS Context).
-- 🧼 **Release Audit**: Purge of technical residuals and private documents for secure public publication.
-- ⚖️ **2026 Governance**: Rigorous metadata synchronization across UI, Version, and Docs.
+### Earlier Versions
 
-> [!TIP]
-> **Client Download:** [Link unavailable during Alpha phase] <!-- Future link here -->
+**v0.6.0** — Flet migration (Python Flutter). Functional parity with v0.4.x series. Comparator module and Dual-List Transfer restored.
 
-</div>
+**v0.5.9** — History synchronization and pre-commit hook certification.
+
+**v0.5.8** — Global settings panel (Trim/Case, export, security).
+
+**v0.5.6** — Phoenix Customizer 2.0: theme editor with real-time preview.
+
+**v0.5.5** — Stabilization after Tkinter removal.
+
+**v0.5.4** — Complete removal of Tkinter support. Pure PySide6 application.
+
+**v0.5.3** — Custom Title Bar (VS Code style), visual theme engine.
+
+**v0.5.2** — Heuristic mapping engine fixes.
+
+**v0.5.1** — Double window initialization bug fix.
+
+**v0.5.0** — PySide6/Tkinter hybrid architecture, 4-step Wizard, real-time dashboard.
+
+**v0.4.9** — Live Theme Customizer.
+
+**v0.4.7** — Floating tooltips, global scroll, experimental Big Data support (JSON, CSV, SQL).
+
+**v0.4.6** — Single Hub with Protected A1 Key via checkbox.
+
+**v0.4.3** — Dual-layer documentation (Analyst / IT) with bilingual parity.
+
+**v0.4.0** — Intelligent cross-filter and native transfer selections.
+
+**v0.3.5** — Full refactor into decoupled architecture.
 
 ---
 
-**v0.6.0 (Alpha Platinum - Flet Migration)**
-Massive technological transition replacing the PySide6 graphics engine with **Flet (Pure Python Flutter)**, maintaining functional parity with the v0.4.x series. Restoration of the Comparator Module and Dual-List Transfer.
-
-**v0.5.9 (Governance & History Synchronization)**
-Audit version focused on project history integrity. Synchronized all v0.5.x milestones across bilingual documentation and certified pre-commit hooks functionality.
-
-**v0.5.8 (Professional Settings Suite)**
-We unified Genaja's control. The new **Global Preferences** panel allows managing everything from data engine behavior (Trim/Case) to export and security details, all in a Sidebar-style interface with 2026 High-Fidelity finishing.
-
-**v0.5.6 (Premium Customizer 2026)**
-We reached the state-of-the-art in UI customization. The new **Phoenix Customizer 2.0** brings a categorized interface with real-time Preview, allowing fine adjustments with user-friendly names. The QSS v2.2 engine offers premium finishing (16px radius).
-
-**v0.5.5 (Pure Qt Architecture Stabilization)**
-Mandatory stabilization milestone. Validated system integrity after the Tkinter "Purge", ensuring a clean and high-performance build for the new PySide6 stack.
-
-**v0.5.4 (Pure Qt Transition)**
-Consolidation of modern architecture. Definitively removed Tkinter (Legacy) support and the `--ui` argument, making Genaja a Pure PySide6 application. Massive technical debt reduction.
-
-**v0.5.3 (Modern UI & Premium Design)**
-Aesthetic revolution. Implemented a **Custom Title Bar** (VS Code style), removing native Windows decorations for an immersive, frameless experience, along with the new visual theme engine.
-
-**v0.5.2 (Engine Stability Patch)**
-Fine-tuning of the heuristic mapping engine and fix for minor visual title bar glitches in maximized mode.
-
-**v0.5.1 (Startup Bugfix & Governance)**
-Post-Gold stage focused on stability. Fixed the double-window initialization bug and synchronized the first governance protocols for the v0.5.x cycle.
-
-**v0.5.0 (The Next Frontier - Gold Release)**
-The biggest technological evolution in Genaja's history. We implemented a full hybrid architecture (PySide6/Tkinter) with decoupled enterprise engines, 4-step Wizard interface, real-time monitoring dashboard, and Phoenix Qt theme studio.
-
-**v0.4.9 (The Phoenix Absolute Edition)**
-Introduction of the **Live Theme Customizer**. Absolute control of colors and styles via graphical interface in real-time for both Tkinter/PySide6 engines.
-
-**v0.4.7 (The Premium Update & Big Data O(1))**
-The corporate UI reached Premium status. The system now features a **Floating Tooltips** motor providing visual cues. The entire layout received a **Global Canvas Scroll**. Introduced red "Experimental" frames with Big Data support (`JSON`, `CSV`, `SQL`).
-
-**v0.4.6 (Unified Hub Flex)**
-Architecture refactoring joining Genaja into a single super-screen (Single Hub) while preserving classic features. The **Protected A1 Key** button became toggleable via Checkbox.
-
-**v0.4.3 (User Experience & Docs)**
-Rebranding of the app's showcase. Added dual-layer structuring (Analyst Manual & IT Technical Docs) with full bilingual parity.
-
-**v0.4.0 (The Era of Auto-Click)**
-Manual overhead removal for annotation boxes in favor of native, intelligent transfer selections. Inserted the intelligent cross-filter.
-
-**v0.3.5 (Core Clean Architecture)**
-The zero milestone of the new era. Complete refactor into decoupled architecture with a focus on high-performance data processing.
+*Detailed technical documentation available in `docs/`.*
