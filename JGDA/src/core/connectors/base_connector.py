@@ -35,8 +35,8 @@ class BaseConnector(ABC):
         pass
 
     def close(self):
-        """Interface para fechamento de conexões físicas."""
-        pass
+        """Interface para fechamento de conexões físicas e limpeza de segredos."""
+        self._cleanup_sensitive_data()
 
     def _cleanup_sensitive_data(self):
         """

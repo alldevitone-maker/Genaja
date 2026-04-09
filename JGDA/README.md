@@ -3,9 +3,22 @@
 [🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
 
 > **Versão Atual:** `v0.7.1` (Stable Governance)
-> **Status:** Production Ready — Python / Flet / Rust-Hybrid
+> **Status:** Production Ready — Python 3.12+ / Flet / Rust-Hybrid
+> **Licença:** Enterprise Proprietary / Internal Use
 
 ---
+
+## 🛠️ Pilha Tecnológica (Elite Stack)
+
+O Genaja é construído sobre uma base tecnológica de alta performance e desacoplamento:
+
+| Componente | Tecnologia | Papel |
+| :--- | :--- | :--- |
+| **Core Engine** | Python 3.12 + Pandas 3.0 | Processamento massivo e lógica ETL |
+| **High-Speed Engine** | Rust (Omni-Data) | Inspeção binária e conversão ultra-rápida |
+| **Interface (UI)** | Flet (Flutter) | Experiência nativa multiplataforma (Desktop/Web) |
+| **Conectividade** | SQLAlchemy 2.0 | Interface universal para SQL (Postgres, MySQL, etc.) |
+| **Inteligência** | Custom Heuristics | Inferência probabilística local (Levenshtein/Fuzzy) |
 
 ## Fluxo de Processamento (High-Level)
 
@@ -60,8 +73,13 @@ O projeto segue regras estritas de versionamento e segurança corporativa:
 * **Version Hook**: Registro obrigatório de auditoria para cada alteração de versão.
 * **Privacy Boundary**: `.gitignore` mestre bloqueia vazamento de dados sensíveis ou aprendizado de mercado.
 * **Code Purity**: Ausência de lógica de negócio em camadas de interface; total desacoplamento via `Engine Facade`.
+* **Universal SQL**: Suporte nativo a conectores relacionais com descoberta dinâmica de esquema.
 
 ---
+
+## 🚦 Roadmap & Certificação
+
+O sistema v0.7.1 é certificado para operações de saneamento de dados de alta complexidade em ambientes corporativos que exigem conformidade rigorosa com a LGPD e auditabilidade total.
 
 ## Histórico de Evolução (Destaques)
 

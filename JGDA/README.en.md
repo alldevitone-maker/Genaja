@@ -3,9 +3,22 @@
 [🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
 
 > **Current Version:** `v0.7.1` (Stable Governance)
-> **Status:** Production Ready — Python / Flet / Rust-Hybrid
+> **Status:** Production Ready — Python 3.12+ / Flet / Rust-Hybrid
+> **License:** Enterprise Proprietary / Internal Use
 
 ---
+
+## 🛠️ Technical Stack (Elite Stack)
+
+Genaja is built on a high-performance, decoupled technology foundation:
+
+| Component | Technology | Role |
+| :--- | :--- | :--- |
+| **Core Engine** | Python 3.12 + Pandas 3.0 | Massive processing and ETL logic |
+| **High-Speed Engine** | Rust (Omni-Data) | Binary inspection and ultra-fast conversion |
+| **Interaction (UI)** | Flet (Flutter) | Multiplatform native experience (Desktop/Web) |
+| **Connectivity** | SQLAlchemy 2.0 | Universal SQL interface (Postgres, MySQL, etc.) |
+| **Intelligence** | Custom Heuristics | Local probabilistic inference (Levenshtein/Fuzzy) |
 
 ## Processing Flow (High-Level)
 
@@ -86,8 +99,13 @@ To initialize the application in stable mode:
 
 **v0.4.0** — Intelligent cross-filter and native transfer selections.
 
-**v0.3.5** — Full refactor into decoupled architecture.
+* **Code Purity**: Zero business logic in UI layers; total decoupling via the `Engine Facade` pattern.
+* **Universal SQL**: Native support for relational connectors with dynamic schema discovery.
 
 ---
+
+## 🚦 Roadmap & Certification
+
+Version 0.7.1 is certified for high-complexity data sanitation operations in enterprise environments requiring strict data protection compliance (LGPD/GDPR) and full auditability.
 
 *Detailed technical documentation available in `docs/`.*

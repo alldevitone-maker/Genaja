@@ -12,12 +12,14 @@ O Genaja opera sob o princípio de **Local-Only Processing**. Todos os dados e a
 | **Cognitive Intelligence Store** | `brains/learn/` | **EXCLUÍDO** do Git (Blindagem Master) |
 | **Resultados (Excel/SQL)** | `shared/results/` | **EXCLUÍDO** do Git |
 | **Logs de Auditoria** | `shared/logs/` | **EXCLUÍDO** do Git |
+| **Credenciais SQL** | Memória (RAM) | **EFÊMERO** (Expurgo via `close()`) |
 
 ## ⚖️ Conformidade LGPD (General Data Protection Law)
 
 1. **Privacidade por Design**: O sistema não transmite dados para servidores externos. O treinamento da "Intelligence Layer" é passivo e local.
 2. **Minimização de Dados**: A exportação e sincronização manipulam apenas as chaves estritamente necessárias definidas pelo operador.
-3. **Credenciais Efêmeras**: Senhas de bancos de dados SQL são tratadas em `runtime_config`, nunca sendo persistidas em arquivos de configuração ou logs de auditoria.
+3. **Credenciais Efêmeras**: Senhas de bancos de dados SQL são carregadas em dicionários de configuração em runtime. O sistema implementa o método de autodestruição `_cleanup_sensitive_data()` invocado ao fechar qualquer conector, garantindo que nenhum segredo permaneça em memória após o uso.
+4. **Isolamento de Processo**: A execução híbrida Rust/Python ocorre em processos isolados com comunicação via STDOUT (JSON-Stream), prevenindo vazamento de buffer entre camadas.
 
 ## 🛠️ Blindagem de Repositório
 
