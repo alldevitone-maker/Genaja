@@ -1,38 +1,49 @@
-# Python
+# ==============================================================================
+# GENAJA - MASTER GITIGNORE (GOVERNANÇA v0.7.1)
+# ==============================================================================
+
+# --- Python & System ---
 __pycache__/
 *.py[cod]
 *$py.class
 *.spec
-
-# Virtual Env
+.venv/
 venv/
 env/
 .env
+.DS_Store
+Thumbs.db
+*.log
+*.db
+tmp/
 
-# IDEs
+# --- IDEs ---
 .vscode/
 .idea/
 
-# Project Specific (Arquivos locais e Backups)
-logs/
+# --- GENAJA: BLOQUEIO TOTAL DE DADOS E INTELIGÊNCIA ---
+# Proteção absoluta de IP e dados de clientes (LGPD)
+brains/
+shared/
+workspace/
 backups/
-*.log
+
+# --- GENAJA: ARQUIVOS OPERACIONAIS ---
+*.xlsx
+*.xls
+*.csv
 genaja_config.json
 
-# Excel temporary files
-~$*.xlsx
-
-# Private docs (NUNCA subir ao GitHub)
-docs/private/
-ROADMAP.md
-
-# Supervisor workflows (Antigravity IA)
+# --- IA SUPERVISOR ---
 .agent/
-
-# Freeze protocol
 FREEZE.lock
 
-# Residuals and local audits
-audit/
-results/
-tmp/
+# --- EXCEÇÕES (Arquivos essenciais de repositório) ---
+!README.md
+!README.en.md
+!CHANGELOG.md
+!requirements.txt
+!LICENSE
+!CONTRIBUTING.md
+!SECURITY_COMPLIANCE.md
+!ENGINEERING_BASELINE.md

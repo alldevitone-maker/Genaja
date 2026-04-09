@@ -1,7 +1,0 @@
-STATUS: ✅ CONCLUÍDO (VERSION SYNC)
-ARQUIVOS ALTERADOS: tests/test_smoke_flet.py
-ANTES: String fixa "v0.5.9" nos cabeçalhos e rodapés de auditoria.
-DEPOIS: Leitura dinâmica via "from version import __version__".
-VERSÃO DETECTADA: 0.6.9-Master
-RISCO: NULO. Alteração estritamente cosmética nos logs de teste.
-GATE 5: CLOSED 🫡🏁🧪

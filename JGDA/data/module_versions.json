@@ -1,0 +1,94 @@
+{
+    "core.engines.mapping_engine": {
+        "version": "0.7.1",
+        "changelog": "Motor de mapeamento por intersecção de dados e heurística de nome"
+    },
+    "core.engines.validation_engine": {
+        "version": "0.7.1",
+        "changelog": "Motor de validação de chaves e limpeza de dados nulos/duplicados"
+    },
+    "core.engines.suggestion_engine": {
+        "version": "0.7.1",
+        "changelog": "Motor de sugestão de arquivos recentes por heurística de nome"
+    },
+    "core.engines.lookup_engine": {
+        "version": "0.7.1",
+        "changelog": "Adicionado multi_key_sync() — substitui PROCV/XLOOKUP com cascata multi-chave e IEEE 754 fix"
+    },
+    "core.engines.etl_engine": {
+        "version": "0.7.1",
+        "changelog": "Motor ETL puro estabilizado — padrão de sanitização e sync com shielding"
+    },
+    "ui_flet.views.intent_router_view": {
+        "version": "0.7.1",
+        "changelog": "IntentRouterView estabilizada com Modo D (Price Sync) integrado"
+    },
+    "core.services.theme_service": {
+        "version": "0.7.1",
+        "changelog": "Serviço de temas dinâmicos com cálculo de luminância e bridge para Flet"
+    },
+    "core.paths": {
+        "version": "0.7.1",
+        "changelog": "Âncora de topologia de diretórios para o ecossistema Genaja (Brains, Shared, JGDA)"
+    },
+    "core.services.config_service": {
+        "version": "0.7.1",
+        "changelog": "Serviço de configuração resiliente com fusão de defaults e persistência JSON"
+    },
+    "app.wizard_state": {
+        "version": "0.7.1",
+        "changelog": "Gerenciador de estado global da sessão com suporte a múltiplos modos de operação"
+    },
+    "core.learning.learning_store": {
+        "version": "0.7.1",
+        "changelog": "Persistência de logs de execução e assinaturas de dataset p/ treinamento"
+    },
+    "core.learning.curated_store": {
+        "version": "0.7.1",
+        "changelog": "Gerenciador de regras curadas (Regras de Ouro) para mapeamento determinístico"
+    },
+    "core.learning.mega_store": {
+        "version": "0.7.1",
+        "changelog": "Núcleo de Inteligência Cognitiva de alta densidade com estratificação de confiança"
+    },
+    "migration.schema_mapper": {
+        "version": "0.7.1",
+        "changelog": "Motor de sugestão por similaridade fuzzy e distância de Levenshtein"
+    },
+    "core.learning.suggestion_engine": {
+        "version": "0.7.1",
+        "changelog": "Orquestrador de sugestões multi-origem (Mega Brain, Curated Rules e Fuzzy Name)"
+    },
+    "core.learning.learning_logger": {
+        "version": "0.7.1",
+        "changelog": "Orquestrador de telemetria e treinamento passivo de modelos probabilísticos"
+    },
+    "ui_flet.dialogs.file_intelligence_dialog": {
+        "version": "0.7.1",
+        "changelog": "Janela de inteligência de dados com preview de mapeamento"
+    },
+    "core.connectors.base_connector": {
+        "version": "0.7.1",
+        "changelog": "Classe base abstrata (Protocolo) para conectores Genaja"
+    },
+    "core.services.connector_factory": {
+        "version": "0.7.1",
+        "changelog": "Fábrica de adaptadores para suporte a arquivos locais e bancos SQL (SQLAlchemy lazy load)"
+    },
+    "ui_flet.dialogs.compatibility_dialog": {
+        "version": "0.7.1",
+        "changelog": "Diálogo de assistência ao usuário com explicações de confiança do núcleo de inferência cognitiva"
+    },
+    "core.services.audit_service": {
+        "version": "0.7.1",
+        "changelog": "Audit Service para conformidade LGPD (Art. 37) — Rastreabilidade total"
+    },
+    "ui_flet.flow_router": {
+        "version": "0.7.1",
+        "changelog": "Roteador central que orquestra a transição entre telas Flet baseada em estado"
+    },
+    "ui_flet.views.step0_inspection_view": {
+        "version": "0.7.1",
+        "changelog": "Interface forense para inspeção de cabeçalhos via Omni-data Engine"
+    }
+}
