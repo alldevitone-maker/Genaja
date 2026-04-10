@@ -35,8 +35,10 @@ def validate_version_sync():
     ]
     
     errors = []
+    # All documentation now resides in the repository root (parent of JGDA)
+    GENAJA_ROOT = os.path.dirname(BASE_DIR)
     for filename, pattern in files_to_check:
-        path = os.path.join(BASE_DIR, filename)
+        path = os.path.join(GENAJA_ROOT, filename)
         if not os.path.exists(path):
             errors.append(f"Missing file: {filename}")
             continue

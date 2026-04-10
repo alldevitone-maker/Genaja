@@ -61,7 +61,7 @@ def _fix_sync():
     
     import re
     for filename, pattern, repl in readme_files:
-        path = os.path.join(BASE_DIR, filename)
+        path = os.path.join(GENAJA_ROOT, filename)
         if os.path.exists(path):
             with open(path, 'r', encoding='utf-8') as f:
                 content = f.read()
@@ -124,7 +124,7 @@ def _interactive_release():
         
     if notes:
         # Simple changelog update logic
-        cl_path = os.path.join(BASE_DIR, 'CHANGELOG.md')
+        cl_path = os.path.join(GENAJA_ROOT, 'CHANGELOG.md')
         with open(cl_path, 'r', encoding='utf-8') as f: content = f.read()
         date = datetime.date.today().strftime("%d/%m/%Y")
         new_entry = f"## [{new_version}] - {date} ({new_title})\n" + "\n".join([f"- {n}" for n in notes])
