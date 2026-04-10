@@ -6,7 +6,7 @@ from core.engines.transform_engine import TransformEngine
 
 class SinglePrepView(ft.Container):
     """
-    v0.7.1 - Interface Exclusiva para Modo B (prepare_single).
+    Genaja Stable - Interface Exclusiva para Modo B (prepare_single).
     """
     def __init__(self, state, router):
         super().__init__()

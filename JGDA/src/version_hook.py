@@ -1,9 +1,11 @@
+# GENAJA PLATINUM GOVERNANCE HOOK - DO NOT EDIT MANUALLY
+# This module orchestrates metadata registration and system-wide versioning.
 """
 Genaja Version Hook — Rastreabilidade de Versão por Módulo.
 
 Uso em módulos essenciais:
     from version_hook import declare
-    declare(__name__, "0.7.1", "Descrição do que mudou nesta versão")
+    declare(__name__, __version__, "Módulo de governança selado (Padrão Platinum)")
 
 Regra:
     - Se a versão registrada no JSON for diferente da declarada, um changelog é obrigatório.
@@ -12,6 +14,7 @@ Regra:
 """
 import json
 import os
+from version import __version__
 
 _REGISTRY_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "module_versions.json")
 

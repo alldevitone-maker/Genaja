@@ -2,6 +2,7 @@ import os
 import json
 from typing import List, Dict, Any, Optional
 from datetime import datetime
+from version import __version__
 
 class MegaKnowledgeStore:
     """
@@ -35,7 +36,7 @@ class MegaKnowledgeStore:
                     return json.load(f)
             except:
                 pass
-        return {"associations": {}, "metadata": {"total_cycles": 0, "last_update": "", "version": "0.7.1"}}
+        return {"associations": {}, "metadata": {"total_cycles": 0, "last_update": "", "version": __version__}}
 
     def add_evidence(self, src_col: str, tgt_col: str, reason: str = "mapping_candidate_detected"):
         """Adiciona evidência com peso especializado do protocolo de aprendizado."""
@@ -144,4 +145,4 @@ class MegaKnowledgeStore:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Núcleo de Inteligência Cognitiva de alta densidade com estratificação de confiança")
+_vdeclare(__name__, __version__, "Núcleo de Inteligência Cognitiva de alta densidade com estratificação de confiança")

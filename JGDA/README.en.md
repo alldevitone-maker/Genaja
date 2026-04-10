@@ -1,111 +1,80 @@
-# Genaja — Universal Data Synchronization Engine
+# GENAJA SUITE — Elite Data Intelligence & Forensics
 
-[🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
+[🇺🇸 English](README.en.md) | [🇧🇷 Português](README.md)
 
-> **Current Version:** `v0.7.1` (Stable Governance)
-> **Status:** Production Ready — Python 3.12+ / Flet / Rust-Hybrid
-> **License:** Enterprise Proprietary / Internal Use
+> **Current Version:** `v0.7.2` (Stable Governance Platinum)
+> **Engine:** Omni-Data Hybrid (Python/Rust)
 
 ---
 
-## 🛠️ Technical Stack (Elite Stack)
+## 🛡️ The Forensic Intelligence Ecosystem
 
-Genaja is built on a high-performance, decoupled technology foundation:
+**Genaja Suite** is more than an ETL engine; it is a **Cognitive Interoperability Engineering** platform designed for massive sanitation of heterogeneous data with 100% local privacy (No-Cloud).
 
-| Component | Technology | Role |
-| :--- | :--- | :--- |
-| **Core Engine** | Python 3.12 + Pandas 3.0 | Massive processing and ETL logic |
-| **High-Speed Engine** | Rust (Omni-Data) | Binary inspection and ultra-fast conversion |
-| **Interaction (UI)** | Flet (Flutter) | Multiplatform native experience (Desktop/Web) |
-| **Connectivity** | SQLAlchemy 2.0 | Universal SQL interface (Postgres, MySQL, etc.) |
-| **Intelligence** | Custom Heuristics | Local probabilistic inference (Levenshtein/Fuzzy) |
-
-## Processing Flow (High-Level)
+### 1. Adaptive Intent Flow
+The system utilizes an intent-driven router that adapts the data journey based on task complexity:
 
 ```mermaid
 graph TD
-    subgraph "Ingestion Layer"
-        A[Source: Excel / SQL] --> B[ConnectorRegistry]
-        B --> C[WizardState]
-    end
+    Start((Start)) --> Router{Intent Router}
+    
+    Router -- "Mode A" --> Conv[Direct Conversion]
+    Router -- "Mode B" --> Prep[Single Preparation]
+    Router -- "Mode C" --> Step0[Forensic Quarantine]
+    Router -- "Mode D" --> PS[Price Sync Turbo]
 
-    subgraph "Transformation Engine (JGDA)"
-        C --> D[TransformEngine]
-        D --> E[Lookup / Sync]
-        E --> F[Validation]
-    end
-
-    subgraph "Data Delivery"
-        F --> G[Output: XLSX / SQL]
-        G --> H[Audit Tracker]
-    end
-
-    style D fill:#1a1a1a,stroke:#00ff00,stroke-width:2px
-    style E fill:#1a1a1a,stroke:#00ff00,stroke-width:2px
+    Step0 --> Insp{Omni-Data Scan}
+    Insp -- "Risk High" --> Correct[Byte-level Correction]
+    Insp -- "Safe" --> Wizard[ETL Wizard Steps 1-4]
+    
+    Wizard --> Final((Master Sync))
+    PS --> Final
+    Conv --> Final
 ```
 
-## Cognitive Intelligence Architecture
-Genaja implements a decoupled heuristic assistance layer to ensure maximum fidelity when synchronizing heterogeneous data sources.
+### 2. Cognitive Processing Pipeline
+Below is the architecture showing how the **JGDA Engine** interacts with the **Genaja Brain**:
 
-* **Heuristic Resolution Engine**: Inference algorithms based on Levenshtein distance for high-precision automated mapping.
-* **Cognitive Intelligence Core**: Local learning core that catalogs structural patterns, enabling exponential acceleration of recurrent routines.
-* **Isolated Data Periphery**: Privacy-oriented architecture (GDPR/LGPD ready), where all processing and intelligence are strictly maintained in a local environment (`Local-Only`).
+```mermaid
+graph LR
+    subgraph "The Motor"
+        AD[Adapters] --> RD[Rust Engine]
+        RD --> PL[Profiling Layer]
+    end
 
----
+    subgraph "The Brain"
+        PL --> MS[Mega-Store]
+        MS --> CS[Curated Rules]
+    end
 
-## Quick Start (Execution Environment)
+    subgraph "Output Layer"
+        CS --> EX[Export Service]
+        EX --> AU[Audit LGPD]
+    end
 
-To initialize the application in stable mode:
-
-```bash
-
-### v0.6.1 — Alpha v2 Stabilization (2026-03-26)
-
-- Migration to `PlatinumTheme`: dynamic color and contrast tokens
-- Automatic luminance calculation for `ThemeMode` adjustment
-- Release audit: removal of private documents before publication
-
----
-
-### Earlier Versions
-
-**v0.6.0** — Flet migration (Python Flutter). Functional parity with v0.4.x series. Comparator module and Dual-List Transfer restored.
-
-**v0.5.9** — History synchronization and pre-commit hook certification.
-
-**v0.5.8** — Global settings panel (Trim/Case, export, security).
-
-**v0.5.6** — Phoenix Customizer 2.0: theme editor with real-time preview.
-
-**v0.5.5** — Stabilization after Tkinter removal.
-
-**v0.5.4** — Complete removal of Tkinter support. Pure PySide6 application.
-
-**v0.5.3** — Custom Title Bar (VS Code style), visual theme engine.
-
-**v0.5.2** — Heuristic mapping engine fixes.
-
-**v0.5.1** — Double window initialization bug fix.
-
-**v0.5.0** — PySide6/Tkinter hybrid architecture, 4-step Wizard, real-time dashboard.
-
-**v0.4.9** — Live Theme Customizer.
-
-**v0.4.7** — Floating tooltips, global scroll, experimental Big Data support (JSON, CSV, SQL).
-
-**v0.4.6** — Single Hub with Protected A1 Key via checkbox.
-
-**v0.4.3** — Dual-layer documentation (Analyst / IT) with bilingual parity.
-
-**v0.4.0** — Intelligent cross-filter and native transfer selections.
-
-* **Code Purity**: Zero business logic in UI layers; total decoupling via the `Engine Facade` pattern.
-* **Universal SQL**: Native support for relational connectors with dynamic schema discovery.
+    style RD fill:#0a0a0a,stroke:#00ffff,stroke-width:2px
+    style MS fill:#0a0a0a,stroke:#amber,stroke-width:2px
+```
 
 ---
 
-## 🚦 Roadmap & Certification
+## 🛠️ Wizard Stages (The Elite Path)
 
-Version 0.7.1 is certified for high-complexity data sanitation operations in enterprise environments requiring strict data protection compliance (LGPD/GDPR) and full auditability.
+The 4-stage wizard ensures that data from "dirty" or unstructured sources is tamed with deterministic precision:
 
-*Detailed technical documentation available in `docs/`.*
+1.  **🔍 Inspection (Step 0)**: Binary scanning (Magic Bytes) via Omni-Data to detect extension fraud (e.g., SAP XML masked as XLS).
+2.  **🔗 Connectivity (Step 1)**: Local or SQL source mapping with automatic schema discovery.
+3.  **🧬 Key Synchronization (Step 2)**: Dataset intersection for primary key identification with 99% confidence.
+4.  **🧩 Attributive Mapping (Step 3)**: Fuzzy inference (Levenshtein) for columns with divergent naming.
+5.  **⚡ Execution & Audit (Step 4)**: Massive processing with retroactive audit logs (Compliance with LGPD Art. 37).
+
+---
+
+## 🚦 Platinum Differentials
+- **Zero Data Leak**: Native shielding via Governance Protocol (total lockdown of `brains/` and `docs/` paths).
+- **Omni-Data Engine**: Hybrid Python/Rust inspection for low-latency performance on high-volume XL files.
+- **Cognitive Cache**: The system learns from every mapping performed by the operator, reducing work time by 80% on recurring tasks.
+
+---
+
+*Detailed Technical Documentation in `docs/ARCHITECTURE.md`*

@@ -1,12 +1,18 @@
 import sqlite3
-import os
 import sys
+import os
+
+# --- ANCORAGEM PARA IMPORT DE VERSÃO ---
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(BASE_DIR, 'src'))
+
+from version import __version__
 
 def setup_sql_lab():
     # Caminho Resolvido Absoluto para evitar falhas de contexto (ex: System32)
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     db_path = os.path.join(base_dir, "test_genaja.db")
-    print(f"--- CRIANDO LABORATÓRIO SQL GENAJA (v0.7.0) ---")
+    print(f"--- CRIANDO LABORATÓRIO SQL GENAJA (v{__version__}) ---")
     print(f"📍 Destino do Banco: {db_path}")
     
     if os.path.exists(db_path):

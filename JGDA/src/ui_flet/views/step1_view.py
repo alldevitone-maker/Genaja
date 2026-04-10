@@ -1,4 +1,5 @@
 import flet as ft
+from version import __version__
 import os
 import tkinter as tk
 from tkinter import filedialog
@@ -525,3 +526,7 @@ class Step1View(ft.Column):
         self.page.overlay.append(dialog)
         dialog.open = True
         self.page.update()
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Interface Legada - Passo 1: Seleção de Fontes e Heurística de Cabeçalho")

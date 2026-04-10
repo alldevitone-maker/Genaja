@@ -2,11 +2,17 @@ import pandas as pd
 import os
 import sys
 
+# --- ANCORAGEM PARA IMPORT DE VERSÃO ---
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(BASE_DIR, 'src'))
+
+from version import __version__
+
 def create_test_target():
     # Caminho Resolvido Absoluto para evitar falhas de permissão (ex: System32)
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     target_path = os.path.join(base_dir, "destino_vendedores.xlsx")
-    print(f"--- CRIANDO PLANILHA DE DESTINO PARA WORKSHOP (v0.7.0) ---")
+    print(f"--- CRIANDO PLANILHA DE DESTINO PARA WORKSHOP (v{__version__}) ---")
     print(f"📍 Destino: {target_path}")
     
     # Colunas que espelham o que queremos sincronizar ou manter

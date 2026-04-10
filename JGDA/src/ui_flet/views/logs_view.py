@@ -37,13 +37,36 @@ class LogsView(ft.Column):
         ]
 
     def load_logs(self):
-        """Busca logs reais e popula a lista."""
+        """Busca logs reais via LoggerService e popula a lista."""
         self.log_list.controls.clear()
-        # Simulação de busca no serviço de logger corporativo
-        self.log_list.controls.append(ft.Text(f"Sessão Iniciada: v{__version__} Stable", color=PlatinumTheme.SUCCESS(), size=13, weight=ft.FontWeight.BOLD))
-        self.log_list.controls.append(ft.Text("Motor ETL: Standby", size=13, color=PlatinumTheme.TEXT_SECONDARY()))
-        self.log_list.controls.append(ft.Text(f"Estado do Router: Ativo", size=13, color=PlatinumTheme.TEXT_MUTED()))
+        try:
+            raw_logs = LoggerService.read_last_logs(limit=120)
+            for entry in raw_logs:
+                # Destaque para erros e avisos
+                text_color = PlatinumTheme.TEXT_SECONDARY()
+                weight = ft.FontWeight.NORMAL
+                
+                if "[ERROR]" in entry:
+                    text_color = PlatinumTheme.DANGER()
+                    weight = ft.FontWeight.BOLD
+                elif "[WARNING]" in entry:
+                    text_color = PlatinumTheme.WARNING()
+                elif "--- Log System" in entry:
+                    text_color = PlatinumTheme.SUCCESS()
+                    weight = ft.FontWeight.BOLD
+
+                self.log_list.controls.append(
+                    ft.Text(entry, size=12, color=text_color, weight=weight, font_family="Consolas")
+                )
+        except Exception as e:
+            self.log_list.controls.append(ft.Text(f"Erro ao carregar logs: {e}", color=PlatinumTheme.DANGER()))
+            
         self.update()
 
     def did_mount(self):
         self.load_logs()
+
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Interface de auditoria tática com extração de logs do disco em tempo real")

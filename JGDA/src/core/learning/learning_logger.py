@@ -1,4 +1,5 @@
 from typing import List, Dict, Optional, Any
+from version import __version__
 import pandas as pd
 import numpy as np
 from core.learning.learning_store import LearningStore
@@ -109,4 +110,4 @@ class LearningLogger:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Orquestrador de telemetria e treinamento passivo de modelos probabilísticos")
+_vdeclare(__name__, __version__, "Orquestrador de telemetria e treinamento passivo de modelos probabilísticos")

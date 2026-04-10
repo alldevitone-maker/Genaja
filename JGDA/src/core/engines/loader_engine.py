@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+from version import __version__
 
 class LoaderEngine:
     """
@@ -44,7 +45,7 @@ class LoaderEngine:
                 non_null_vals = row.dropna()
                 if non_null_vals.empty:
                     continue
-                # BUG FIX: str_count estava ausente — contagem de strings adicionada
+                # Contagem de strings para densidade
                 str_count = sum(1 for x in non_null_vals if isinstance(x, str))
                 # Se houver empate, preferimos a primeira linha (balanceamento)
                 if str_count > best_score:
@@ -146,8 +147,7 @@ class LoaderEngine:
         df = df.loc[:, ~df.columns.str.contains('^Unnamed|^nan', case=False)]
         return df
 
-    def load_excel(self, path, skip_rows=None):
-        """Wrapper de compatibilidade - Retorna a primeira aba válida."""
-        wb, headers = self.load_workbook(path)
-        first_sheet = list(wb.keys())[0]
-        return wb[first_sheet], headers[first_sheet]
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Motor de carga estabilizado com fallback de codificação e suporte a multi-abas")

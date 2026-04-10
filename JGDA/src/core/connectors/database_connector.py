@@ -1,4 +1,5 @@
 import pandas as pd
+from version import __version__
 from core.connectors.base_connector import BaseConnector
 
 
@@ -112,4 +113,4 @@ class DatabaseConnector(BaseConnector):
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Implementação de conector SQL via SQLAlchemy com suporte a PostgreSQL, MSSQL, SQLite e MySQL")
+_vdeclare(__name__, __version__, "Implementação de conector SQL via SQLAlchemy com suporte a PostgreSQL, MSSQL, SQLite e MySQL")

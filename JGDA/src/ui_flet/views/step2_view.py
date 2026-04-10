@@ -4,6 +4,7 @@ from ui_flet.theme import PlatinumTheme
 from core.engines.mapping_engine import MappingEngine
 from core.services.logger_service import LoggerService
 from ui_flet.views.base_view import RoutedViewMixin
+from version import __version__
 
 class Step2View(ft.Column, RoutedViewMixin):
     """
@@ -206,3 +207,7 @@ class Step2View(ft.Column, RoutedViewMixin):
         self.state.key_tgt = self.combo_tgt.value
         self.state.key_tgt_final = self.combo_a1.value or self.combo_tgt.value
         self.on_next()
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Interface Legada - Passo 2: Mapeamento de Chaves Primárias e Fallbacks")

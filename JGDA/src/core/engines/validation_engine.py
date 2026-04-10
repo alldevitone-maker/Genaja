@@ -1,10 +1,10 @@
 import pandas as pd
+from version import __version__
 import numpy as np
 
 class ValidationEngine:
     """
     Motor de Validação e Limpeza — Garante integridade dos dados pós-merge.
-    Focada em garantir a integridade dos dados pós-merge.
     """
     
     def apply_numeric_filter(self, df, columns):
@@ -80,4 +80,4 @@ class ValidationEngine:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Motor de validação de chaves e limpeza de dados nulos/duplicados")
+_vdeclare(__name__, __version__, "Motor de validação de chaves e limpeza de dados nulos/duplicados")

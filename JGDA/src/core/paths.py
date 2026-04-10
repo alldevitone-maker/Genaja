@@ -10,6 +10,8 @@ Este módulo resolve caminhos de forma absoluta, independente de
 os.getcwd() ou do diretório de execução do processo.
 """
 import os
+import sys
+from version import __version__
 
 # --- Âncora: localização deste arquivo ---
 _THIS_FILE = os.path.abspath(__file__)
@@ -58,4 +60,4 @@ def ensure_dirs():
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Âncora de topologia de diretórios para o ecossistema Genaja (Brains, Shared, JGDA)")
+_vdeclare(__name__, __version__, "Âncora de topologia de diretórios para o ecossistema Genaja (Brains, Shared, JGDA)")

@@ -131,5 +131,7 @@ class WizardState:
 
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from typing import Dict, Any, List, Optional
+from version import __version__
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Gerenciador de estado global da sessão com suporte a múltiplos modos de operação")
+_vdeclare(__name__, __version__, "Gerenciador de estado global da sessão com suporte a múltiplos modos de operação")

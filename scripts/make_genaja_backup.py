@@ -29,8 +29,11 @@ ZIP_NAME = f"Genaja_Product_Full_Backup_{DATE_STR}.zip"
 ZIP_PATH = os.path.join(BACKUP_DIR, ZIP_NAME)
 
 # Paths relative to the root
-INCLUDE_ROOTS = ["JGDA", "brains", "docs"]
-IGNORE_DIRS = {"backups", "__pycache__", ".git", ".vscode", "venv", "logs", "tmp", "migration", "shared"}
+INCLUDE_ROOTS = ["JGDA", "brains", "docs", "omni_rust", "shared/results"]
+IGNORE_DIRS = {
+    "backups", "__pycache__", ".git", ".vscode", "venv", ".venv", 
+    "logs", "tmp", "migration", ".agent", ".pytest_cache"
+}
 IGNORE_FILES = {ZIP_NAME, "backup_engine.log", "product_backup.log"}
 
 def create_full_backup():

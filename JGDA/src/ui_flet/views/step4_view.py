@@ -4,6 +4,7 @@ import os
 import asyncio
 from core.paths import RESULTS_DIR, BRAINS_DIR
 from ui_flet.theme import PlatinumTheme
+from version import __version__
 from core.engines.etl_engine import ETLEngine
 from core.engines.validation_engine import ValidationEngine
 from core.services.export_service import ExportService
@@ -295,3 +296,7 @@ class Step4View(ft.Column, RoutedViewMixin):
         self.progress_bar.visible = False
         self.btn_run.disabled = False
         self.update()
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Interface Legada - Passo 4: Execução de ETL, Impact Preview e Escrita Final")

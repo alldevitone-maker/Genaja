@@ -1,4 +1,5 @@
 from typing import List, Dict, Any, Optional
+from version import __version__
 from core.learning.learning_store import LearningStore
 from core.learning.curated_store import CuratedStore
 from core.learning.mega_store import MegaKnowledgeStore
@@ -141,4 +142,4 @@ class HistoricalSuggestionEngine:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Orquestrador de sugestões multi-origem (Mega Brain, Curated Rules e Fuzzy Name)")
+_vdeclare(__name__, __version__, "Orquestrador de sugestões multi-origem (Mega Brain, Curated Rules e Fuzzy Name)")

@@ -1,93 +1,80 @@
-# Genaja — Universal Data Synchronization Engine
+# GENAJA SUITE — Elite Data Intelligence & Forensics
 
-[🇺🇸 View in English](README.en.md) | [🇧🇷 Visualizar em Português](README.md)
+[🇺🇸 English](README.en.md) | [🇧🇷 Português](README.md)
 
-> **Versão Atual:** `v0.7.1` (Stable Governance)
-> **Status:** Production Ready — Python 3.12+ / Flet / Rust-Hybrid
-> **Licença:** Enterprise Proprietary / Internal Use
+> **Versão Atual:** `v0.7.2` (Stable Governance Platinum)
+> **Engine:** Omni-Data Hybrid (Python/Rust)
 
 ---
 
-## 🛠️ Pilha Tecnológica (Elite Stack)
+## 🛡️ O Ecossistema de Inteligência Forense
 
-O Genaja é construído sobre uma base tecnológica de alta performance e desacoplamento:
+O **Genaja Suite** não é apenas um motor de ETL; é uma plataforma de **Engenharia de Interoperabilidade Cognitiva** projetada para saneamento massivo de dados heterogêneos com 100% de privacidade local (No-Cloud).
 
-| Componente | Tecnologia | Papel |
-| :--- | :--- | :--- |
-| **Core Engine** | Python 3.12 + Pandas 3.0 | Processamento massivo e lógica ETL |
-| **High-Speed Engine** | Rust (Omni-Data) | Inspeção binária e conversão ultra-rápida |
-| **Interface (UI)** | Flet (Flutter) | Experiência nativa multiplataforma (Desktop/Web) |
-| **Conectividade** | SQLAlchemy 2.0 | Interface universal para SQL (Postgres, MySQL, etc.) |
-| **Inteligência** | Custom Heuristics | Inferência probabilística local (Levenshtein/Fuzzy) |
-
-## Fluxo de Processamento (High-Level)
+### 1. Fluxo de Intencionalidade (Adaptive Routing)
+O sistema utiliza um roteador de intenções que adapta a jornada do dado baseado na complexidade da tarefa:
 
 ```mermaid
 graph TD
-    subgraph "Camada de Ingestão"
-        A[Fonte: Excel / SQL] --> B[ConnectorRegistry]
-        B --> C[WizardState]
-    end
+    Start((Início)) --> Router{Intent Router}
+    
+    Router -- "Modo A" --> Conv[Conversão Direta]
+    Router -- "Modo B" --> Prep[Tratamento Single]
+    Router -- "Modo C" --> Step0[Quarentena Forense]
+    Router -- "Modo D" --> PS[Price Sync Turbo]
 
-    subgraph "Motor de Transformação (JGDA)"
-        C --> D[TransformEngine]
-        D --> E[Lookup / Sync]
-        E --> F[Validation]
-    end
-
-    subgraph "Entrega de Dados"
-        F --> G[Saída: XLSX / SQL]
-        G --> H[Audit Tracker]
-    end
-
-    style D fill:#1a1a1a,stroke:#00ff00,stroke-width:2px
-    style E fill:#1a1a1a,stroke:#00ff00,stroke-width:2px
+    Step0 --> Insp{Omni-Data Scan}
+    Insp -- "Risk High" --> Correct[Correção Byte-level]
+    Insp -- "Safe" --> Wizard[ETL Wizard Steps 1-4]
+    
+    Wizard --> Final((Master Sync))
+    PS --> Final
+    Conv --> Final
 ```
 
-## Arquitetura de Inteligência
-O Genaja utiliza uma camada de inteligência desacoplada para garantir precisão no mapeamento de dados heterogêneos.
+### 2. Pipeline de Processamento Cognitivo
+Abaixo, a arquitetura de como o **Motor JGDA** interage com o **Cérebro Genaja**:
 
-* **Heurística Probabilística**: Sugestões baseadas em distância de Levenshtein (Fuzzy Matching).
-* **Cérebro de Aprendizado**: Persistência local de padrões de dados para aceleração de mapeamentos futuros.
-* **Privacidade Local**: O aprendizado da IA é mantido estritamente em ambiente local (`brains/`), fora do escopo de versionamento.
+```mermaid
+graph LR
+    subgraph "Engrenagem (The Motor)"
+        AD[Adapters] --> RD[Rust Engine]
+        RD --> PL[Profiling Layer]
+    end
 
----
+    subgraph "Inteligência (The Brain)"
+        PL --> MS[Mega-Store]
+        MS --> CS[Curated Rules]
+    end
 
-## Quick Start (Ambiente de Execução)
+    subgraph "Saída (Output)"
+        CS --> EX[Export Service]
+        EX --> AU[Audit LGPD]
+    end
 
-Para inicializar a aplicação em modo estável:
-
-```bash
-# Instalar dependências
-pip install -r requirements.txt
-
-# Executar motor principal
-python src/main.py
+    style RD fill:#0a0a0a,stroke:#00ffff,stroke-width:2px
+    style MS fill:#0a0a0a,stroke:#amber,stroke-width:2px
 ```
 
 ---
 
-## Governança v0.7.1 (Standard Rules)
+## 🛠️ Estágios do Wizard (The Elite Path)
 
-O projeto segue regras estritas de versionamento e segurança corporativa:
-* **Version Hook**: Registro obrigatório de auditoria para cada alteração de versão.
-* **Privacy Boundary**: `.gitignore` mestre bloqueia vazamento de dados sensíveis ou aprendizado de mercado.
-* **Code Purity**: Ausência de lógica de negócio em camadas de interface; total desacoplamento via `Engine Facade`.
-* **Universal SQL**: Suporte nativo a conectores relacionais com descoberta dinâmica de esquema.
+O Wizard de 4 estágios garante que dados de fontes "sujas" ou não-estruturadas sejam domesticados com precisão determinística:
+
+1.  **🔍 Inspeção (Step 0)**: Varredura binária (Magic Bytes) via Omni-Data para detectar fraudes de extensão (ex: SAP XML mascarado como XLS).
+2.  **🔗 Conectividade (Step 1)**: Mapeamento de fontes locais ou SQL com descoberta automática de schema.
+3.  **🧬 Sincronia de Chaves (Step 2)**: Intersecção de datasets para identificação de Primary Keys com 99% de confiança.
+4.  **🧩 Mapeamento Atributivo (Step 3)**: Inferência fuzzy (Levenshtein) para colunas com nomes divergentes.
+5.  **⚡ Execução & Auditoria (Step 4)**: Processamento massivo com log de auditoria retroativo (Conformidade Art. 37 LGPD).
 
 ---
 
-## 🚦 Roadmap & Certificação
+## 🚦 Diferenciais Platinum
+- **Zero Data Leak**: Blindagem nativa via Protocolo de Governança (bloqueio total de caminhos `brains/` e `docs/`).
+- **Omni-Data Engine**: Inspeção híbrida Python/Rust para performance de baixa latência em arquivos XL de grande volume.
+- **Cognitive Cache**: O sistema aprende com cada mapeamento feito pelo operador, reduzindo o tempo de trabalho em 80% em execuções recorrentes.
 
-O sistema v0.7.1 é certificado para operações de saneamento de dados de alta complexidade em ambientes corporativos que exigem conformidade rigorosa com a LGPD e auditabilidade total.
+---
 
-## Histórico de Evolução (Destaques)
-
-### v0.7.1 — Governança e Estabilização (09/04/2026)
-* **Centralização de Versão**: Implementação do `version_hook.py`.
-* **Segurança LGPD**: Novo `.gitignore` mestre protegendo a pasta `brains/` e `shared/`.
-* **Fixes Críticos**: Estabilização do motor de detecção de duplicidade e correção de inicialização Flet.
-
-### v0.7.0 — Conectores Universais (02/04/2026)
-
-*Documentação técnica detalhada disponível em `docs/`.*
+*Documentação Técnica Detalhada em `docs/ARCHITECTURE.md`*

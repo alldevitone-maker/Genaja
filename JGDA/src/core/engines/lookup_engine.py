@@ -1,4 +1,5 @@
 import pandas as pd
+from version import __version__
 
 class LookupEngine:
     """
@@ -35,7 +36,7 @@ class LookupEngine:
     def multi_key_sync(self, df_orig, df_dest, pares_chave, col_valor, col_preencher,
                        sanitizar_monetario=True):
         """
-        v0.7.1 - Sincronização em cascata multi-chave (substitui PROCX do Excel).
+        Genaja Stable - Sincronização em cascata multi-chave (substitui PROCX do Excel).
         Cada par de chave é tentado em sequência apenas para as linhas ainda sem match.
 
         Args:
@@ -115,4 +116,4 @@ class LookupEngine:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Adicionado multi_key_sync() — substitui PROCV/XLOOKUP com cascata multi-chave e IEEE 754 fix")
+_vdeclare(__name__, __version__, "Adicionado multi_key_sync() — substitui PROCV/XLOOKUP com cascata multi-chave e IEEE 754 fix")

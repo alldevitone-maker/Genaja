@@ -1,5 +1,6 @@
 import flet as ft
 from core.services.theme_service import ThemeService
+from version import __version__
 
 class PlatinumTheme:
     """
@@ -76,3 +77,7 @@ class PlatinumTheme:
             "border_radius": 12,
             "padding": 20
         }
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Serviço de temas dinâmicos com cálculo de luminância e bridge para Flet")

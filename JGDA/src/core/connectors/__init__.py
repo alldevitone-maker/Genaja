@@ -1,1 +1,1 @@
-# Pacote connectors — garante importação modular via ConnectorFactory (v0.7.1)
+# Pacote connectors — garante importação modular via ConnectorFactory (Genaja Stable)

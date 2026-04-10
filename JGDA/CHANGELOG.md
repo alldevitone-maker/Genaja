@@ -1,11 +1,17 @@
 # Changelog
 
-## [0.7.1] - 09/04/2026 (Stable Governance)
-- **Version Hook System**: Implementação do mecanismo central de governança estrutural em todos os módulos core.
-- **Security master (.gitignore)**: Proteção global das pastas `brains/` e `shared/`.
-- **DuplicateEngine Fix**: Restauração da integridade lógica após refatoração de governança.
-- **Flet Initialization Fix**: Ajustes em Dropdowns no `PriceSyncView` para evitar erros de runtime.
-- **Documentação de Elite**: Novas diretrizes arquiteturais e diagramas Mermaid integrados aos READMEs.
+## [0.7.2] - 10/04/2026 (Security & SaaS UX)
+- **Saneamento de Dados (Leak Fix)**: Blindagem total da pasta `docs/` e remoção de listas sensíveis de cidades do repositório Git.
+- **SaaS UX (Home Page)**: Roteamento inicial alterado para o `IntentRouter` (Menu Principal), permitindo acesso direto aos modos A, B, C e D.
+- **Fluxo Adaptativo**: Inversão da lógica de entrada; a Inspeção (Step 0) agora é acionada sob demanda após a escolha da intenção.
+- **Governança Consolidada**: Lançamento do Protocolo Executivo do Agente (`.agent_instructions.md`).
+
+## [0.7.1] - 10/04/2026 (Stable Governance Platinum)
+- **Versionamento Dinâmico Universal**: Centralização total via `__version__` sincronizando Python (Core), Rust (Engine) e Registro JSON.
+- **Manutenibilidade em um Clique**: Expansão do `automate.py` para orquestrar documentação, compliance e metadados.
+- **Limpeza Arquitetural**: Remoção definitiva de zumbis e redundâncias (obsoleto Qt/PySide6, motores duplicados e testes órfãos).
+- **Security & Compliance**: Proteção global de `brains/` e `shared/`; documentos de conformidade (LGPD) agora 100% automatizados.
+- **Estabilização de UI**: Refatoração de views e diálogos para garantir resiliência e injeção dinâmica de metadados.
 
 ## [0.7.0] - 02/04/2026 (Universal Connector Strategy)
 - **DatabaseConnector**: suporte a PostgreSQL, MySQL, SQLite via SQLAlchemy 2.0.

@@ -1,5 +1,6 @@
 import json
 import os
+from version import __version__
 import flet as ft
 
 class ThemeService:
@@ -229,4 +230,4 @@ class ThemeService:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Serviço de temas dinâmicos com cálculo de luminância e bridge para Flet")
+_vdeclare(__name__, __version__, "Serviço de temas dinâmicos com cálculo de luminância e bridge para Flet")

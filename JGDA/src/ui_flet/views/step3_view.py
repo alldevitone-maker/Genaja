@@ -3,6 +3,7 @@ import os
 import asyncio
 from core.paths import BRAINS_DIR
 from ui_flet.theme import PlatinumTheme
+from version import __version__
 from core.services.logger_service import LoggerService
 from migration.schema_mapper import SchemaMapper
 from core.learning.suggestion_engine import HistoricalSuggestionEngine
@@ -301,3 +302,7 @@ class Step3View(ft.Column, RoutedViewMixin):
                 
         self.state.null_filter_cols = self.cols_in_tgt if self.state.remove_nulls else []
         self.on_next()
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Interface Legada - Passo 3: Mapeamento de Atributos e Filtros de Sanitização")

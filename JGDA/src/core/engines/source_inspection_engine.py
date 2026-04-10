@@ -1,9 +1,10 @@
 import os
+from version import __version__
 from typing import Dict, Any
 
 class SourceInspectionEngine:
     """
-    v0.7.1 - Core de Quarentena e Inspeção Direcionada.
+    Genaja Stable - Core de Quarentena e Inspeção Direcionada.
     NÃO POSSUI ACOPLAMENTO COM A UI E NÃO IMPORTA PANDAS.
     Analisa os magic-bytes do arquivo e identifica mutações ou anomalias (Ex: Arquivo XLS que na verdade é XML do SAP B1).
     """
@@ -30,8 +31,8 @@ class SourceInspectionEngine:
             report["notes"].append("Arquivo não encontrado no sistema operacional.")
             return report
 
-        _, ext = os.path.splitext(file_path)
-        ext = ext.lower().strip('.')
+        # Normalização da Extensão
+        ext = os.path.splitext(file_path)[1].lower().strip('.')
         report["declared_type"] = ext
 
         try:
@@ -135,3 +136,7 @@ class SourceInspectionEngine:
             report["notes"].append(f"Erro de leitura de baixo nível: {str(e)}")
 
         return report
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Goleiro forense de inspeção de arquivos (Detecção de Magic Bytes e Fraude de Extensão)")

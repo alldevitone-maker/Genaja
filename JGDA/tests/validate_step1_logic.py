@@ -1,10 +1,13 @@
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, patch, PropertyMock
 import os
 import sys
 
-# Adicionar src ao path
-sys.path.append(os.path.join(os.getcwd(), 'src'))
+# Setup path
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(BASE_DIR, 'src'))
+
+from version import __version__
 
 from app.wizard_state import WizardState
 from ui_flet.views.step1_view import Step1View
@@ -30,20 +33,30 @@ class TestStep1Logic(unittest.TestCase):
         # Instanciar View com Mocks
         with patch('flet.Column.__init__', return_value=None):
             self.view = Step1View(self.state, self.on_next, self.on_pick_file)
-            # Re-init controls as we patched __init__
-            self.view.page = self.page
+            
+            # Persist the mock across tests using a patcher
+            self.page_patcher = patch.object(Step1View, 'page', new_callable=PropertyMock)
+            self.mock_page_prop = self.page_patcher.start()
+            self.mock_page_prop.return_value = self.page
+            
             self.view.controls = [None] * 10
             self.view.src_info = MagicMock(spec=ft.Text)
             self.view.tgt_info = MagicMock(spec=ft.Text)
             self.view.src_sheet_dropdown = MagicMock(spec=ft.Dropdown)
             self.view.btn_next = MagicMock(spec=ft.ElevatedButton)
+            self.view.sql_status_indicator = MagicMock()
             self.view.update = MagicMock()
+
+    def tearDown(self):
+        self.page_patcher.stop()
 
     def test_scenario_1_local_file_to_target(self):
         """Cenário 1: Local File -> Destino válido libera avanço."""
         self.state.source_type = "local_file"
         self.state.df_src = pd.DataFrame({"A": [1]})
         self.state.df_tgt = pd.DataFrame({"B": [2]})
+        self.state.path_tgt = "mock_tgt.xlsx"
+        self.state.workbook_tgt = {"Aba1": self.state.df_tgt}
         
         # Simular seleção de aba (dispara validação de botão)
         self.view._on_sheet_change("tgt", "Aba1")
@@ -127,7 +140,7 @@ class TestStep1Logic(unittest.TestCase):
         
         # Mock do dropdown UI
         dd = ft.Dropdown()
-        self.view._update_sheet_dropdown(dd, tables, None)
+        self.view._update_sheet_dropdown(dd, tables, None, "src")
         
         self.assertTrue(dd.visible)
 
@@ -161,12 +174,12 @@ class TestStep1Logic(unittest.TestCase):
 
 if __name__ == '__main__':
     # Relatório Compacto
-    print("\n🏁 INICIANDO VALIDAÇÃO EXECUTÁVEL DA LÓGICA DA UI v0.7.0")
+    print(f"\n--- INICIANDO VALIDACAO EXECUTAVEL DA LOGICA DA UI v{__version__} ---")
     print("-" * 50)
     suite = unittest.TestLoader().loadTestsFromTestCase(TestStep1Logic)
     result = unittest.TextTestRunner(verbosity=1).run(suite)
     
-    print("\n📦 RESULTADO POR CENÁRIO:")
-    print(f"✅ Cenários Sucesso: {result.testsRun - len(result.failures) - len(result.errors)}")
-    print(f"❌ Falhas técnicas: {len(result.failures) + len(result.errors)}")
+    print("\nRESULTADO POR CENARIO:")
+    print(f"OK Cenários Sucesso: {result.testsRun - len(result.failures) - len(result.errors)}")
+    print(f"ERR Falhas tecnicas: {len(result.failures) + len(result.errors)}")
     sys.exit(0 if result.wasSuccessful() else 1)

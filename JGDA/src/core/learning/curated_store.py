@@ -2,6 +2,7 @@ import os
 import json
 from typing import Dict, Optional, List
 from datetime import datetime
+from version import __version__
 
 class CuratedStore:
     """
@@ -24,7 +25,7 @@ class CuratedStore:
         return {
             "rules": {}, 
             "metadata": {
-                "version": "0.7.1", 
+                "version": __version__, 
                 "creator": "Master Agent Protocol",
                 "last_sync": ""
             }
@@ -67,4 +68,4 @@ class CuratedStore:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Gerenciador de regras curadas (Regras de Ouro) para mapeamento determinístico")
+_vdeclare(__name__, __version__, "Gerenciador de regras curadas (Regras de Ouro) para mapeamento determinístico")

@@ -1,30 +1,30 @@
-# 🛡️ PROTOCOLO DE ENGENHARIA E GOVERNANÇA GENAJA (v0.6.1 Alfa v2)
+# 🛡️ PROTOCOLO DE ENGENHARIA E GOVERNANÇA GENAJA (v0.7.1 Platinum)
 
-Este documento resume como o desenvolvimento do Genaja é blindado contra falhas e como mantemos a paridade entre código, design e documentação.
+Este documento estabelece as diretrizes invioláveis para o desenvolvimento, manutenção e lançamento do ecossistema **Genaja (JGDA)**. Ele garante que qualquer agente (IA ou Humano) mantenha a integridade estrutural do sistema em um release consistente.
 
-## 1. Versão Atual e Título
-> **Versão:** `0.6.1`
-> **Título:** `Alfa v2`
+## 1. Fonte Única de Verdade (Single Source of Truth)
+- **Versão:** Definida EXCLUSIVAMENTE em `src/version.py`. Nenhuma outra string de versão deve ser escrita manualmente no código ou na documentação.
+- **Título de Release:** Definido em `src/version.py` (ex: `__title__ = "Stable Governance"`).
 
-## 2. Padrões de Código
-- **GUI:** Flet (Pure Python Flutter.
-- **Core:** Motores desacoplados em `src/core/services/`.
-- **Temas:** Centralizados em `ThemeService`.
+## 2. Declaração de Módulos (Metadata Hooks)
+- Todo módulo funcional dentro de `src/` deve obrigatoriamente incluir o `version_hook.py`.
+- **Sintaxe Obrigatória:** 
+  ```python
+  from version_hook import declare as _vdeclare
+  from version import __version__
+  _vdeclare(__name__, __version__, "Breve descrição da função do módulo")
+  ```
 
-## 3. Fluxo de Lançamento (Release Flow)
-1. **Desenvolvimento:** Mudanças em `src/`.
-2. **Atualização de Versão:** Sincronizar `version.py`, `README.md` e `CHANGELOG.md`.
-3. **Validação:** Rodar `scripts/automate.py --quick`.
-4. **Backup:** Gerar ZIP via `scripts/make_backup.py`.
-5. **Commit/Push:** Só após validação bem-sucedida.
+## 3. Ritual de Release - "Manutenibilidade em um Clique"
+Para qualquer alteração de versão ou saneamento de documentação:
+1. **Sync Automático**: Execute `python scripts/automate.py --fix`. Isso atualizará READMEs, Compliance, Baseline, CHANGELOGs, Cargo.toml e JSON Registry.
+2. **Validação Rápida**: Execute `python scripts/automate.py --quick`. Este comando certifica que o sistema de boot e os motores principais não foram corrompidos.
+3. **Registry Audit**: Verifique `data/module_versions.json` para garantir que novos módulos foram registrados.
 
-## 4. Smoke Test Obrigatório
-Monitorar carregamento dos widgets críticos:
-- MainWindow
-- TitleBar
-- MappingPanel
-- SummaryPanel
-- ThemeEditor
+## 4. Política de Remoção de Resíduos (Zombie Purge)
+- Módulos órfãos (sem imports ativos em `src/`) devem ser deletados ou movidos para `archive/`. 
+- Testes que referenciam módulos deletados devem ser purgados imediatamente.
+- Dependências em `requirements.txt` devem ser auditadas trimestralmente para remover bibliotecas de stacks obsoletas (ex: PySide6/Qt).
 
 ---
-*Assinado: Motor de Governança Genaja (v0.6.1).*
+*Assinado: Motor de Governança Genaja (v0.7.1 Platinum Certified).*

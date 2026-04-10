@@ -1,21 +1,16 @@
 import sys
-from core.services.theme_service import ThemeService
-from core.services.config_service import ConfigService
-from core.services.etl_service import ETLService
-from core.engines.mapping_engine import MappingEngine
-from core.engines.validation_engine import ValidationEngine
 
 class AppBootstrap:
+    """
+    Orquestrador de Inicialização (Platinum Architecture).
+    Focado estritamente no disparo da UI Flet e serviços acoplados.
+    """
     def __init__(self):
-        # 🧪 SERVIÇOS NEUTROS
-        self.theme_service = ThemeService()
-        self.config_service = ConfigService()
-        self.etl_service = ETLService()
-        self.mapping_engine = MappingEngine()
-        self.validation_engine = ValidationEngine()
+        # Os serviços são agora inicializados sob demanda pela UI ou Injeção de Dependência.
+        pass
         
     def run(self):
-        # O Genaja agora é estritamente Flet (Platinum Architecture).
+        # O Genaja agora é estritamente Flet.
         # Fallback para Qt removido para garantir pureza da nova arquitetura.
         return self._run_flet()
 

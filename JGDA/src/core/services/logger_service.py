@@ -34,3 +34,23 @@ class LoggerService:
     def info(self, msg): logging.info(msg)
     def error(self, msg): logging.error(msg)
     def warning(self, msg): logging.warning(msg)
+    def exception(self, msg): logging.exception(msg)
+
+    @staticmethod
+    def read_last_logs(limit: int = 100):
+        """Lê as últimas N linhas do arquivo de log físico."""
+        log_file = os.path.join(LOGS_MOTOR_DIR, 'genaja_flet.log')
+        if not os.path.exists(log_file):
+            return ["Arquivo de log não encontrado."]
+        
+        try:
+            with open(log_file, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+                return [line.strip() for line in lines[-limit:]]
+        except Exception as e:
+            return [f"Erro ao ler logs: {str(e)}"]
+
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Serviço de logging centralizado com suporte a UTF-8 e auditoria")

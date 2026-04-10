@@ -1,4 +1,5 @@
 import flet as ft
+from version import __version__
 
 class IntentRouterView(ft.Container):
     """
@@ -12,7 +13,7 @@ class IntentRouterView(ft.Container):
         
         self.header = ft.Text("Quarentena Concluída. Escolha sua Intenção:", size=22, weight="bold")
         
-        # Cards simplificados temporariamente para a Base 0.7.1
+        # Cards simplificados temporariamente para a Genaja Stable
         self.card_a = ft.ElevatedButton("Modo A: Só Converter e Exportar", on_click=lambda _: self.router.handle_intent_decision("convert_only"))
         self.card_b = ft.ElevatedButton("Modo B: Tratar Esta Base", on_click=lambda _: self.router.handle_intent_decision("prepare_single"))
         self.card_c = ft.ElevatedButton("Modo C: Comparar com Destino/SQL", on_click=lambda _: self.router.handle_intent_decision("compare_sync"))
@@ -46,4 +47,4 @@ class IntentRouterView(ft.Container):
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "IntentRouterView estabilizada com Modo D (Price Sync) integrado")
+_vdeclare(__name__, __version__, "IntentRouterView estabilizada com Modo D (Price Sync) integrado")

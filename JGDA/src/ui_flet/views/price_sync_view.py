@@ -7,7 +7,7 @@ from tkinter import filedialog
 from ui_flet.theme import PlatinumTheme
 from ui_flet.views.base_view import RoutedViewMixin
 from core.services.config_service import ConfigService
-
+from version import __version__
 
 class PriceSyncView(ft.Container, RoutedViewMixin):
 
@@ -147,7 +147,7 @@ class PriceSyncView(ft.Container, RoutedViewMixin):
             ft.Row([
                 ft.Icon(ft.Icons.CURRENCY_EXCHANGE, color=ft.Colors.AMBER_400, size=28),
                 ft.Text("PRICE SYNC", size=26, weight="bold"),
-                ft.Text("v0.7.1 — Multi-Chave · Live Preview · IEEE 754 Fix",
+                ft.Text(f"v{__version__} — Multi-Chave · Live Preview · IEEE 754 Fix",
                         size=11, color=PlatinumTheme.TEXT_MUTED(), italic=True),
             ], alignment="center", spacing=12),
 

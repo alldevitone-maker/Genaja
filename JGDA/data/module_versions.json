@@ -1,94 +1,154 @@
 {
     "core.engines.mapping_engine": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Motor de mapeamento por intersecção de dados e heurística de nome"
     },
     "core.engines.validation_engine": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Motor de validação de chaves e limpeza de dados nulos/duplicados"
     },
     "core.engines.suggestion_engine": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Motor de sugestão de arquivos recentes por heurística de nome"
     },
     "core.engines.lookup_engine": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Adicionado multi_key_sync() — substitui PROCV/XLOOKUP com cascata multi-chave e IEEE 754 fix"
     },
     "core.engines.etl_engine": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Motor ETL puro estabilizado — padrão de sanitização e sync com shielding"
     },
     "ui_flet.views.intent_router_view": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "IntentRouterView estabilizada com Modo D (Price Sync) integrado"
     },
     "core.services.theme_service": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Serviço de temas dinâmicos com cálculo de luminância e bridge para Flet"
     },
     "core.paths": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Âncora de topologia de diretórios para o ecossistema Genaja (Brains, Shared, JGDA)"
     },
     "core.services.config_service": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Serviço de configuração resiliente com fusão de defaults e persistência JSON"
     },
     "app.wizard_state": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Gerenciador de estado global da sessão com suporte a múltiplos modos de operação"
     },
     "core.learning.learning_store": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Persistência de logs de execução e assinaturas de dataset p/ treinamento"
     },
     "core.learning.curated_store": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Gerenciador de regras curadas (Regras de Ouro) para mapeamento determinístico"
     },
     "core.learning.mega_store": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Núcleo de Inteligência Cognitiva de alta densidade com estratificação de confiança"
     },
     "migration.schema_mapper": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Motor de sugestão por similaridade fuzzy e distância de Levenshtein"
     },
     "core.learning.suggestion_engine": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Orquestrador de sugestões multi-origem (Mega Brain, Curated Rules e Fuzzy Name)"
     },
     "core.learning.learning_logger": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Orquestrador de telemetria e treinamento passivo de modelos probabilísticos"
     },
     "ui_flet.dialogs.file_intelligence_dialog": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Janela de inteligência de dados com preview de mapeamento"
     },
     "core.connectors.base_connector": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Classe base abstrata (Protocolo) para conectores Genaja"
     },
     "core.services.connector_factory": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Fábrica de adaptadores para suporte a arquivos locais e bancos SQL (SQLAlchemy lazy load)"
     },
     "ui_flet.dialogs.compatibility_dialog": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Diálogo de assistência ao usuário com explicações de confiança do núcleo de inferência cognitiva"
     },
     "core.services.audit_service": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Audit Service para conformidade LGPD (Art. 37) — Rastreabilidade total"
     },
     "ui_flet.flow_router": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Roteador central que orquestra a transição entre telas Flet baseada em estado"
     },
     "ui_flet.views.step0_inspection_view": {
-        "version": "0.7.1",
+        "version": "0.7.2",
         "changelog": "Interface forense para inspeção de cabeçalhos via Omni-data Engine"
+    },
+    "core.connectors.database_connector": {
+        "version": "0.7.2",
+        "changelog": "Implementação de conector SQL via SQLAlchemy com suporte a PostgreSQL, MSSQL, SQLite e MySQL"
+    },
+    "core.engines.loader_engine": {
+        "version": "0.7.2",
+        "changelog": "Motor de carga estabilizado com fallback de codificação e suporte a multi-abas"
+    },
+    "core.engines.source_inspection_engine": {
+        "version": "0.7.2",
+        "changelog": "Goleiro forense de inspeção de arquivos (Detecção de Magic Bytes e Fraude de Extensão)"
+    },
+    "core.engines.source_conversion_engine": {
+        "version": "0.7.2",
+        "changelog": "Core de conversão multi-formato (SAP XML, HTML, CSV) com correção automática"
+    },
+    "core.engines.transform_engine": {
+        "version": "0.7.2",
+        "changelog": "Orquestrador de Transformação (Facade) — Coordena Carga, Sync, Export e Audit"
+    },
+    "core.services.logger_service": {
+        "version": "0.7.2",
+        "changelog": "Serviço de logging centralizado com suporte a UTF-8 e auditoria"
+    },
+    "core.services.export_service": {
+        "version": "0.7.2",
+        "changelog": "Serviço de exportação multi-formato (Excel, CSV, JSON, SQL) com suporte a LGPD"
+    },
+    "ui_flet.theme": {
+        "version": "0.7.2",
+        "changelog": "Serviço de temas dinâmicos com cálculo de luminância e bridge para Flet"
+    },
+    "ui_flet.views.step1_view": {
+        "version": "0.7.2",
+        "changelog": "Interface Legada - Passo 1: Seleção de Fontes e Heurística de Cabeçalho"
+    },
+    "ui_flet.views.step2_view": {
+        "version": "0.7.2",
+        "changelog": "Interface Legada - Passo 2: Mapeamento de Chaves Primárias e Fallbacks"
+    },
+    "ui_flet.views.step3_view": {
+        "version": "0.7.2",
+        "changelog": "Interface Legada - Passo 3: Mapeamento de Atributos e Filtros de Sanitização"
+    },
+    "ui_flet.views.step4_view": {
+        "version": "0.7.2",
+        "changelog": "Interface Legada - Passo 4: Execução de ETL, Impact Preview e Escrita Final"
+    },
+    "ui_flet.views.logs_view": {
+        "version": "0.7.2",
+        "changelog": "Interface de auditoria tática com extração de logs do disco em tempo real"
+    },
+    "ui_flet.views.settings_view": {
+        "version": "0.7.2",
+        "changelog": "Interface de Configurações - Gestão de Preferências e Parâmetros de Operação"
+    },
+    "core.adapters.pandas_adapter": {
+        "version": "0.7.2",
+        "changelog": "Adapter para Pandas com suporte a excel e filtragem multi-chave"
     }
 }

@@ -109,7 +109,7 @@ async def main(page: ft.Page):
     def on_nav_change(e):
         idx = e.control.selected_index
         if idx == 0:
-            router.navigate("step0_quarantine")
+            router.navigate("intent_router")
         elif idx == 1:
             # logs (não suportado pelo router headless - injeção manual)
             view_container.content.controls.clear()
@@ -254,7 +254,7 @@ async def main(page: ft.Page):
     # A seleção agora é 100% via Tkinter (já testado no Step 0).
     
     # Navegar DEPOIS que o layout está no ar
-    router.navigate("step0_quarantine")
+    router.navigate("intent_router")
 
 if __name__ == "__main__":
     ft.app(target=main)

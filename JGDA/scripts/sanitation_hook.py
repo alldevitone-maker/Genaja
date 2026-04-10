@@ -3,7 +3,10 @@ import shutil
 import sys
 
 # Adicionar src ao path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(BASE_DIR, 'src'))
+
+from version import __version__
 
 from core.paths import LEARN_DIR
 
@@ -26,7 +29,7 @@ def detect_large_artifacts():
                 print(f"WARNING: Alerta: Arquivo grande detectado: {p} ({os.path.getsize(p)/1024/1024:.1f} MB)")
 
 def check_structure():
-    print("DIR: Verificando integridade da estrutura v0.7.0...")
+    print(f"DIR: Verificando integridade da estrutura v{__version__}...")
     required = [
         os.path.join(LEARN_DIR, "inbox"), 
         os.path.join(LEARN_DIR, "consolidated"), 
@@ -40,7 +43,7 @@ def check_structure():
             print(f"OK: Estrutura OK: {r}")
 
 def main():
-    print("--- Genaja Sanitation Hook v0.6.8 ---")
+    print(f"--- Genaja Sanitation Hook v{__version__} ---")
     clean_pycache()
     detect_large_artifacts()
     check_structure()

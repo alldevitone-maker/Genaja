@@ -1,10 +1,11 @@
 import logging
 from typing import Dict, Any, List, Tuple, Optional
+from version import __version__
 
 
 class TransformEngine:
     """
-    v0.7.1 - Orquestrador de Transformação (Facade Pattern).
+    Genaja Stable - Orquestrador de Transformação (Facade Pattern).
     NÃO contém lógica de dados própria. Delega para os motores canônicos:
       - LoaderEngine   → carga de arquivos
       - LookupEngine   → join/sync multi-chave
@@ -149,12 +150,7 @@ class TransformEngine:
 
         return result
 
-    @classmethod
-    def apply_pipeline(cls, df_source: Any, transform_plan: Dict[str, Any]) -> Dict[str, Any]:
-        """Stub para pipeline de transformações futuras."""
-        return {
-            "status": "pending",
-            "dataframe_final": None,
-            "dropped_columns": [],
-            "notes": ["Pipeline de transformação planejado para versão futura"]
-        }
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Orquestrador de Transformação (Facade) — Coordena Carga, Sync, Export e Audit")

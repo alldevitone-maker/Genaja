@@ -1,4 +1,5 @@
 import flet as ft
+from version import __version__
 import asyncio
 from core.engines.source_inspection_engine import SourceInspectionEngine
 
@@ -66,8 +67,8 @@ class Step0_InspectionView(ft.Container):
         self.row_actions = ft.Row([
             ft.OutlinedButton("Recomeçar Análise", icon=ft.Icons.RESTART_ALT, on_click=self.reset_view),
             ft.ElevatedButton(
-                content=ft.Text("Prosseguir Mapeamento ➡️", weight="bold"), 
-                on_click=lambda _: self.router.navigate("intent_router"), 
+                content=ft.Text("Prosseguir Tarefa ➡️", weight="bold"), 
+                on_click=lambda _: self.router.handle_intent_decision(self.state.operation_mode if self.state.operation_mode else "intent_router"), 
                 bgcolor="#00ff00", 
                 color="black"
             )
@@ -227,4 +228,4 @@ class Step0_InspectionView(ft.Container):
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Interface forense para inspeção de cabeçalhos via Omni-data Engine")
+_vdeclare(__name__, __version__, "Interface forense para inspeção de cabeçalhos via Omni-data Engine")

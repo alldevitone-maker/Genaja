@@ -2,6 +2,7 @@ import os
 import json
 import ast
 import subprocess
+from version import __version__
 from typing import Dict, Any
 import logging
 
@@ -12,11 +13,11 @@ from core.engines.source_conversion_engine import SourceConversionEngine
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Adaptador híbrido Rust/Python para inspeção e conversão universal de dados")
+_vdeclare(__name__, __version__, "Adaptador híbrido Rust/Python para inspeção e conversão universal de dados")
 
 class RustOmniAdapter:
     """
-    v0.7.1 - O Adapter Nativo Híbrido para o Omni-Data.
+    Genaja Stable - O Adapter Nativo Híbrido para o Omni-Data.
     
     [POLÍTICA OFICIAL DE FALLBACK]
     - Tentativa Primária: Subprocess isolado chamando `genaja_omni`

@@ -64,3 +64,7 @@ class SettingsView(ft.Column):
         self.page.overlay.append(snack)
         snack.open = True
         self.page.update()
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Interface de Configurações - Gestão de Preferências e Parâmetros de Operação")

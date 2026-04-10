@@ -1,4 +1,5 @@
 import os
+from version import __version__
 import json
 import hashlib
 from datetime import datetime
@@ -81,4 +82,4 @@ class LearningStore:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Persistência de logs de execução e assinaturas de dataset p/ treinamento")
+_vdeclare(__name__, __version__, "Persistência de logs de execução e assinaturas de dataset p/ treinamento")

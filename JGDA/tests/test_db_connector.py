@@ -1,13 +1,18 @@
+import sys
+import os
+# Setup path
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(BASE_DIR, 'src'))
+
 import unittest
 import pandas as pd
-import os
 import tempfile
 from sqlalchemy import create_engine, text
 from core.connectors.database_connector import DatabaseConnector
 
 class TestDatabaseConnector(unittest.TestCase):
     """
-    Testes de Unidade para o DatabaseConnector (v0.7.0 Patch).
+    Testes de Unidade para o DatabaseConnector (Genaja Stable).
     Valida o contrato BaseConnector usando SQLite temporário.
     """
 

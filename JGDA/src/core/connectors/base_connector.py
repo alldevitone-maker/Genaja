@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from version import __version__
 from pandas import DataFrame
 
 class BaseConnector(ABC):
@@ -7,7 +8,7 @@ class BaseConnector(ABC):
     Define a interface obrigatoria para todos os adaptadores de dados.
     """
     
-    # Política de expurgo de campos sensíveis (v0.7.1)
+    # Política de expurgo de campos sensíveis (Genaja Stable)
     SENSITIVE_KEYS = ["api_key", "token", "password", "secret"]
 
     def __init__(self, config: dict):
@@ -51,4 +52,4 @@ class BaseConnector(ABC):
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Classe base abstrata (Protocolo) para conectores Genaja")
+_vdeclare(__name__, __version__, "Classe base abstrata (Protocolo) para conectores Genaja")

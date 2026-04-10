@@ -2,6 +2,7 @@ import os
 import datetime
 import json
 from core.paths import AUDIT_DIR
+from version import __version__
 
 class AuditService:
     """
@@ -35,4 +36,4 @@ class AuditService:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Audit Service para conformidade LGPD (Art. 37) — Rastreabilidade total")
+_vdeclare(__name__, __version__, "Audit Service para conformidade LGPD (Art. 37) — Rastreabilidade total")

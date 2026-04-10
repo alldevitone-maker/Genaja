@@ -27,6 +27,7 @@ brains/
 shared/
 workspace/
 backups/
+docs/
 
 # --- GENAJA: ARQUIVOS OPERACIONAIS ---
 *.xlsx

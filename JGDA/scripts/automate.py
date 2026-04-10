@@ -4,9 +4,11 @@ import subprocess
 import argparse
 import re
 import datetime
+import json
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FREEZE_FILE = os.path.join(BASE_DIR, "FREEZE.lock")
+GENAJA_ROOT = os.path.dirname(BASE_DIR)
 
 def is_frozen():
     return os.path.exists(FREEZE_FILE)
@@ -50,7 +52,11 @@ def _fix_sync():
     # Update READMEs
     readme_files = [
         ('README.md', r'(> \*\*Versão Atual:\*\* `v).*?(` \().*?(\))', r'\g<1>' + version + r'\g<2>' + title + r'\g<3>'),
-        ('README.en.md', r'(> \*\*Current Version:\*\* `v).*?(` \().*?(\))', r'\g<1>' + version + r'\g<2>' + title + r'\g<3>')
+        ('README.en.md', r'(> \*\*Current Version:\*\* `v).*?(` \().*?(\))', r'\g<1>' + version + r'\g<2>' + title + r'\g<3>'),
+        ('SECURITY_COMPLIANCE.md', r'(\| \*\*Código Fonte\*\* \| Repositório Git \| Versionado \(v).*?(\) \|)', r'\g<1>' + version + r'\g<2>'),
+        ('SECURITY_COMPLIANCE.md', r'(\*Status: Compliance Audit v).*?( Completed\.\*)', r'\g<1>' + version + r'\g<2>'),
+        ('ENGINEERING_BASELINE.md', r'(# Genaja Engineering Baseline — v).*?( Stable)', r'\g<1>' + version + r'\g<2>'),
+        ('ENGINEERING_BASELINE.md', r'(\*Atualizado: v).*?( — \d{2}/\d{2}/\d{4}\*)', r'\g<1>' + version + r' — ' + datetime.date.today().strftime("%d/%m/%Y") + r'*'),
     ]
     
     import re
@@ -63,6 +69,34 @@ def _fix_sync():
             with open(path, 'w', encoding='utf-8') as f:
                 f.write(new_content)
             print(f"  -> Updated {filename}")
+
+    # Update Rust Engine (Cargo.toml)
+    cargo_path = os.path.join(GENAJA_ROOT, 'omni_rust', 'Cargo.toml') # Note: Needs GENAJA_ROOT
+    if os.path.exists(cargo_path):
+        with open(cargo_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        new_content = re.sub(r'(version = ")[^"]*(")', r'\g<1>' + version + r'\g<2>', content, count=1)
+        with open(cargo_path, 'w', encoding='utf-8') as f:
+            f.write(new_content)
+        print(f"  -> Updated Rust Engine (Cargo.toml)")
+
+    # Update Module Registry (JSON)
+    registry_path = os.path.join(BASE_DIR, 'data', 'module_versions.json')
+    if os.path.exists(registry_path):
+        import json
+        with open(registry_path, 'r', encoding='utf-8') as f:
+            registry = json.load(f)
+        
+        updated = False
+        for mod, info in registry.items():
+            if info.get("version") != version:
+                info["version"] = version
+                updated = True
+        
+        if updated:
+            with open(registry_path, 'w', encoding='utf-8') as f:
+                json.dump(registry, f, indent=4, ensure_ascii=False)
+            print(f"  -> Updated Module Registry (data/module_versions.json)")
 
 def _interactive_release():
     print("\n--- Modo Release Interativo ---")

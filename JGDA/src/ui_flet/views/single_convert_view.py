@@ -11,7 +11,7 @@ from ui_flet.views.base_view import RoutedViewMixin
 
 class SingleConvertView(ft.Container, RoutedViewMixin):
     """
-    v0.7.1 - Interface Exclusiva para Modo A (convert_only).
+    Genaja Stable - Interface Exclusiva para Modo A (convert_only).
     Desacoplada da Step2View clássica. Não pede arquivo Base 2.
     """
     def __init__(self, state, router):

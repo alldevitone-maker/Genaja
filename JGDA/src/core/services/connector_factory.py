@@ -1,5 +1,6 @@
 from core.connectors.base_connector import BaseConnector
-from adapters.pandas_adapter import PandasAdapter
+from version import __version__
+from core.adapters.pandas_adapter import PandasAdapter
 
 class ConnectorFactory:
     """
@@ -45,4 +46,4 @@ class ConnectorFactory:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Fábrica de adaptadores para suporte a arquivos locais e bancos SQL (SQLAlchemy lazy load)")
+_vdeclare(__name__, __version__, "Fábrica de adaptadores para suporte a arquivos locais e bancos SQL (SQLAlchemy lazy load)")

@@ -1,4 +1,5 @@
 import flet as ft
+from version import __version__
 
 class FileIntelligenceDialog(ft.AlertDialog):
     """
@@ -17,10 +18,6 @@ class FileIntelligenceDialog(ft.AlertDialog):
         src_info = f"{len(self.state.df_src.columns)} colunas, {len(self.state.df_src)} linhas" if self.state.df_src is not None else "N/A"
         tgt_info = f"{len(self.state.df_tgt.columns)} colunas, {len(self.state.df_tgt)} linhas" if self.state.df_tgt is not None else "N/A"
         
-        # Cores baseadas no tema
-        primary_color = "#2196F3"
-        success_color = "#4CAF50"
-
         # Sugestões (Lógica de Pré-Análise)
         common_cols = self.state.suggested_mapping.keys()
         common_text = f"Encontradas {len(common_cols)} correspondências." if common_cols else "Nenhum mapeamento automático óbvio."
@@ -83,4 +80,4 @@ class FileIntelligenceDialog(ft.AlertDialog):
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Janela de inteligência de dados com preview de mapeamento")
+_vdeclare(__name__, __version__, "Janela de inteligência de dados com preview de mapeamento")

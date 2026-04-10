@@ -1,6 +1,7 @@
 import json
 import os
 from core.paths import JGDA_DATA_DIR
+from version import __version__
 
 class ConfigService:
     # 🏁 SCHEMA PADRÃO
@@ -59,8 +60,8 @@ class ConfigService:
         # 1. Tenta acesso direto (raiz)
         val = self.config.get(key)
         
-        # 2. Se nǜo achou na raiz OU se o que achou Ǹ um dicionário (seo)
-        # mas quem chamou pode estar esperando um valor de dentro da seo
+        # 2. Se não achou na raiz OU se o que achou é um dicionário (seção)
+        # mas quem chamou pode estar esperando um valor de dentro da seção
         if val is None or isinstance(val, dict):
             for section, content in self.config.items():
                 if isinstance(content, dict) and key in content:
@@ -77,7 +78,7 @@ class ConfigService:
 
     def set(self, *args):
         """
-        Suporta chamadas flexveis:
+        Suporta chamadas flexíveis:
         - set(key, value)
         - set(section, key, value)
         """
@@ -91,7 +92,7 @@ class ConfigService:
         if not isinstance(self.config, dict):
             self.config = self.DEFAULTS.copy()
             
-        # Tenta localizar a seo se nǜo informada
+        # Tenta localizar a seção se não informada
         if section is None:
             for s, content in self.DEFAULTS.items():
                 if isinstance(content, dict) and key in content:
@@ -103,17 +104,10 @@ class ConfigService:
                 self.config[section] = {}
             self.config[section][key] = value
         else:
-            # Se nǜo for uma chave conhecida das sees, salva na raiz
+            # Se não for uma chave conhecida das seções, salva na raiz
             self.config[key] = value
             
         self.save_config()
-
-    def set_config(self, section, key, value):
-        if not isinstance(self.config, dict):
-            self.config = self.DEFAULTS.copy()
-        if section not in self.config:
-            self.config[section] = {}
-        self.config[section][key] = value
 
     def load_config(self, logger=None):
         """Carregamento resiliente com fusão profunda de defaults."""
@@ -158,4 +152,4 @@ class ConfigService:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Serviço de configuração resiliente com fusão de defaults e persistência JSON")
+_vdeclare(__name__, __version__, "Serviço de configuração resiliente com fusão de defaults e persistência JSON")

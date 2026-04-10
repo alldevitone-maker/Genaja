@@ -1,4 +1,5 @@
 import pandas as pd
+from version import __version__
 import re
 
 class MappingEngine:
@@ -64,4 +65,4 @@ class MappingEngine:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Motor de mapeamento por intersecção de dados e heurística de nome")
+_vdeclare(__name__, __version__, "Motor de mapeamento por intersecção de dados e heurística de nome")

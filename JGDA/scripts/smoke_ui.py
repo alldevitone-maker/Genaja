@@ -3,8 +3,14 @@ import time
 import sys
 import os
 
+# --- ANCORAGEM PARA IMPORT DE VERSÃO ---
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(BASE_DIR, 'src'))
+
+from version import __version__
+
 def smoke_test_ui():
-    print("--- INICIANDO SMOKE TEST DE UI (v0.7.0) ---")
+    print(f"--- INICIANDO SMOKE TEST DE UI (v{__version__}) ---")
     
     # Adiciona src ao PYTHONPATH para o subprocesso
     env = os.environ.copy()

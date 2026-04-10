@@ -1,4 +1,5 @@
 import os
+from version import __version__
 import glob
 from core.services.logger_service import LoggerService
 
@@ -50,4 +51,4 @@ class SuggestionEngine:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Motor de sugestão de arquivos recentes por heurística de nome")
+_vdeclare(__name__, __version__, "Motor de sugestão de arquivos recentes por heurística de nome")

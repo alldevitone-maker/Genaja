@@ -1,4 +1,5 @@
 import flet as ft
+from version import __version__
 
 class CompatibilityDialog(ft.AlertDialog):
     """
@@ -52,4 +53,4 @@ class CompatibilityDialog(ft.AlertDialog):
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Diálogo de assistência ao usuário com explicações de confiança do núcleo de inferência cognitiva")
+_vdeclare(__name__, __version__, "Diálogo de assistência ao usuário com explicações de confiança do núcleo de inferência cognitiva")

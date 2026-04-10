@@ -42,3 +42,9 @@ class PandasAdapter(BaseConnector):
     @staticmethod
     def filter_by_key(df, key_col, keys_set):
         return df[df[key_col].isin(keys_set)].copy()
+
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+from version import __version__
+_vdeclare(__name__, __version__, "Adapter para Pandas com suporte a excel e filtragem multi-chave")

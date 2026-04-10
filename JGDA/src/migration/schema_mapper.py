@@ -1,5 +1,8 @@
 import pandas as pd
+import re
 from typing import List, Dict, Optional, Tuple
+from version import __version__
+from version_hook import declare as _vdeclare
 
 class SchemaMapper:
     """
@@ -65,6 +68,7 @@ class SchemaMapper:
         return suggestions
 
 
+
+
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
-from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Motor de sugestão por similaridade fuzzy e distância de Levenshtein")
+_vdeclare(__name__, __version__, "Motor de sugestão por similaridade fuzzy e distância de Levenshtein")

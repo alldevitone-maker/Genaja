@@ -1,3 +1,5 @@
+from core.services.logger_service import LoggerService
+from version import __version__
 import pandas as pd
 import numpy as np
 import os
@@ -32,8 +34,7 @@ class ETLEngine:
         df_src_work = df_src.copy()
         df_tgt_work = df_tgt.copy()
         
-        # Identificar a Coluna A1 (Primeira coluna do destino) para proteção
-        # Identificar a Coluna A1 (Prioriza escolha do usuario ou primeira do destino)
+        # Identificar a Coluna A1 (Prioriza escolha do usuario ou primeira do destino) para proteção
         if a1_col_name is None:
             a1_col_name = df_tgt.columns[0]
         
@@ -124,4 +125,4 @@ class ETLEngine:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Motor ETL puro estabilizado — padrão de sanitização e sync com shielding")
+_vdeclare(__name__, __version__, "Motor ETL puro estabilizado — padrão de sanitização e sync com shielding")

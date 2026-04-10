@@ -13,10 +13,11 @@ from core.paths import (
     SHARED_DIR, RESULTS_DIR, LOGS_MOTOR_DIR,
     JGDA_DIR, ensure_dirs
 )
+from version import __version__
 
 # 2. SETUP SMOKE LOGGER
 ensure_dirs()
-smoke_log = os.path.join(LOGS_MOTOR_DIR, "smoke_test_070.log")
+smoke_log = os.path.join(LOGS_MOTOR_DIR, f"smoke_test_{__version__.replace('.', '')}.log")
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -25,7 +26,7 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
-logger = logging.getLogger("SMOKE_V070")
+logger = logging.getLogger(f"SMOKE_V{__version__.replace('.', '')}")
 
 def run_test(name, func):
     logger.info(f"--- RUNNING TEST: {name} ---")
@@ -81,7 +82,7 @@ def test_step4_etl_export():
     result = etl.synchronize(df_src, df_tgt, "ID", "ID", mapping)
     
     # Save to shared/results
-    out_path = os.path.join(RESULTS_DIR, "SMOKE_EXPORT_V070.xlsx")
+    out_path = os.path.join(RESULTS_DIR, f"SMOKE_EXPORT_{__version__.replace('.', '')}.xlsx")
     result.to_excel(out_path, index=False)
     logger.info(f"ETL Result exported to: {out_path}")
     return out_path
@@ -134,7 +135,7 @@ def main():
     results["BACKUPS"] = run_test("Backups Connectivity", test_backups)
     
     logger.info("\n" + "="*50)
-    logger.info("SMOKE TEST SUMMARY v0.7.1")
+    logger.info(f"SMOKE TEST SUMMARY v{__version__}")
     logger.info("="*50)
     
     all_pass = True
@@ -144,7 +145,7 @@ def main():
         if not status: all_pass = False
         
     if all_pass:
-        logger.info("\nCONGRATULATIONS: Runtime v0.7.1 is officially stable and valid.")
+        logger.info(f"\nCONGRATULATIONS: Runtime v{__version__} is officially stable and valid.")
     else:
         logger.error("\nCRITICAL: Runtime validation failed. Check smoke_stable.log.")
     

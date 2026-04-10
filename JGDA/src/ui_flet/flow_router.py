@@ -1,6 +1,7 @@
 import asyncio
 from app.wizard_state import WizardState
 from core.services.logger_service import LoggerService
+from version import __version__
 
 class FlowRouter:
     """
@@ -39,7 +40,7 @@ class FlowRouter:
                 if asyncio.iscoroutine(result):
                     asyncio.ensure_future(result)
         except Exception as e:
-             LoggerService().error(f"Erro ao montar Rota {key}: {e}")
+            LoggerService().error(f"Erro ao montar Rota {key}: {e}")
              
         self.page.update()
 
@@ -47,9 +48,16 @@ class FlowRouter:
         """
         O Acionador principal da Intenção do Operador.
         Altera o WizardState e dispara para a rota correspondente.
+        Se não houver arquivo carregado, redireciona para a Inspeção (Alfândega).
         """
         self.state.operation_mode = mode
         
+        # 🛡️ Guardião: Se não houver arquivo engatilhado, obriga a inspeção física
+        if not self.state.path_src and mode != "price_sync":
+            LoggerService().info(f"Redirecionado para Step 0 (Origem Ausente) para o modo: {mode}")
+            self.navigate("step0_quarantine")
+            return
+
         if mode == "convert_only":
             self.state.requires_target = False
             self.navigate("single_convert")
@@ -60,8 +68,11 @@ class FlowRouter:
             
         elif mode == "compare_sync":
             self.state.requires_target = True
-            # Preserva fluxo legado mantendo compatibilidade (Step 1 permite escolher a fonte Destino e acionar a I.A)
+            # Preserva fluxo legacy mantendo compatibilidade
             self.navigate("step1_legacy")
+            
+        elif mode == "price_sync":
+            self.navigate("price_sync")
             
         else:
             LoggerService().error(f"Modo desconhecido: {mode}")
@@ -69,4 +80,4 @@ class FlowRouter:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, "0.7.1", "Roteador central que orquestra a transição entre telas Flet baseada em estado")
+_vdeclare(__name__, __version__, "Roteador central que orquestra a transição entre telas Flet baseada em estado")

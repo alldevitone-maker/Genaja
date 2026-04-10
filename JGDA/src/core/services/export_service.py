@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import json
+from version import __version__
 
 class ExportService:
     def __init__(self):
@@ -23,7 +24,9 @@ class ExportService:
             return True
         
         elif ext == '.sql':
-            table_name = "genaja_export_v050"
+            # Nome da tabela dinâmico baseado na versão (ex: genaja_export_v071)
+            v_suffix = __version__.replace('.', '')
+            table_name = f"genaja_export_v{v_suffix}"
             with open(filepath, 'w', encoding='utf-8') as f:
                 f.write(f"-- Genaja Enterprise SQL Export\n")
                 f.write(f"-- Generated on: {pd.Timestamp.now()}\n\n")
@@ -51,3 +54,8 @@ class ExportService:
             return True
             
         return False
+
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Serviço de exportação multi-formato (Excel, CSV, JSON, SQL) com suporte a LGPD")

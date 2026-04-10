@@ -1,8 +1,17 @@
 # Changelog
 
-## [0.7.1] - 2026-04-09 (Stable Governance)
-- **Governance**: Final audit of the Universal Connector Strategy.
-- **Stability**: Refinement of registry patterns and credential handling.
+## [0.7.2] - 2026-04-10 (Security & SaaS UX)
+- **Data Saneamento (Leak Fix)**: Comprehensive shielding of the `docs/` folder and removal of sensitive city lists from the Git repository.
+- **SaaS UX (Home Page)**: Initial routing updated to the `IntentRouter` (Main Menu), enabling direct access to Modes A, B, C, and D.
+- **Adaptive Workflow Entry**: Inverted entry logic; Inspection (Step 0) is now triggered on-demand after intent selection if no file is present.
+- **Consolidated Governance**: Launch of the Agent Executive Protocol (`.agent_instructions.md`) for AI assistants.
+
+## [0.7.1] - 2026-04-10 (Stable Governance)
+- **Universal Dynamic Versioning**: Implemented centalized `__version__` hooks across Python (Core), Rust (Engine), and JSON (Registry).
+- **One-Click Maintenance**: Enhanced `automate.py` to recursively sync all metadata, documentation, and compliance files.
+- **Architectural Cleanup**: Permanent removal of 10+ zombie files and redundant modules (obsolete Qt dependencies, legacy converters).
+- **Security Compliance**: Global shielding of `brains/` and `shared/` directories; updated compliance docs for LGPD audit readiness.
+- **Stable UI**: Refined Flet views with dynamic versioning and localized runtime error handling.
 
 ## [0.7.0] - 2026-04-02 (Universal Connector Strategy)
 - **DatabaseConnector**: PostgreSQL, MySQL, SQLite support via SQLAlchemy 2.0.

@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 class RoutedViewMixin(ABC):
     """
-    v0.7.1 - Padrão Arquitetural 'Big Tech' (Contrato de View)
+    Genaja Stable - Padrão Arquitetural 'Big Tech' (Contrato de View)
     Garante que todas as instâncias injetadas no FlowRouter sigam a mesma 
     assinatura de ciclo de vida. Impede erros na instanciação e padroniza o offloading.
     """

@@ -5,13 +5,13 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from app.bootstrap import AppBootstrap
-from utils.logger_setup import setup_logger, get_logger
+from core.services.logger_service import LoggerService
 from version import __version__, __title__
 
 def main():
-    # 1. 🔍 INICIALIZAÇÃO DE GOVERNANÇA
-    setup_logger()
-    logger = get_logger()
+    # 1. 🔍 INICIALIZAÇÃO DE GOVERNANÇA (PLATINUM LOG)
+    LoggerService.setup()
+    logger = LoggerService()
     logger.info(f"--- {__title__} v{__version__} Initiated ---")
     
     try:

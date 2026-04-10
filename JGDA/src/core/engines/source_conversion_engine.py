@@ -1,9 +1,10 @@
 import os
 from typing import Dict, Any, List
+from version import __version__
 
 class SourceConversionEngine:
     """
-    v0.7.1 - Core de Desencriptação e Construção Secundária.
+    Genaja Stable - Core de Desencriptação e Construção Secundária.
     Especializado em sanear fontes reprovadas pela inspeção nativa.
     """
 
@@ -100,7 +101,7 @@ class SourceConversionEngine:
     def _convert_html_table(cls, file_path: str, result: Dict[str, Any], out_path: str, inspection_report: Dict[str, Any]) -> Dict[str, Any]:
         """Placeholder para conversão de Falso XLS baseado em HTML via Python nativo."""
         result["status"] = "error"
-        result["notes"].append("Extrator de HTML table mascarado ainda pendente na v0.7.1.")
+        result["notes"].append(f"Extrator de HTML table mascarado ainda pendente na v{__version__}.")
         return result
 
     @classmethod
@@ -121,9 +122,9 @@ class SourceConversionEngine:
             else:
                  df = pd.read_excel(file_path) # Tentativa genérica
             
-            # --- MAGIC MAGIC FIX ---
+            # --- MECANICA DE CORRECAO AUTOMATICA ---
             if inspection_report.get("magic_fix"):
-                logging.info("Aplicando Correções Mágicas (Automáticas)...")
+                logging.info("Aplicando Correções Automáticas de Integridade...")
                 df = cls.apply_magic_fixes(df)
             
             if out_path.lower().endswith('.csv'):
@@ -263,3 +264,7 @@ class SourceConversionEngine:
         except Exception as e:
             logging.error(f"Erro ao fazer amostra XML SAP: {e}")
             return []
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Core de conversão multi-formato (SAP XML, HTML, CSV) com correção automática")

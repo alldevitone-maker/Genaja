@@ -1,4 +1,4 @@
-# Genaja Engineering Baseline — v0.7.1 Stable
+# Genaja Engineering Baseline — v0.7.2 Stable
 
 Este documento estabelece as diretrizes arquiteturais e os limites de segurança para desenvolvedores e agentes de IA que atuam no ecossistema Genaja.
 
@@ -83,4 +83,4 @@ O Genaja implementa uma camada de assistência heurística desacoplada para gara
 * **Isolated Data Periphery**: Arquitetura orientada à privacidade (LGPD), onde todo o processamento e inteligência são mantidos estritamente em ambiente local (`Local-Only`).
 
 ---
-*Atualizado: v0.7.1 — 09/04/2026*
+*Atualizado: v0.7.2 — 10/04/2026*

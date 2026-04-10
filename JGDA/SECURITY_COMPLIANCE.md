@@ -8,7 +8,7 @@ O Genaja opera sob o princípio de **Local-Only Processing**. Todos os dados e a
 
 | Componente | Localização | Governança |
 | :--- | :--- | :--- |
-| **Código Fonte** | Repositório Git | Versionado (v0.7.1) |
+| **Código Fonte** | Repositório Git | Versionado (v0.7.2) |
 | **Cognitive Intelligence Store** | `brains/learn/` | **EXCLUÍDO** do Git (Blindagem Master) |
 | **Resultados (Excel/SQL)** | `shared/results/` | **EXCLUÍDO** do Git |
 | **Logs de Auditoria** | `shared/logs/` | **EXCLUÍDO** do Git |
@@ -29,4 +29,4 @@ O projeto utiliza um **.gitignore Mestre** centralizado que impede acidentalment
 - Logs de rastreabilidade ruidosos.
 
 ---
-*Status: Compliance Audit v0.7.1 Completed.*
+*Status: Compliance Audit v0.7.2 Completed.*
