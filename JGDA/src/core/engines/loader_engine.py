@@ -36,21 +36,62 @@ class LoaderEngine:
             return 0
 
     def find_best_header_from_df(self, df_temp):
-        """Versão que aceita DataFrame já carregado."""
+        """
+        Sensoriamento de Cabeçalho Universal (Cognitivo).
+        Não utiliza keywords fixas. Baseia-se em Unicidade, DNA de Dados e Taxonomia.
+        """
         try:
-            best_row = 0
-            best_score = -1
+            from core.engines.mdm.taxonomy_loader import TaxonomyLoader
+            # 1. Carregar conhecimento dinâmico (O que o sistema já 'conhece' sobre dados)
+            known_terms = set()
+            try:
+                taxonomy = TaxonomyLoader().load_all()
+                for cat in taxonomy:
+                    known_terms.update([t.upper() for t in cat.get("canonical_terms", [])])
+                    known_terms.update([s.upper() for s in cat.get("business_synonyms", [])])
+                    known_terms.update([a.upper() for a in cat.get("abbreviations", [])])
+            except Exception: pass
+
+            best_row, best_score = 0, -100.0
+            
+            # Padrões que definem "DADO" e não "CABEÇALHO" (DNA de Dados)
+            re_is_data = [
+                r'.*@.*\..*', # E-mail
+                r'\d{2,3}[\.\/-]\d{3}[\.\/-]\d{3}', # CPF/CNPJ ou similar
+                r'^\d+$', # Números puros
+                r'^\d{5,}-\d+$' # CEP ou IDs formatados
+            ]
 
             for i, row in df_temp.iterrows():
-                non_null_vals = row.dropna()
-                if non_null_vals.empty:
-                    continue
-                # Contagem de strings para densidade
-                str_count = sum(1 for x in non_null_vals if isinstance(x, str))
-                # Se houver empate, preferimos a primeira linha (balanceamento)
-                if str_count > best_score:
-                    best_score = str_count
-                    best_row = i
+                # Limpeza e detecção de nulidade
+                vals = row.dropna().astype(str).str.strip()
+                if vals.empty: continue
+                
+                raw_count = len(vals)
+                unique_vals = set(vals.str.upper())
+                unique_count = len(unique_vals)
+                
+                # --- CAMADA 1: ENTROPIA DE UNICIDADE (Peso 10.0) ---
+                # Headers tendem a ser nomes únicos de colunas. Dados tendem a se repetir.
+                uniqueness_ratio = unique_count / raw_count
+                score = uniqueness_ratio * 10.0
+                
+                # --- CAMADA 2: DNA DE DADOS (Penalidade Pesada) ---
+                # Se a linha contém padrões que 'parecem' dados, reduzimos o score.
+                for v in vals:
+                    if any(re.match(p, v) for p in re_is_data):
+                        score -= 4.0 # Penalidade por cada célula que parece dado
+                    if len(v) > 60:
+                        score -= 2.0 # Títulos de colunas dificilmente são strings imensas
+                
+                # --- CAMADA 3: TAXONOMIA DINÂMICA (Bônus de Especialista) ---
+                # Se a linha contém termos que o sistema já conhece no MDM.
+                matches_known = sum(1 for v in unique_vals if v in known_terms)
+                score += (matches_known * 2.5)
+
+                if score > best_score:
+                    best_score, best_row = score, i
+            
             return best_row
         except Exception:
             return 0
@@ -150,4 +191,4 @@ class LoaderEngine:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, __version__, "Motor de carga estabilizado com fallback de codificação e suporte a multi-abas")
+_vdeclare(__name__, __version__, "Motor de carga universal com sensoriamento cognitivo de cabeçalho e fallback robusto de codificação")

@@ -32,17 +32,27 @@ class SuggestionEngine:
         # Ordenar por data de modificação (mais recente primeiro)
         all_files.sort(key=lambda x: x['mtime'], reverse=True)
         
-        src_best = None
-        tgt_best = None
+        # Upgrade MDM: Classificação Inteligente de Arquivos
+        from core.engines.mdm.mdm_engine import MDMEngine
+        mdm = MDMEngine()
         
-        # Heurística: Nomes comuns
-        for f in all_files[:10]: # Analisar apenas os 10 mais recentes
-            if any(k in f['name'] for k in ['export', 'sap', 'origem', 'relatorio', 'report', 'src']):
+        for f in all_files[:15]: # Analisar os 15 mais recentes
+            res = mdm.resolve(f['name'])
+            
+            if res["category_code"] == "SRC_FILE" and res["status"] == "AUTO_CLASSIFIED":
                 if not src_best: src_best = f['path']
-            elif any(k in f['name'] for k in ['master', 'destino', 'final', 'tgt', 'base']):
+            elif res["category_code"] == "TGT_FILE" and res["status"] == "AUTO_CLASSIFIED":
                 if not tgt_best: tgt_best = f['path']
                 
-        # Fallback: Os dois mais recentes se não encontrar por nome
+        # Caso não encontre via MDM direto, tenta fallback nas chaves de negócio
+        if not src_best or not tgt_best:
+            for f in all_files[:10]:
+                res = mdm.resolve(f['name'])
+                # Se for financeiro ou fiscal, provavelmente é origem
+                if res["category_code"] in ["FIN", "FISC"] and not src_best:
+                    src_best = f['path']
+        
+        # Fallback Final: Os dois mais recentes se não encontrar por inteligência
         if not src_best and all_files: src_best = all_files[0]['path']
         if not tgt_best and len(all_files) > 1: tgt_best = all_files[1]['path']
         

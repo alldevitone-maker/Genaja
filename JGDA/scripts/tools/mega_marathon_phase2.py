@@ -12,9 +12,13 @@ from core.learning.mega_store import MegaKnowledgeStore
 from core.engines.loader_engine import LoaderEngine
 
 def main():
-    root_dir = os.getcwd()
-    source_dir = r"C:\Users\ti01\Desktop\learn manchine"
-    bigdata_dir = r"C:\Users\ti01\Desktop\BigData"
+    root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    source_dir = os.path.join(root_dir, "data", "marathon_source")
+    bigdata_dir = os.path.join(root_dir, "data", "bigdata")
+    
+    # Garantir que os diretórios existam para evitar crash de IO
+    os.makedirs(source_dir, exist_ok=True)
+    os.makedirs(bigdata_dir, exist_ok=True)
     
     # 1. Inicializar
     mega_store = MegaKnowledgeStore(root_dir)
@@ -99,7 +103,8 @@ def main():
         "knowledge_density": len(mega_store.data['associations']),
         "brain_location": mega_store.storage_path
     }
-    with open(r"C:\Users\ti01\Desktop\ULTIMATE_BRAIN_REPORT_v0.6.7.json", "w") as f:
+    report_path = os.path.join(root_dir, "data", "ULTIMATE_BRAIN_REPORT.json")
+    with open(report_path, "w") as f:
         json.dump(report, f, indent=4)
 
     print(f"--- MEGA-MARATONA FASE 2 FINALIZADA EM {total_time:.1f}s ---")

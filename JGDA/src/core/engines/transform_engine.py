@@ -33,28 +33,13 @@ class TransformEngine:
         """
         Facade de sincronização de preços multi-chave.
         Delega 100% para LoaderEngine + LookupEngine + ExportService + AuditService.
-
-        Args:
-            path_origem: Caminho da tabela de preços
-            path_destino: Caminho do arquivo destino
-            col_chave_origem: Coluna chave principal na tabela de preços
-            col_valor_origem: Coluna de preço na tabela de preços
-            col_chave_destino: Coluna chave principal no destino
-            col_destino_preencher: Coluna do destino que receberá o valor
-            chaves_alternativas: Pares extras [(col_dest, col_orig)] para cascata
-            sheet_origem: Aba do Excel na origem (nome ou índice)
-            sheet_destino: Aba do Excel no destino (nome ou índice)
-            out_path: Caminho de saída. Se None, usa pasta do destino.
-            operator: Nome do operador para log de auditoria.
-
-        Returns:
-            { success, output_path, matched_total, unmatched, passes, warnings }
         """
         from core.engines.loader_engine import LoaderEngine
         from core.engines.lookup_engine import LookupEngine
         from core.services.export_service import ExportService
         from core.services.audit_service import AuditService
         import os
+        import pandas as pd
 
         result = {
             "success": False,
@@ -71,49 +56,28 @@ class TransformEngine:
         auditor = AuditService(operator=operator)
 
         try:
-            # ── CARREGAR via LoaderEngine (robusto, multi-encoding, multi-aba) ──
-            logging.info(f"[TransformEngine] Carregando origem: {path_origem}")
+            # ── CARREGAR ──
             wb_orig, _ = loader.load_workbook(path_origem)
             sheet_orig_key = sheet_origem if isinstance(sheet_origem, str) else list(wb_orig.keys())[sheet_origem]
             df_orig = wb_orig.get(sheet_orig_key)
-            if df_orig is None:
-                result["warnings"].append(f"Aba '{sheet_orig_key}' não encontrada na origem. Abas: {list(wb_orig.keys())}")
-                return result
 
-            logging.info(f"[TransformEngine] Carregando destino: {path_destino}")
             wb_dest, _ = loader.load_workbook(path_destino)
             sheet_dest_key = sheet_destino if isinstance(sheet_destino, str) else list(wb_dest.keys())[sheet_destino]
             df_dest = wb_dest.get(sheet_dest_key)
-            if df_dest is None:
-                result["warnings"].append(f"Aba '{sheet_dest_key}' não encontrada no destino. Abas: {list(wb_dest.keys())}")
-                return result
-
-            logging.info(f"[TransformEngine] Origem: {len(df_orig)} linhas | Destino: {len(df_dest)} linhas")
-
-            # ── VALIDAR COLUNAS ──
-            for col in [col_chave_origem, col_valor_origem]:
-                if col not in df_orig.columns:
-                    result["warnings"].append(f"Coluna '{col}' não encontrada na origem. Disponíveis: {list(df_orig.columns)}")
-                    return result
-            if col_chave_destino not in df_dest.columns:
-                result["warnings"].append(f"Coluna '{col_chave_destino}' não encontrada no destino. Disponíveis: {list(df_dest.columns)}")
-                return result
 
             # ── MONTAR CASCATA DE CHAVES ──
-            # Chave primária sempre primeiro, alternativas em sequência
             pares = [(col_chave_destino, col_chave_origem)]
             if chaves_alternativas:
                 pares.extend(chaves_alternativas)
 
-            # ── SINCRONIZAR via LookupEngine (dono canônico do PROCV/XLOOKUP) ──
-            logging.info(f"[TransformEngine] Executando multi_key_sync com {len(pares)} par(es) de chave...")
+            # ── SINCRONIZAR via LookupEngine ──
             sync_result = lookup.multi_key_sync(
                 df_orig=df_orig,
                 df_dest=df_dest,
                 pares_chave=pares,
                 col_valor=col_valor_origem,
                 col_preencher=col_destino_preencher,
-                sanitizar_monetario=True  # IEEE 754 fix automático
+                sanitizar_monetario=True
             )
 
             df_final = sync_result["df_resultado"]
@@ -121,16 +85,27 @@ class TransformEngine:
             result["unmatched"] = sync_result["unmatched"]
             result["passes"] = sync_result["passes"]
 
-            # ── EXPORTAR via ExportService (único exportador do projeto) ──
+            # ── EXPORTAR CIRÚRGICO (Preservação de Matriz e Fórmulas) ──
             if out_path is None:
                 base = os.path.splitext(path_destino)[0]
                 out_path = base + "_SYNC.xlsx"
-                result["output_path"] = out_path
+            
+            result["output_path"] = out_path
 
-            exporter.export(df_final, out_path, format_type=None)
-            logging.info(f"[TransformEngine] Exportado: {out_path}")
+            # 1. Clonar o template original para preservar TUDO (Abas, Fórmulas, Estilos)
+            import shutil
+            if not os.path.exists(out_path):
+                shutil.copy(path_destino, out_path)
+            
+            # 2. Injetar cirurgicamente apenas os valores cruzados
+            exporter.export(
+                df_final, 
+                out_path, 
+                sheet_name=sheet_dest_key, 
+                key_col=col_chave_destino
+            )
 
-            # ── AUDITORIA LGPD (Art. 37 — rastreabilidade) ──
+            # ── AUDITORIA LGPD ──
             auditor.record_sync(
                 src_file=path_origem,
                 tgt_file=path_destino,
@@ -138,11 +113,6 @@ class TransformEngine:
             )
 
             result["success"] = True
-
-            if result["unmatched"] > 0:
-                result["warnings"].append(
-                    f"{result['unmatched']} linhas sem correspondência de preço."
-                )
 
         except Exception as e:
             logging.error(f"[TransformEngine] Erro crítico: {e}")
@@ -153,4 +123,4 @@ class TransformEngine:
 
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, __version__, "Orquestrador de Transformação (Facade) — Coordena Carga, Sync, Export e Audit")
+_vdeclare(__name__, __version__, "Restaurado price_sync_join() para compatibilidade com a UI e fix NameError pd")

@@ -12,16 +12,14 @@ class ETLEngine:
     
     def sanitize_series(self, series, trim=True, upper=False, preserve_zeros=True):
         """Padronização de chaves e dados."""
-        if preserve_zeros:
-            # Converte para string e limpa apenas o .0 se existir no final
-            s = series.astype(str).str.replace(r'\.0$', '', regex=True)
-        else:
-            # Comportamento agressivo: tenta converter para numerico e volta (remove zeros a esquerda)
-            s = pd.to_numeric(series, errors='coerce').fillna(series).astype(str).str.replace(r'\.0$', '', regex=True)
-            
-        if trim: s = s.str.strip()
-        if upper: s = s.str.upper()
-        return s.replace('nan', '')
+        from core.engines.mdm.algorithms.normalizer import Normalizer
+        
+        def _apply_mdm(v):
+            if v is None or str(v).lower() in ("nan", "none", ""):
+                return v if preserve_zeros else None
+            return Normalizer.deep_clean(v).upper() if upper else Normalizer.deep_clean(v)
+
+        return series.apply(_apply_mdm)
 
     def synchronize(self, df_src, df_tgt, key_src, key_tgt, mapping, 
                     protected_a1=True, shielding=False, 

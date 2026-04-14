@@ -216,6 +216,7 @@ class Step0_InspectionView(ft.Container):
         
         self.state.inspection_report = report
         self.state.source_ready = True
+        self.state.path_src = self.file_path # Destrava o Guardião do FlowRouter
         
         # Popula o Operation Plan
         self.state.operation_plan["source_a"] = self.file_path

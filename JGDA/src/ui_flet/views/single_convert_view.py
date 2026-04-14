@@ -180,8 +180,8 @@ class SingleConvertView(ft.Container, RoutedViewMixin):
             self.lbl_info.value = f"Matriz isolada ({engine_str})!\nSalvo em: {os.path.basename(extracted)}"
             self.lbl_info.color = ft.Colors.GREEN_400
             
-            # Botão Extra Pós-Rotina (Abrir Pasta OS) - Limpeza de duplicados
-            self.content.controls = [c for c in self.content.controls if not isinstance(c, ft.ElevatedButton) or c.text != "Abrir Local do Arquivo"]
+            # Botão Extra Pós-Rotina (Abrir Pasta OS) - Limpeza de duplicados pragmática
+            self.content.controls = [c for c in self.content.controls if not (isinstance(c, ft.ElevatedButton) and getattr(c, "text", None) == "Abrir Local do Arquivo")]
             
             def open_dir(e):
                 folder = os.path.dirname(extracted)

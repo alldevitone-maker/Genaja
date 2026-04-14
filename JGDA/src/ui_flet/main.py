@@ -256,5 +256,10 @@ async def main(page: ft.Page):
     # Navegar DEPOIS que o layout está no ar
     router.navigate("intent_router")
 
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Orquestrador principal da UI Flet (Padrão Platinum)")
+
 if __name__ == "__main__":
     ft.app(target=main)

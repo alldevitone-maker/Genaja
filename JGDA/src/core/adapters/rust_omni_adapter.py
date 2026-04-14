@@ -47,6 +47,30 @@ class RustOmniAdapter:
         return ""
 
     @classmethod
+    def fuzzy_compare(cls, input_val: str, candidates: list) -> Dict[str, Any]:
+        """
+        Aceleração Nativa para Similarity Matching (Fuzzy).
+        Envia o input e candidatos para o motor Rust e retorna os scores.
+        """
+        bin_path = cls._get_bin_path()
+        if bin_path:
+            try:
+                # Payload JSON para o Rust
+                payload = json.dumps({"input": input_val, "candidates": candidates})
+                result = subprocess.run(
+                    [bin_path, "fuzzy", payload],
+                    capture_output=True,
+                    text=True,
+                    timeout=2 
+                )
+                if result.returncode == 0:
+                    return json.loads(result.stdout)
+            except Exception as e:
+                logging.debug(f"Rust Fuzzy Boost indisponível: {e}")
+        
+        return None
+
+    @classmethod
     def inspect(cls, file_path: str) -> Dict[str, Any]:
         """Tenta Inspecionar via Rust. Fallback via Python se falhar."""
         bin_path = cls._get_bin_path()

@@ -77,6 +77,14 @@ class WizardState:
         self.suggested_mapping = {}
         self.validation_summary = {}
         self.suggested_source = "none" # "history", "fuzzy", "exact"
+        
+        # --- SMART MVF NORMALIZER (MDM 1:N) ---
+        self.mvf_active = False
+        self.mvf_source_col = None     # ex: 'E-mail' ou 'Nr Telefone'
+        self.mvf_id_col = None         # ex: 'Cdigo'
+        self.mvf_header_df = None      # Header Node (1:1)
+        self.mvf_detail_df = None      # Detail Node (1:N)
+        self.mvf_report = {}           # Audit do split
 
     def set_source_type(self, new_type: str):
         """Alterna a fonte de dados e limpa estados irrelevantes."""
@@ -134,4 +142,4 @@ class WizardState:
 from typing import Dict, Any, List, Optional
 from version import __version__
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, __version__, "Gerenciador de estado global da sessão com suporte a múltiplos modos de operação")
+_vdeclare(__name__, __version__, "Estado Global: Sessão adaptativa com suporte a persistência MVF 1:N")

@@ -116,7 +116,28 @@ class SourceConversionEngine:
             if file_path.lower().endswith(('.xlsx', '.xlsm')):
                  df = pd.read_excel(file_path, engine='openpyxl')
             elif file_path.lower().endswith('.xls'):
-                 df = pd.read_excel(file_path, engine='xlrd')
+                 try:
+                     df = pd.read_excel(file_path, engine='xlrd')
+                 except Exception as e:
+                     # 🚨 L2: Fallback MDM para XLS legado corrompido ou com bytes ERP (0x8D)
+                     if "codec" in str(e).lower() or "charmap" in str(e).lower():
+                         logging.warning("⚠️ Falha de charmap detectada. Acionando Fallback Universal (latin1)...")
+                         import xlrd
+                         # Latin1 nunca falha na decodificação pois mapeia todos os 256 bytes
+                         book = xlrd.open_workbook(file_path, encoding_override='latin1')
+                         sheet = book.sheet_by_index(0)
+                         rows_data = []
+                         for r in range(sheet.nrows):
+                             rows_data.append([sheet.cell_value(r, c) for c in range(sheet.ncols)])
+                         
+                         if rows_data:
+                             headers = rows_data[0]
+                             data = rows_data[1:]
+                             df = pd.DataFrame(data, columns=headers)
+                         else:
+                             raise e
+                     else:
+                         raise e
             elif file_path.lower().endswith(('.csv', '.txt')):
                  df = pd.read_csv(file_path, sep=None, engine='python')
             else:
@@ -203,8 +224,23 @@ class SourceConversionEngine:
                         # É um XML mascarado — usar o parser XML direto
                         return cls._sample_xml_spreadsheet(file_path, limit)
                     else:
-                        df = pd.read_excel(file_path, engine='xlrd', nrows=limit)
-                        return df.head(limit).to_dict('records')
+                        try:
+                            df = pd.read_excel(file_path, engine='xlrd', nrows=limit)
+                            return df.head(limit).to_dict('records')
+                        except Exception as e:
+                            # 🚨 L2: Fallback Forense para XLS legado 'sujo'
+                            if "codec" in str(e).lower() or "charmap" in str(e).lower():
+                                import xlrd
+                                book = xlrd.open_workbook(file_path, encoding_override='latin1')
+                                sheet = book.sheet_by_index(0)
+                                headers = [str(sheet.cell_value(0, c)) for c in range(sheet.ncols)]
+                                rows = []
+                                for r in range(1, min(sheet.nrows, limit + 1)):
+                                    row_dict = {headers[c]: sheet.cell_value(r, c) for c in range(sheet.ncols)}
+                                    rows.append(row_dict)
+                                return rows
+                            else:
+                                raise e
                 except Exception:
                     return cls._sample_xml_spreadsheet(file_path, limit)
 

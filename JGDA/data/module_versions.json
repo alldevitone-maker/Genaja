@@ -5,7 +5,7 @@
     },
     "core.engines.validation_engine": {
         "version": "0.7.2",
-        "changelog": "Motor de validação de chaves e limpeza de dados nulos/duplicados"
+        "changelog": "Motor MDM: Validação de chaves e Smart MVF Normalizer (Split 1:N)"
     },
     "core.engines.suggestion_engine": {
         "version": "0.7.2",
@@ -13,7 +13,7 @@
     },
     "core.engines.lookup_engine": {
         "version": "0.7.2",
-        "changelog": "Adicionado multi_key_sync() — substitui PROCV/XLOOKUP com cascata multi-chave e IEEE 754 fix"
+        "changelog": "Restaurado multi_key_sync() para compatibilidade com a UI"
     },
     "core.engines.etl_engine": {
         "version": "0.7.2",
@@ -37,7 +37,7 @@
     },
     "app.wizard_state": {
         "version": "0.7.2",
-        "changelog": "Gerenciador de estado global da sessão com suporte a múltiplos modos de operação"
+        "changelog": "Estado Global: Sessão adaptativa com suporte a persistência MVF 1:N"
     },
     "core.learning.learning_store": {
         "version": "0.7.2",
@@ -97,7 +97,7 @@
     },
     "core.engines.loader_engine": {
         "version": "0.7.2",
-        "changelog": "Motor de carga estabilizado com fallback de codificação e suporte a multi-abas"
+        "changelog": "Motor de carga universal com sensoriamento cognitivo de cabeçalho e fallback robusto de codificação"
     },
     "core.engines.source_inspection_engine": {
         "version": "0.7.2",
@@ -109,7 +109,7 @@
     },
     "core.engines.transform_engine": {
         "version": "0.7.2",
-        "changelog": "Orquestrador de Transformação (Facade) — Coordena Carga, Sync, Export e Audit"
+        "changelog": "Restaurado price_sync_join() para compatibilidade com a UI e fix NameError pd"
     },
     "core.services.logger_service": {
         "version": "0.7.2",
@@ -117,7 +117,7 @@
     },
     "core.services.export_service": {
         "version": "0.7.2",
-        "changelog": "Serviço de exportação multi-formato (Excel, CSV, JSON, SQL) com suporte a LGPD"
+        "changelog": "Serviço de exportação enterprise com injeção cirúrgica de dados"
     },
     "ui_flet.theme": {
         "version": "0.7.2",
@@ -150,5 +150,53 @@
     "core.adapters.pandas_adapter": {
         "version": "0.7.2",
         "changelog": "Adapter para Pandas com suporte a excel e filtragem multi-chave"
+    },
+    "core.adapters.rust_omni_adapter": {
+        "version": "0.7.2",
+        "changelog": "Adaptador híbrido Rust/Python para inspeção e conversão universal de dados"
+    },
+    "core.engines.mdm.mdm_engine": {
+        "version": "0.7.2",
+        "changelog": "Motor MDM Enterprise Unificado com Inteligência de Purificação e Persona Extraction"
+    },
+    "ui_flet.views.single_prep_view": {
+        "version": "0.7.2",
+        "changelog": "Interface de preparação e Split Inteligente MDM 1:N com resiliência UI"
+    },
+    "version_hook": {
+        "version": "0.7.2",
+        "changelog": "Módulo mestre de governança e rastreabilidade de versão"
+    },
+    "__main__": {
+        "version": "0.7.2",
+        "changelog": "Ponto de entrada (Bootstrap) do Sistema Genaja Platinum"
+    },
+    "ui_flet.main": {
+        "version": "0.7.2",
+        "changelog": "Orquestrador principal da UI Flet (Padrão Platinum)"
+    },
+    "core.engines.mdm.algorithms.normalizer": {
+        "version": "0.7.2",
+        "changelog": "Módulo de higienização de strings e normalização Unicode"
+    },
+    "core.engines.mdm.algorithms.exact_matcher": {
+        "version": "0.7.2",
+        "changelog": "Motor de busca exata otimizado com pré-indexação de taxonomia"
+    },
+    "core.engines.mdm.algorithms.pattern_matcher": {
+        "version": "0.7.2",
+        "changelog": "Motor de reconhecimento de padrões otimizado com pré-compilação regex"
+    },
+    "core.engines.mdm.algorithms.fuzzy_matcher": {
+        "version": "0.7.2",
+        "changelog": "Motor de busca difusa otimizado com cache de candidatos e bridge nativa"
+    },
+    "ui_flet.components.result_card": {
+        "version": "0.7.2",
+        "changelog": "Componente visual para gestão de sessões de extração MDM v0.7.2"
+    },
+    "ui_flet.components.contact_kanban": {
+        "version": "0.7.2",
+        "changelog": "Componente Kanban de curadoria MDM com mapeamento flexível de taxonomia"
     }
 }

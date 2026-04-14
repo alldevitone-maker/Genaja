@@ -1,0 +1,114 @@
+{
+  "project": "Genaja MDM Governance",
+  "settings": {
+    "thresholds": {
+      "auto_classify": 0.85,
+      "human_review": 0.45,
+      "ambiguity_margin_min": 0.10,
+      "fuzzy_min_score": 0.78
+    },
+    "weights": {
+      "canonical_exact": 1.0,
+      "business_synonym": 0.95,
+      "abbreviation": 0.90,
+      "known_typo": 0.88,
+      "pattern_hit": 0.88,
+      "fuzzy_multiplier": 0.75
+    }
+  },
+  "taxonomy": [
+    {
+      "code": "FIN",
+      "label": "FINANCEIRO",
+      "canonical_terms": ["financeiro"],
+      "business_synonyms": ["contas a pagar", "contas a receber", "tesouraria", "pagamento", "cobrança", "cashier"],
+      "abbreviations": ["fin", "finan", "cp", "cr"],
+      "known_typos": ["fincneiro", "fiananceiro"],
+      "patterns": ["^fin.*", ".*pagar.*", ".*receber.*", ".*cobranca.*"],
+      "boost": 1.10,
+      "position": "Financeiro"
+    },
+    {
+      "code": "FISC",
+      "label": "FISCAL",
+      "canonical_terms": ["fiscal"],
+      "business_synonyms": ["nota fiscal", "nota fiscal eletronica", "contabil", "contabilidade", "imposto", "tributario", "recebimento", "xml"],
+      "abbreviations": ["nf", "nfe", "danfe", "receb", "contab"],
+      "known_typos": ["fiscl", "fisc"],
+      "patterns": ["^fisc.*", ".*nota[ ]fiscal.*", ".*receb.*", ".*xml.*"],
+      "boost": 1.05,
+      "position": "Fiscal"
+    },
+    {
+      "code": "COMP",
+      "label": "COMPRAS",
+      "canonical_terms": ["compras"],
+      "business_synonyms": ["suprimentos", "comprador", "aquisicao", "procurement"],
+      "abbreviations": ["comp", "compr"],
+      "known_typos": ["copmras"],
+      "patterns": ["^comp.*", ".*suprim.*", ".*comprad.*"],
+      "boost": 1.05,
+      "position": "Suprimentos"
+    },
+    {
+      "code": "ADM",
+      "label": "ADMINISTRATIVO",
+      "canonical_terms": ["administrativo"],
+      "business_synonyms": ["secretaria", "recepção", "diretoria", "gerencia", "apoio"],
+      "abbreviations": ["adm", "admin"],
+      "known_typos": [],
+      "patterns": ["^adm.*", ".*gestao.*", ".*diret.*"],
+      "boost": 1.00,
+      "position": "Administrativo"
+    },
+    {
+      "code": "LOG",
+      "label": "LOGÍSTICA",
+      "canonical_terms": ["logística"],
+      "business_synonyms": ["expedição", "entrega", "transporte", "frete", "warehouse"],
+      "abbreviations": ["log", "exped"],
+      "known_typos": ["logstica"],
+      "patterns": ["^log.*", ".*exped.*", ".*entreg.*", ".*transp.*"],
+      "boost": 1.00,
+      "position": "Operacional"
+    },
+    {
+      "code": "MNT",
+      "label": "MANUTENÇÃO",
+      "canonical_terms": ["manutenção"],
+      "business_synonyms": ["equipamentos", "oficina", "frota", "peças", "assistencia tecnica"],
+      "abbreviations": ["manut", "serv"],
+      "known_typos": [],
+      "patterns": [".*manut.*", ".*equip.*", ".*ofic.*"],
+      "boost": 1.00,
+      "position": "Operacional"
+    },
+    {
+      "code": "RH",
+      "label": "RECURSOS HUMANOS",
+      "canonical_terms": ["rh"],
+      "business_synonyms": ["dp", "pessoal", "talento", "vagas", "treinamento"],
+      "abbreviations": ["rh", "dp"],
+      "known_typos": [],
+      "patterns": ["^rh.*", ".*pessoal.*", ".*recrut.*"],
+      "boost": 1.00,
+      "position": "Recursos Humanos"
+    },
+    {
+      "code": "VEND",
+      "label": "COMERCIAL/VENDAS",
+      "canonical_terms": ["vendas"],
+      "business_synonyms": ["comercial", "vendedor", "faturamento", "orcamento"],
+      "abbreviations": ["com", "vend"],
+      "known_typos": [],
+      "patterns": ["^vend.*", ".*comerc.*", ".*vended.*"],
+      "boost": 1.00,
+      "position": "Vendas"
+    }
+  ],
+  "exceptions": {
+    "blocked_terms": ["sac", "contato", "site", "web", "suporte", "no-reply"],
+    "force_review_terms": ["gerencia", "fiscal.pessoal", "contas"],
+    "unknown_defaults": ["GERAL", "OUTROS"]
+  }
+}

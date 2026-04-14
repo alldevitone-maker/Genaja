@@ -24,5 +24,10 @@ def main():
         logger.exception("FATAL ERROR during startup")
         sys.exit(1)
 
+
+# --- Declaração de Versão do Módulo (Genaja Version Hook) ---
+from version_hook import declare as _vdeclare
+_vdeclare(__name__, __version__, "Ponto de entrada (Bootstrap) do Sistema Genaja Platinum")
+
 if __name__ == "__main__":
     main()

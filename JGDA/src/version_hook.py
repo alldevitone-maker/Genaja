@@ -66,3 +66,6 @@ def _save(registry: dict) -> None:
     os.makedirs(os.path.dirname(_REGISTRY_PATH), exist_ok=True)
     with open(_REGISTRY_PATH, "w", encoding="utf-8") as f:
         json.dump(registry, f, indent=4, ensure_ascii=False)
+
+# --- Auto-declaração de Governança Platinum ---
+declare(__name__, __version__, "Módulo mestre de governança e rastreabilidade de versão")

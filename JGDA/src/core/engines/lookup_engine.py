@@ -38,17 +38,6 @@ class LookupEngine:
         """
         Genaja Stable - Sincronização em cascata multi-chave (substitui PROCX do Excel).
         Cada par de chave é tentado em sequência apenas para as linhas ainda sem match.
-
-        Args:
-            df_orig: DataFrame da tabela de preços (origem)
-            df_dest: DataFrame do arquivo destino
-            pares_chave: lista de tuplas [(col_destino, col_origem), ...]
-            col_valor: coluna do preço na origem
-            col_preencher: coluna do destino que receberá o valor
-            sanitizar_monetario: se True, aplica fix IEEE 754 (Decimal 2 casas)
-
-        Returns:
-            { success, df_resultado, passes: [{chave_dest, chave_orig, matches}], matched_total, unmatched }
         """
         from core.engines.etl_engine import ETLEngine
         from decimal import Decimal, ROUND_HALF_UP, InvalidOperation
@@ -70,17 +59,12 @@ class LookupEngine:
             if mask.sum() == 0:
                 break  # Todos os itens já resolvidos
 
-            # Normalização via ETLEngine (único padrão, sem duplicação)
-            norm_orig = etl.sanitize_series(df_orig[col_o], trim=True, upper=True,
-                                            preserve_zeros=True)
-            norm_dest = etl.sanitize_series(df_dest.loc[mask, col_d], trim=True, upper=True,
-                                            preserve_zeros=True)
-
-            # Remove pontuação extra para replicar SUBSTITUIR(. , - /) do Excel
-            import re
-            norm_orig = norm_orig.str.replace(r'[.,\-/]', '', regex=True)
-            norm_dest = norm_dest.str.replace(r'[.,\-/]', '', regex=True)
-
+            # Upgrade MDM: Uso do Normalizador Centralizado para Chaves
+            from core.engines.mdm.algorithms.normalizer import Normalizer
+            
+            norm_orig = df_orig[col_o].apply(lambda x: Normalizer.extract_identity(x).upper())
+            norm_dest = df_dest.loc[mask, col_d].apply(lambda x: Normalizer.extract_identity(x).upper())
+            
             # Lookup dict: chave_normalizada → valor
             lookup = (
                 df_orig.assign(__k=norm_orig.values)
@@ -113,7 +97,6 @@ class LookupEngine:
         report["df_resultado"] = df_dest
         return report
 
-
 # --- Declaração de Versão do Módulo (Genaja Version Hook) ---
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, __version__, "Adicionado multi_key_sync() — substitui PROCV/XLOOKUP com cascata multi-chave e IEEE 754 fix")
+_vdeclare(__name__, __version__, "Restaurado multi_key_sync() para compatibilidade com a UI")
