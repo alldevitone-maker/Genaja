@@ -1,5 +1,5 @@
 # ==============================================================================
-# GENAJA - MASTER GITIGNORE (GOVERNANÇA v0.7.1)
+# GENAJA - MASTER GITIGNORE
 # ==============================================================================
 
 # --- Python & System ---
@@ -48,3 +48,15 @@ FREEZE.lock
 !CONTRIBUTING.md
 !SECURITY_COMPLIANCE.md
 !ENGINEERING_BASELINE.md
+!CHANGELOG.en.md
+
+# Ecosystem Anchors (v0.7.3 Refine)
+!brains/
+!brains/.gitkeep
+!shared/
+!shared/.gitkeep
+!workspace/
+!workspace/.gitkeep
+!docs/
+!docs/.gitkeep
+!docs/*.md
