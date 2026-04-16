@@ -36,3 +36,11 @@ scratch/
 # OS
 .DS_Store
 Thumbs.db
+
+# Ecosystem Transparency (v0.7.3 Refine)
+# Un-ignoring parent folders to ensure GitHub visibility of the project structure
+!../brains/
+!../shared/
+!../workspace/
+!../docs/
+!docs/ENGINEERING_MEMORY.md
