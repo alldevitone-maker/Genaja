@@ -56,6 +56,37 @@ graph LR
     style MS fill:#0a0a0a,stroke:#amber,stroke-width:2px
 ```
 
+### 3. Cognitive Decision Hierarchy (The Brain)
+The MDM engine processes data through confidence layers, prioritizing deterministic signals:
+
+```mermaid
+graph TD
+    Input[Input String] --> Exact{Exact Match?}
+    Exact -- Yes --> Result[Determined Master]
+    Exact -- No --> Pattern{Regex Pattern?}
+    Pattern -- Yes --> Result
+    Pattern -- No --> Phonetic{Metaphone sound?}
+    Phonetic -- Yes --> Result
+    Phonetic -- No --> Fuzzy{Levenshtein similarity?}
+    Fuzzy -- Yes --> Result
+    Fuzzy -- No --> Human[Kanban Curation]
+```
+
+### 4. Consolidation HUD Lifecycle (Data 1:N)
+Visualizing the flow for handling duplicate records and Master selection:
+
+```mermaid
+graph LR
+    Raw[Raw Records] --> Engine[Deduplication Motor]
+    Engine --> Clusters[Identified Clusters]
+    Clusters --> Split{1:N Separation?}
+    Split --> HUD[Consolidation HUD]
+    HUD --> Choice{Master Selection?}
+    Choice -- Auto --> Final[Unified Record]
+    Choice -- Manual --> Eject[Quarantine/Ejection]
+    Final --> Sync[Price Sync / Export]
+```
+
 ---
 
 ## 🛠️ Wizard Stages (The Elite Path)

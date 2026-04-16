@@ -56,6 +56,37 @@ graph LR
     style MS fill:#0a0a0a,stroke:#amber,stroke-width:2px
 ```
 
+### 3. Hierarquia de Decisão Cognitiva (The Brain)
+O motor de MDM processa dados através de camadas de confiança, priorizando o sinal determinístico:
+
+```mermaid
+graph TD
+    Input[Input String] --> Exact{Match Exato?}
+    Exact -- Sim --> Result[Mestre Determinado]
+    Exact -- Não --> Pattern{Padrão Regex?}
+    Pattern -- Sim --> Result
+    Pattern -- Não --> Phonetic{Metaphone sound?}
+    Phonetic -- Sim --> Result
+    Phonetic -- Não --> Fuzzy{Levenshtein similarity?}
+    Fuzzy -- Sim --> Result
+    Fuzzy -- Não --> Human[Curadoria Kanban]
+```
+
+### 4. Ciclo de Vida do HUD de Consolidação (Data 1:N)
+Visualização do fluxo de tratamento de registros duplicados e seleção de Master:
+
+```mermaid
+graph LR
+    Raw[Registros Brutos] --> Engine[Deduplication Motor]
+    Engine --> Clusters[Clusters Identificados]
+    Clusters --> Split{Separação 1:N?}
+    Split --> HUD[HUD de Consolidação]
+    HUD --> Choice{Seleção Master?}
+    Choice -- Auto --> Final[Registro Unificado]
+    Choice -- Manual --> Eject[Quarentena/Ejection]
+    Final --> Sync[Price Sync / Export]
+```
+
 ---
 
 ## 🛠️ Estágios do Wizard (The Elite Path)
