@@ -1,4 +1,4 @@
-from difflib import SequenceMatcher
+from rapidfuzz import fuzz, process
 from core.adapters.rust_omni_adapter import RustOmniAdapter
 
 class FuzzyMatcher:
@@ -41,17 +41,29 @@ class FuzzyMatcher:
                     hits.append((code, final_score, f"RUST_FUZZY({int(sim*100)}%)"))
             return hits
 
-        # 2. FALLBACK PYTHON (Resiliência)
+        # 2. RAPIDFUZZ ACCELERATION (Primary Elite Layer)
+        # Otimização: Buscamos em todos os candidatos usando process.extractOne (C++ Engine)
         for code, candidates in self._taxonomy_map.items():
-            best_local_score = 0
-            for cand_clean in candidates:
-                sim = SequenceMatcher(None, norm_val, cand_clean).ratio()
-                if sim > best_local_score:
-                    best_local_score = sim
-            
-            if best_local_score >= self.min_score:
-                final_score = best_local_score * multiplier
-                hits.append((code, final_score, f"PY_FUZZY({int(best_local_score*100)}%)"))
+            best_match = process.extractOne(
+                norm_val, 
+                candidates, 
+                scorer=fuzz.WRatio,
+                score_cutoff=self.min_score * 100
+            )
+
+            if best_match:
+                cand, score_100, _ = best_match
+                sim = score_100 / 100.0
+                
+                # --- GOVERNANÇA DE PARIDADE (Anti-Suicídio Técnico) ---
+                # Validamos com difflib apenas na "Zona Cinzenta" para garantir compatibilidade legacy
+                if 0.75 <= sim <= 0.85:
+                    from difflib import SequenceMatcher
+                    legacy_sim = SequenceMatcher(None, norm_val, cand).ratio()
+                    sim = max(sim, legacy_sim)
+
+                final_score = sim * multiplier
+                hits.append((code, final_score, f"RAPID_FUZZ({int(sim*100)}%)"))
                 
         return hits
 

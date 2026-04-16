@@ -1,94 +1,94 @@
 {
     "core.engines.mapping_engine": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Motor de mapeamento por intersecção de dados e heurística de nome"
     },
     "core.engines.validation_engine": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Motor MDM: Validação de chaves e Smart MVF Normalizer (Split 1:N)"
     },
     "core.engines.suggestion_engine": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Motor de sugestão de arquivos recentes por heurística de nome"
     },
     "core.engines.lookup_engine": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Restaurado multi_key_sync() para compatibilidade com a UI"
     },
     "core.engines.etl_engine": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Motor ETL puro estabilizado — padrão de sanitização e sync com shielding"
     },
     "ui_flet.views.intent_router_view": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "IntentRouterView estabilizada com Modo D (Price Sync) integrado"
     },
     "core.services.theme_service": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Serviço de temas dinâmicos com cálculo de luminância e bridge para Flet"
     },
     "core.paths": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Âncora de topologia de diretórios para o ecossistema Genaja (Brains, Shared, JGDA)"
     },
     "core.services.config_service": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Serviço de configuração resiliente com fusão de defaults e persistência JSON"
     },
     "app.wizard_state": {
-        "version": "0.7.2",
-        "changelog": "Estado Global: Sessão adaptativa com suporte a persistência MVF 1:N"
+        "version": "0.7.3",
+        "changelog": "Estado Global: Sessão adaptativa com suporte a persistência MVF 1:N e Consolidação HUD"
     },
     "core.learning.learning_store": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Persistência de logs de execução e assinaturas de dataset p/ treinamento"
     },
     "core.learning.curated_store": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Gerenciador de regras curadas (Regras de Ouro) para mapeamento determinístico"
     },
     "core.learning.mega_store": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Núcleo de Inteligência Cognitiva de alta densidade com estratificação de confiança"
     },
     "migration.schema_mapper": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Motor de sugestão por similaridade fuzzy e distância de Levenshtein"
     },
     "core.learning.suggestion_engine": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Orquestrador de sugestões multi-origem (Mega Brain, Curated Rules e Fuzzy Name)"
     },
     "core.learning.learning_logger": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Orquestrador de telemetria e treinamento passivo de modelos probabilísticos"
     },
     "ui_flet.dialogs.file_intelligence_dialog": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Janela de inteligência de dados com preview de mapeamento"
     },
     "core.connectors.base_connector": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Classe base abstrata (Protocolo) para conectores Genaja"
     },
     "core.services.connector_factory": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Fábrica de adaptadores para suporte a arquivos locais e bancos SQL (SQLAlchemy lazy load)"
     },
     "ui_flet.dialogs.compatibility_dialog": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Diálogo de assistência ao usuário com explicações de confiança do núcleo de inferência cognitiva"
     },
     "core.services.audit_service": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Audit Service para conformidade LGPD (Art. 37) — Rastreabilidade total"
     },
     "ui_flet.flow_router": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Roteador central que orquestra a transição entre telas Flet baseada em estado"
     },
     "ui_flet.views.step0_inspection_view": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Interface forense para inspeção de cabeçalhos via Omni-data Engine"
     },
     "core.connectors.database_connector": {
@@ -96,15 +96,15 @@
         "changelog": "Implementação de conector SQL via SQLAlchemy com suporte a PostgreSQL, MSSQL, SQLite e MySQL"
     },
     "core.engines.loader_engine": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Motor de carga universal com sensoriamento cognitivo de cabeçalho e fallback robusto de codificação"
     },
     "core.engines.source_inspection_engine": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Goleiro forense de inspeção de arquivos (Detecção de Magic Bytes e Fraude de Extensão)"
     },
     "core.engines.source_conversion_engine": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Core de conversão multi-formato (SAP XML, HTML, CSV) com correção automática"
     },
     "core.engines.transform_engine": {
@@ -112,91 +112,99 @@
         "changelog": "Restaurado price_sync_join() para compatibilidade com a UI e fix NameError pd"
     },
     "core.services.logger_service": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Serviço de logging centralizado com suporte a UTF-8 e auditoria"
     },
     "core.services.export_service": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Serviço de exportação enterprise com injeção cirúrgica de dados"
     },
     "ui_flet.theme": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Serviço de temas dinâmicos com cálculo de luminância e bridge para Flet"
     },
     "ui_flet.views.step1_view": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Interface Legada - Passo 1: Seleção de Fontes e Heurística de Cabeçalho"
     },
     "ui_flet.views.step2_view": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Interface Legada - Passo 2: Mapeamento de Chaves Primárias e Fallbacks"
     },
     "ui_flet.views.step3_view": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Interface Legada - Passo 3: Mapeamento de Atributos e Filtros de Sanitização"
     },
     "ui_flet.views.step4_view": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Interface Legada - Passo 4: Execução de ETL, Impact Preview e Escrita Final"
     },
     "ui_flet.views.logs_view": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Interface de auditoria tática com extração de logs do disco em tempo real"
     },
     "ui_flet.views.settings_view": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Interface de Configurações - Gestão de Preferências e Parâmetros de Operação"
     },
     "core.adapters.pandas_adapter": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Adapter para Pandas com suporte a excel e filtragem multi-chave"
     },
     "core.adapters.rust_omni_adapter": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Adaptador híbrido Rust/Python para inspeção e conversão universal de dados"
     },
     "core.engines.mdm.mdm_engine": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Motor MDM Enterprise Unificado com Inteligência de Purificação e Persona Extraction"
     },
     "ui_flet.views.single_prep_view": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Interface de preparação e Split Inteligente MDM 1:N com resiliência UI"
     },
     "version_hook": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Módulo mestre de governança e rastreabilidade de versão"
     },
     "__main__": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Ponto de entrada (Bootstrap) do Sistema Genaja Platinum"
     },
     "ui_flet.main": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Orquestrador principal da UI Flet (Padrão Platinum)"
     },
     "core.engines.mdm.algorithms.normalizer": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Módulo de higienização de strings e normalização Unicode"
     },
     "core.engines.mdm.algorithms.exact_matcher": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Motor de busca exata otimizado com pré-indexação de taxonomia"
     },
     "core.engines.mdm.algorithms.pattern_matcher": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Motor de reconhecimento de padrões otimizado com pré-compilação regex"
     },
     "core.engines.mdm.algorithms.fuzzy_matcher": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Motor de busca difusa otimizado com cache de candidatos e bridge nativa"
     },
     "ui_flet.components.result_card": {
-        "version": "0.7.2",
+        "version": "0.7.3",
         "changelog": "Componente visual para gestão de sessões de extração MDM v0.7.2"
     },
     "ui_flet.components.contact_kanban": {
-        "version": "0.7.2",
-        "changelog": "Componente Kanban de curadoria MDM com mapeamento flexível de taxonomia"
+        "version": "0.7.3",
+        "changelog": "Componente Smart Kanban com Semantic UI e O(1) Hook"
+    },
+    "core.engines.deduplication_engine": {
+        "version": "0.7.3",
+        "changelog": "Motor de Consolidação Power Query com RapidFuzz C++"
+    },
+    "ui_flet.components.deduplicator_matrix": {
+        "version": "0.7.3",
+        "changelog": "HUD Power Query: Interface de Consolidação Responsiva e Editável"
     }
 }

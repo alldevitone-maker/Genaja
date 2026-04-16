@@ -1,10 +1,11 @@
 import os
 import shutil
 
-# Root path of the Genaja project
-GENAJA_ROOT = r'C:\Users\ti01\Documents\Genaja'
-DOCUMENTS_ROOT = r'C:\Users\ti01\Documents'
-JGDA_ROOT = os.path.join(GENAJA_ROOT, 'JGDA')
+# Root path of the Genaja project (Assumes script is in JGDA/scripts)
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+JGDA_ROOT = os.path.dirname(_SCRIPT_DIR)
+GENAJA_ROOT = os.path.dirname(JGDA_ROOT)
+DOCUMENTS_ROOT = os.path.join(os.path.expanduser("~"), "Documents")
 
 def ensure_dirs():
     dirs = [

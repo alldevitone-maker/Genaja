@@ -38,6 +38,7 @@ class SingleConvertView(ft.Container, RoutedViewMixin):
             value="csv",
             options=[
                 ft.dropdown.Option("csv", "CSV (Excel Nativo)"),
+                ft.dropdown.Option("xlsx", "XLSX (Excel Moderno)"),
                 ft.dropdown.Option("parquet", "Parquet (Big Data)"),
                 ft.dropdown.Option("json", "JSON (API)")
             ],
@@ -61,6 +62,10 @@ class SingleConvertView(ft.Container, RoutedViewMixin):
         
         self.btn_back = ft.OutlinedButton("Voltar (Trocar Intenção)", on_click=lambda _: self.router.navigate("intent_router"))
         self.btn_restart = ft.TextButton("Recomeçar do Zero", on_click=lambda _: self.router.navigate("step0_quarantine"))
+
+        # Componentes Dinâmicos da Saída
+        self.btn_open_target = ft.ElevatedButton("Abrir Local do Arquivo", icon=ft.Icons.FOLDER_OPEN, visible=False)
+        self.parity_card_placeholder = ft.Container(visible=False, padding=ft.padding.only(top=15, bottom=15))
 
         # Layout Dashboard Platinum
         self.content = ft.Column([
@@ -93,9 +98,11 @@ class SingleConvertView(ft.Container, RoutedViewMixin):
             
             ft.Container(height=10),
             self.btn_convert,
+            self.parity_card_placeholder,
+            self.btn_open_target,
             ft.Container(height=20),
             ft.Row([self.btn_back, self.btn_restart], alignment="center", spacing=20)
-        ], horizontal_alignment="center", spacing=25)
+        ], horizontal_alignment="center", spacing=20)
         
         self.padding = 60
         self.alignment = ft.Alignment(0, 0)
@@ -105,7 +112,8 @@ class SingleConvertView(ft.Container, RoutedViewMixin):
         self.lbl_info.value = f"Deteção: {report.get('detected_type', 'Desconhecido')}"
         filepath = self.state.operation_plan.get("source_a", "")
         self.lbl_path.value = os.path.basename(filepath)
-        self.update()
+        if self.page:
+            self.update()
         
     def _pick_folder_tkinter(self, e):
         """Janela de Seleção Nativa de Out-Folder."""
@@ -180,16 +188,21 @@ class SingleConvertView(ft.Container, RoutedViewMixin):
             self.lbl_info.value = f"Matriz isolada ({engine_str})!\nSalvo em: {os.path.basename(extracted)}"
             self.lbl_info.color = ft.Colors.GREEN_400
             
-            # Botão Extra Pós-Rotina (Abrir Pasta OS) - Limpeza de duplicados pragmática
-            self.content.controls = [c for c in self.content.controls if not (isinstance(c, ft.ElevatedButton) and getattr(c, "text", None) == "Abrir Local do Arquivo")]
+            # --- UI PLATINUM: Renderizar Parity Audit Card Dinâmico ---
+            metrics = res.get("metrics")
+            if metrics:
+                from ui_flet.components.parity_audit_card import ParityAuditCard
+                self.parity_card_placeholder.content = ParityAuditCard(metrics=metrics)
+                self.parity_card_placeholder.visible = True
             
+            # --- Controle estático do Botão Abrir ---
             def open_dir(e):
                 folder = os.path.dirname(extracted)
                 if platform.system() == "Windows":
                     os.startfile(folder)
-                
-            btn_folder = ft.ElevatedButton("Abrir Local do Arquivo", icon=ft.Icons.FOLDER_OPEN, on_click=open_dir)
-            self.content.controls.insert(-1, btn_folder) # Insere antes dos botões de navegação
+            
+            self.btn_open_target.on_click = open_dir
+            self.btn_open_target.visible = True
             self.btn_convert.disabled = False
         else:
             # Feedback resumido para não quebrar o layout

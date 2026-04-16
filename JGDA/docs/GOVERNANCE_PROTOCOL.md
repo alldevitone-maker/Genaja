@@ -26,5 +26,10 @@ Para qualquer alteração de versão ou saneamento de documentação:
 - Testes que referenciam módulos deletados devem ser purgados imediatamente.
 - Dependências em `requirements.txt` devem ser auditadas trimestralmente para remover bibliotecas de stacks obsoletas (ex: PySide6/Qt).
 
+## 5. Isolamento de Dados e Privacidade (LGPD)
+- **Produção vs Código**: É terminantemente PROIBIDO versionar dados reais de clientes (`.xlsx`, `.csv`, `.zip`) no repositório. Use o `.gitignore` para blindar pastas de `backups/` e `tests/index/`.
+- **Relativização de Caminhos**: Ninguém deve expor caminhos locais de hardware (ex: `C:\Users\nomedousuario\`). Utilize a âncora `src/core/paths.py` para resolver caminhos de forma dinâmica e agnóstica ao sistema operacional.
+- **Limpeza de Cache**: Ambientes virtuais (`.venv`) e caches (`__pycache__`) devem ser excluídos do rastreamento Git para manter o repositório leve e focado apenas em código-fonte.
+
 ---
-*Assinado: Motor de Governança Genaja (v0.7.1 Platinum Certified).*
+*Assinado: Motor de Governança Genaja (v0.7.3 Platinum Certified).*

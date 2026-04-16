@@ -51,13 +51,19 @@ class SourceConversionEngine:
         extracted_path = out_path
         
         try:
-            with open(extracted_path, 'w', encoding='utf-8', newline='') as f_out:
+            with open(extracted_path, 'w', encoding='utf-8-sig', newline='') as f_out:
                 writer = csv.writer(f_out, delimiter=';')
                 
                 # Namespace do Excel XML Spreadsheet
                 ns = {'ss': 'urn:schemas-microsoft-com:office:spreadsheet'}
                 
-                context = ET.iterparse(file_path, events=("start", "end"))
+                # Tratamento nativo contra UTF-8 BOM no cabeçalho XML (Line 1 Col 0 Error)
+                f_xml = open(file_path, 'rb')
+                header_bytes = f_xml.read(3)
+                if header_bytes != b'\xef\xbb\xbf':
+                    f_xml.seek(0) # Volta para o início se não houver BOM
+                
+                context = ET.iterparse(f_xml, events=("start", "end"))
                 
                 current_row = []
                 row_count = 0
@@ -84,16 +90,19 @@ class SourceConversionEngine:
                         # Limpa memoria da arvore rastreada
                         elem.clear()
 
-            logging.info(f"Fim da Desencriptação: {row_count} linhas salvas em CSV.")
+            f_xml.close()
+            logging.info(f"Fim da Desencriptação: {row_count} linhas salvas em CSV (Auditoria será invocada no pipeline).")
             result["status"] = "success"
             result["extracted_path"] = extracted_path
             result["notes"].append("XML convertido recursivamente para formato tabular matricial (;).")
         
         except Exception as e:
+            try: f_xml.close() 
+            except: pass
             error_detail = f"{type(e).__name__}: {str(e)}"
             logging.error(f"Falha na Desencriptação XML: {error_detail}")
-            result["status"] = "error"
-            result["notes"].append(f"Erro na reconstrução da matriz primária: {error_detail}")
+            logging.warning("⚠️ O formato não é um XML puro (Possível Falso Positivo). Recorrendo à barreira Standard...")
+            return cls._convert_standard(file_path, result, out_path, inspection_report)
             
         return result
         
@@ -143,13 +152,41 @@ class SourceConversionEngine:
             else:
                  df = pd.read_excel(file_path) # Tentativa genérica
             
+            # --- PARITY AUDIT (BEFORE) ---
+            before_rows = len(df)
+            before_cols = len(df.columns)
+            before_cells = before_rows * before_cols
+            
             # --- MECANICA DE CORRECAO AUTOMATICA ---
             if inspection_report.get("magic_fix"):
                 logging.info("Aplicando Correções Automáticas de Integridade...")
                 df = cls.apply_magic_fixes(df)
+                
+            # --- PARITY AUDIT (AFTER) ---
+            after_rows = len(df)
+            after_cols = len(df.columns)
+            after_cells = after_rows * after_cols
+            
+            result["metrics"] = {
+                "before": {"rows": before_rows, "cols": before_cols, "cells": before_cells},
+                "after":  {"rows": after_rows,  "cols": after_cols,  "cells": after_cells }
+            }
+                
+            if before_cells != after_cells:
+                discrepancy_msg = (
+                    f"⚠️ DISCREPÂNCIA DE PARIDADE DETECTADA (DATA LOSS AUDIT):\n"
+                    f"  [>] Pré-Limpeza : {before_rows} linhas x {before_cols} colunas = {before_cells} Células Totais.\n"
+                    f"  [>] Pós-Limpeza : {after_rows} linhas x {after_cols} colunas = {after_cells} Células Totais.\n"
+                    f"  [?] Motivo Tático: Linhas brancas vazias expurgadas agressivamente pelo fallback matricial Pandas."
+                )
+                logging.warning(discrepancy_msg)
+                if "notes" in result:
+                    result["notes"].append(f"AUDITORIA: Mutilação detectada ({-1 * (after_cells - before_cells)} células removidas na purificação).")
             
             if out_path.lower().endswith('.csv'):
-                df.to_csv(out_path, index=False, sep=';', encoding='utf-8')
+                df.to_csv(out_path, index=False, sep=';', encoding='utf-8-sig')
+            elif out_path.lower().endswith('.xlsx'):
+                df.to_excel(out_path, index=False, engine='openpyxl')
             elif out_path.lower().endswith('.parquet'):
                 # 🩹 MODO ENGENHARIA: Forçar reconhecimento do motor Parquet no ambiente Windows
                 try:

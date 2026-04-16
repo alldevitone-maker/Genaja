@@ -161,21 +161,22 @@ class RustOmniAdapter:
                                         logging.info("Aplicando Magic Fix pós-processamento Rust...")
                                         import pandas as pd
                                         if out_path_real.endswith(('.csv', '.txt')):
-                                            df_temp = pd.read_csv(out_path_real, sep=';', encoding='utf-8')
+                                            df_temp = pd.read_csv(out_path_real, sep=';', encoding='utf-8-sig')
                                             df_temp = SourceConversionEngine.apply_magic_fixes(df_temp)
-                                            df_temp.to_csv(out_path_real, index=False, sep=';', encoding='utf-8')
+                                            df_temp.to_csv(out_path_real, index=False, sep=';', encoding='utf-8-sig')
                             
                             return report
                     except json.JSONDecodeError:
                         logging.warning("Falha no parse do STDOUT JSON do Rust. Tentando fallback...")
                 else:
                     logging.warning(f"Rust convert falhou (código {result.returncode}). Output: {result.stderr}")
-                    logging.info("Tentando fallback para motor Python...")
+                    logging.warning("🚨 ALERTA ESTRUTURAL RUST: O binário nativo não respondeu. Operações caindo no Fallback Paritário (Python).")
             except Exception as e:
-                logging.warning(f"Erro crítico invocando Rust Convert: {e}. Tentando fallback...")
+                logging.warning(f"Erro crítico invocando Rust Convert: {e}")
+                logging.warning("🚨 MOTOR RUST INATIVO/NÃO LOCALIZADO: A diretiva 'Use always Rust' colapsou com o host. Encaminhando para Python.")
                 
         # FALLBACK PARA PYTHON PURO
-        logging.info("Utilizando SourceConversionEngine em modo Fallback (Python Puro)")
+        logging.info("Engatilhando SourceConversionEngine [Modo Fallback com Auditoria de Paridade Ativada]...")
         report = SourceConversionEngine.process_conversion(in_path, fake_report, out_path=out_path)
         report["_engine"] = "python_fallback"
         # Padroniza a resposta rust:
@@ -184,6 +185,7 @@ class RustOmniAdapter:
             "success": success,
             "output_path": report.get("extracted_path"),
             "warnings": report.get("notes", []),
-            "_engine": "python_fallback"
+            "_engine": "python_fallback",
+            "metrics": report.get("metrics")
         }
         return unified

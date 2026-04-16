@@ -4,6 +4,7 @@ from core.engines.mdm.algorithms.exact_matcher import ExactMatcher
 from core.engines.mdm.algorithms.pattern_matcher import PatternMatcher
 from core.engines.mdm.algorithms.fuzzy_matcher import FuzzyMatcher
 from core.engines.mdm.algorithms.scoring import ConfidenceScorer
+from core.math.phonetic_engine import PhoneticEngine
 import re
 import pandas as pd
 from version import __version__
@@ -24,6 +25,16 @@ class MDMEngine:
         self.pattern_matcher = PatternMatcher(self.taxonomy, self.weights)
         self.fuzzy_matcher = FuzzyMatcher(self.taxonomy, self.weights)
         self.scorer = ConfidenceScorer()
+        
+        # 🔗 Cache Fonético de Identidades (Performance)
+        self._phonetic_taxonomy_map = {}
+        for entry in self.taxonomy:
+            label = entry.get("label", "")
+            if label:
+                p_code = PhoneticEngine.get_phonetic_code(label)
+                if p_code not in self._phonetic_taxonomy_map:
+                    self._phonetic_taxonomy_map[p_code] = []
+                self._phonetic_taxonomy_map[p_code].append(entry["code"])
 
     def resolve(self, raw_value):
         """
@@ -42,6 +53,13 @@ class MDMEngine:
         hits.extend(self.exact_matcher.collect_evidences(norm_val))
         hits.extend(self.pattern_matcher.collect_evidences(norm_val))
         hits.extend(self.fuzzy_matcher.collect_evidences(norm_val))
+        
+        # 2. CAMADA DE INTELIGÊNCIA FONÉTICA (Metaphone BR)
+        # Se as camadas anteriores falharem ou forem fracas, a fonética decide
+        p_code = PhoneticEngine.get_phonetic_code(norm_val)
+        if p_code and p_code in self._phonetic_taxonomy_map:
+            for code in self._phonetic_taxonomy_map[p_code]:
+                hits.append((code, 0.90, "PHONETIC_MATCH"))
 
         # 3. Consolidação e Scoring
         consolidated = ConfidenceScorer.consolidate(hits)

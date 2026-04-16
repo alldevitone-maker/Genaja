@@ -56,10 +56,12 @@ class SinglePrepView(ft.Container):
             )
         )
 
+        self.progress_ring = ft.ProgressRing(width=24, height=24, stroke_width=3, color=PlatinumTheme.PRIMARY(), visible=False)
+
         self.mvf_config_area = ft.Column([
             ft.Text("Selecione os campos para separação Mestre/Detalhe:", size=11, italic=True),
             ft.Row([self.dd_mvf_id, self.dd_mvf_source], alignment="start"),
-            self.btn_mvf_process
+            ft.Row([self.btn_mvf_process, self.progress_ring], alignment="start", spacing=15)
         ], spacing=15, visible=False)
 
         self.mvf_panel = ft.Container(
@@ -116,10 +118,6 @@ class SinglePrepView(ft.Container):
         self.mvf_config_area.visible = self.chk_mvf.value
         self.update()
 
-    def _close_dlg(self, dlg):
-        dlg.open = False
-        self.page.update()
-
     async def _process_mvf(self, e):
         if not self.dd_mvf_source.value or not self.dd_mvf_id.value:
             sb = ft.SnackBar(ft.Text("⚠️ Selecione as colunas de Origem e ID Primeiro!"), bgcolor=ft.Colors.ORANGE_900)
@@ -130,7 +128,11 @@ class SinglePrepView(ft.Container):
 
         self.btn_mvf_process.disabled = True
         self.btn_mvf_process.text = "PROCESSANDO..."
+        self.progress_ring.visible = True
         self.update()
+        
+        # Efeito de carregamento para UX (Sensação de Processamento Enterprise)
+        await asyncio.sleep(1.5)
         
         try:
             from core.engines.validation_engine import ValidationEngine
@@ -156,11 +158,15 @@ class SinglePrepView(ft.Container):
                 col_mvf_name = str(self.dd_mvf_source.value)
                 session_key = (col_id_name, col_mvf_name)
                 record_count = len(results['entity_contacts'])
+                metrics_data = results.get("metrics")
                 
                 # Closures para ações (vínculo dinâmico aos dados atuais)
                 async def export_primary(e): await self._export_mvf_file("primary", results["entity_primary"])
                 async def export_contacts(e): await self._export_mvf_file("contacts", results["entity_contacts"])
                 
+                async def open_consolidar(e):
+                    await self._open_consolidation_hud(e, results["entity_contacts"])
+
                 def open_kanban(e):
                     import logging
                     # 🎯 Contexto sagrado do Flet: e.page é a instância real do clique
@@ -174,17 +180,29 @@ class SinglePrepView(ft.Container):
                         kanban = ContactKanban(contacts=contacts_list, on_change=lambda: self.update())
                         
                         dlg = ft.AlertDialog(
-                            title=ft.Text(f"CURADORIA: {col_id_name} ➔ {col_mvf_name}", weight="bold"),
-                            content=ft.Container(kanban, width=1200, height=600),
+                            title=ft.Text(f"CURADORIA: {col_id_name} ➔ {col_mvf_name}", weight="bold", color=ft.Colors.WHITE),
+                            content=ft.Container(kanban, width=1050, height=520, padding=10),
                             actions=[
                                 ft.ElevatedButton("Concluir Curadoria", 
                                                 icon=ft.Icons.CHECK_CIRCLE_OUTLINE,
-                                                on_click=lambda _: self._close_dlg(dlg))
+                                                on_click=lambda e: fechar_dialogo(e, dlg))
                             ]
                         )
                         
-                        # 🔗 Injeção por contexto de evento (Resiliência Máxima)
-                        active_page.dialog = dlg
+                        def fechar_dialogo(e, d):
+                            d.open = False
+                            
+                            # 🛡️ Data Hook Protection O(1)
+                            # O Flet manipulou a lista de dicionários na memória visual do Kanban.
+                            # Agora sincronizamos de volta o DataFrame Fonte original (SSOT).
+                            import pandas as pd
+                            results["entity_contacts"] = pd.DataFrame(kanban.contacts)
+                            self.state.mvf_detail_df = results["entity_contacts"]
+                            
+                            e.page.update()
+                        
+                        # 🔗 Injeção por contexto de evento via Overlay (Resiliência Máxima)
+                        active_page.overlay.append(dlg)
                         dlg.open = True
                         active_page.update()
                         logging.info("--- SUCCESS PLATINUM: Diálogo renderizado com sucesso ---")
@@ -204,7 +222,9 @@ class SinglePrepView(ft.Container):
                     card.update_actions(
                         on_curadoria=open_kanban,
                         on_export_primary=export_primary,
-                        on_export_contacts=export_contacts
+                        on_export_contacts=export_contacts,
+                        on_consolidar=open_consolidar,
+                        metrics=metrics_data
                     )
                 else:
                     # Cria novo card
@@ -214,7 +234,9 @@ class SinglePrepView(ft.Container):
                         count=record_count,
                         on_curadoria=open_kanban,
                         on_export_primary=export_primary,
-                        on_export_contacts=export_contacts
+                        on_export_contacts=export_contacts,
+                        on_consolidar=open_consolidar,
+                        metrics=metrics_data
                     )
                     self.active_tasks[session_key] = new_card
                     self.results_gallery.controls.append(new_card)
@@ -237,7 +259,60 @@ class SinglePrepView(ft.Container):
         finally:
             self.btn_mvf_process.text = "REPROCESSAR SPLIT"
             self.btn_mvf_process.disabled = False
+            self.progress_ring.visible = False
             self.update()
+
+    async def _open_consolidation_hud(self, e, contacts_df):
+        """Abre o HUD de Consolidação Power Query."""
+        import logging
+        active_page = e.page if e.page else self.page
+        logging.info("--- TRIGGER HUD: Iniciando Consolidador Power Query ---")
+        
+        try:
+            from ui_flet.components.deduplicator_matrix import DeduplicatorMatrix
+            hud = DeduplicatorMatrix(contacts_df=contacts_df)
+            
+            async def confirm_consolidation(ev):
+                # Sincroniza o DataFrame consolidado de volta para o estado
+                final_df = hud.get_final_data()
+                self.state.mvf_final_df = final_df
+                self.state.mvf_is_consolidated = True
+                
+                dlg.open = False
+                active_page.update()
+                
+                sb = ft.SnackBar(
+                    ft.Text(f"✅ Base Consolidada! {len(final_df)} registros prontos para exportação."),
+                    bgcolor=PlatinumTheme.SUCCESS()
+                )
+                active_page.overlay.append(sb)
+                sb.open = True
+                active_page.update()
+
+            dlg = ft.AlertDialog(
+                title=ft.Text("HUD DE CONSOLIDAÇÃO POWER QUERY (v0.7.3)", weight="bold"),
+                content=ft.Container(hud, width=1000, height=600),
+                actions=[
+                    ft.TextButton("Cancelar", on_click=lambda _: setattr(dlg, 'open', False) or active_page.update()),
+                    ft.ElevatedButton("Finalizar Consolidação", 
+                                    icon=ft.Icons.CHECK_CIRCLE,
+                                    bgcolor=PlatinumTheme.PRIMARY(),
+                                    color="white",
+                                    on_click=confirm_consolidation)
+                ],
+                actions_alignment=ft.MainAxisAlignment.END
+            )
+            
+            active_page.overlay.append(dlg)
+            dlg.open = True
+            active_page.update()
+            
+        except Exception as err:
+            logging.error(f"FATAL HUD: {err}")
+            sb = ft.SnackBar(ft.Text(f"❌ Erro no Consolidador: {str(err)}"), bgcolor=ft.Colors.RED_900)
+            active_page.overlay.append(sb)
+            sb.open = True
+            active_page.update()
 
     async def _export_mvf_file(self, mode, df):
         import tkinter as tk

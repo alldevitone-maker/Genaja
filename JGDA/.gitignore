@@ -1,0 +1,36 @@
+# --- Genaja JGDA Gitignore (v0.7.3) ---
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+build/
+dist/
+
+# Application Data & Leaks (LGPD Protection)
+backups/
+logs/
+results/
+workspace/
+data/*.xlsx
+data/*.csv
+data/*.zip
+
+# Sensitive Data in Tests
+tests/index/*.xlsx
+tests/index/*.csv
+scratch/
+
+# Environment & Secrets
+.env
+.secrets
+*.bak
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

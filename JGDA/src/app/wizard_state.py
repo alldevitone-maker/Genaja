@@ -85,6 +85,11 @@ class WizardState:
         self.mvf_header_df = None      # Header Node (1:1)
         self.mvf_detail_df = None      # Detail Node (1:N)
         self.mvf_report = {}           # Audit do split
+        
+        # --- DEDUPLICATION (v0.7.3 HUD) ---
+        self.mvf_is_consolidated = False
+        self.mvf_final_df = None       # DataFrame Final (Clean)
+        self.mvf_dedup_log = []        # Histórico de unificações
 
     def set_source_type(self, new_type: str):
         """Alterna a fonte de dados e limpa estados irrelevantes."""
@@ -142,4 +147,4 @@ class WizardState:
 from typing import Dict, Any, List, Optional
 from version import __version__
 from version_hook import declare as _vdeclare
-_vdeclare(__name__, __version__, "Estado Global: Sessão adaptativa com suporte a persistência MVF 1:N")
+_vdeclare(__name__, __version__, "Estado Global: Sessão adaptativa com suporte a persistência MVF 1:N e Consolidação HUD")
