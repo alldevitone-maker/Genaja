@@ -1,8 +1,8 @@
-# GENAJA SUITE — Elite Data Intelligence & Forensics
+# GENAJA SUITE / Elite Data Intelligence & Forensics
 
 [🇺🇸 English](README.en.md) | [🇧🇷 Português](README.md)
 
-> **Versão Atual:** `v0.7.2` (Stable Governance Platinum)
+> **Versão Atual:** `v0.7.3` (Genaja JGDA)
 > **Engine:** Omni-Data Hybrid (Python/Rust)
 
 ---

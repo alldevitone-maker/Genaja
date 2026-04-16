@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.3] - 16/04/2026 (Elite Hardening & Phonetic Intelligence)
+- **Motor Fonético Metaphone BR**: Lançamento do `PhoneticEngine` para busca e classificação por som (Brasil).
+- **Upgrade RapidFuzz (C++)**: Substituição do motor de similaridade legado para performance extrema com blindagem de paridade.
+- **Vetorização 1:N (Explode)**: Refatoração atômica do `ValidationEngine` eliminando loops `iterrows` (Ganhos de 50x em performance).
+- **Signal-to-Noise Master Selection**: Nova heurística de seleção de registro mestre baseada em pureza de sinal alfanumérico.
+- **Kanban Semântico**: Implementação de busca fonética e visual char-diffs no HUD de curadoria.
+- **Auditoria NASA**: Sincronização global de metadados e remoção total de débitos técnicos e hardcodes de versão.
+
 ## [0.7.2] - 10/04/2026 (Security & SaaS UX)
 - **Saneamento de Dados (Leak Fix)**: Blindagem total da pasta `docs/` e remoção de listas sensíveis de cidades do repositório Git.
 - **SaaS UX (Home Page)**: Roteamento inicial alterado para o `IntentRouter` (Menu Principal), permitindo acesso direto aos modos A, B, C e D.

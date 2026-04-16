@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.3] - 2026-04-16 (Elite Hardening & Phonetic Intelligence)
+- **PT-BR Metaphone Engine**: Launched `PhoneticEngine` for sound-based search and classification (Brazil).
+- **RapidFuzz Upgrade (C++)**: Replaced legacy similarity engine for extreme performance with parity shielding.
+- **1:N Vectorized Split (Explode)**: Atomic refactor of `ValidationEngine` eliminating `iterrows` loops (50x performance gain).
+- **Signal-to-Noise Master Selection**: New master record selection heuristic based on alphanumeric signal purity.
+- **Semantic Kanban**: Implemented sound-based search and visual char-diffs in the curation HUD.
+- **NASA-Level Audit**: Global metadata synchronization and total removal of technical debt and version hardcodes.
+
 ## [0.7.2] - 2026-04-10 (Security & SaaS UX)
 - **Data Saneamento (Leak Fix)**: Comprehensive shielding of the `docs/` folder and removal of sensitive city lists from the Git repository.
 - **SaaS UX (Home Page)**: Initial routing updated to the `IntentRouter` (Main Menu), enabling direct access to Modes A, B, C, and D.

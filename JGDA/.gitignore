@@ -1,4 +1,4 @@
-# --- Genaja JGDA Gitignore (v0.7.3) ---
+# --- Genaja JGDA Gitignore ---
 
 # Python
 __pycache__/
@@ -25,7 +25,9 @@ tests/index/*.xlsx
 tests/index/*.csv
 scratch/
 
-# Environment & Secrets
+# Environment & Secrets & Agent Intelligence
+.agent/
+.gemini/
 .env
 .secrets
 *.bak
