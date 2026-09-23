@@ -1,111 +1,80 @@
-# GENAJA SUITE / Elite Data Intelligence & Forensics
+# Genaja
 
-[🇺🇸 English](README.en.md) | [🇧🇷 Português](README.md)
+[English](README.en.md) | [Português](README.md)
 
-> **Versão Atual:** `v0.7.3` (Genaja JGDA)
-> **Engine:** Omni-Data Hybrid (Python/Rust)
+Genaja é um protótipo local para inspeção, transformação, mapeamento e consolidação de dados heterogêneos.
 
----
+O projeto explora um fluxo de trabalho voltado a ETL, migração de dados, qualidade de dados e resolução de entidades, mantendo o processamento local como princípio de arquitetura.
 
-## 🛡️ O Ecossistema de Inteligência Forense
+## Estado atual
 
-O **Genaja Suite** não é apenas um motor de ETL; é uma plataforma de **Engenharia de Interoperabilidade Cognitiva** projetada para saneamento massivo de dados heterogêneos com 100% de privacidade local (No-Cloud).
+Versão documentada: `v0.7.3`
 
-### 1. Fluxo de Intencionalidade (Adaptive Routing)
-O sistema utiliza um roteador de intenções que adapta a jornada do dado baseado na complexidade da tarefa:
+O repositório contém componentes em Python e Rust, além de documentação técnica, mecanismos de validação, mapeamento de schema e deduplicação.
 
-```mermaid
-graph TD
-    Start((Início)) --> Router{Intent Router}
-    
-    Router -- "Modo A" --> Conv[Conversão Direta]
-    Router -- "Modo B" --> Prep[Tratamento Single]
-    Router -- "Modo C" --> Step0[Quarentena Forense]
-    Router -- "Modo D" --> PS[Price Sync Turbo]
+Este projeto deve ser tratado como protótipo e laboratório de engenharia, não como produto de produção validado.
 
-    Step0 --> Insp{Omni-Data Scan}
-    Insp -- "Risk High" --> Correct[Correção Byte-level]
-    Insp -- "Safe" --> Wizard[ETL Wizard Steps 1-4]
-    
-    Wizard --> Final((Master Sync))
-    PS --> Final
-    Conv --> Final
-```
+## Capacidades presentes no código
 
-### 2. Pipeline de Processamento Cognitivo
-Abaixo, a arquitetura de como o **Motor JGDA** interage com o **Cérebro Genaja**:
+* inspeção e profiling de dados
+* validação de valores e estruturas
+* descoberta e mapeamento de schema
+* similaridade fuzzy com distância de Levenshtein
+* comparação fonética em rotinas de deduplicação
+* exact matching e heurísticas de resolução
+* consolidação e seleção de registros
+* processamento local
+* geração de logs e trilhas de auditoria
+* integração com fontes SQL em componentes do fluxo
+
+## Arquitetura conceitual
 
 ```mermaid
 graph LR
-    subgraph "Engrenagem (The Motor)"
-        AD[Adapters] --> RD[Rust Engine]
-        RD --> PL[Profiling Layer]
-    end
-
-    subgraph "Inteligência (The Brain)"
-        PL --> MS[Mega-Store]
-        MS --> CS[Curated Rules]
-    end
-
-    subgraph "Saída (Output)"
-        CS --> EX[Export Service]
-        EX --> AU[Audit LGPD]
-    end
-
-    style RD fill:#0a0a0a,stroke:#00ffff,stroke-width:2px
-    style MS fill:#0a0a0a,stroke:#amber,stroke-width:2px
+    A[Fontes de dados] --> B[Inspeção]
+    B --> C[Profiling]
+    C --> D[Validação]
+    D --> E[Mapeamento de schema]
+    E --> F[Deduplicação e resolução]
+    F --> G[Curadoria]
+    G --> H[Exportação e auditoria]
 ```
 
-### 3. Hierarquia de Decisão Cognitiva (The Brain)
-O motor de MDM processa dados através de camadas de confiança, priorizando o sinal determinístico:
+## Resolução de registros
+
+O projeto combina sinais determinísticos e heurísticos.
 
 ```mermaid
 graph TD
-    Input[Input String] --> Exact{Match Exato?}
-    Exact -- Sim --> Result[Mestre Determinado]
-    Exact -- Não --> Pattern{Padrão Regex?}
-    Pattern -- Sim --> Result
-    Pattern -- Não --> Phonetic{Metaphone sound?}
-    Phonetic -- Sim --> Result
-    Phonetic -- Não --> Fuzzy{Levenshtein similarity?}
-    Fuzzy -- Sim --> Result
-    Fuzzy -- Não --> Human[Curadoria Kanban]
+    A[Entrada] --> B{Match exato?}
+    B -->|Sim| F[Resultado]
+    B -->|Não| C{Regra ou padrão?}
+    C -->|Sim| F
+    C -->|Não| D{Similaridade fonética ou fuzzy?}
+    D -->|Sim| F
+    D -->|Não| E[Curadoria]
 ```
 
-### 4. Ciclo de Vida do HUD de Consolidação (Data 1:N)
-Visualização do fluxo de tratamento de registros duplicados e seleção de Master:
+## Estrutura técnica
 
-```mermaid
-graph LR
-    Raw[Registros Brutos] --> Engine[Deduplication Motor]
-    Engine --> Clusters[Clusters Identificados]
-    Clusters --> Split{Separação 1:N?}
-    Split --> HUD[HUD de Consolidação]
-    HUD --> Choice{Seleção Master?}
-    Choice -- Auto --> Final[Registro Unificado]
-    Choice -- Manual --> Eject[Quarentena/Ejection]
-    Final --> Sync[Price Sync / Export]
-```
+A documentação detalhada está em:
 
----
+`JGDA/docs/ARCHITECTURE.md`
 
-## 🛠️ Estágios do Wizard (The Elite Path)
+Alguns componentes relevantes:
 
-O Wizard de 4 estágios garante que dados de fontes "sujas" ou não-estruturadas sejam domesticados com precisão determinística:
+`JGDA/src/migration/schema_mapper.py`
 
-1.  **🔍 Inspeção (Step 0)**: Varredura binária (Magic Bytes) via Omni-Data para detectar fraudes de extensão (ex: SAP XML mascarado como XLS).
-2.  **🔗 Conectividade (Step 1)**: Mapeamento de fontes locais ou SQL com descoberta automática de schema.
-3.  **🧬 Sincronia de Chaves (Step 2)**: Intersecção de datasets para identificação de Primary Keys com 99% de confiança.
-4.  **🧩 Mapeamento Atributivo (Step 3)**: Inferência fuzzy (Levenshtein) para colunas com nomes divergentes.
-5.  **⚡ Execução & Auditoria (Step 4)**: Processamento massivo com log de auditoria retroativo (Conformidade Art. 37 LGPD).
+`JGDA/src/core/engines/deduplication_engine.py`
 
----
+`CHANGELOG.md`
 
-## 🚦 Diferenciais Platinum
-- **Zero Data Leak**: Blindagem nativa via Protocolo de Governança (bloqueio total de caminhos `brains/` e `docs/`).
-- **Omni-Data Engine**: Inspeção híbrida Python/Rust para performance de baixa latência em arquivos XL de grande volume.
-- **Cognitive Cache**: O sistema aprende com cada mapeamento feito pelo operador, reduzindo o tempo de trabalho em 80% em execuções recorrentes.
+## Objetivo do projeto
 
----
+O objetivo do Genaja é estudar e implementar técnicas para tornar migrações e saneamento de dados mais rastreáveis e reproduzíveis, especialmente quando diferentes fontes usam schemas, nomes e formatos inconsistentes.
 
-*Documentação Técnica Detalhada em `docs/ARCHITECTURE.md`*
+## Status
+
+Em desenvolvimento experimental.
+
+Claims de desempenho, precisão ou ganho percentual só devem ser considerados após benchmarks reproduzíveis e publicados.
